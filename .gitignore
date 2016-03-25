@@ -3,4 +3,6 @@
 Homestead.yaml
 Homestead.json
 .env
-
+.gitignore
+.gitattributes
+.idea
