@@ -1,2 +1,2 @@
 # Tian Mao CMS
-Free, open-source CMS based on the Laravel PHP Framework
+Free,open-source CMS based on the Laravel PHP Framework
