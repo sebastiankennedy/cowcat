@@ -1,6 +1,7 @@
 {
   "private": true,
   "devDependencies": {
+    "admin-lte": "^2.3.2",
     "gulp": "^3.8.8"
   },
   "dependencies": {
