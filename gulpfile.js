@@ -23,20 +23,16 @@ elixir(function(mix) {
     mix.copy('node_modules/font-awesome/css/font-awesome.min.css','resources/assets/css/');
     mix.copy('node_modules/font-awesome/fonts/','public/assets/fonts/');
 
-    // 编译Sass
-    mix.sass([
-    	'app.scss'
-    ],'resources/assets/css/cms.css');
-
-    // 合并指定文件夹的样式文件与脚本文件
+    // 合并指定文件夹的CSS样式文件
     mix.styles([
         'bootstrap.min.css',
         'font-awesome.min.css',
         'ionicons.min.css',
         'adminlte.min.css',
-        'adminlte-skin.min.css',
-        'cms.css'
+        'adminlte-skin.min.css'
     ],'public/assets/css/app.min.css');
+
+    // 合并指定文件夹的Javascript脚本文件
     mix.scripts([
         'jquery.min.js',
         'bootstrap.min.js',

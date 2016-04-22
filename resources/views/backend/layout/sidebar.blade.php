@@ -32,6 +32,17 @@
                     <li><a href="#">Link in level 2</a></li>
                 </ul>
             </li>
+            <li class="treeview">
+                <a href=""><span>Log Viewer</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="{{route('log-viewer::dashboard')}}">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="{{route('log-viewer::logs.list')}}">logs</a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </section>
 </aside>
