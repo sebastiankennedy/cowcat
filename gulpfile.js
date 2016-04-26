@@ -14,6 +14,7 @@ elixir(function(mix) {
     mix.copy('node_modules/admin-lte/dist/img/','public/assets/images/');
 	mix.copy('node_modules/admin-lte/dist/css/AdminLTE.min.css','resources/assets/css/adminlte.min.css');
 	mix.copy('node_modules/admin-lte/dist/css/skins/skin-black.min.css','resources/assets/css/adminlte-skin.min.css');
+    mix.copy('node_modules/admin-lte/plugins/*','public/assets/plugins/');
 
     // Ionicons
     mix.copy('node_modules/ionicons/dist/css/ionicons.min.css','resources/assets/css/');
@@ -29,7 +30,8 @@ elixir(function(mix) {
         'font-awesome.min.css',
         'ionicons.min.css',
         'adminlte.min.css',
-        'adminlte-skin.min.css'
+        'adminlte-skin.min.css',
+        'common.css'
     ],'public/assets/css/app.min.css');
 
     // 合并指定文件夹的Javascript脚本文件

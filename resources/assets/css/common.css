@@ -1,0 +1,44 @@
+.pagination>.active>span,
+.pagination>.active>span:focus,
+.pagination>.active>span:hover{
+	background-color: #333;
+	border-color: #333;
+}
+.pace .pace-progress {
+	background: #333;
+	border-top-color: #333;
+    border-left-color: #333;
+}
+.pace .pace-activity{
+	border-top-color: #333;
+    border-left-color: #333;
+}
+.btn-success {
+    color: #fff;
+    background-color: #24ce7b;
+    border-color: #24ce7b;
+}
+.btn-warning {
+    color: #fff;
+    background-color: #f48714;
+    border-color: #f48714;
+}
+.btn-danger {
+    color: #fff;
+    background-color: #f6303e;
+    border-color: #f6303e;
+}
+.btn-box {
+    border-radius: 3px;
+    position: relative;
+    padding: 15px 5px;
+    margin: 0 0 10px 0;
+    min-width: 80px;
+    height: 60px;
+    text-align: center;
+    font-size: 12px;
+}
+.btn-box>.fa, .btn-box>.glyphicon, .btn-box>.ion {
+    font-size: 20px;
+    display: block;
+}
