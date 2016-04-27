@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Facades\MenuRepository;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-use App\Models\Menu;
 use Illuminate\Http\Request;
 
 class MenuController extends Controller
@@ -15,10 +15,23 @@ class MenuController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $data = Menu::paginate(50);
+        $data = MenuRepository::paginate(50);
         return view('backend.menu.index', compact('data'));
+    }
+
+    /**
+     * Display a listing of the resource by the search condition.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $data = MenuRepository::getMenusPaginateByCondition($request->all());
+        dd($data);
+        return view('backend.menu.search', compact('data'));
     }
 
     /**
