@@ -27,13 +27,8 @@
 				<div class="box-body table-responsive">
 					<div class="form-group">
 						<select class="form-control select2" name="parent_id">
-							<option selected="selected" value="">无</option>
-							<option>Alaska</option>
-							<option>California</option>
-							<option>Delaware</option>
-							<option>Tennessee</option>
-							<option>Texas</option>
-							<option>Washington</option>
+							<option selected="selected" value="">所有分类</option>
+							<option value="0">顶级分类</option>
 						</select>
 					</div>
 
@@ -42,7 +37,7 @@
 					</div>
 
 					<div class="form-group">
-						<input type="text" class="form-control" id="created_at" name="created_at" value="{{date('Y/m/d 00:00').' - '.date('Y/m/d 23:59',strtotime("+1 week"))}}">
+						<input type="text" class="form-control" id="created_at" name="created_at">
 					</div>
 				</div>
 				<div class="box-footer">

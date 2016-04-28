@@ -17,7 +17,6 @@ class FilterSearchCondition
     public function handle($request, Closure $next)
     {
         $array = [];
-
         foreach ($request->all() as $field => $value) {
             if ((!empty($value) || $value === '0')) {
                 if ($field === 'page') {

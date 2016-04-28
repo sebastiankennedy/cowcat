@@ -14,7 +14,9 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // 合并自定义配置文件
+        $configuration = realpath(__DIR__.'/../../config/repository.php');
+        $this->mergeConfigFrom($configuration, 'repository');
     }
 
     /**
@@ -30,7 +32,7 @@ class RepositoryServiceProvider extends ServiceProvider
     public function registerMenuRepository()
     {
         $this->app->singleton('menurepository', function ($app) {
-            $model = 'App\Models\Menu';
+            $model = config('repository.models.menu');
             $menu = new $model();
             $validator = $app['validator'];
 

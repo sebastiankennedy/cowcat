@@ -23,7 +23,7 @@
 
         <ul class="sidebar-menu">
             <li class="header">HEADER</li>
-            <li class="active"><a href="#"><span>Link</span></a></li>
+            <li><a href="#"><span>Link</span></a></li>
             <li><a href="#"><span>Another Link</span></a></li>
             <li class="treeview">
                 <a href="#"><span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
@@ -32,10 +32,10 @@
                     <li><a href="#">Link in level 2</a></li>
                 </ul>
             </li>
-            <li class="treeview">
+            <li class="treeview active">
                 <a href=""><span>Log Viewer</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li>
+                    <li class="active">
                         <a href="{{route('log-viewer::dashboard')}}">Dashboard</a>
                     </li>
                     <li>

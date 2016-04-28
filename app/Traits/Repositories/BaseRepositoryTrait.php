@@ -148,17 +148,19 @@ trait BaseRepositoryTrait
     {
         $model = $this->model;
 
-        foreach ($where as $field => $value) {
-            if (is_array($value)) {
-                list($field, $condition, $val) = $value;
-                if ($condition !== '=') {
-                    $condition = 'where'.ucfirst($condition);
-                    $model =$model->$condition($field, $val);
+        if (!empty($where)) {
+            foreach ($where as $field => $value) {
+                if (is_array($value)) {
+                    list($field, $condition, $val) = $value;
+                    if ($condition !== '=') {
+                        $condition = 'where'.ucfirst($condition);
+                        $model =$model->$condition($field, $val);
+                    } else {
+                        $model =$model->where($field, $condition, $val);
+                    }
                 } else {
-                    $model =$model->where($field, $condition, $val);
+                    $model =$model->where($field, '=', $value);
                 }
-            } else {
-                $model =$model->where($field, '=', $value);
             }
         }
 

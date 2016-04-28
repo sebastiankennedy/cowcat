@@ -17,7 +17,7 @@ class MenuController extends Controller
      */
     public function index()
     {
-        $data = MenuRepository::paginate(50);
+        $data = MenuRepository::paginate(config('repository.page-limit'));
         return view('backend.menu.index', compact('data'));
     }
 
@@ -29,7 +29,7 @@ class MenuController extends Controller
      */
     public function search(Request $request)
     {
-        $data = MenuRepository::paginateWhere($request->get('where'),25);
+        $data = MenuRepository::paginateWhere($request->get('where'), config('repository.page-limit'));
         return view('backend.menu.search', compact('data'));
     }
 
