@@ -12,8 +12,9 @@ class MenuRepository extends CommonRepository
 		foreach($inputs as $input){
 			list($field,$condition,$value) = $input;
 
-			if($condition === 'between'){
-				$this->model = $this->model->whereBetween($field,$value);
+			if($condition !== '='){
+				$condition = 'where'.ucfirst($condition);
+				$this->model = $this->model->$condition($field,$value);
 			}else{
 				$this->model = $this->model->where($field,$condition,$value);
 			}

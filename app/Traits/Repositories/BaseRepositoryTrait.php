@@ -143,4 +143,25 @@ trait BaseRepositoryTrait
         $model = $this->model;
         return $model->whereIn($field, $value)->get($columns);
     }
+
+    public function paginateWhere($where, $limit, $columns = ['*'])
+    {
+        $model = $this->model;
+
+        foreach ($where as $field => $value) {
+            if (is_array($value)) {
+                list($field, $condition, $val) = $value;
+                if ($condition !== '=') {
+                    $condition = 'where'.ucfirst($condition);
+                    $model =$model->$condition($field, $val);
+                } else {
+                    $model =$model->where($field, $condition, $val);
+                }
+            } else {
+                $model =$model->where($field, '=', $value);
+            }
+        }
+
+        return $model->paginate($limit);
+    }
 }

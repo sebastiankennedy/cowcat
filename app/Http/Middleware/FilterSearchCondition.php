@@ -16,17 +16,24 @@ class FilterSearchCondition
      */
     public function handle($request, Closure $next)
     {
-        $condition = [];
-        foreach ($request->all() as $key => $value) {
-            if ($value) {
-                if (in_array($key, $this->betweenFields)) {
-                    $condition[] = [$key,'between',$this->formatBetweentField($value)];
+        $array = [];
+
+        foreach ($request->all() as $field => $value) {
+            if ((!empty($value) || $value === '0')) {
+                if ($field === 'page') {
+                    $array['page'] = $value;
+                    continue;
+                }
+                if (in_array($field, $this->betweenFields)) {
+                    $array['where'][] = [$field,'between',$this->formatBetweentField($value)];
                 } else {
-                    $condition[] = [$key,'=',$value];
+                    $array['where'][] = [$field,'=',$value];
                 }
             }
         }
-        $request->replace($condition);
+
+        $request->flash();
+        $request->replace($array);
 
         return $next($request);
     }

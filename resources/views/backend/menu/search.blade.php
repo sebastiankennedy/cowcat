@@ -27,22 +27,17 @@
 				<div class="box-body table-responsive">
 					<div class="form-group">
 						<select class="form-control select2" name="parent_id">
-							<option selected="selected" value="">无</option>
-							<option>Alaska</option>
-							<option>California</option>
-							<option>Delaware</option>
-							<option>Tennessee</option>
-							<option>Texas</option>
-							<option>Washington</option>
+							<option value="">所有分类</option>
+							<option value="1">菜单管理</option>
 						</select>
 					</div>
 
 					<div class="form-group">
-						<input type="name" class="form-control" id="name" name="name" placeholder="菜单名称" >
+						<input type="name" class="form-control" id="name" name="name" placeholder="菜单名称" value="{{old('name')}}">
 					</div>
 
 					<div class="form-group">
-						<input type="text" class="form-control" id="created_at" name="created_at" value="{{date('Y/m/d 00:00').' - '.date('Y/m/d 23:59',strtotime("+1 week"))}}">
+						<input type="text" class="form-control" id="created_at" name="created_at" value="{{old('created_at')}}">
 					</div>
 				</div>
 				<div class="box-footer">
@@ -64,7 +59,7 @@
 			<div class="box-header">
 				<h3 class="box-title">菜单列表</h3>
 
-				<div class="box-tools">{!! $data->render() !!}</div>
+				<div class="box-tools">{!! $data->appends(['name'=>old('name'),'parent_id'=>old('parent_id'),'created_at'=>old('created_at')])->render() !!}</div>
 			</div>
 
 			<div class="box-body table-responsive no-padding">
@@ -88,9 +83,11 @@
 					@endforeach
 				</table>
 			</div>
+			@if($data->appends(['name'=>old('name'),'parent_id'=>old('parent_id'),'created_at'=>old('created_at')])->render())
 			<div class="box-footer clearfix">
-				{!! $data->render() !!}
+				{!! $data->appends(['name'=>old('name'),'parent_id'=>old('parent_id'),'created_at'=>old('created_at')])->render() !!}
             </div>
+            @endif
 		</div>
 	</div>
 </div>

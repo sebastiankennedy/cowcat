@@ -29,8 +29,7 @@ class MenuController extends Controller
      */
     public function search(Request $request)
     {
-        $data = MenuRepository::getMenusPaginateByCondition($request->all());
-        dd($data);
+        $data = MenuRepository::paginateWhere($request->get('where'),25);
         return view('backend.menu.search', compact('data'));
     }
 
