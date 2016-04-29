@@ -40,6 +40,13 @@ elixir(function(mix) {
         'bootstrap.min.js',
         'adminlte.min.js'
     ],'public/assets/js/app.min.js');
+
+    // 监控文件变动，自动刷新浏览器
+    mix.browserSync({
+        files: ['app/**/*', 'public/**/*', 'resources/views/**/*'],
+        port: 5000,
+        proxy: 'localhost:8000'
+    });
 });
 
 

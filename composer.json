@@ -9,7 +9,9 @@
         "laravel/framework": "5.1.*",
         "barryvdh/laravel-ide-helper": "^2.1",
         "barryvdh/laravel-debugbar": "^2.2",
-        "arcanedev/log-viewer": "~3.0"
+        "arcanedev/log-viewer": "~3.0",
+        "spatie/menu": "1.1",
+        "spatie/laravel-menu": "^1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

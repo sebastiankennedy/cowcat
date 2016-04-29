@@ -83,9 +83,11 @@
 					@endforeach
 				</table>
 			</div>
+			@if($data->render())
 			<div class="box-footer clearfix">
 				{!! $data->render() !!}
             </div>
+            @endif
 		</div>
 	</div>
 </div>
