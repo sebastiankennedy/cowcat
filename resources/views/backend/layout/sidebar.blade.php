@@ -39,7 +39,7 @@
                         <a href="{{route('log-viewer::dashboard')}}">Dashboard</a>
                     </li>
                     <li>
-                        <a href="{{route('log-viewer::logs.list')}}">logs</a>
+                        <a href="{{route('log-viewer::logs.list')}}">Logs</a>
                     </li>
                 </ul>
             </li>
