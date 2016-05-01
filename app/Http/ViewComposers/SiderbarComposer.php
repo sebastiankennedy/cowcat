@@ -10,12 +10,13 @@ class SiderbarComposer
     /**
      * 将数据绑定到视图
      * @param  View  $view
-     * @return view
+     * @return mixed
      */
     public function compose(View $view)
     {
         $menus = MenuRepository::getAllDisplayMenus();
-
+        $tree = create_level_tree($menus);
+        dump($tree);
         $view->with(compact('menus'));
     }
 }
