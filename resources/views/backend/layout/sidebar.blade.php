@@ -1,5 +1,4 @@
 <aside class="main-sidebar">
-
     <section class="sidebar">
 
         <div class="user-panel">
@@ -21,6 +20,7 @@
             </div>
         </form>
 
+        {!! $menuPresenter->renderSidebar($menus) !!}
         <ul class="sidebar-menu">
             <li class="header">HEADER</li>
             <li><a href="#"><span>Link</span></a></li>

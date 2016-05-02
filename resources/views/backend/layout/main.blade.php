@@ -1,3 +1,4 @@
+@inject('menuPresenter','App\Presenters\MenuPresenter')
 <!DOCTYPE html>
 <html>
 
@@ -10,7 +11,6 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/app.min.css">
     @yield('after.css')
 </head>
-
 <body class="skin-black">
     <div class="wrapper">
         @include('backend.layout.header')
@@ -30,5 +30,4 @@
     <script type="text/javascript" src="/assets/plugins/pace/pace.min.js"></script>
     @yield('after.js')
 </body>
-
 </html>

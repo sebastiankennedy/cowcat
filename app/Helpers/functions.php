@@ -10,8 +10,8 @@ if (!function_exists('two_dimensional_array_unique')) {
     function two_dimensional_array_unique($array, $key)
     {
         $i = 0;
-        $key_array = array();
-        $temp_array = array();
+        $key_array = [];
+        $temp_array = [];
 
         foreach ($array as $value) {
             if (!in_array($value[$key], $key_array)) {
@@ -49,8 +49,8 @@ if (!function_exists('two_dimensional_array_sort')) {
      */
     function two_dimensional_array_sort($array, $on, $order = SORT_ASC)
     {
-        $new_array = array();
-        $sortable_array = array();
+        $new_array = [];
+        $sortable_array = [];
         $on = (string)$on;
         if (count($array) > 0) {
             foreach ($array as $k => $v) {
@@ -82,20 +82,63 @@ if (!function_exists('two_dimensional_array_sort')) {
         return $new_array;
     }
 }
+if (!function_exists('create_level_tree')) {
+    function create_level_tree($data, $parent_id = 0, $level = 0, $html = '-')
+    {
+        $tree = [];
+        foreach ($data as $item) {
+            $item['html'] = str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $level);
+            $item['html'].= $level === 0 ? "" : '|';
+            $item['html'].= str_repeat($html, $level);
 
-function create_level_tree($data, $parent_id = 0, $level = 0, $html = '-')
-{
-    $tree = [];
-    foreach ($data as $key => $value) {
-        $value['html'] = str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $level);
-        $value['html'].= $level === 0 ? "" : '|';
-        $value['html'].= str_repeat($html, $level);
-
-        if ($value['parent_id'] == $parent_id) {
-            $tree[] = $value;
-            $tree = array_merge($tree, create_level_tree($data, $value['id'], $level+1));
+            if ($item['parent_id'] == $parent_id) {
+                $tree[] = $item;
+                $tree = array_merge($tree, create_level_tree($data, $item['id'], $level+1));
+            }
         }
-    }
 
-    return $tree;
+        return $tree;
+    }
+}
+if (!function_exists('create_node_tree')) {
+    function create_node_tree($data, $parent_id = 0, $name = 'child')
+    {
+        $tree = [];
+
+        foreach ($data as $item) {
+            if ($item['parent_id'] == $parent_id) {
+                $item[$name] = create_node_tree($data, $item['id']);
+                $tree[] = $item;
+            }
+        }
+
+        return $tree;
+    }
+}
+if (!function_exists('getParentsByChildId')) {
+    function getParentsByChildId($data, $child_id)
+    {
+        $arr = [];
+        foreach ($data as $item) {
+            if ($data['id'] == $child_id) {
+                $arr[] = $item;
+                $arr = array_merge($arr, getParentsByChildId($data, $item['parent_id']));
+            }
+        }
+
+        return $arr;
+    }
+}
+if (!function_exists('getChildsByParentId')) {
+    function getChildsByParentId($data, $parent_id)
+    {
+        $arr = [];
+        foreach ($data as $item) {
+            if ($data['parent_id'] == $parent_id) {
+                $arr[] = $item;
+                $arr = array_merge($arr, getChildsByParentId($data, $item['parent_id']));
+            }
+        }
+        return $arr;
+    }
 }

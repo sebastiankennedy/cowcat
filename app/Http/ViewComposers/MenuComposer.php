@@ -4,8 +4,9 @@ namespace App\Http\ViewComposers;
 
 use App\Facades\MenuRepository;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Route;
 
-class SiderbarComposer
+class MenuComposer
 {
     /**
      * 将数据绑定到视图
@@ -14,9 +15,8 @@ class SiderbarComposer
      */
     public function compose(View $view)
     {
+        $route = Route::currentRouteName();
         $menus = MenuRepository::getAllDisplayMenus();
-        $tree = create_level_tree($menus);
-        dump($tree);
-        $view->with(compact('menus'));
+        $view->with(compact('menus','route'));
     }
 }
