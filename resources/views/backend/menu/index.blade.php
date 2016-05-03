@@ -8,7 +8,7 @@
 @section('content')
 <div class="row">
 	<div class="col-md-3">
-		<a class="btn btn-box btn-success btn-flat">
+		<a class="btn btn-box btn-success btn-flat" href="{{route('admin.menu.create')}}">
 			<i class="fa fa-plus"></i> 新增
 		</a>
 		<a class="btn btn-box btn-info btn-flat">

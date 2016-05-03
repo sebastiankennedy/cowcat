@@ -40,10 +40,9 @@ class MenuPresenter
             return $breadcrumbs;
         } else {
             $breadcrumbs = $this->makeBreadcrumbs($menus, $route);
-            dd($breadcrumbs);
             Cache::forever(self::REDIS_BREADCRUMBS_MENUS_CACHE.$route, $breadcrumbs);
 
-            return $breadcrumbs;
+            return "Todo breadcrumbs";
         }
     }
 
@@ -52,16 +51,16 @@ class MenuPresenter
         $sidebar = "";
 
         foreach ($menus as $menu) {
-            if ($menu['is_hide'] == 0) {
+            if ($menu['hide'] == 0) {
                 if ($menu['child']) {
                     $sidebar .= '<li class="treeview">'
-                        . '<a><i class="' . $menu['ico'] . '"></i><span>' . $menu['name'] . '</span><i class="fa fa-angle-left pull-right"></i></a>'
+                        . '<a href="#"><i class="' . $menu['icon'] . '"></i><span>' . $menu['name'] . '</span><i class="fa fa-angle-left pull-right"></i></a>'
                         . '<ul class="treeview-menu">'
                         . self::makeSidebar($menu['child'])
                         . '</ul>'
                         . '</li>';
                 } else {
-                    $sidebar .= '<li><a href="javascript:;" $menus-url="' . ($menu['url']) . '"><i class="' . $menu['ico'] . '"></i><span> ' . $menu['name'] . '</span></a></li>';
+                    $sidebar .= '<li><a href="javascript:;" $menus-url="' . ($menu['url']) . '"><i class="' . $menu['icon'] . '"></i><span> ' . $menu['name'] . '</span></a></li>';
                 }
             }
         }

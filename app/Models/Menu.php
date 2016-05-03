@@ -16,13 +16,13 @@ class Menu extends Model
      * [$guarded description]
      * @var string
      */
-    protected $table = "s2_menus";
+    protected $table = "menus";
 
     /**
      * [$guarded description]
      * @var string
      */
-    protected static $order = 'created_at';
+    protected static $order = 'sort';
 
     /**
      * [$guarded description]

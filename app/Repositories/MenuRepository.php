@@ -18,7 +18,7 @@ class MenuRepository extends CommonRepository
         $menus = Cache::get(self::REDIS_ALL_DISPLAY_MENUS_CACHE);
 
         if (empty($menus)) {
-            $menus = $this->model->whereIsHide(0)->orderBy('sort','desc')->get()->toArray();
+            $menus = $this->model->whereHide(0)->orderBy('sort','desc')->get()->toArray();
             Cache::forever(self::REDIS_ALL_DISPLAY_MENUS_CACHE, $menus);
 
             return $menus;
