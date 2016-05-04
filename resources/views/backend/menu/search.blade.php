@@ -18,7 +18,7 @@
 </div>
 
 <div class="row">
-	<form class="form-inline" action="/admin/menu/search" method="get">
+	<form class="form-inline" action="/menu/search" method="get">
 		<div class="col-md-12">
 			<div class="box">
 				<div class="box-header with-border">

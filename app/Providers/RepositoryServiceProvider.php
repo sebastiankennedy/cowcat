@@ -29,6 +29,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->registerMenuRepository();
     }
 
+    /**
+     * Register the Menu Repository
+     *
+     * @return mixed
+     */
     public function registerMenuRepository()
     {
         $this->app->singleton('menurepository', function ($app) {

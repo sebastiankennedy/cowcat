@@ -26,4 +26,9 @@ class MenuRepository extends CommonRepository
             return $menus;
         }
     }
+
+    public function clearAllMenusCache()
+    {
+        Cache::forget(self::REDIS_ALL_DISPLAY_MENUS_CACHE);
+    }
 }

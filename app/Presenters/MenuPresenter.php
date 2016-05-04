@@ -60,7 +60,7 @@ class MenuPresenter
                         . '</ul>'
                         . '</li>';
                 } else {
-                    $sidebar .= '<li><a href="javascript:;" $menus-url="' . ($menu['url']) . '"><i class="' . $menu['icon'] . '"></i><span> ' . $menu['name'] . '</span></a></li>';
+                    $sidebar .= '<li><a href="javascript:;" $menus-url="' . ($menu['route']) . '"><i class="' . $menu['icon'] . '"></i><span> ' . $menu['name'] . '</span></a></li>';
                 }
             }
         }

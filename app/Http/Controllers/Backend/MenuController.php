@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Facades\MenuRepository;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use App\Http\Requests\Form\MenuForm;
 use Illuminate\Http\Request;
 
 class MenuController extends Controller
@@ -40,7 +41,8 @@ class MenuController extends Controller
      */
     public function create()
     {
-        return view('backend.menu.create');
+        $tree = create_level_tree(MenuRepository::getAllDisplayMenus());
+        return view('backend.menu.create',compact('tree'));
     }
 
     /**
@@ -49,9 +51,16 @@ class MenuController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MenuForm $request)
     {
-        //
+        try {
+            if (MenuRepository::create($request->all())) {
+                MenuRepository::clearAllMenusCache();
+                return redirect()->route('menu.index')->withSuccess("新增菜单成功");
+            }
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(array('error' => $e->getMessage()))->withInput();
+        }
     }
 
     /**

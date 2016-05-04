@@ -11,7 +11,10 @@ class ComposerServiceProvider extends ServiceProvider
 
     public function __construct($menu)
     {
-        $this->menu = ['backend.layout.sidebar','backend.layout.breadcrumbs'];
+        $this->menu = [
+            'backend.layout.sidebar',
+            'backend.layout.breadcrumbs',
+        ];
     }
 
     /**

@@ -18,6 +18,7 @@
         <div class="content-wrapper">
             <section class="content-header">
                 @include('backend.layout.breadcrumbs')
+                @include('backend.layout.errors')
             </section>
             <section class="content">
                 @yield('content')
