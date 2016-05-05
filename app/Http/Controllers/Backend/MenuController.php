@@ -42,7 +42,7 @@ class MenuController extends Controller
     public function create()
     {
         $tree = create_level_tree(MenuRepository::getAllDisplayMenus());
-        return view('backend.menu.create',compact('tree'));
+        return view('backend.menu.create', compact('tree'));
     }
 
     /**
@@ -81,7 +81,9 @@ class MenuController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = MenuRepository::find($id);
+        $tree = create_level_tree(MenuRepository::getAllDisplayMenus());
+        return view('backend.menu.edit', compact('tree', 'data'));
     }
 
     /**
@@ -93,7 +95,18 @@ class MenuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+
+        unset($data['_token']);
+        unset($data['_method']);
+
+        try {
+            if (MenuRepository::updateById($id, $data)) {
+                return redirect()->route('menu.index')->withSuccess('编辑菜单成功');
+            }
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(array('error' => $e->getMessage()))->withInput();
+        }
     }
 
     /**

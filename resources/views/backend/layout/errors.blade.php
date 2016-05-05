@@ -1,5 +1,5 @@
 @if(Session::has('errors'))
-	<div id="errors-message" class="alert alert-danger alert-dismissible" style="margin-top: 10px">
+	<div id="errors-message" class="alert alert-danger alert-dismissible">
 		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
 			&times;
 		</button>

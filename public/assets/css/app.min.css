@@ -21646,3 +21646,9 @@ table.text-center th {
   font-size: 20px;
   display: block;
 }
+
+#success-message,
+#errors-message {
+  margin-top: 15px;
+  margin-bottom: -5px;
+}

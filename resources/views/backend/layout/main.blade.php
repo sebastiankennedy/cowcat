@@ -19,6 +19,7 @@
             <section class="content-header">
                 @include('backend.layout.breadcrumbs')
                 @include('backend.layout.errors')
+                @include('backend.layout.success')
             </section>
             <section class="content">
                 @yield('content')

@@ -7,7 +7,7 @@
 
 @section('content')
 <div class="row">
-	<div class="col-md-3">
+	<div class="col-md-12">
 		<a class="btn btn-box btn-success btn-flat" href="{{route('menu.create')}}">
 			<i class="fa fa-plus"></i> 新增
 		</a>
@@ -18,39 +18,32 @@
 </div>
 
 <div class="row">
-	<form class="form-inline" action="/menu/search" method="get">
-		<div class="col-md-12">
-			<div class="box">
-				<div class="box-header with-border">
-					<h3 class="box-title">筛选条件</h3>
-				</div>
-				<div class="box-body table-responsive">
+	<div class="col-md-12">
+		<div class="box">
+			<div class="box-body table-responsive">
+				<form class="form-inline" action="/menu/search" method="get">
 					<div class="form-group">
-						<select class="form-control select2" name="parent_id">
+						<select class="form-control select2" name="parent_id" style="width:100%;">
 							<option selected="selected" value="">所有分类</option>
 							<option value="0">顶级分类</option>
 						</select>
 					</div>
-
 					<div class="form-group">
 						<input type="name" class="form-control" id="name" name="name" placeholder="菜单名称" >
 					</div>
-
 					<div class="form-group">
 						<input type="text" class="form-control" id="created_at" name="created_at">
 					</div>
-				</div>
-				<div class="box-footer">
 					<div class="form-group">
 						<button class="btn btn-success btn-flat" type="submit">
 							<i class="fa fa-filter"></i>
 							筛选
 						</button>
 					</div>
-				</div>
+				</form>
 			</div>
 		</div>
-	</form>
+	</div>
 </div>
 
 <div class="row">
@@ -74,9 +67,9 @@
 						<tr>
 							<td>{{$item->id}}</td>
 							<td>{{$item->name}}</td>
-							<td>{{$item->url}}</td>
+							<td>{{$item->route}}</td>
 							<td>
-								<a href="" class="btn bg-orange btn-flat">编辑</a>
+								<a href="{{route('menu.edit',['id'=>$item->id])}}" class="btn bg-orange btn-flat">编辑</a>
 								<a href="" class="btn btn-danger btn-flat">删除</a>
 							</td>
 						</tr>

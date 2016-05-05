@@ -60,7 +60,7 @@ class MenuPresenter
                         . '</ul>'
                         . '</li>';
                 } else {
-                    $sidebar .= '<li><a href="javascript:;" $menus-url="' . ($menu['route']) . '"><i class="' . $menu['icon'] . '"></i><span> ' . $menu['name'] . '</span></a></li>';
+                    $sidebar .= '<li><a href="'.route($menu['route']).'"><i class="' . $menu['icon'] . '"></i><span> ' . $menu['name'] . '</span></a></li>';
                 }
             }
         }
@@ -73,15 +73,15 @@ class MenuPresenter
         $breadcrumbs = [];
         foreach ($menus as $key => $value) {
             if ($route) {
-            	if($value['url'] == $route){
-            		$breadcrumbs[] = $value;
-                	$breadcrumbs = array_merge($breadcrumbs, self::makeBreadcrumbs($menus,'', $value['parent_id']));
-            	}
-            }else{
-            	if($value['parent_id'] == $parent_id){
-            		$breadcrumbs[] = $value;
-            		$breadcrumbs = array_merge($breadcrumbs, self::makeBreadcrumbs($menus,'', $value['parent_id']));
-            	}
+                if ($value['url'] == $route) {
+                    $breadcrumbs[] = $value;
+                    $breadcrumbs = array_merge($breadcrumbs, self::makeBreadcrumbs($menus, '', $value['parent_id']));
+                }
+            } else {
+                if ($value['parent_id'] == $parent_id) {
+                    $breadcrumbs[] = $value;
+                    $breadcrumbs = array_merge($breadcrumbs, self::makeBreadcrumbs($menus, '', $value['parent_id']));
+                }
             }
         }
         return $breadcrumbs;
