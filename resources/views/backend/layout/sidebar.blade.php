@@ -20,7 +20,7 @@
             </div>
         </form>
 
-        {!! $menuPresenter->renderSidebar($menus) !!}
+        {!! $mainPresenter->renderSidebar($menus) !!}
         <ul class="sidebar-menu">
             <li class="header">HEADER</li>
             <li><a href="#"><span>Link</span></a></li>

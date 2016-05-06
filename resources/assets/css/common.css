@@ -57,3 +57,8 @@
     margin-top: 15px;
     margin-bottom:  -5px
 }
+.alert-success{
+    color: #fff;
+    background-color: #24ce7b;
+    border-color: #24ce7b;
+}

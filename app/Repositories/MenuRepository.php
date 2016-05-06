@@ -9,10 +9,16 @@ use Cache;
 */
 class MenuRepository extends CommonRepository
 {
-    const REDIS_ALL_MENUS_CACHE = 'redis_all_menus_cache';
+    /**
+     * 所有显示菜单缓存键
+     */
+    const REDIS_ALL_DISPLAY_MENUS_CACHE = 'redis_all_display_menus_array_cache';
 
-    const REDIS_ALL_DISPLAY_MENUS_CACHE = 'redis_all_display_menus_cache';
-
+    /**
+     * 获取所有显示菜单
+     *
+     * @return array
+     */
     public function getAllDisplayMenus()
     {
         $menus = Cache::get(self::REDIS_ALL_DISPLAY_MENUS_CACHE);
@@ -27,6 +33,11 @@ class MenuRepository extends CommonRepository
         }
     }
 
+    /**
+     * 清除所有的菜单缓存
+     *
+     * @return array
+     */
     public function clearAllMenusCache()
     {
         Cache::forget(self::REDIS_ALL_DISPLAY_MENUS_CACHE);

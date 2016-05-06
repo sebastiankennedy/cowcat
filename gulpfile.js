@@ -15,17 +15,24 @@ elixir(function(mix) {
 	mix.copy('node_modules/admin-lte/dist/css/AdminLTE.min.css','resources/assets/css/adminlte.min.css');
 	mix.copy('node_modules/admin-lte/dist/css/skins/skin-black.min.css','resources/assets/css/adminlte-skin.min.css');
     mix.copy('node_modules/admin-lte/plugins/*','public/assets/plugins/');
+    mix.copy("node_modules/admin-lte/plugins/select2/select2.full.min.js","resources/assets/js/");
+    mix.copy("node_modules/admin-lte/plugins/daterangepicker/moment.min.js","resources/assets/js/");
+    mix.copy("node_modules/admin-lte/plugins/daterangepicker/daterangepicker.js","resources/assets/js/");
+    mix.copy("node_modules/admin-lte/plugins/select2/select2.min.css","resources/assets/css/");
+    mix.copy("node_modules/admin-lte/plugins/daterangepicker/daterangepicker-bs3.css","resources/assets/css/");
 
     // Ionicons
     mix.copy('node_modules/ionicons/dist/css/ionicons.min.css','resources/assets/css/');
-    mix.copy('node_modules/ionicons/dist/fonts/','public/assets/fonts/');
+    mix.copy('node_modules/ionicons/dist/fonts/','public/build/assets/fonts/');
 
     // Font-Awesome
     mix.copy('node_modules/font-awesome/css/font-awesome.min.css','resources/assets/css/');
-    mix.copy('node_modules/font-awesome/fonts/','public/assets/fonts/');
+    mix.copy('node_modules/font-awesome/fonts/','public/build/assets/fonts/');
 
     // 合并指定文件夹的CSS样式文件
     mix.styles([
+        'select2.min.css',
+        'daterangepicker-bs3.css',
         'bootstrap.min.css',
         'font-awesome.min.css',
         'ionicons.min.css',
@@ -38,6 +45,9 @@ elixir(function(mix) {
     mix.scripts([
         'jquery.min.js',
         'bootstrap.min.js',
+        'select2.full.min.js',
+        'moment.min.js',
+        'daterangepicker.js',
         'adminlte.min.js'
     ],'public/assets/js/app.min.js');
 
@@ -47,6 +57,9 @@ elixir(function(mix) {
         port: 5000,
         proxy: 'localhost:8000'
     });
+
+    // 生成版本和缓存清除
+    mix.version(['assets/js/app.min.js','assets/css/app.min.css']);
 });
 
 

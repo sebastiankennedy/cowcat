@@ -1,6 +1,6 @@
-@inject('menuPresenter','App\Presenters\MenuPresenter')
+@inject('mainPresenter','App\Presenters\MainPresenter')
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
     <title>{{ $page_title or "AdminLTE Dashboard" }}</title>
     @yield('before.css')
     <link rel="stylesheet" type="text/css" href="/assets/plugins/pace/pace.min.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/app.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ elixir('assets/css/app.min.css') }}">
     @yield('after.css')
 </head>
 <body class="skin-black">
@@ -28,8 +28,14 @@
         @include('backend.layout.footer')
     </div>
     @yield('before.js')
-    <script type="text/javascript" src="/assets/js/app.min.js"></script>
+    <script type="text/javascript" src="{{ elixir('assets/js/app.min.js') }}"></script>
     <script type="text/javascript" src="/assets/plugins/pace/pace.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('.select2').select2();
+            $('#created_at').daterangepicker({timePickerIncrement: 30, format: 'YYYY/MM/DD HH:mm:ss'});
+        });
+    </script>
     @yield('after.js')
 </body>
 </html>

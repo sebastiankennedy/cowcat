@@ -1,19 +1,12 @@
 @extends('backend.layout.main')
-
-@section('before.css')
-<link rel="stylesheet" type="text/css" href="/assets/plugins/select2/select2.min.css">
-<link rel="stylesheet" type="text/css" href="/assets/plugins/daterangepicker/daterangepicker-bs3.css">
-@endsection
+@inject('menuPresenter','App\Presenters\MenuPresenter')
 
 @section('content')
 <div class="row">
 	<div class="col-md-12">
-		<a class="btn btn-box btn-success btn-flat" href="{{route('menu.create')}}">
-			<i class="fa fa-plus"></i> 新增
-		</a>
-		<a class="btn btn-box btn-info btn-flat">
-			<i class="fa fa-sort"></i> 排序
-		</a>
+		@foreach($actionFields as $item)
+			{!! Html::decode(Html::link($item['url'],$item['title'],$item['attr'])) !!}
+		@endforeach
 	</div>
 </div>
 
@@ -21,26 +14,20 @@
 	<div class="col-md-12">
 		<div class="box">
 			<div class="box-body table-responsive">
-				<form class="form-inline" action="/menu/search" method="get">
+				{!! Form::open(['route'=>'menu.search','method'=>'get','class'=>'form-inline']) !!}
 					<div class="form-group">
-						<select class="form-control select2" name="parent_id" style="width:100%;">
-							<option selected="selected" value="">所有分类</option>
-							<option value="0">顶级分类</option>
-						</select>
+						{!! Form::select('parent_id',[''=>'所有分类','0'=>'顶级分类'],'',['class'=>'form-control select2','style'=>'width:100%']) !!}
 					</div>
 					<div class="form-group">
-						<input type="name" class="form-control" id="name" name="name" placeholder="菜单名称" >
+						{!! Form::text('name','',['class'=>'form-control']) !!}
 					</div>
 					<div class="form-group">
-						<input type="text" class="form-control" id="created_at" name="created_at">
+						{!! Form::text('created_at','',['class'=>'form-control','id'=>'created_at']) !!}
 					</div>
 					<div class="form-group">
-						<button class="btn btn-success btn-flat" type="submit">
-							<i class="fa fa-filter"></i>
-							筛选
-						</button>
+						{!! Form::button('<i class="fa fa-filter"></i> 筛选',['class'=>'btn btn-success btn-flat','type'=>'submit']) !!}
 					</div>
-				</form>
+				{!! Form::close() !!}
 			</div>
 		</div>
 	</div>
@@ -61,6 +48,7 @@
 							<th>菜单编号</th>
 							<th>菜单名称</th>
 							<th>菜单地址</th>
+							<th>是否显示</th>
 							<th>操作</th>
 						</tr>
 					@foreach($data as $item)
@@ -68,6 +56,7 @@
 							<td>{{$item->id}}</td>
 							<td>{{$item->name}}</td>
 							<td>{{$item->route}}</td>
+							<td>{{$item->hide}}</td>
 							<td>
 								<a href="{{route('menu.edit',['id'=>$item->id])}}" class="btn bg-orange btn-flat">编辑</a>
 								<a href="" class="btn btn-danger btn-flat">删除</a>
@@ -84,16 +73,4 @@
 		</div>
 	</div>
 </div>
-@endsection
-
-@section('after.js')
-<script type="text/javascript" src="/assets/plugins/select2/select2.full.min.js"></script>
-<script type="text/javascript" src="/assets/plugins/daterangepicker/moment.min.js"></script>
-<script type="text/javascript" src="/assets/plugins/daterangepicker/daterangepicker.js"></script>
-<script type="text/javascript">
-$(function(){
-	$('.select2').select2();
-	$('#created_at').daterangepicker({timePickerIncrement: 30, format: 'YYYY/MM/DD HH:mm'});
-});
-</script>
 @endsection

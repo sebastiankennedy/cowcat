@@ -10,6 +10,7 @@ class MenuComposer
 {
     /**
      * 将数据绑定到视图
+     *
      * @param  View  $view
      * @return mixed
      */

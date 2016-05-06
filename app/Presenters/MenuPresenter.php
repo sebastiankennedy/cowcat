@@ -2,88 +2,54 @@
 
 namespace App\Presenters;
 
-use Cache;
+use Html;
+use Form;
 
 /**
 * Menu View Presenters
 */
-class MenuPresenter
+class MenuPresenter extends CommonPresenter
 {
-    const REDIS_SIDEBAR_MENUS_CACHE = 'redis_sidebar_menus_cache';
-
-    const REDIS_BREADCRUMBS_MENUS_CACHE = 'redis_breadcrumbs_menus_cache:';
-
-    protected $sidebar;
-
-    protected $breadcrumbs;
-
-    public function renderSidebar(array $menus)
+    public function renderLinks($fields)
     {
-        $sidebar = Cache::get(self::REDIS_SIDEBAR_MENUS_CACHE);
-        if ($sidebar) {
-            return $sidebar;
-        } else {
-            $tree = create_node_tree($menus);
-            $sidebar = '<ul class="sidebar-menu">';
-            $sidebar.= self::makeSidebar($tree);
-            $sidebar.= '</ul>';
-            Cache::forever(self::REDIS_SIDEBAR_MENUS_CACHE, $sidebar);
-
-            return $sidebar;
-        }
+        $links = '<div class="row"><div class="col-md-12">';
+        $array = array_map(function($item){
+            return Html::decode(Html::link($item['url'], $item['title'], $item['attr']));
+        }, $fields);
+        $links.= implode(' ',$array);
+        $links.= '</div></div>';
+        return $links;
     }
 
-    public function renderBreadcrumbs(array $menus, string $route)
+    public function renderSearchForm($form)
     {
-        $breadcrumbs = Cache::get(self::REDIS_BREADCRUMBS_MENUS_CACHE.$route);
-        if ($breadcrumbs) {
-            return $breadcrumbs;
-        } else {
-            $breadcrumbs = $this->makeBreadcrumbs($menus, $route);
-            Cache::forever(self::REDIS_BREADCRUMBS_MENUS_CACHE.$route, $breadcrumbs);
+        $search = '<div class="row"><div class="col-md-12"><div class="box"><div class="box-body">';
+        $search.= Form::open(['url'=>$form['route'], 'method'=>$form['method'], 'class'=>$form['class']]);
+        $array = array_map(function($input){
+            return '<div class="form-group">'.$this->buildInputByType($input).'</div>';
+        },$form['inputs']);
+        $search.= implode(" ",$array);
+        $search.= Form::close();
+        $search.= '</div></div></div></div>';
 
-            return "Todo breadcrumbs";
-        }
+        return $search;
     }
 
-    protected static function makeSidebar(array $menus)
+    public function renderTable($models)
     {
-        $sidebar = "";
-
-        foreach ($menus as $menu) {
-            if ($menu['hide'] == 0) {
-                if ($menu['child']) {
-                    $sidebar .= '<li class="treeview">'
-                        . '<a href="#"><i class="' . $menu['icon'] . '"></i><span>' . $menu['name'] . '</span><i class="fa fa-angle-left pull-right"></i></a>'
-                        . '<ul class="treeview-menu">'
-                        . self::makeSidebar($menu['child'])
-                        . '</ul>'
-                        . '</li>';
-                } else {
-                    $sidebar .= '<li><a href="'.route($menu['route']).'"><i class="' . $menu['icon'] . '"></i><span> ' . $menu['name'] . '</span></a></li>';
-                }
-            }
-        }
-
-        return $sidebar;
     }
 
-    protected static function makeBreadcrumbs(array $menus, string $route = '', $parent_id = 0)
+    public function buildInputByType($input)
     {
-        $breadcrumbs = [];
-        foreach ($menus as $key => $value) {
-            if ($route) {
-                if ($value['url'] == $route) {
-                    $breadcrumbs[] = $value;
-                    $breadcrumbs = array_merge($breadcrumbs, self::makeBreadcrumbs($menus, '', $value['parent_id']));
-                }
-            } else {
-                if ($value['parent_id'] == $parent_id) {
-                    $breadcrumbs[] = $value;
-                    $breadcrumbs = array_merge($breadcrumbs, self::makeBreadcrumbs($menus, '', $value['parent_id']));
-                }
-            }
+        $type = $input['type'];
+        if ($type == 'text') {
+            $input = Form::$type($input['name'], $input['value'], $input['attributes']);
+        } elseif ($type == 'select') {
+            $input = Form::$type($input['name'], $input['value'], $input['selected'],$input['attributes']);
+        } elseif ($type == 'button') {
+            $input = Form::$type($input['value'],  $input['attributes']);
         }
-        return $breadcrumbs;
+
+        return $input;
     }
 }

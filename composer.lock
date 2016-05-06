@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e7b812ac3a53cd1ba7795f74ce35471a",
-    "content-hash": "2e749adcede66f73ef52fa537bd7fd3c",
+    "hash": "ca205311481345e9dd49cf3dc10d07b2",
+    "content-hash": "7ed1c5e14b55f38bf668b08bc37e7c6c",
     "packages": [
         {
             "name": "arcanedev/log-viewer",
@@ -728,6 +728,56 @@
                 "laravel"
             ],
             "time": "2016-02-24 15:13:21"
+        },
+        {
+            "name": "laravelcollective/html",
+            "version": "5.1.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LaravelCollective/html.git",
+                "reference": "2b67d708cecbf6006c73634eec0ae34af3f8caa9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/LaravelCollective/html/2b67d708cecbf6006c73634eec0ae34af3f8caa9.zip",
+                "reference": "2b67d708cecbf6006c73634eec0ae34af3f8caa9",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/http": "5.1.*",
+                "illuminate/routing": "5.1.*",
+                "illuminate/session": "5.1.*",
+                "illuminate/support": "5.1.*",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Collective\\Html\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylorotwell@gmail.com"
+                },
+                {
+                    "name": "Adam Engebretson",
+                    "email": "adam@laravelcollective.com"
+                }
+            ],
+            "time": "2016-03-03 04:02:33"
         },
         {
             "name": "league/flysystem",
@@ -3511,7 +3561,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "laravelcollective/html": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
