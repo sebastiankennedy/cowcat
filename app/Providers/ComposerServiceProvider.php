@@ -7,11 +7,11 @@ use Illuminate\Support\ServiceProvider;
 
 class ComposerServiceProvider extends ServiceProvider
 {
-    private $menu;
+    private $main;
 
-    public function __construct($menu)
+    public function __construct()
     {
-        $this->menu = [
+        $this->main = [
             'backend.layout.sidebar',
             'backend.layout.breadcrumbs',
         ];
@@ -24,7 +24,7 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer($this->menu,"App\Http\ViewComposers\MenuComposer");
+        view()->composer($this->main,"App\Http\ViewComposers\MainComposer");
     }
 
     /**

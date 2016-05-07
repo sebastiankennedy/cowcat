@@ -2,37 +2,8 @@
 @inject('menuPresenter','App\Presenters\MenuPresenter')
 
 @section('content')
-<div class="row">
-	<div class="col-md-12">
-		@foreach($actionFields as $item)
-			{!! Html::decode(Html::link($item['url'],$item['title'],$item['attr'])) !!}
-		@endforeach
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-md-12">
-		<div class="box">
-			<div class="box-body table-responsive">
-				{!! Form::open(['route'=>'menu.search','method'=>'get','class'=>'form-inline']) !!}
-					<div class="form-group">
-						{!! Form::select('parent_id',[''=>'所有分类','0'=>'顶级分类'],'',['class'=>'form-control select2','style'=>'width:100%']) !!}
-					</div>
-					<div class="form-group">
-						{!! Form::text('name','',['class'=>'form-control']) !!}
-					</div>
-					<div class="form-group">
-						{!! Form::text('created_at','',['class'=>'form-control','id'=>'created_at']) !!}
-					</div>
-					<div class="form-group">
-						{!! Form::button('<i class="fa fa-filter"></i> 筛选',['class'=>'btn btn-success btn-flat','type'=>'submit']) !!}
-					</div>
-				{!! Form::close() !!}
-			</div>
-		</div>
-	</div>
-</div>
-
+{!! $menuPresenter->renderLinks($actionFields) !!}
+{!! $menuPresenter->renderSearchForm($searchForm) !!}
 <div class="row">
 	<div class="col-md-12">
 		<div class="box">

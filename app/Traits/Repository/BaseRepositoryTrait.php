@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Traits\Repositories;
+namespace App\Traits\Repository;
 
 trait BaseRepositoryTrait
 {

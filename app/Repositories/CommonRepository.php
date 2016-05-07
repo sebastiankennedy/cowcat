@@ -3,7 +3,7 @@ namespace App\Repositories;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Validation\Factory;
-use App\Traits\Repositories\BaseRepositoryTrait;
+use App\Traits\Repository\BaseRepositoryTrait;
 
 abstract class CommonRepository
 {
