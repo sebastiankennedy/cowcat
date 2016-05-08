@@ -2,8 +2,8 @@
 @inject('menuPresenter','App\Presenters\MenuPresenter')
 
 @section('content')
-{!! $menuPresenter->renderLinks($actionFields) !!}
-{!! $menuPresenter->renderSearchForm($searchForm) !!}
+{!! $menuPresenter->renderLinks($links) !!}
+{!! $menuPresenter->renderSearchForm($inputs) !!}
 <div class="row">
 	<div class="col-md-12">
 		<div class="box">

@@ -7,12 +7,12 @@ use Form;
 
 trait BasePresenterTrait{
 
-	public function renderLinks($fields)
+	public function renderLinks($action)
     {
         $links = '<div class="row"><div class="col-md-12">';
         $array = array_map(function($item){
             return Html::decode(Html::link($item['url'], $item['title'], $item['attr']));
-        }, $fields);
+        }, $action);
         $links.= implode(' ',$array);
         $links.= '</div></div>';
         return $links;

@@ -15,6 +15,11 @@ class ComposerServiceProvider extends ServiceProvider
             'backend.layout.sidebar',
             'backend.layout.breadcrumbs',
         ];
+
+        $this->menu = [
+            'backend.menu.index',
+            'backend.menu.search'
+        ];
     }
 
     /**
@@ -25,6 +30,7 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer($this->main,"App\Http\ViewComposers\MainComposer");
+        view()->composer($this->menu,"App\Http\ViewComposers\MenuComposer");
     }
 
     /**
