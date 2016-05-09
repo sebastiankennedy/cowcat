@@ -43,6 +43,7 @@ class MenuComposer
 
     protected static function getInputs()
     {
+
         return [
             'route'=>route('menu.search'),
             'method'=>'get',
