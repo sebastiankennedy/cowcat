@@ -27,7 +27,7 @@ class MenuComposer
             [
             'url'=>route('menu.create'),
             'attr'=>[
-                'class'=>'btn btn-box btn-info btn-flat'
+                'class'=>'btn btn-box btn-success btn-flat'
             ],
             'title'=>'<i class="fa fa-plus"></i> 新增'
             ],
@@ -56,7 +56,7 @@ class MenuComposer
                         ''=>'所有分类',
                         '0'=>'顶级分类'
                     ],
-                    'selected'=>'',
+                    'selected'=>old('parent_id'),
                     'attributes'=>[
                         'class'=>'form-control select2',
                         'style'=>'width:100%'
@@ -65,7 +65,7 @@ class MenuComposer
                 [
                     'type'=>'text',
                     'name'=>'name',
-                    'value'=>'',
+                    'value'=>old('name'),
                     'attributes'=>[
                         'placeholder'=>'菜单名称',
                         'class'=>'form-control',
@@ -74,7 +74,7 @@ class MenuComposer
                 [
                     'type'=>'text',
                     'name'=>'created_at',
-                    'value'=>'',
+                    'value'=>old('created_at'),
                     'attributes'=>[
                         'class'=>'form-control',
                         'id'=>'created_at'
