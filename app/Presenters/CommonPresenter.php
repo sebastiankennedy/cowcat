@@ -2,11 +2,9 @@
 
 namespace App\Presenters;
 
-use Cache;
-
 /**
-* Menu View Presenters
-*/
+ * Menu View Presenters
+ */
 abstract class CommonPresenter
 {
     /**
@@ -30,6 +28,6 @@ abstract class CommonPresenter
      */
     public function showCopyright()
     {
-        return ' <strong>Copyright © '.date('Y').' <a href="#">CowCat</a>.</strong> All rights reserved.';
+        return ' <strong>Copyright © ' . date('Y') . ' <a href="#">CowCat</a>.</strong> All rights reserved.';
     }
 }

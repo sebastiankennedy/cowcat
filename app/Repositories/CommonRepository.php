@@ -1,9 +1,9 @@
 <?php
 namespace App\Repositories;
 
+use App\Traits\Repository\BaseRepositoryTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Validation\Factory;
-use App\Traits\Repository\BaseRepositoryTrait;
 
 abstract class CommonRepository
 {

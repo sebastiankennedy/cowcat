@@ -20,6 +20,7 @@
 							<th>菜单编号</th>
 							<th>菜单名称</th>
 							<th>菜单地址</th>
+							<th>是否显示</th>
 							<th>操作</th>
 						</tr>
 					@foreach($data as $item)
@@ -27,6 +28,7 @@
 							<td>{{$item->id}}</td>
 							<td>{{$item->name}}</td>
 							<td>{{$item->url}}</td>
+                            <td>{{$item->hide}}</td>
 							<td>
 								<a href="" class="btn bg-orange btn-flat">编辑</a>
 								<a href="" class="btn btn-danger btn-flat">删除</a>

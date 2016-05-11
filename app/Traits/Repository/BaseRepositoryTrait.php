@@ -102,7 +102,7 @@ trait BaseRepositoryTrait
      */
     public function validate(array $data, $rules = null, $custom = false)
     {
-        if (!$custom) {
+        if ( ! $custom) {
             $rules = $this->rules($rules);
         }
 
@@ -135,12 +135,14 @@ trait BaseRepositoryTrait
     public function getByWhereIn($field, array $value, $columns = ['*'])
     {
         $model = $this->model;
+
         return $model->whereIn($field, $value)->get($columns);
     }
 
     public function getByWhereNotIn($field, array $value, $columns = ['*'])
     {
         $model = $this->model;
+
         return $model->whereIn($field, $value)->get($columns);
     }
 
@@ -148,22 +150,22 @@ trait BaseRepositoryTrait
     {
         $model = $this->model;
 
-        if (!empty($where)) {
+        if ( ! empty($where)) {
             foreach ($where as $field => $value) {
                 if (is_array($value)) {
                     list($field, $condition, $val) = $value;
                     if ($condition !== '=') {
-                        $condition = 'where'.ucfirst($condition);
-                        $model =$model->$condition($field, $val);
+                        $condition = 'where' . ucfirst($condition);
+                        $model = $model->$condition($field, $val);
                     } else {
-                        $model =$model->where($field, $condition, $val);
+                        $model = $model->where($field, $condition, $val);
                     }
                 } else {
-                    $model =$model->where($field, '=', $value);
+                    $model = $model->where($field, '=', $value);
                 }
             }
         }
 
-        return $model->paginate($limit);
+        return $model->paginate($limit,$columns);
     }
 }
