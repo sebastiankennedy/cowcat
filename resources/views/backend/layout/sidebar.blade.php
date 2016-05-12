@@ -1,6 +1,5 @@
 <aside class="main-sidebar">
     <section class="sidebar">
-
         <div class="user-panel">
             <div class="pull-left image">
                 <img src="/assets/images/user2-160x160.jpg" class="img-circle" alt="User Image" />
@@ -10,7 +9,6 @@
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
-
         <form action="#" method="get" class="sidebar-form">
             <div class="input-group">
                 <input type="text" name="q" class="form-control" placeholder="Search..."/>
@@ -19,30 +17,6 @@
                 </span>
             </div>
         </form>
-
-        {!! $mainPresenter->renderSidebar($menus) !!}
-        <ul class="sidebar-menu">
-            <li class="header">HEADER</li>
-            <li><a href="#"><span>Link</span></a></li>
-            <li><a href="#"><span>Another Link</span></a></li>
-            <li class="treeview">
-                <a href="#"><span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a href="#">Link in level 2</a></li>
-                    <li><a href="#">Link in level 2</a></li>
-                </ul>
-            </li>
-            <li class="treeview active">
-                <a href=""><span>Log Viewer</span> <i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
-                    <li class="active">
-                        <a href="{{route('log-viewer::dashboard')}}">Dashboard</a>
-                    </li>
-                    <li>
-                        <a href="{{route('log-viewer::logs.list')}}">Logs</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
+        {!! $mainPresenter->renderSidebar($menus,$route) !!}
     </section>
 </aside>

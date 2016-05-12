@@ -25,7 +25,6 @@ class MenuForm extends Request
     {
         return [
             'name'        => 'required',
-            'route'       => 'required',
             'parent_id'   => 'required',
             'description' => 'required',
         ];
@@ -40,7 +39,6 @@ class MenuForm extends Request
     {
         return [
             'name.required'        => '菜单名称不能为空',
-            'route.required'       => '菜单地址不能为空',
             'parent_id.required'   => '父级分类不能为空',
             'description.required' => '菜单描述不能为空',
         ];

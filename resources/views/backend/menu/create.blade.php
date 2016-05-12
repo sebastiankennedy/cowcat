@@ -1,9 +1,5 @@
 @extends('backend.layout.main')
 
-@section('before.css')
-<link rel="stylesheet" type="text/css" href="/assets/plugins/select2/select2.min.css">
-@endsection
-
 @section('content')
 <div class="row">
 	<div class="col-md-6">
@@ -29,13 +25,13 @@
 							<label for="name">菜单名称</label>
 							<input type="text" class="form-control" id="name" name="name" placeholder="菜单名称" value="{{old('name')}}">
 						</div>
+                        <div class="form-group">
+                            <label for="description">菜单描述</label>
+                            <input type="text" class="form-control" id="description" name="description" placeholder="菜单描述" value="{{old('description')}}">
+                        </div>
 						<div class="form-group">
 							<label for="route">菜单路由</label>
 							<input type="text" class="form-control" id="route" name="route" placeholder="菜单路由" value="{{old('route')}}">
-						</div>
-						<div class="form-group">
-							<label for="description">菜单描述</label>
-							<input type="text" class="form-control" id="description" name="description" placeholder="菜单描述" value="{{old('description')}}">
 						</div>
 						<div class="form-group">
 							<label for="icon">菜单图标</label>
@@ -65,13 +61,4 @@
 		</form>
 	</div>
 </div>
-@endsection
-
-@section('after.js')
-<script type="text/javascript" src="/assets/plugins/select2/select2.full.min.js"></script>
-<script type="text/javascript">
-$(function(){
-	$('.select2').select2();
-});
-</script>
 @endsection
