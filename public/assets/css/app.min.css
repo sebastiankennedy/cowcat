@@ -22570,9 +22570,9 @@ table.text-center th {
   border-bottom-right-radius: 2px;
   border-bottom-left-radius: 0;
 }
-.pagination>.active>span,
-.pagination>.active>span:focus,
-.pagination>.active>span:hover {
+.pagination > .active > span,
+.pagination > .active > span:focus,
+.pagination > .active > span:hover {
   background-color: #333;
   border-color: #333;
 }
@@ -22606,6 +22606,12 @@ table.text-center th {
   border-color: #f6303e;
 }
 
+.btn-primary {
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+}
+
 .btn-box {
   border-radius: 3px;
   position: relative;
@@ -22617,9 +22623,9 @@ table.text-center th {
   font-size: 12px;
 }
 
-.btn-box>.fa,
-.btn-box>.glyphicon,
-.btn-box>.ion {
+.btn-box > .fa,
+.btn-box > .glyphicon,
+.btn-box > .ion {
   font-size: 20px;
   display: block;
 }

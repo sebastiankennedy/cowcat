@@ -14,6 +14,8 @@ class MenuRepository extends CommonRepository
      */
     const REDIS_ALL_DISPLAY_MENUS_CACHE = 'redis_all_display_menus_array_cache';
 
+    const REDIS_ALL_TOP_MENUS_CACHE = 'redis_all_top_menus_cache';
+
     /**
      * 获取所有显示菜单
      *
@@ -33,6 +35,22 @@ class MenuRepository extends CommonRepository
         }
     }
 
+    public function getAllTopMenus()
+    {
+        $menus = Cache::get(self::REDIS_ALL_TOP_MENUS_CACHE);
+
+        if (empty($menus)) {
+            $menu[''] = '所有菜单';
+            $menus = $this->model->whereParentId(0)->orderBy('sort', 'desc')->lists('name', 'id')->toArray();
+            $menus = $menu + $menus;
+            Cache::forever(self::REDIS_ALL_TOP_MENUS_CACHE, $menus);
+
+            return $menus;
+        } else {
+            return $menus;
+        }
+    }
+
     /**
      * 清除所有的菜单缓存
      *
@@ -40,6 +58,7 @@ class MenuRepository extends CommonRepository
      */
     public function clearAllMenusCache()
     {
+        Cache::forget(self::REDIS_ALL_TOP_MENUS_CACHE);
         Cache::forget(self::REDIS_ALL_DISPLAY_MENUS_CACHE);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\ViewComposers;
 
+use App\Facades\MenuRepository;
 use Illuminate\Contracts\View\View;
 
 class MenuComposer
@@ -15,9 +16,57 @@ class MenuComposer
      */
     public function compose(View $view)
     {
+        $form = self::getForm();
         $links = self::getLinks();
-        $inputs = self::getInputs();
-        $view->with(compact('links', 'inputs'));
+        $inputs = self::getSearchInputs();
+        $view->with(compact('form','links', 'inputs'));
+    }
+
+    protected static function getForm()
+    {
+        return [
+            'route'  => route('menu.search'),
+            'method' => 'get',
+            'class'  => 'form-inline',
+            'inputs' => [
+                [
+                    'type'       => 'select',
+                    'name'       => 'parent_id',
+                    'value'      => MenuRepository::getAllTopMenus(),
+                    'selected'   => old('parent_id'),
+                    'attributes' => [
+                        'class' => 'form-control select2',
+                        'style' => 'width:100%'
+                    ]
+                ],
+                [
+                    'type'       => 'text',
+                    'name'       => 'name',
+                    'value'      => old('name'),
+                    'attributes' => [
+                        'placeholder' => '菜单名称',
+                        'class'       => 'form-control',
+                    ]
+                ],
+                [
+                    'type'       => 'text',
+                    'name'       => 'created_at',
+                    'value'      => old('created_at'),
+                    'attributes' => [
+                        'class' => 'form-control',
+                        'id'    => 'created_at'
+                    ]
+                ],
+                [
+                    'type'       => 'button',
+                    'value'      => '<i class="fa fa-filter"></i> 筛选',
+                    'attributes' => [
+                        'class' => 'btn btn-success btn-flat',
+                        'type'  => 'submit'
+                    ]
+                ],
+            ]
+        ];
     }
 
     protected static function getLinks()
@@ -40,9 +89,8 @@ class MenuComposer
         ];
     }
 
-    protected static function getInputs()
+    protected static function getSearchInputs()
     {
-
         return [
             'route'  => route('menu.search'),
             'method' => 'get',
@@ -51,10 +99,7 @@ class MenuComposer
                 [
                     'type'       => 'select',
                     'name'       => 'parent_id',
-                    'value'      => [
-                        ''  => '所有分类',
-                        '0' => '顶级分类'
-                    ],
+                    'value'      => MenuRepository::getAllTopMenus(),
                     'selected'   => old('parent_id'),
                     'attributes' => [
                         'class' => 'form-control select2',

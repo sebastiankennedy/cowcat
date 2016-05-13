@@ -1,6 +1,6 @@
-.pagination>.active>span,
-.pagination>.active>span:focus,
-.pagination>.active>span:hover {
+.pagination > .active > span,
+.pagination > .active > span:focus,
+.pagination > .active > span:hover {
     background-color: #333;
     border-color: #333;
 }
@@ -34,6 +34,12 @@
     border-color: #f6303e;
 }
 
+.btn-primary {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+
 .btn-box {
     border-radius: 3px;
     position: relative;
@@ -45,9 +51,9 @@
     font-size: 12px;
 }
 
-.btn-box>.fa,
-.btn-box>.glyphicon,
-.btn-box>.ion {
+.btn-box > .fa,
+.btn-box > .glyphicon,
+.btn-box > .ion {
     font-size: 20px;
     display: block;
 }
@@ -55,9 +61,10 @@
 #success-message,
 #errors-message {
     margin-top: 15px;
-    margin-bottom:  -5px
+    margin-bottom: -5px
 }
-.alert-success{
+
+.alert-success {
     color: #fff;
     background-color: #24ce7b;
     border-color: #24ce7b;

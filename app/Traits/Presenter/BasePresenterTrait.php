@@ -71,4 +71,10 @@ trait BasePresenterTrait
         return $input;
     }
 
+
+    public function renderSaveForm($inputs)
+    {
+        
+    }
+
 }
