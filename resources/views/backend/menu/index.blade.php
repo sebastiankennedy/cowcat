@@ -30,7 +30,7 @@
                                 <td>{{$item->name}}</td>
                                 <td>{{$item->route}}</td>
                                 <td>{{$item->sort}}</td>
-                                <td>{{$item->hide}}</td>
+                                <td>{{$menuPresenter->showDisplayFormat($item->hide)}}</td>
                                 <td>
                                     <a href="{{route('menu.edit',['id'=>$item->id])}}" class="btn btn-primary btn-flat">编辑</a>
                                     <a href="" class="btn btn-danger btn-flat">删除</a>
