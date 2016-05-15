@@ -52,7 +52,11 @@
 						</div>
 					</div>
 				<div class="box-footer clearfix">
-					<button type="submit" class="btn btn-success">
+					<a href="javascript:;" class="btn btn-default">
+						<i class="fa fa-arrow-left"></i>
+						返回
+					</a>
+					<button type="submit" class="btn btn-success pull-right">
 						<i class="fa fa-plus"></i>
 						新 增
 					</button>
