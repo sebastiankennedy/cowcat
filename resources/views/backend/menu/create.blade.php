@@ -52,11 +52,11 @@
 						</div>
 					</div>
 				<div class="box-footer clearfix">
-					<a href="javascript:;" class="btn btn-default">
+					<a href="javascript:history.back(-1);" class="btn btn-default btn-flat">
 						<i class="fa fa-arrow-left"></i>
 						返回
 					</a>
-					<button type="submit" class="btn btn-success pull-right">
+					<button type="submit" class="btn btn-success pull-right btn-flat">
 						<i class="fa fa-plus"></i>
 						新 增
 					</button>
