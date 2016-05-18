@@ -22641,3 +22641,20 @@ table.text-center th {
   background-color: #24ce7b;
   border-color: #24ce7b;
 }
+
+body#login {
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover !important;
+  background-position: center center;
+}
+
+.login-logo {
+  color: #FFF;
+}
+
+.login-box-body {
+  border-radius: 10px;
+  opacity: 0.8;
+}

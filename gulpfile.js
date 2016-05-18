@@ -29,6 +29,9 @@ elixir(function(mix) {
     mix.copy('node_modules/font-awesome/css/font-awesome.min.css','resources/assets/css/');
     mix.copy('node_modules/font-awesome/fonts/','public/build/assets/fonts/');
 
+    // Login Background Images
+    mix.copy('resources/assets/images/background/','public/assets/images/background/');
+
     // 合并指定文件夹的CSS样式文件
     mix.styles([
         'select2.min.css',
