@@ -47,7 +47,7 @@
                     </div>
                 </div>
                 <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">登 录</button>
+                    <button type="submit" class="btn btn-success btn-block btn-flat">登 录</button>
                 </div>
             </div>
         </form>
@@ -58,8 +58,7 @@
 <script>
     $(function () {
         $('input').iCheck({
-            checkboxClass: 'icheckbox_square-blue',
-            radioClass: 'iradio_square-blue',
+            checkboxClass: 'icheckbox_square-yellow',
             increaseArea: '20%'
         });
     });
