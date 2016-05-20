@@ -16,13 +16,11 @@ abstract class CommonPresenter
      */
     public function showDateFormat($unixTime)
     {
-
+        return date('Y-m-d H:i',$unixTime);
     }
 
     /**
      * 格式化版权归属
-     *
-     * @param  string $param
      *
      * @return string
      */

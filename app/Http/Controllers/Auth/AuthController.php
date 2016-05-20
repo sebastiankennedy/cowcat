@@ -12,6 +12,23 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller
 {
+    /**
+     * 设置成功登录后转向的页面:
+     * @var string
+     */
+    protected $redirectPath = '/';
+
+    /**
+     * 设置登录失败后转向的页面
+     * @var string
+     */
+    protected $loginPath = '/auth/login';
+
+    /**
+     * 设置退出登录后转向的页面
+     * @var string
+     */
+    protected $redirectAfterLogout = '/auth/login';
     /*
     |--------------------------------------------------------------------------
     | Registration & Login Controller
