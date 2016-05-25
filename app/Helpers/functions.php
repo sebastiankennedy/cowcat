@@ -115,6 +115,17 @@ if (!function_exists('create_node_tree')) {
         return $tree;
     }
 }
+if (!function_exists('get_week_start_time_and_end_time')) {
+    function get_week_start_time_and_end_time(){
+        $day = date('w');
+        $end = 6 - $day;
+        $start = 6 - $end;
+        $arr[] = date('Y-m-d 00:00:00',strtotime('now -'.$start.' day'));
+        $arr[] = date('Y-m-d 23:59:59',strtotime('now +'.$end.' day'));
+
+        return $arr;
+    }
+}
 if (!function_exists('getParentsByChildId')) {
     function getParentsByChildId($data, $child_id)
     {
