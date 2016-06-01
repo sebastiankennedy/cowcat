@@ -168,4 +168,8 @@ trait BaseRepositoryTrait
 
         return $model->paginate($limit,$columns);
     }
+
+    public function lists($value,$key){
+
+    }
 }
