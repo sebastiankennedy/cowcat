@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Repositories\UserRepository;
 use App\Repositories\MenuRepository;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,7 +16,7 @@ class RepositoryServiceProvider extends ServiceProvider
     public function boot()
     {
         // 合并自定义配置文件
-        $configuration = realpath(__DIR__.'/../../config/repository.php');
+        $configuration = realpath(__DIR__ . '/../../config/repository.php');
         $this->mergeConfigFrom($configuration, 'repository');
     }
 
@@ -27,6 +28,7 @@ class RepositoryServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerMenuRepository();
+        $this->registerUserRepository();
     }
 
     /**
@@ -45,5 +47,18 @@ class RepositoryServiceProvider extends ServiceProvider
         });
 
         $this->app->alias('menurepository', MenuRepository::class);
+    }
+
+    public function registerUserRepository()
+    {
+        $this->app->singleton('userrepository', function ($app) {
+            $model = config('repository.models.user');
+            $menu = new $model();
+            $validator = $app['validator'];
+
+            return new UserRepository($menu, $validator);
+        });
+
+        $this->app->alias('userrepository', UserRepository::class);
     }
 }

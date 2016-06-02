@@ -20,6 +20,11 @@ class ComposerServiceProvider extends ServiceProvider
             'backend.menu.index',
             'backend.menu.search'
         ];
+
+        $this->user = [
+            'backend.user.index',
+            'backend.user.search'
+        ];
     }
 
     /**
@@ -31,6 +36,7 @@ class ComposerServiceProvider extends ServiceProvider
     {
         view()->composer($this->main, 'App\Http\ViewComposers\MainComposer');
         view()->composer($this->menu, 'App\Http\ViewComposers\MenuComposer');
+        view()->composer($this->user, 'App\Http\ViewComposers\UserComposer');
     }
 
     /**

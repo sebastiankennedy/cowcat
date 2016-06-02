@@ -5,7 +5,7 @@
 		</button>
 		<h4><i class="icon fa fa-ban"></i> 错误提示!</h4>
 		@foreach($errors->all() as $error)
-			{{$error}}
+			{{$error}}!&nbsp;&nbsp;&nbsp;&nbsp;
 		@endforeach
 	</div>
 @endif
