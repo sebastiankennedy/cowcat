@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use Illuminate\Http\Request;
 use App\Models\User;
 use App\Facades\UserRepository;
 use App\Http\Requests;
@@ -24,6 +25,20 @@ class UserController extends Controller
     }
 
     /**
+     * Display a listing of the resource by the search condition.
+     *
+     * @param  \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $data = UserRepository::paginateWhere($request->get('where'), config('repository.page-limit'));
+
+        return view('backend.user.search', compact('data'));
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -36,7 +51,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\Form\UserForm $request
+     * @param  \App\Http\Requests\Form\UserCreateForm $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -87,8 +102,8 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int                      $id
+     * @param  \App\Http\Requests\Form\UserUpdateForm $request
+     * @param  int                                    $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -100,7 +115,7 @@ class UserController extends Controller
         $user->password = bcrypt($request['password']);
 
         try {
-            if($user->save()){
+            if ($user->save()) {
                 return redirect()->route('user.index')->withSuccess("编辑用户成功");
             }
         } catch (\Exception $e) {

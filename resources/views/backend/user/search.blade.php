@@ -1,15 +1,16 @@
-@extends("backend.layout.main")
+@extends('backend.layout.main')
 
-@section("content")
+@section('content')
     @include('backend.components.handle',$handle)
     @include('backend.components.search',$search)
+
     <div class="row">
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">用户列表</h3>
 
-                    <div class="box-tools">{!! $data->render() !!}</div>
+                    <div class="box-tools">{!! $data->appends($params)->render() !!}</div>
                 </div>
 
                 <div class="box-body table-responsive no-padding">
@@ -18,7 +19,7 @@
                             <th>用户编号</th>
                             <th>用户邮箱</th>
                             <th>用户名称</th>
-                            <th>操作</th>
+                            <th>管理操作</th>
                         </tr>
                         @foreach($data as $item)
                             <tr>
@@ -33,9 +34,9 @@
                         @endforeach
                     </table>
                 </div>
-                @if($data->render())
+                @if($data->appends($params)->render())
                     <div class="box-footer clearfix">
-                        {!! $data->render() !!}
+                        {!! $data->appends($params)->render() !!}
                     </div>
                 @endif
             </div>

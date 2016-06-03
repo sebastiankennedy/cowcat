@@ -15,21 +15,13 @@ class UserComposer
      */
     public function compose(View $view)
     {
-        $links = self::getLinks();
-        $search = [
-            'route'=>'user.search',
-            'inputs'=>[
-                [
-                    'type'=>'text',
-                    'name'=>'name',
-                    'placeholder'=>'用户名称'
-                ],
-            ]
-        ];
-        $view->with(compact('links','search'));
+        $handle = self::gethandle();
+        $search = self::getInputs();
+        $params = self::getParams();
+        $view->with(compact('handle', 'search', 'params'));
     }
 
-    protected static function getLinks()
+    protected static function gethandle()
     {
         return [
             [
@@ -44,6 +36,27 @@ class UserComposer
                 'class' => 'info',
                 'route' => 'user.create',
             ]
+        ];
+    }
+
+    protected static function getInputs()
+    {
+        return [
+            'route'  => 'user.search',
+            'inputs' => [
+                [
+                    'type'        => 'text',
+                    'name'        => 'name',
+                    'placeholder' => '用户名称'
+                ],
+            ]
+        ];
+    }
+
+    protected static function getParams()
+    {
+        return [
+            'name' => old('name')
         ];
     }
 }
