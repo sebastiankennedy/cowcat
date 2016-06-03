@@ -4,7 +4,7 @@ namespace App\Http\Requests\Form;
 
 use App\Http\Requests\Request;
 
-class MenuForm extends Request
+class UserUpdateForm extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,23 +24,18 @@ class MenuForm extends Request
     public function rules()
     {
         return [
-            'name'        => 'required',
-            'parent_id'   => 'required',
-            'description' => 'required',
+            'name'     => 'required',
+            'email'    => 'required',
+            'password' => 'confirmed',
         ];
     }
 
-    /**
-     * Get the validation message that apply to the request
-     *
-     * @return array
-     */
     public function messages()
     {
         return [
-            'name.required'        => '菜单名称不能为空',
-            'parent_id.required'   => '父级分类不能为空',
-            'description.required' => '菜单描述不能为空',
+            'name.required'      => '用户名称不能为空',
+            'email.required'     => '用户邮箱不能为空',
+            'password.confirmed' => '确认密码不一致',
         ];
     }
 }

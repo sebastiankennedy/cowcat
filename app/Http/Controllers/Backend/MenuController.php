@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Facades\MenuRepository;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-use App\Http\Requests\Form\MenuForm;
+use App\Http\Requests\Form\MenuCreateForm;
 use Illuminate\Http\Request;
 
 class MenuController extends Controller
@@ -57,7 +57,7 @@ class MenuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(MenuForm $request)
+    public function store(MenuCreateForm $request)
     {
         try {
             if (MenuRepository::create($request->all())) {
@@ -99,12 +99,12 @@ class MenuController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Http\Requests\Form\MenuCreateForm $request
      * @param  int                      $id
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(MenuCreateForm $request, $id)
     {
         $data = $request->all();
 

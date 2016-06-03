@@ -26,7 +26,7 @@
                                 <td>{{$item->email}}</td>
                                 <td>{{$item->name}}</td>
                                 <td>
-                                    <a href="{{route('menu.edit',['id'=>$item->id])}}" class="btn btn-primary btn-flat">编辑</a>
+                                    <a href="{{route('user.edit',['id'=>$item->id])}}" class="btn btn-primary btn-flat">编辑</a>
                                     <a href="" class="btn btn-danger btn-flat">删除</a>
                                 </td>
                             </tr>

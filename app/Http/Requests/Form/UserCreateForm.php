@@ -4,7 +4,7 @@ namespace App\Http\Requests\Form;
 
 use App\Http\Requests\Request;
 
-class UserForm extends Request
+class UserCreateForm extends Request
 {
     /**
      * Determine if the user is authorized to make this request.

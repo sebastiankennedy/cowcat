@@ -1,9 +1,5 @@
 @extends('backend.layout.main')
 
-@section('before.css')
-<link rel="stylesheet" type="text/css" href="/assets/plugins/select2/select2.min.css">
-@endsection
-
 @section('content')
 <div class="row">
 	<div class="col-md-6">
@@ -72,11 +68,3 @@
 </div>
 @endsection
 
-@section('after.js')
-<script type="text/javascript" src="/assets/plugins/select2/select2.full.min.js"></script>
-<script type="text/javascript">
-$(function(){
-	$('.select2').select2();
-});
-</script>
-@endsection

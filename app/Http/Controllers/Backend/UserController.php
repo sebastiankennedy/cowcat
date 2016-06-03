@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 use App\Facades\UserRepository;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Form\UserForm;
+use App\Http\Requests\Form\UserCreateForm;
+use App\Http\Requests\Form\UserUpdateForm;
 
 class UserController extends Controller
 {
@@ -19,6 +19,7 @@ class UserController extends Controller
     public function index()
     {
         $data = UserRepository::paginate(config('repository.page-limit'));
+
         return view("backend.user.index", compact('data'));
     }
 
@@ -39,7 +40,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(UserForm $request)
+    public function store(UserCreateForm $request)
     {
         $data = [
             'name'     => $request['name'],
@@ -78,7 +79,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = UserRepository::find($id);
+
+        return view('backend.user.edit', compact('data'));
     }
 
     /**
@@ -89,9 +92,20 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserUpdateForm $request, $id)
     {
-        //
+        $user = UserRepository::find($id);
+        $user->name = $request['name'];
+        $user->email = $request['email'];
+        $user->password = bcrypt($request['password']);
+
+        try {
+            if($user->save()){
+                return redirect()->route('user.index')->withSuccess("编辑用户成功");
+            }
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(array('error' => $e->getMessage()))->withInput();
+        }
     }
 
     /**
