@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Repositories\UserRepository;
 use App\Repositories\MenuRepository;
+use App\Repositories\RoleRepository;
+use App\Repositories\PermissionRepository;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -29,6 +31,8 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $this->registerMenuRepository();
         $this->registerUserRepository();
+        $this->registerRoleRepository();
+        $this->registerPermissionRepository();
     }
 
     /**
@@ -53,12 +57,38 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $this->app->singleton('userrepository', function ($app) {
             $model = config('repository.models.user');
-            $menu = new $model();
+            $user = new $model();
             $validator = $app['validator'];
 
-            return new UserRepository($menu, $validator);
+            return new UserRepository($user, $validator);
         });
 
         $this->app->alias('userrepository', UserRepository::class);
+    }
+
+    public function registerRoleRepository()
+    {
+        $this->app->singleton('rolerepository', function ($app) {
+            $model = config('repository.models.role');
+            $role = new $model();
+            $validator = $app['validator'];
+
+            return new RoleRepository($role, $validator);
+        });
+
+        $this->app->alias('rolerepository', RoleRepository::class);
+    }
+
+    public function registerPermissionRepository()
+    {
+        $this->app->singleton('permissionrepository', function ($app) {
+            $model = config('repository.models.permission');
+            $role = new $model();
+            $validator = $app['validator'];
+
+            return new RoleRepository($role, $validator);
+        });
+
+        $this->app->alias('permissionrepository', PermissionRepository::class);
     }
 }

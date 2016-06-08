@@ -172,4 +172,12 @@ trait BaseRepositoryTrait
     public function lists($value,$key){
 
     }
+
+
+    public function destroy($id)
+    {
+        $model = $this->model;
+
+        return $model::destroy($id);
+    }
 }

@@ -21,7 +21,7 @@ class UserComposer
         $view->with(compact('handle', 'search', 'params'));
     }
 
-    protected static function gethandle()
+    private static function gethandle()
     {
         return [
             [
@@ -35,11 +35,11 @@ class UserComposer
                 'title' => '赋权',
                 'class' => 'info',
                 'route' => 'user.create',
-            ]
+            ],
         ];
     }
 
-    protected static function getInputs()
+    private static function getInputs()
     {
         return [
             'route'  => 'user.search',
@@ -47,16 +47,16 @@ class UserComposer
                 [
                     'type'        => 'text',
                     'name'        => 'name',
-                    'placeholder' => '用户名称'
+                    'placeholder' => '用户名称',
                 ],
-            ]
+            ],
         ];
     }
 
-    protected static function getParams()
+    private static function getParams()
     {
         return [
-            'name' => old('name')
+            'name' => old('name'),
         ];
     }
 }

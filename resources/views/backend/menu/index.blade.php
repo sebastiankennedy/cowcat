@@ -33,7 +33,13 @@
                                 <td>{{$menuPresenter->showDisplayFormat($item->hide)}}</td>
                                 <td>
                                     <a href="{{route('menu.edit',['id'=>$item->id])}}" class="btn btn-primary btn-flat">编辑</a>
-                                    <a href="" class="btn btn-danger btn-flat">删除</a>
+                                    <button class="btn btn-danger btn-flat"
+                                            data-url="{{URL::to('menu/'.$item->id)}}"
+                                            data-toggle="modal"
+                                            data-target="#delete-modal"
+                                    >
+                                        删除
+                                    </button>
                                 </td>
                             </tr>
                         @endforeach
@@ -47,4 +53,7 @@
             </div>
         </div>
     </div>
+@endsection
+@section("after.js")
+    @include('backend.components.modal.delete',['title'=>'操作提示','content'=>'你确定要删除这条菜单吗?'])
 @endsection

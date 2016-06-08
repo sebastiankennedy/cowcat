@@ -11,7 +11,8 @@
         "barryvdh/laravel-debugbar": "^2.2",
         "arcanedev/log-viewer": "~3.0",
         "predis/predis": "~1.0",
-        "laravelcollective/html": "5.1.x-dev"
+        "laravelcollective/html": "5.1.x-dev",
+        "zizaco/entrust": "^1.7"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

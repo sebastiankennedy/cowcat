@@ -11,7 +11,7 @@ class MenuComposer
      * building data to the view
      *
      * @param  View $view
-     *
+     *+
      * @return mixed
      */
     public function compose(View $view)
@@ -19,10 +19,10 @@ class MenuComposer
         $form = self::getForm();
         $links = self::getLinks();
         $inputs = self::getSearchInputs();
-        $view->with(compact('form','links', 'inputs'));
+        $view->with(compact('form', 'links', 'inputs'));
     }
 
-    protected static function getForm()
+    private static function getForm()
     {
         return [
             'route'  => route('menu.search'),
@@ -36,8 +36,8 @@ class MenuComposer
                     'selected'   => old('parent_id'),
                     'attributes' => [
                         'class' => 'form-control select2',
-                        'style' => 'width:100%'
-                    ]
+                        'style' => 'width:100%',
+                    ],
                 ],
                 [
                     'type'       => 'text',
@@ -46,7 +46,7 @@ class MenuComposer
                     'attributes' => [
                         'placeholder' => '菜单名称',
                         'class'       => 'form-control',
-                    ]
+                    ],
                 ],
                 [
                     'type'       => 'text',
@@ -54,42 +54,42 @@ class MenuComposer
                     'value'      => old('created_at'),
                     'attributes' => [
                         'class' => 'form-control',
-                        'id'    => 'created_at'
-                    ]
+                        'id'    => 'created_at',
+                    ],
                 ],
                 [
                     'type'       => 'button',
                     'value'      => '<i class="fa fa-filter"></i> 筛选',
                     'attributes' => [
                         'class' => 'btn btn-success btn-flat',
-                        'type'  => 'submit'
-                    ]
+                        'type'  => 'submit',
+                    ],
                 ],
-            ]
+            ],
         ];
     }
 
-    protected static function getLinks()
+    private static function getLinks()
     {
         return [
             [
                 'url'   => route('menu.create'),
                 'attr'  => [
-                    'class' => 'btn btn-box btn-success btn-flat'
+                    'class' => 'btn btn-box btn-success btn-flat',
                 ],
-                'title' => '<i class="fa fa-plus"></i> 新增'
+                'title' => '<i class="fa fa-plus"></i> 新增',
             ],
             [
                 'url'   => '',
                 'attr'  => [
-                    'class' => 'btn btn-box btn-info btn-flat'
+                    'class' => 'btn btn-box btn-info btn-flat',
                 ],
                 'title' => '<i class="fa fa-sort"></i> 排序',
-            ]
+            ],
         ];
     }
 
-    protected static function getSearchInputs()
+    private static function getSearchInputs()
     {
         return [
             'route'  => route('menu.search'),
@@ -103,8 +103,8 @@ class MenuComposer
                     'selected'   => old('parent_id'),
                     'attributes' => [
                         'class' => 'form-control select2',
-                        'style' => 'width:100%'
-                    ]
+                        'style' => 'width:100%',
+                    ],
                 ],
                 [
                     'type'       => 'text',
@@ -113,7 +113,7 @@ class MenuComposer
                     'attributes' => [
                         'placeholder' => '菜单名称',
                         'class'       => 'form-control',
-                    ]
+                    ],
                 ],
                 [
                     'type'       => 'text',
@@ -121,18 +121,18 @@ class MenuComposer
                     'value'      => old('created_at'),
                     'attributes' => [
                         'class' => 'form-control',
-                        'id'    => 'created_at'
-                    ]
+                        'id'    => 'created_at',
+                    ],
                 ],
                 [
                     'type'       => 'button',
                     'value'      => '<i class="fa fa-filter"></i> 筛选',
                     'attributes' => [
                         'class' => 'btn btn-success btn-flat',
-                        'type'  => 'submit'
-                    ]
+                        'type'  => 'submit',
+                    ],
                 ],
-            ]
+            ],
         ];
     }
 }

@@ -7,7 +7,7 @@ use Illuminate\Support\ServiceProvider;
 
 class ComposerServiceProvider extends ServiceProvider
 {
-    private $main;
+    private $main, $menu, $user, $role, $permission;
 
     public function __construct()
     {
@@ -18,12 +18,22 @@ class ComposerServiceProvider extends ServiceProvider
 
         $this->menu = [
             'backend.menu.index',
-            'backend.menu.search'
+            'backend.menu.search',
         ];
 
         $this->user = [
             'backend.user.index',
-            'backend.user.search'
+            'backend.user.search',
+        ];
+
+        $this->role = [
+            'backend.role.index',
+            'backend.role.search',
+        ];
+
+        $this->permission = [
+            'backend.permission.index',
+            'backend.permission.search',
         ];
     }
 
@@ -37,6 +47,8 @@ class ComposerServiceProvider extends ServiceProvider
         view()->composer($this->main, 'App\Http\ViewComposers\MainComposer');
         view()->composer($this->menu, 'App\Http\ViewComposers\MenuComposer');
         view()->composer($this->user, 'App\Http\ViewComposers\UserComposer');
+        view()->composer($this->role, 'App\Http\ViewComposers\RoleComposer');
+        view()->composer($this->permission, 'App\Http\ViewComposers\PermissionComposer');
     }
 
     /**

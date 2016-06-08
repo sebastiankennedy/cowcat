@@ -60,7 +60,7 @@ class UserController extends Controller
         $data = [
             'name'     => $request['name'],
             'email'    => $request['email'],
-            'password' => bcrypt($request['password'])
+            'password' => bcrypt($request['password']),
         ];
 
         try {
@@ -132,6 +132,12 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            if (UserRepository::destroy($id)) {
+                return redirect()->back()->withSuccess('删除用户成功');
+            }
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(array('error' => $e->getMessage()));
+        }
     }
 }

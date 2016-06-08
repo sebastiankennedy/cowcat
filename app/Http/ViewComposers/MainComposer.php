@@ -11,13 +11,14 @@ class MainComposer
     /**
      * 将数据绑定到视图
      *
-     * @param  View  $view
+     * @param  View $view
+     *
      * @return mixed
      */
     public function compose(View $view)
     {
         $route = Route::currentRouteName();
         $menus = MenuRepository::getAllDisplayMenus();
-        $view->with(compact('menus','route'));
+        $view->with(compact('menus', 'route'));
     }
 }

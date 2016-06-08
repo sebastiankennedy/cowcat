@@ -98,7 +98,7 @@ class MenuController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\Form\MenuCreateForm $request
-     * @param  int                      $id
+     * @param  int                                    $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -111,6 +111,8 @@ class MenuController extends Controller
 
         try {
             if (MenuRepository::updateById($id, $data)) {
+                MenuRepository::clearAllMenusCache();
+
                 return redirect()->route('menu.index')->withSuccess('编辑菜单成功');
             }
         } catch (\Exception $e) {
@@ -127,6 +129,18 @@ class MenuController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $childMenus = MenuRepository::getChildMenusById($id);
+
+        if ( ! empty($childMenus)) {
+            return redirect()->back()->withErrors("请先删除其下级分类");
+        }
+
+        try {
+            if (MenuRepository::destroy($id)) {
+                return redirect()->back()->withSuccess('删除菜单成功');
+            }
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(array('error' => $e->getMessage()));
+        }
     }
 }

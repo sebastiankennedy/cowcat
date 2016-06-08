@@ -65,6 +65,7 @@ class MenuRepository extends CommonRepository
 
     /**
      * 获取所有顶级显示菜单
+     *
      * @return mixed
      */
     public function getAllTopMenus()
@@ -81,6 +82,18 @@ class MenuRepository extends CommonRepository
         } else {
             return $menus;
         }
+    }
+
+    /**
+     * 根据菜单ID获取子菜单
+     *
+     * @param $id
+     *
+     * @return mixed
+     */
+    public function getChildMenusById($id)
+    {
+        return $this->model->where('parent_id', '=', $id)->get()->toArray();
     }
 
     /**
