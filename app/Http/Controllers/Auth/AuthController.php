@@ -16,7 +16,7 @@ class AuthController extends Controller
      * 设置成功登录后转向的页面:
      * @var string
      */
-    protected $redirectPath = '/';
+    public $redirectPath = '/';
 
     /**
      * 设置登录失败后转向的页面
@@ -29,6 +29,7 @@ class AuthController extends Controller
      * @var string
      */
     protected $redirectAfterLogout = '/auth/login';
+
     /*
     |--------------------------------------------------------------------------
     | Registration & Login Controller
