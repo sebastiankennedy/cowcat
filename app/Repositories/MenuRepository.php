@@ -24,7 +24,6 @@ class MenuRepository extends CommonRepository
      */
     const REDIS_ALL_DISPLAY_MENUS_CACHE = 'redis_all_display_menus_array_cache';
 
-
     /**
      * 获取所有菜单
      *

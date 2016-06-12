@@ -7,7 +7,7 @@ use Html;
 
 trait BasePresenterTrait
 {
-    
+
     /**
      * render action links
      *
@@ -70,11 +70,4 @@ trait BasePresenterTrait
 
         return $input;
     }
-
-
-    public function renderSaveForm($inputs)
-    {
-        
-    }
-
 }

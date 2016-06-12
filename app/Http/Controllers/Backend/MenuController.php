@@ -137,6 +137,8 @@ class MenuController extends Controller
 
         try {
             if (MenuRepository::destroy($id)) {
+                MenuRepository::clearAllMenusCache();
+
                 return redirect()->back()->withSuccess('删除菜单成功');
             }
         } catch (\Exception $e) {

@@ -6,27 +6,29 @@ use Closure;
 
 class FilterSearchCondition
 {
-    protected $betweenFields = ['created_at','updated_at'];
+    protected $betweenFields = ['created_at', 'updated_at'];
+
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Closure                 $next
+     *
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
         $array = [];
         foreach ($request->all() as $field => $value) {
-            if ((!empty($value) || $value === '0')) {
+            if (( ! empty($value) || $value === '0')) {
                 if ($field === 'page') {
                     $array['page'] = $value;
                     continue;
                 }
                 if (in_array($field, $this->betweenFields)) {
-                    $array['where'][] = [$field,'between',$this->formatBetweentField($value)];
+                    $array['where'][] = [$field, 'between', $this->formatBetweentField($value)];
                 } else {
-                    $array['where'][] = [$field,'=',$value];
+                    $array['where'][] = [$field, '=', $value];
                 }
             }
         }
@@ -39,8 +41,10 @@ class FilterSearchCondition
 
     /**
      * format string time to array time
-     * @param  [String] $value
-     * @return [Array]
+     *
+     * @param  mixed $value
+     *
+     * @return array
      */
     public function formatBetweentField($value)
     {
