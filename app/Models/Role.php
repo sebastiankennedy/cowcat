@@ -17,5 +17,5 @@ class Role extends EntrustRole
      *
      * @var string
      */
-    protected $table = "role";
+    protected $table = "roles";
 }

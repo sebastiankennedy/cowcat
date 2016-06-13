@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Facades\PermissionRepository;
 use App\Facades\RoleRepository;
 use App\Http\Requests\Form\RoleCreateForm;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
@@ -114,5 +116,18 @@ class RoleController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(array('error' => $e->getMessage()));
         }
+    }
+
+    public function permission()
+    {
+        $permissions = PermissionRepository::getPermissionNodes();
+        dump($permissions);
+        return view('backend.role.permission');
+    }
+
+    public function savePermission(Request $request)
+    {
+        dump($request->all());;exit;
+        return $this->responseJson(['data'=>$request->all(),'status'=>1]);
     }
 }

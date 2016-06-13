@@ -2,7 +2,7 @@
 
 namespace App\Presenters;
 
-use Cache,Route;
+use Cache, Route;
 
 /**
  * Menu View Presenters
@@ -113,12 +113,12 @@ class MainPresenter extends CommonPresenter
                         $sidebar .= '<li>';
                     }
 
-                    if(Route::has($menu['route'])){
+                    if (Route::has($menu['route'])) {
                         $sidebar .= '<a href="' . route($menu['route']) . '">';
-                    }else{
+                    } else {
                         $sidebar .= '<a href="javascript:void(0);">';
                     }
-                         $sidebar .='<i class="' . $menu['icon'] . '"></i>
+                    $sidebar .= '<i class="' . $menu['icon'] . '"></i>
                                 <span> ' . $menu['name'] . '</span>
                             </a>
                         </li>';
@@ -154,14 +154,14 @@ class MainPresenter extends CommonPresenter
 
     /**
      * 生成面包屑
+     *
      * @param array $array
      *
      * @return string
      */
     protected static function makeBreadcrumbs(array $array)
     {
-        $array = two_dimensional_array_sort($array, 'id', SORT_ASC);
-
+        $array = two_dimensional_array_sort($array, 'sort', SORT_ASC);
         $breadcrumbs = '<ol class="breadcrumb">';
         foreach ($array as $key => $value) {
 
@@ -172,9 +172,9 @@ class MainPresenter extends CommonPresenter
             }
 
             if ($value['route']) {
-                if(Route::has($value['route'])){
+                if (Route::has($value['route'])) {
                     $breadcrumbs .= '<a href="' . route($value['route']) . '">';
-                }else{
+                } else {
                     $breadcrumbs .= '<a href="#">';
                 }
             } else {

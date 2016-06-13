@@ -1,9 +1,10 @@
 <?php
+
 namespace App\Models;
 
-use Zizaco\Entrust\EntrustPermission;
+use Illuminate\Database\Eloquent\Model;
 
-class Permission extends EntrustPermission
+class RoleUser extends Model
 {
     /**
      * 限制读取字段
@@ -17,5 +18,5 @@ class Permission extends EntrustPermission
      *
      * @var string
      */
-    protected $table = "permissions";
+    protected $table = "role_user";
 }

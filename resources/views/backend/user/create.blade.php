@@ -11,6 +11,14 @@
                     {{csrf_field()}}
                     <div class="box-body">
                         <div class="form-group">
+                            <label>用户角色</label>
+                            <select class="form-control select2" multiple="multiple" name="role_id[]" style="width: 100%;">
+                                @foreach($roles as $role)
+                                    <option value="{{$role->id}}">{{$role->display_name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="name">用户名称</label>
                             <input type="text" class="form-control" id="name" name="name" placeholder="用户名称" value="{{old('name')}}">
                         </div>

@@ -10,7 +10,7 @@
                 <div class="modal-body">
                     {{$content}}
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
-                    <input type="hidden" name="_method" value="delete">
+                    <input type="hidden" name="_method" value="DELETE">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">关 闭</button>

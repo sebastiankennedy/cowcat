@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">角色列表</h3>
+                    <h3 class="box-title">权限列表</h3>
 
                     <div class="box-tools">{!! $data->render() !!}</div>
                 </div>
@@ -14,10 +14,10 @@
                 <div class="box-body table-responsive no-padding">
                     <table class="table table-hover">
                         <tr>
-                            <th>角色ID</th>
-                            <th>角色标识</th>
-                            <th>角色名称</th>
-                            <th>角色描述</th>
+                            <th>权限ID</th>
+                            <th>权限标识</th>
+                            <th>权限名称</th>
+                            <th>权限描述</th>
                             <th>操作</th>
                         </tr>
                         @foreach($data as $item)

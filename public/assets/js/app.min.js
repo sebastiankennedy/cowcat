@@ -1359,7 +1359,10 @@ var Backend = window.Backend || {};
             $.ajax({
                 url: params.href,
                 type: _type,
-                data: _data
+                data: _data,
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr('content')
+                }
             }).done(function (response) {
                 if (response.status == 1) {
                     swal({

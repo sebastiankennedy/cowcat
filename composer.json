@@ -12,7 +12,7 @@
         "arcanedev/log-viewer": "~3.0",
         "predis/predis": "~1.0",
         "laravelcollective/html": "5.1.x-dev",
-        "zizaco/entrust": "^1.7"
+        "zizaco/entrust": "5.2.x-dev"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

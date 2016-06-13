@@ -86,7 +86,7 @@ class RepositoryServiceProvider extends ServiceProvider
             $role = new $model();
             $validator = $app['validator'];
 
-            return new RoleRepository($role, $validator);
+            return new PermissionRepository($role, $validator);
         });
 
         $this->app->alias('permissionrepository', PermissionRepository::class);

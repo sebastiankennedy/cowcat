@@ -28,6 +28,7 @@ class UserCreateForm extends Request
             'email'                 => 'required|unique:users',
             'password'              => 'required|confirmed',
             'password_confirmation' => 'required',
+            'role_id'               => 'required',
         ];
     }
 
@@ -40,7 +41,8 @@ class UserCreateForm extends Request
             'email.unique'                   => '用户邮箱已存在',
             'password.required'              => '用户密码不能为空',
             'password.confirmed'             => '确认密码不一致',
-            'password_confirmation.required' => '确认密码不能为空'
+            'password_confirmation.required' => '确认密码不能为空',
+            'role_id.required'               => '用户角色不能为空',
         ];
     }
 }
