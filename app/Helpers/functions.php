@@ -1,11 +1,12 @@
 <?php
-if (!function_exists('two_dimensional_array_unique')) {
+if ( ! function_exists('two_dimensional_array_unique')) {
     /**
      * 移除二维数组中指定键名重复的值
-     * @param [array]   $array
-     * @param [string]  $key
      *
-     * @return [array]
+     * @param  $array
+     * @param  $key
+     *
+     * @return array
      */
     function two_dimensional_array_unique($array, $key)
     {
@@ -14,7 +15,7 @@ if (!function_exists('two_dimensional_array_unique')) {
         $temp_array = [];
 
         foreach ($array as $value) {
-            if (!in_array($value[$key], $key_array)) {
+            if ( ! in_array($value[$key], $key_array)) {
                 $key_array[$i] = $value[$key];
                 $temp_array[$i] = $value;
             }
@@ -25,10 +26,11 @@ if (!function_exists('two_dimensional_array_unique')) {
     }
 }
 
-if (!function_exists('array_random')) {
+if ( ! function_exists('array_random')) {
     /**
      * 随机返回数组中的值
-     * @param [array] $array
+     *
+     * @param  $array
      *
      * @return mixed
      */
@@ -38,14 +40,15 @@ if (!function_exists('array_random')) {
     }
 }
 
-if (!function_exists('two_dimensional_array_sort')) {
+if ( ! function_exists('two_dimensional_array_sort')) {
     /**
      * 二维数组排序
-     * @param  [array]  $array
-     * @param  [string] $on
-     * @param  [string] $order
      *
-     * @return [array]
+     * @param  $array
+     * @param  $on
+     * @param  $order
+     *
+     * @return array
      */
     function two_dimensional_array_sort($array, $on, $order = SORT_ASC)
     {
@@ -68,10 +71,10 @@ if (!function_exists('two_dimensional_array_sort')) {
             switch ($order) {
                 case SORT_ASC:
                     asort($sortable_array);
-                break;
+                    break;
                 case SORT_DESC:
                     arsort($sortable_array);
-                break;
+                    break;
             }
 
             foreach ($sortable_array as $k => $v) {
@@ -82,25 +85,25 @@ if (!function_exists('two_dimensional_array_sort')) {
         return $new_array;
     }
 }
-if (!function_exists('create_level_tree')) {
+if ( ! function_exists('create_level_tree')) {
     function create_level_tree($data, $parent_id = 0, $level = 0, $html = '-')
     {
         $tree = [];
         foreach ($data as $item) {
             $item['html'] = str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $level);
-            $item['html'].= $level === 0 ? "" : '|';
-            $item['html'].= str_repeat($html, $level);
+            $item['html'] .= $level === 0 ? "" : '|';
+            $item['html'] .= str_repeat($html, $level);
 
             if ($item['parent_id'] == $parent_id) {
                 $tree[] = $item;
-                $tree = array_merge($tree, create_level_tree($data, $item['id'], $level+1));
+                $tree = array_merge($tree, create_level_tree($data, $item['id'], $level + 1));
             }
         }
 
         return $tree;
     }
 }
-if (!function_exists('create_node_tree')) {
+if ( ! function_exists('create_node_tree')) {
     function create_node_tree($data, $parent_id = 0, $name = 'child')
     {
         $tree = [];
@@ -115,18 +118,19 @@ if (!function_exists('create_node_tree')) {
         return $tree;
     }
 }
-if (!function_exists('get_week_start_time_and_end_time')) {
-    function get_week_start_time_and_end_time(){
+if ( ! function_exists('get_week_start_time_and_end_time')) {
+    function get_week_start_time_and_end_time()
+    {
         $day = date('w');
         $end = 6 - $day;
         $start = 6 - $end;
-        $arr[] = date('Y-m-d 00:00:00',strtotime('now -'.$start.' day'));
-        $arr[] = date('Y-m-d 23:59:59',strtotime('now +'.$end.' day'));
+        $arr[] = date('Y-m-d 00:00:00', strtotime('now -' . $start . ' day'));
+        $arr[] = date('Y-m-d 23:59:59', strtotime('now +' . $end . ' day'));
 
         return $arr;
     }
 }
-if (!function_exists('getParentsByChildId')) {
+if ( ! function_exists('getParentsByChildId')) {
     function getParentsByChildId($data, $child_id)
     {
         $arr = [];
@@ -140,7 +144,7 @@ if (!function_exists('getParentsByChildId')) {
         return $arr;
     }
 }
-if (!function_exists('getChildsByParentId')) {
+if ( ! function_exists('getChildsByParentId')) {
     function getChildsByParentId($data, $parent_id)
     {
         $arr = [];
@@ -150,6 +154,7 @@ if (!function_exists('getChildsByParentId')) {
                 $arr = array_merge($arr, getChildsByParentId($data, $item['parent_id']));
             }
         }
+
         return $arr;
     }
 }

@@ -53,13 +53,20 @@ class PermissionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param  string $type
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($type)
     {
-        //
+        $data = [];
+        switch ($type) {
+            case 'menu':
+                $data = PermissionRepository::getAllMenusTree();
+                break;
+        }
+        $data = json_encode($data);
+        return view('backend.permission.' . $type, compact('data'));
     }
 
     /**
@@ -94,7 +101,7 @@ class PermissionController extends Controller
 
         try {
             if ($permission->save()) {
-                return redirect()->back()->withSuccess("编辑角色成功");
+                return redirect()->back()->withSuccess("编辑权限成功");
             }
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(array('error' => $e->getMessage()))->withInput();
@@ -117,5 +124,10 @@ class PermissionController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(array('error' => $e->getMessage()))->withInput();
         }
+    }
+
+    public function associateMenus()
+    {
+        return $this->responseJson(['data' => $request->all(), 'status' => 1]);
     }
 }

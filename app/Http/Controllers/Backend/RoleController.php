@@ -121,13 +121,6 @@ class RoleController extends Controller
 
     public function permission()
     {
-        $permissions = PermissionRepository::getPermissionNodes();
-
         return view('backend.role.permission');
-    }
-
-    public function savePermission(Request $request)
-    {
-        return $this->responseJson(['data' => $request->all(), 'status' => 1]);
     }
 }

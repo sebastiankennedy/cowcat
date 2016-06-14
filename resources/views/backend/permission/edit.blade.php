@@ -20,7 +20,7 @@
                             <select name="type" id="type" class="select2 form-control" style="width:100%;">
                                 @foreach(config('cowcat.permission-type') as $key => $value)
                                     <option value="{{$key}}"
-                                            @if($value == $data->type) selected @endif
+                                            @if($key == $data->type) selected @endif
                                     >{{$value}}</option>
                                 @endforeach
                             </select>
