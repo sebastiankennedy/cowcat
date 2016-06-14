@@ -16,6 +16,7 @@
                         <tr>
                             <th>权限ID</th>
                             <th>权限标识</th>
+                            <th>权限类型</th>
                             <th>权限名称</th>
                             <th>权限描述</th>
                             <th>操作</th>
@@ -24,6 +25,7 @@
                             <tr>
                                 <td>{{$item->id}}</td>
                                 <td>{{$item->name}}</td>
+                                <td>{{$item->type}}</td>
                                 <td>{{$item->display_name}}</td>
                                 <td>{{$item->description}}</td>
                                 <td>

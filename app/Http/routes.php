@@ -11,7 +11,7 @@ $router->group(['namespace'=>'Frontend'],function($router){
 	require_once __DIR__.'/Routes/frontend.php';
 });
 
-$router->group(['namespace'=>'Backend','middleware'=>[]], function ($router) {
+$router->group(['namespace'=>'Backend','middleware'=>['auth']], function ($router) {
 	require_once __DIR__.'/Routes/backend.php';
 });
 

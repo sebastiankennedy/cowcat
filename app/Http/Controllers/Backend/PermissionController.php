@@ -86,7 +86,19 @@ class PermissionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $permission = PermissionRepository::find($id);
+        $permission->name = $request['name'];
+        $permission->type = $request['type'];
+        $permission->description = $request['description'];
+        $permission->display_name = $request['display_name'];
+
+        try {
+            if ($permission->save()) {
+                return redirect()->back()->withSuccess("编辑角色成功");
+            }
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(array('error' => $e->getMessage()))->withInput();
+        }
     }
 
     /**

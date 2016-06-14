@@ -16,6 +16,16 @@
                             <input type="text" class="form-control" id="name" name="name" placeholder="权限标识" value="{{$data->name}}">
                         </div>
                         <div class="form-group">
+                            <label for="type">权限分类</label>
+                            <select name="type" id="type" class="select2 form-control" style="width:100%;">
+                                @foreach(config('cowcat.permission-type') as $key => $value)
+                                    <option value="{{$key}}"
+                                            @if($value == $data->type) selected @endif
+                                    >{{$value}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="display_name">权限名称</label>
                             <input type="text" class="form-control" id="display_name" name="display_name" placeholder="权限名称" value="{{$data->display_name}}">
                         </div>

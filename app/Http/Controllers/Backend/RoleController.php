@@ -89,8 +89,9 @@ class RoleController extends Controller
     {
         $role = RoleRepository::find($id);
         $role->name = $request['name'];
-        $role->display_name = $request['display_name'];
         $role->description = $request['description'];
+        $role->display_name = $request['display_name'];
+
         try {
             if ($role->save()) {
                 return redirect()->back()->withSuccess("编辑角色成功");
@@ -121,13 +122,12 @@ class RoleController extends Controller
     public function permission()
     {
         $permissions = PermissionRepository::getPermissionNodes();
-        dump($permissions);
+
         return view('backend.role.permission');
     }
 
     public function savePermission(Request $request)
     {
-        dump($request->all());;exit;
-        return $this->responseJson(['data'=>$request->all(),'status'=>1]);
+        return $this->responseJson(['data' => $request->all(), 'status' => 1]);
     }
 }
