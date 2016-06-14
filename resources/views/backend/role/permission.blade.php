@@ -5,23 +5,44 @@
 @endsection
 @section("content")
     <div class="row">
-        <div class="col-md-6">
-            <input type="hidden" name="_token" value="{{csrf_token()}}">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">权限管理</h3>
-                    <div class="box-tools">
-                        <button id="check-all-true" type="button" class="btn btn-flat btn-info">全选</button>
-                        <button id="check-all-false" type="button" class="btn btn-flat btn-warning">全删</button>
+        <div class="col-md-12">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab_1" data-toggle="tab">菜单权限</a></li>
+                    <li><a href="#tab_2" data-toggle="tab">Tab 2</a></li>
+                    <li><a href="#tab_3" data-toggle="tab">Tab 3</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab_1">
+                        <div class="box box-primary">
+                            <div class="box-header">
+                                <h3 class="box-title"></h3>
+                                <div class="box-tools">
+                                    <button id="check-all-true" type="button" class="btn btn-sm btn-flat btn-info">全选</button>
+                                    <button id="check-all-false" type="button" class="btn btn-sm btn-flat btn-warning">全删</button>
+                                </div>
+                            </div>
+                            <div class="box-body">
+                                <ul id="treeDemo" class="ztree"></ul>
+                            </div>
+                            <div class="box-footer">
+                                <button id="save-menu-permission" type="button" class="btn btn-flat btn-success">赋 权</button>
+                            </div>
+                        </div>
                     </div>
+                    <!-- /.tab-pane -->
+                    <div class="tab-pane" id="tab_2">
+
+                    </div>
+                    <!-- /.tab-pane -->
+                    <div class="tab-pane" id="tab_3">
+
+                    </div>
+                    <!-- /.tab-pane -->
                 </div>
-                <div class="box-body">
-                    <ul id="treeDemo" class="ztree"></ul>
-                </div>
-                <div class="box-footer">
-                    <button id="save-permission" type="button" class="btn btn-flat btn-success">赋 权</button>
-                </div>
+                <!-- /.tab-content -->
             </div>
+
         </div>
     </div>
 @endsection
@@ -64,7 +85,7 @@
             $('#check-all-false').click(function () {
                 zTree.checkAllNodes(false);
             });
-            $('#save-permission').click(function () {
+            $('#save-menu-permission').click(function () {
                 Backend.ajax.request({
                     data: zNodes,
                     href: "{{route('role.save.permission')}}"
