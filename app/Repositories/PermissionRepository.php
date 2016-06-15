@@ -3,20 +3,26 @@
 namespace App\Repositories;
 
 use App\Facades\MenuRepository;
+
 /**
  */
 class PermissionRepository extends CommonRepository
 {
-    public function getAllMenusTree()
+    public function getAllMenusTreeByPermission($permission)
     {
-        $items = MenuRepository::getAllMenusLists();
         $data = [];
-        foreach ($items as $key => $item) {
-            $data[$key]['id'] = $item['id'];
-            $data[$key]['pId'] = $item['parent_id'];
-            $data[$key]['name'] = $item['name'];
+        $menus = MenuRepository::getAllMenusLists();
+        $permissions = $permission->menus()->lists('id')->toArray();
+
+        foreach ($menus as $key => $menu) {
+            $data[$key]['id'] = $menu['id'];
+            $data[$key]['pId'] = $menu['parent_id'];
+            $data[$key]['name'] = $menu['name'];
             $data[$key]['open'] = true;
             $data[$key]['value'] = 1;
+            if (in_array($menu['id'], $permissions)) {
+                $data[$key]['checked'] = true;
+            }
         }
 
         return $data;

@@ -2,9 +2,11 @@
 namespace App\Models;
 
 use Zizaco\Entrust\EntrustPermission;
+use App\Traits\Model\MenuPermissionBelongsToManyTrait;
 
 class Permission extends EntrustPermission
 {
+    use MenuPermissionBelongsToManyTrait;
     /**
      * 限制读取字段
      *

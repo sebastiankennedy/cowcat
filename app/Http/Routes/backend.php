@@ -32,7 +32,7 @@ Route::post('role/savePermission', [
 Route::resource("role", 'RoleController');
 
 /* 权限管理模块 */
-Route::get('permission/associateMenus', [
+Route::post('permission/associateMenus', [
     'as'   => 'permission.associate.menus',
     'uses' => 'PermissionController@associateMenus',
 ]);

@@ -8,6 +8,11 @@ use App\Http\Requests\Form\PermissionCreateForm;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+/**
+ * Class PermissionController
+ *
+ * @package App\Http\Controllers\Backend
+ */
 class PermissionController extends Controller
 {
     /**
@@ -53,20 +58,20 @@ class PermissionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  string $type
+     * @param  integer $id
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($type)
+    public function show($id)
     {
-        $data = [];
-        switch ($type) {
+        $permission = PermissionRepository::find($id);
+        switch ($permission->type) {
             case 'menu':
-                $data = PermissionRepository::getAllMenusTree();
+                $data = json_encode(PermissionRepository::getAllMenusTreeByPermission($permission));
                 break;
         }
-        $data = json_encode($data);
-        return view('backend.permission.' . $type, compact('data'));
+
+        return view('backend.permission.' . $permission->type, compact('data', 'id'));
     }
 
     /**
@@ -126,8 +131,27 @@ class PermissionController extends Controller
         }
     }
 
-    public function associateMenus()
+
+    /**
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function associateMenus(Request $request)
     {
-        return $this->responseJson(['data' => $request->all(), 'status' => 1]);
+        $id = $request['id'];
+        $menus = $request['menus'];
+
+        try {
+            $permisson = PermissionRepository::find($id);
+
+            if ($permisson->menus()->sync($menus)) {
+                return $this->responseJson(['status' => 1]);
+            } else {
+                return $this->responseJson(['status' => -1]);
+            }
+        } catch (\Exception $e) {
+            return $this->responseJson(['status' => -1]);
+        }
     }
 }
