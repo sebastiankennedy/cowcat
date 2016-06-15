@@ -11,6 +11,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Form\UserCreateForm;
 use App\Http\Requests\Form\UserUpdateForm;
 
+/**
+ * 用户管理控制器
+ *
+ * @package App\Http\Controllers\Backend
+ */
 class UserController extends Controller
 {
     /**

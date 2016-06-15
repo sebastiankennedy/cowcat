@@ -9,7 +9,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 /**
- * Class PermissionController
+ * 权限管理控制器
  *
  * @package App\Http\Controllers\Backend
  */
@@ -133,6 +133,8 @@ class PermissionController extends Controller
 
 
     /**
+     * 关联菜单权限
+     *
      * @param Request $request
      *
      * @return \Illuminate\Http\JsonResponse
