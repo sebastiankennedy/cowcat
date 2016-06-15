@@ -21,13 +21,13 @@ Route::get('role/search', [
     'uses'       => 'RoleController@search',
     'middleware' => ['search'],
 ]);
-Route::get('role/permission', [
+Route::get('role/permission/{id}', [
     'as'   => 'role.permission',
     'uses' => 'RoleController@permission',
 ]);
-Route::post('role/savePermission', [
-    'as'   => 'role.save.permission',
-    'uses' => 'RoleController@savePermission',
+Route::post('role/associatePermission', [
+    'as'   => 'role.associate.permission',
+    'uses' => 'RoleController@associatePermission',
 ]);
 Route::resource("role", 'RoleController');
 

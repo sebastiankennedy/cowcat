@@ -150,10 +150,10 @@ class PermissionController extends Controller
             if ($permisson->menus()->sync($menus)) {
                 return $this->responseJson(['status' => 1]);
             } else {
-                return $this->responseJson(['status' => -1]);
+                return $this->responseJson(['status' => 0]);
             }
         } catch (\Exception $e) {
-            return $this->responseJson(['status' => -1]);
+            return $this->responseJson(['status' => 0]);
         }
     }
 }

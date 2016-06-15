@@ -32,8 +32,8 @@ var Backend = window.Backend || {};
                     }, function () {
                         _successFunction();
                     });
-                } else if (response.status == -1) {
-                    swal(data.message, '', 'error');
+                } else if (response.status == 0) {
+                    swal(response.message, '', 'error');
                 } else {
                     _errorFunction();
                 }

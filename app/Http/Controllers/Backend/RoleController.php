@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Facades\PermissionRepository;
 use App\Facades\RoleRepository;
 use App\Http\Requests\Form\RoleCreateForm;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+/**
+ * 角色管理控制器
+ *
+ * @package App\Http\Controllers\Backend
+ */
 class RoleController extends Controller
 {
     /**
@@ -119,8 +123,56 @@ class RoleController extends Controller
         }
     }
 
-    public function permission()
+    /**
+     * 角色赋权页面
+     *
+     * @param int $id
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function permission($id)
     {
-        return view('backend.role.permission');
+        $role = RoleRepository::find($id);
+        $data = json_encode(RoleRepository::getTypeGroupPermissionsByRole($role));
+
+        return view('backend.role.permission', compact('id', 'data', 'role'));
+    }
+
+
+    /**
+     * 角色赋权操作
+     *
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function associatePermission(Request $request)
+    {
+        $id = $request['id'];
+        $permissions = $request['permissions'];
+
+        $data = [];
+        foreach ($permissions as $permission) {
+            if ( ! $permission) {
+                continue;
+            }
+
+            if (array_key_exists($permission, config('cowcat.permission-type'))) {
+                continue;
+            }
+
+            $data[] = $permission;
+        }
+
+        try {
+            $role = RoleRepository::find($id);
+            if ($role->perms()->sync($data)) {
+                return $this->responseJson(['status' => 1]);
+            } else {
+                return $this->responseJson(['status' => 0, 'message' => '角色赋权失败']);
+            }
+        } catch (\Exception $e) {
+            return $this->responseJson(['status' => 0, 'message' => $e->getMessage()]);
+        }
     }
 }

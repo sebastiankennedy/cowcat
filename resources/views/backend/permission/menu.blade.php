@@ -6,7 +6,7 @@
 @section("content")
     <div class="row">
         <div class="col-md-6">
-            <div class="box box-primary">
+            <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">菜单权限</h3>
                     <div class="box-tools">
@@ -27,7 +27,7 @@
 @section("after.js")
     <script src="/assets/js/jquery.ztree.all-3.5.min.js"></script>
     <script type="text/javascript">
-        var id = {{$id}};
+        var id = {{ $id }};
         var nodes = {!! $data !!};
         var setting = {
             check: {
