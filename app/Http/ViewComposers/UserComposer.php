@@ -30,12 +30,6 @@ class UserComposer
                 'class' => 'success',
                 'route' => 'user.create',
             ],
-            [
-                'icon'  => 'user-plus',
-                'title' => '赋权',
-                'class' => 'info',
-                'route' => 'user.create',
-            ],
         ];
     }
 

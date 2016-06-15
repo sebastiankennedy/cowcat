@@ -18,7 +18,14 @@
                     <ul id="tree" class="ztree"></ul>
                 </div>
                 <div class="box-footer">
-                    <button id="save-menu-permission" type="button" class="btn btn-flat btn-success">赋 权</button>
+                    <a href="javascript:history.back(-1);" class="btn btn-default btn-flat">
+                        <i class="fa fa-arrow-left"></i>
+                        返回
+                    </a>
+                    <button id="save-role-permission" type="button" class="btn btn-flat btn-success pull-right">
+                        <i class="fa fa-pencil"></i>
+                        赋权
+                    </button>
                 </div>
             </div>
         </div>
@@ -53,7 +60,7 @@
                 zTree.checkAllNodes(false);
             });
 
-            $('#save-menu-permission').click(function () {
+            $('#save-role-permission').click(function () {
                 var tree = zTree.getCheckedNodes(true);
 
                 var permissions = [];

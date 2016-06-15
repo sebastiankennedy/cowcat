@@ -64,14 +64,7 @@ class PermissionController extends Controller
      */
     public function show($id)
     {
-        $permission = PermissionRepository::find($id);
-        switch ($permission->type) {
-            case 'menu':
-                $data = json_encode(PermissionRepository::getAllMenusTreeByPermission($permission));
-                break;
-        }
 
-        return view('backend.permission.' . $permission->type, compact('data', 'id'));
     }
 
     /**
@@ -131,9 +124,27 @@ class PermissionController extends Controller
         }
     }
 
+    /**
+     * 关联权限页面
+     *
+     * @param $id
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function associate($id)
+    {
+        $permission = PermissionRepository::find($id);
+        switch ($permission->type) {
+            case 'menu':
+                $data = json_encode(PermissionRepository::getAllMenusTreeByPermission($permission));
+                break;
+        }
+
+        return view('backend.permission.' . $permission->type, compact('data', 'id'));
+    }
 
     /**
-     * 关联菜单权限
+     * 关联菜单权限操作
      *
      * @param Request $request
      *

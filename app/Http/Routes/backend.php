@@ -32,6 +32,10 @@ Route::post('role/associatePermission', [
 Route::resource("role", 'RoleController');
 
 /* 权限管理模块 */
+Route::get('permission/associate/{id}', [
+    'as'         => 'permission.associate',
+    'uses'       => 'PermissionController@associate',
+]);
 Route::post('permission/associateMenus', [
     'as'   => 'permission.associate.menus',
     'uses' => 'PermissionController@associateMenus',
