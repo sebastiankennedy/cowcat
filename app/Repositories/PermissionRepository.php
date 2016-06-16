@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Facades\MenuRepository;
+use ReflectionClass;
 
 /**
  */
@@ -26,5 +27,10 @@ class PermissionRepository extends CommonRepository
         }
 
         return $data;
+    }
+
+    public function getAllActionsByPermission($permission)
+    {
+
     }
 }

@@ -37,7 +37,7 @@ class Authorize
 
                     return view('backend.errors.403', compact('previousUrl'));
                 }
-            }else{
+            } else {
 
             }
         }

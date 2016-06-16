@@ -12,7 +12,7 @@
     @yield('after.css')
 </head>
 
-<body class="skin-black">
+<body class="skin-black sidebar-mini">
 <div class="wrapper">
     @inject('mainPresenter','App\Presenters\MainPresenter')
     @include('backend.layout.header')

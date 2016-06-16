@@ -138,6 +138,9 @@ class PermissionController extends Controller
             case 'menu':
                 $data = json_encode(PermissionRepository::getAllMenusTreeByPermission($permission));
                 break;
+            case 'action':
+                $data = PermissionRepository::getAllActionsByPermission($permission);
+                break;
         }
 
         return view('backend.permission.' . $permission->type, compact('data', 'id'));
