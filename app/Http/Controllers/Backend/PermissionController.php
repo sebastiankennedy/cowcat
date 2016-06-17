@@ -141,6 +141,7 @@ class PermissionController extends Controller
             case 'action':
                 $data = PermissionRepository::getAllActionsByPermission($permission);
                 break;
+
         }
 
         return view('backend.permission.' . $permission->type, compact('data', 'id'));

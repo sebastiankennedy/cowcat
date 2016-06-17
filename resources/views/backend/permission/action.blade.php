@@ -8,7 +8,7 @@
         <div class="col-md-6">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">菜单权限</h3>
+                    <h3 class="box-title">操作授权</h3>
                     <div class="box-tools">
                         <button id="check-all-true" type="button" class="btn btn-sm btn-flat btn-info">全选</button>
                         <button id="check-all-false" type="button" class="btn btn-sm btn-flat btn-warning">全删</button>
