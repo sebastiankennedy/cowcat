@@ -2,12 +2,19 @@
 
 namespace App\Http\Middleware;
 
+use Illuminate\Routing\Router;
 use App\Facades\UserRepository;
 use Closure;
 use Route, Auth, URL;
 
 class Authorize
 {
+    protected $router;
+
+    public function __construct(Router $router)
+    {
+        $this->router = $router;
+    }
     /**
      * Handle an incoming request.
      *
@@ -19,6 +26,10 @@ class Authorize
     public function handle($request, Closure $next)
     {
         $user = Auth::user();
+//        dump(Route::current()->getActionName());
+
+        $routes = $this->router->getRoutes();
+//        dump($routes);
 
         if ($user['is_super_admin']) {
             return $next($request);
@@ -31,9 +42,9 @@ class Authorize
             if ($request->getMethod() == 'GET') {
 
                 $route = Route::currentRouteName();
-                $routes = UserRepository::getUserMenusPermissionsByUserModel($user);
+                $menus = UserRepository::getUserMenusPermissionsByUserModel($user);
 
-                if ( ! in_array($route, $routes)) {
+                if ( ! in_array($route, $menus)) {
 
                     return view('backend.errors.403', compact('previousUrl'));
                 }

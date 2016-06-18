@@ -17,9 +17,7 @@ return [
     ],
     'permission-type'     => [
         'menu'     => '菜单权限',
-        'file'     => '文件权限',
         'action'   => '操作权限',
-        'category' => '分类权限',
     ],
     'authorize-directory' => [
         'Auth',

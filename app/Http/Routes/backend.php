@@ -1,4 +1,5 @@
 <?php
+
 /* 菜单管理模块 */
 Route::get('menu/search', [
     'as'         => 'menu.search',
@@ -46,3 +47,7 @@ Route::get('permission/search', [
     'middleware' => ['search'],
 ]);
 Route::resource("permission", 'PermissionController');
+
+/* 操作管理模块 */
+
+
