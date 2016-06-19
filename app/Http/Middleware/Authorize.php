@@ -28,7 +28,7 @@ class Authorize
         $user = Auth::user();
         dump(Route::current()->getActionName());
 
-        $routes = $this->router->getRoutes()->getRoutes();
+//        $routes = $this->router->getRoutes()->getRoutes();
 //        dump($routes);
 //        foreach ($routes as $route) {
 //            dump($route->getActionName());

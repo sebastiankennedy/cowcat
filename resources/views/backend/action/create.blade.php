@@ -14,8 +14,8 @@
                             <label for="group">操作分组</label>
                             <div class="form-group">
                                 <select class="form-control select2" name="group">
-                                    @foreach(config('cowcat.action-group') as $group)
-                                        <option value="{{$group}}">{{$group}}</option>
+                                    @foreach(config('cowcat.action-group') as $key => $group)
+                                        <option value="{{$key}}">{{$group}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -30,6 +30,11 @@
                         </div>
                         <div class="form-group">
                             <label for="action">操作标识</label>
+                            <select class="form-control select2" name="action">
+                            @foreach($actions as $key => $action)
+                                <option value="{{$action}}">{{$action}}</option>
+                            @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="state">是否禁用</label>

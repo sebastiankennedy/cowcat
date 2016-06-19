@@ -11,6 +11,11 @@ abstract class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    public function __construct()
+    {
+        
+    }
+
     public function responseJson($data, $code = 200)
     {
         return response()->json($data, $code);

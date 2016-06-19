@@ -1,5 +1,6 @@
 <?php
 return [
+    /* 后台登录页面背景图片 */
     'background-images' => [
         '/assets/images/background/1.jpg',
         '/assets/images/background/2.jpg',
@@ -15,13 +16,23 @@ return [
         '/assets/images/background/12.jpg',
         '/assets/images/background/13.jpg',
     ],
+    /* 权限管理类型 */
     'permission-type'   => [
         'menu'   => '菜单权限',
         'action' => '操作权限',
     ],
+    /* 操作管理类型 */
     'action-group'      => [
         'backend'  => '后台操作',
         'frontend' => '前端操作',
         'api'      => '接口操作',
     ],
+    /* 无需验证的操作 */
+    'disabled-actions'=>[
+        'Closure'
+    ],
+    /* 禁用的控制器成员方法 */
+    'disabled-methods'=>[
+
+    ]
 ];

@@ -7,6 +7,7 @@ use App\Repositories\MenuRepository;
 use App\Repositories\RoleRepository;
 use App\Repositories\ActionRepository;
 use App\Repositories\PermissionRepository;
+use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -85,10 +86,10 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $this->app->singleton('actionrepository', function ($app) {
             $model = config('repository.models.action');
-            $role = new $model();
+            $action = new $model();
             $validator = $app['validator'];
 
-            return new ActionRepository($role, $validator);
+            return new ActionRepository($action, $validator);
         });
 
         $this->app->alias('actionrepository', ActionRepository::class);
@@ -98,10 +99,10 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $this->app->singleton('permissionrepository', function ($app) {
             $model = config('repository.models.permission');
-            $role = new $model();
+            $permission = new $model();
             $validator = $app['validator'];
 
-            return new PermissionRepository($role, $validator);
+            return new PermissionRepository($permission, $validator);
         });
 
         $this->app->alias('permissionrepository', PermissionRepository::class);

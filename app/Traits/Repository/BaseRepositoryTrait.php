@@ -166,11 +166,14 @@ trait BaseRepositoryTrait
             }
         }
 
-        return $model->paginate($limit,$columns);
+        return $model->paginate($limit, $columns);
     }
 
-    public function lists($value,$key){
+    public function lists($value, $key)
+    {
+        $model = $this->model;
 
+        return $model->lists($value, $key);
     }
 
 
