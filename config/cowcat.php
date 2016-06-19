@@ -1,6 +1,6 @@
 <?php
 return [
-    'background-images'   => [
+    'background-images' => [
         '/assets/images/background/1.jpg',
         '/assets/images/background/2.jpg',
         '/assets/images/background/3.jpg',
@@ -15,12 +15,13 @@ return [
         '/assets/images/background/12.jpg',
         '/assets/images/background/13.jpg',
     ],
-    'permission-type'     => [
-        'menu'     => '菜单权限',
-        'action'   => '操作权限',
+    'permission-type'   => [
+        'menu'   => '菜单权限',
+        'action' => '操作权限',
     ],
-    'authorize-directory' => [
-        'Auth',
-        'backend',
+    'action-group'      => [
+        'backend'  => '后台操作',
+        'frontend' => '前端操作',
+        'api'      => '接口操作',
     ],
 ];

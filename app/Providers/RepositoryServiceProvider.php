@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Repositories\UserRepository;
 use App\Repositories\MenuRepository;
 use App\Repositories\RoleRepository;
+use App\Repositories\ActionRepository;
 use App\Repositories\PermissionRepository;
 use Illuminate\Support\ServiceProvider;
 
@@ -32,6 +33,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->registerMenuRepository();
         $this->registerUserRepository();
         $this->registerRoleRepository();
+        $this->registerActionRepository();
         $this->registerPermissionRepository();
     }
 
@@ -77,6 +79,19 @@ class RepositoryServiceProvider extends ServiceProvider
         });
 
         $this->app->alias('rolerepository', RoleRepository::class);
+    }
+
+    public function registerActionRepository()
+    {
+        $this->app->singleton('actionrepository', function ($app) {
+            $model = config('repository.models.action');
+            $role = new $model();
+            $validator = $app['validator'];
+
+            return new ActionRepository($role, $validator);
+        });
+
+        $this->app->alias('actionrepository', ActionRepository::class);
     }
 
     public function registerPermissionRepository()

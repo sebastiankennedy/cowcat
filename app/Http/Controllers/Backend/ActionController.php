@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class OperationController extends Controller
+class ActionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,7 +26,7 @@ class OperationController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.action.create');
     }
 
     /**

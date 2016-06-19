@@ -26,10 +26,13 @@ class Authorize
     public function handle($request, Closure $next)
     {
         $user = Auth::user();
-//        dump(Route::current()->getActionName());
+        dump(Route::current()->getActionName());
 
-        $routes = $this->router->getRoutes();
+        $routes = $this->router->getRoutes()->getRoutes();
 //        dump($routes);
+//        foreach ($routes as $route) {
+//            dump($route->getActionName());
+//        }
 
         if ($user['is_super_admin']) {
             return $next($request);
