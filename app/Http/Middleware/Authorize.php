@@ -26,7 +26,6 @@ class Authorize
     public function handle($request, Closure $next)
     {
         $user = Auth::user();
-        dump(Route::current()->getActionName());
 
 //        $routes = $this->router->getRoutes()->getRoutes();
 //        dump($routes);

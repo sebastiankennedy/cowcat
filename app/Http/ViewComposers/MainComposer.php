@@ -20,10 +20,11 @@ class MainComposer
         $route = Route::currentRouteName();
         $menus = MenuRepository::getAllDisplayMenus();
         $title = $this->getPageDescriptionArrayByMenus($menus);
-        $view->with(compact('menus', 'route','title'));
+        $view->with(compact('menus', 'route', 'title'));
     }
 
-    private function getPageDescriptionArrayByMenus($menus){
+    private function getPageDescriptionArrayByMenus($menus)
+    {
         $arr = [];
         foreach ($menus as $menu) {
             $arr[$menu['route']]['name'] = $menu['name'];

@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Facades\ActionRepository;
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Form\ActionCreateForm;
 use Illuminate\Routing\Router;
 
 
@@ -19,7 +18,9 @@ class ActionController extends Controller
      */
     public function index()
     {
-        //
+        $data = ActionRepository::paginate(config('repository.page-limit'));
+
+        return view('backend.action.index', compact("data"));
     }
 
     /**
@@ -39,12 +40,19 @@ class ActionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Http\Requests\Form\ActionCreateForm $request
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ActionCreateForm $request)
     {
+        try {
+            if (ActionRepository::create($request->all())) {
+                return redirect()->route("action.index")->withSuccess("新增操作成功");
+            }
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(array('error' => $e->getMessage()))->withInput();
+        }
     }
 
     /**
@@ -66,22 +74,36 @@ class ActionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Router $router)
     {
-        //
+        $data = ActionRepository::find($id);
+        $actions = ActionRepository::getActionsByRoutes($router->getRoutes()->getRoutes());
+
+        return view('backend.action.edit', compact('data', 'actions'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int                      $id
+     * @param \App\Http\Requests\Form\ActionCreateForm $request
+     * @param  int                                     $id
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ActionCreateForm $request, $id)
     {
-        //
+        $data = $request->all();
+
+        unset($data['_token']);
+        unset($data['_method']);
+
+        try {
+            if (ActionRepository::updateById($id, $data)) {
+                return redirect()->route("action.index")->withSuccess("编辑操作成功");
+            }
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(array('error' => $e->getMessage()))->withInput();
+        }
     }
 
     /**
@@ -93,6 +115,12 @@ class ActionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            if (ActionRepository::destroy($id)) {
+                return redirect()->route("action.index")->withSuccess("删除操作成功");
+            }
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(array('error' => $e->getMessage()))->withInput();
+        }
     }
 }

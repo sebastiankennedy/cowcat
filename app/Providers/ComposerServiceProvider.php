@@ -31,6 +31,11 @@ class ComposerServiceProvider extends ServiceProvider
             'backend.role.search',
         ];
 
+        $this->action = [
+            'backend.action.index',
+            'backend.action.search',
+        ];
+
         $this->permission = [
             'backend.permission.index',
             'backend.permission.search',
@@ -48,6 +53,7 @@ class ComposerServiceProvider extends ServiceProvider
         view()->composer($this->menu, 'App\Http\ViewComposers\MenuComposer');
         view()->composer($this->user, 'App\Http\ViewComposers\UserComposer');
         view()->composer($this->role, 'App\Http\ViewComposers\RoleComposer');
+        view()->composer($this->action, 'App\Http\ViewComposers\ActionComposer');
         view()->composer($this->permission, 'App\Http\ViewComposers\PermissionComposer');
     }
 

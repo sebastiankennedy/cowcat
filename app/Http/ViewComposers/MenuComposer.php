@@ -12,6 +12,7 @@ class MenuComposer
      *
      * @param  View $view
      *+
+     *
      * @return mixed
      */
     public function compose(View $view)
