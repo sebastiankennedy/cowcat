@@ -136,7 +136,10 @@ class UserController extends Controller
         $user = UserRepository::find($id);
         $user->name = $request['name'];
         $user->email = $request['email'];
-        $user->password = bcrypt($request['password']);
+
+        if ($request['password']) {
+            $user->password = bcrypt($request['password']);
+        }
 
         try {
             $roles = RoleRepository::getByWhereIn('id', $request['role_id']);
@@ -146,7 +149,7 @@ class UserController extends Controller
             }
 
             if ($user->save()) {
-                RoleUser::whereUserId($id)->delete();
+                $user->roles()->sync([]);
                 foreach ($roles as $role) {
                     $user->attachRole($role);
                 }

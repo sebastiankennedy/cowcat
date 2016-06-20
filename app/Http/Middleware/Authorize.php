@@ -15,6 +15,7 @@ class Authorize
     {
         $this->router = $router;
     }
+
     /**
      * Handle an incoming request.
      *
@@ -27,31 +28,41 @@ class Authorize
     {
         $user = Auth::user();
 
-//        $routes = $this->router->getRoutes()->getRoutes();
-//        dump($routes);
-//        foreach ($routes as $route) {
-//            dump($route->getActionName());
-//        }
-
+        /* 判断当前用户是否为超级管理员 */
         if ($user['is_super_admin']) {
             return $next($request);
         }
 
+        /* 获取当前 URL 当前的路由、控制器方法和上一页 */
+        $route = Route::current()->getName();
+        $action = Route::current()->getActionName();
         $previousUrl = URL::previous();
 
         if ( ! $request->ajax()) {
 
             if ($request->getMethod() == 'GET') {
 
-                $route = Route::currentRouteName();
                 $menus = UserRepository::getUserMenusPermissionsByUserModel($user);
+
+                if ( ! $menus) {
+                    return view('backend.errors.403', compact('previousUrl'));
+                }
 
                 if ( ! in_array($route, $menus)) {
 
                     return view('backend.errors.403', compact('previousUrl'));
                 }
             } else {
+                $actions = UserRepository::getUserActionPermissionsByUserModel($user);
 
+                if ( ! $actions) {
+                    return view('backend.errors.403', compact('previousUrl'));
+                }
+
+                if ( ! in_array($action, $actions)) {
+
+                    return view('backend.errors.403', compact('previousUrl'));
+                }
             }
         }
 

@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Facades\ActionRepository;
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Requests;
 use App\Http\Requests\Form\ActionCreateForm;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Router;
 
 
@@ -21,6 +22,20 @@ class ActionController extends Controller
         $data = ActionRepository::paginate(config('repository.page-limit'));
 
         return view('backend.action.index', compact("data"));
+    }
+
+    /**
+     * Display a listing of the resource by the search condition.
+     *
+     * @param  \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $data = MenuRepository::paginateWhere($request->get('where'), config('repository.page-limit'));
+
+        return view('backend.menu.search', compact('data'));
     }
 
     /**

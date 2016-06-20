@@ -53,5 +53,10 @@ Route::get('permission/search', [
 Route::resource("permission", 'PermissionController');
 
 /* 操作管理模块 */
+Route::get('action/search', [
+    'as'         => 'action.search',
+    'uses'       => 'ActionController@search',
+    'middleware' => ['search'],
+]);
 Route::resource('action', 'ActionController');
 

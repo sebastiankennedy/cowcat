@@ -2,7 +2,8 @@
 
 namespace App\Presenters;
 
-use Cache, Route;
+use App\Facades\UserRepository;
+use Cache, Route, Auth;
 
 /**
  * Menu View Presenters
@@ -19,10 +20,6 @@ class MainPresenter extends CommonPresenter
      */
     const REDIS_BREADCRUMBS_MENUS_CACHE = 'redis_breadcrumbs_menus_view_cache:';
 
-    protected $sidebar;
-
-    protected $breadcrumbs;
-
     /**
      * 渲染左侧栏视图
      *
@@ -32,14 +29,33 @@ class MainPresenter extends CommonPresenter
      */
     public function renderSidebar(array $menus, $route)
     {
-        $tree = create_node_tree($menus);
-        $array = self::buildBreadcrumbsArray($menus, $route);
-        $active = array_map(function ($value) {
-            return $value['route'];
-        }, $array);
-        $sidebar = '<ul class="sidebar-menu">';
-        $sidebar .= self::makeSidebar($tree, $active);
-        $sidebar .= '</ul>';
+        $user = Auth::user();
+        $sidebar = Cache::get(self::REDIS_BREADCRUMBS_MENUS_CACHE . $user->id);
+        if ( ! $sidebar) {
+            $routes = UserRepository::getUserMenusPermissionsByUserModel($user);
+
+            if ( ! $routes) {
+                return "";
+            }
+
+            foreach ($menus as $key => $menu) {
+                if ( ! in_array($menu['route'], $routes)) {
+                    unset($menus[$key]);
+                }
+            }
+            $trees = create_node_tree($menus);
+            $array = self::buildBreadcrumbsArray($menus, $route);
+
+
+            $active = array_map(function ($value) {
+                return $value['route'];
+            }, $array);
+            $sidebar = '<ul class="sidebar-menu">';
+            $sidebar .= self::makeSidebar($trees, $active);
+            $sidebar .= '</ul>';
+
+            Cache::forever(self::REDIS_SIDEBAR_MENUS_CACHE . $user->id, $sidebar);
+        }
 
         return $sidebar;
     }
@@ -81,7 +97,7 @@ class MainPresenter extends CommonPresenter
      * 生成左侧栏
      *
      * @param array $menus
-     * @param       $active
+     * @param array $active
      *
      * @return string
      */
