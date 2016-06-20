@@ -16,9 +16,8 @@ class UserComposer
     public function compose(View $view)
     {
         $handle = self::gethandle();
-        $search = self::getInputs();
         $params = self::getParams();
-        $view->with(compact('handle', 'search', 'params'));
+        $view->with(compact('handle', 'params'));
     }
 
     private static function gethandle()
@@ -29,20 +28,6 @@ class UserComposer
                 'title' => '新增',
                 'class' => 'success',
                 'route' => 'user.create',
-            ],
-        ];
-    }
-
-    private static function getInputs()
-    {
-        return [
-            'route'  => 'user.search',
-            'inputs' => [
-                [
-                    'type'        => 'text',
-                    'name'        => 'name',
-                    'placeholder' => '用户名称',
-                ],
             ],
         ];
     }

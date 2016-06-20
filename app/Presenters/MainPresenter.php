@@ -30,6 +30,10 @@ class MainPresenter extends CommonPresenter
     public function renderSidebar(array $menus, $route)
     {
         $user = Auth::user();
+        if ( ! $user) {
+            return redirect()->to('/auth/logout');
+        }
+
         $sidebar = Cache::get(self::REDIS_BREADCRUMBS_MENUS_CACHE . $user->id);
         if ( ! $sidebar) {
             $routes = UserRepository::getUserMenusPermissionsByUserModel($user);
@@ -91,7 +95,6 @@ class MainPresenter extends CommonPresenter
 
         return $breadcrumbs;
     }
-
 
     /**
      * 生成左侧栏
@@ -166,7 +169,6 @@ class MainPresenter extends CommonPresenter
             return $breadcrumbs;
         }
     }
-
 
     /**
      * 生成面包屑

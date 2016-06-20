@@ -26,7 +26,11 @@ class Authorize
      */
     public function handle($request, Closure $next)
     {
+        /* 判断当前用户是否登录或缓存是否过期 */
         $user = Auth::user();
+        if ( ! $user) {
+            return redirect()->to('/auth/logout');
+        }
 
         /* 判断当前用户是否为超级管理员 */
         if ($user['is_super_admin']) {

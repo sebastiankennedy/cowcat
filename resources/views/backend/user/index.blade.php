@@ -2,7 +2,6 @@
 
 @section("content")
     @include('backend.components.handle',$handle)
-    @include('backend.components.search',$search)
     <div class="row">
         <div class="col-md-12">
             <div class="box">
