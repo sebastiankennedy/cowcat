@@ -7,7 +7,6 @@ use App\Repositories\MenuRepository;
 use App\Repositories\RoleRepository;
 use App\Repositories\ActionRepository;
 use App\Repositories\PermissionRepository;
-use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider

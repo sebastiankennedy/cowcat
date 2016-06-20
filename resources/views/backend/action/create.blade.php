@@ -2,13 +2,13 @@
 
 @section("content")
     <div class="row">
-        <div class="col-md-6">
-            <form method="post" action="{{route('action.store')}}">
+        <div class="col-md-12">
+            <form method="POST" action="{{route('action.store')}}">
+                {!! csrf_field() !!}
                 <div class="box">
                     <div class="box-header with-border">
                         <h3 class="box-title">新增操作</h3>
                     </div>
-                    {{csrf_field()}}
                     <div class="box-body">
                         <div class="form-group">
                             <label for="group">操作分组</label>
@@ -25,15 +25,15 @@
                             <input type="text" class="form-control" id="name" name="name" placeholder="操作名称" value="{{old('name')}}">
                         </div>
                         <div class="form-group">
-                            <label for="description">操作邮箱</label>
-                            <input type="text" class="form-control" id="description" name="description" placeholder="操作邮箱" value="{{old('description')}}">
+                            <label for="description">操作描述</label>
+                            <input type="text" class="form-control" id="description" name="description" placeholder="操作描述" value="{{old('description')}}">
                         </div>
                         <div class="form-group">
                             <label for="action">操作标识</label>
                             <select class="form-control select2" name="action">
-                            @foreach($actions as $key => $action)
-                                <option value="{{$action}}">{{$action}}</option>
-                            @endforeach
+                                @foreach($actions as $key => $action)
+                                    <option value="{{$action}}">{{$action}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group">
