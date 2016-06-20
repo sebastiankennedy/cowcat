@@ -2,9 +2,11 @@
 
 namespace App\Repositories;
 
+use App\Facades\ActionRepository;
 use App\Facades\MenuRepository;
 
 /**
+ *
  */
 class PermissionRepository extends CommonRepository
 {
@@ -30,6 +32,30 @@ class PermissionRepository extends CommonRepository
 
     public function getAllActionsByPermission($permission)
     {
+        $data = [];
+        $actions = ActionRepository::all()->toArray();
+        $permissions = $permission->actions()->lists('id')->toArray();
 
+        foreach ($actions as $key => $action) {
+            $data[$key]['id'] = $action['id'];
+            $data[$key]['pId'] = $action['group'];
+            $data[$key]['name'] = $action['name'];
+            $data[$key]['open'] = true;
+            $data[$key]['value'] = 1;
+            if (in_array($action['id'], $permissions)) {
+                $data[$key]['checked'] = true;
+            }
+        }
+
+        foreach (config('cowcat.action-group') as $key => $value) {
+            $group['id'] = $key;
+            $group['pId'] = 0;
+            $group['name'] = $value;
+            $group['open'] = true;
+            $group['value'] = 1;
+            array_push($data, $group);
+        }
+
+        return $data;
     }
 }

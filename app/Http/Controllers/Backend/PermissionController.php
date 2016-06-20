@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Facades\PermissionRepository;
-use Illuminate\Http\Request;
 use App\Http\Requests\Form\PermissionCreateForm;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 /**
  * 权限管理控制器
@@ -139,7 +139,7 @@ class PermissionController extends Controller
                 $data = json_encode(PermissionRepository::getAllMenusTreeByPermission($permission));
                 break;
             case 'action':
-                $data = PermissionRepository::getAllActionsByPermission($permission);
+                $data = json_encode(PermissionRepository::getAllActionsByPermission($permission));
                 break;
 
         }
@@ -163,6 +163,30 @@ class PermissionController extends Controller
             $permisson = PermissionRepository::find($id);
 
             if ($permisson->menus()->sync($menus)) {
+                return $this->responseJson(['status' => 1]);
+            } else {
+                return $this->responseJson(['status' => 0]);
+            }
+        } catch (\Exception $e) {
+            return $this->responseJson(['status' => 0]);
+        }
+    }
+
+    /**
+     * 关联操作权限操作
+     *
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function associateActions(Request $request)
+    {
+        $id = $request['id'];
+        $actions = $request['actions'];
+
+        try {
+            $permisson = PermissionRepository::find($id);
+            if ($permisson->actions()->sync($actions)) {
                 return $this->responseJson(['status' => 1]);
             } else {
                 return $this->responseJson(['status' => 0]);

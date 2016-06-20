@@ -63,14 +63,17 @@
             $('#save-menu-permission').click(function () {
                 var tree = zTree.getCheckedNodes(true);
 
-                var menus = [];
+                var actions = [];
                 for (var i = 0; i < tree.length; i++) {
-                    menus.push(tree[i].id);
+                    if (!$.isNumeric(tree[i].id)) {
+                        continue;
+                    }
+                    actions.push(tree[i].id);
                 }
 
                 Backend.ajax.request({
-                    data: {id: id, menus: menus},
-                    href: "{{route('permission.associate.menus')}}"
+                    data: {id: id, actions: actions},
+                    href: "{{route('permission.associate.actions')}}"
                 });
             });
         });

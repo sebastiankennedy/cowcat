@@ -41,6 +41,10 @@ Route::post('permission/associateMenus', [
     'as'   => 'permission.associate.menus',
     'uses' => 'PermissionController@associateMenus',
 ]);
+Route::post('permission/associateActions', [
+    'as'   => 'permission.associate.actions',
+    'uses' => 'PermissionController@associateActions',
+]);
 Route::get('permission/search', [
     'as'         => 'permission.search',
     'uses'       => 'PermissionController@search',
