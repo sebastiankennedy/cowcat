@@ -68,6 +68,18 @@ class Authorize
                     return view('backend.errors.403', compact('previousUrl'));
                 }
             }
+        } else {
+
+            $actions = UserRepository::getUserActionPermissionsByUserModel($user);
+
+            if ( ! $actions) {
+                return response()->json(['status' => 0, 'message' => '没有权限执行此操作']);
+            }
+
+            if ( ! in_array($action, $actions)) {
+
+                return response()->json(['status' => 0, 'message' => '没有权限执行此操作']);
+            }
         }
 
         return $next($request);

@@ -26,7 +26,7 @@ class RoleComposer
                 'icon'  => 'plus',
                 'title' => '新增',
                 'class' => 'success',
-                'route' => 'role.create',
+                'route' => 'backend.role.create',
             ],
         ];
     }

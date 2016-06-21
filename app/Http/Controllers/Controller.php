@@ -20,4 +20,15 @@ abstract class Controller extends BaseController
     {
         return response()->json($data, $code);
     }
+
+    public function routeTo()
+    {
+
+    }
+
+    public function backTo()
+    {
+
+    }
+
 }

@@ -26,7 +26,7 @@ class ActionComposer
                 'icon'  => 'plus',
                 'title' => '新增',
                 'class' => 'success',
-                'route' => 'action.create',
+                'route' => 'backend.action.create',
             ],
         ];
     }

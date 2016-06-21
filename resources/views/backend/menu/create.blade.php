@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-6">
-            <form method="post" action="{{route('menu.store')}}">
+            <form method="post" action="{{route('backend.menu.store')}}">
                 <div class="box">
                     <div class="box-header with-border">
                         <h3 class="box-title">新增菜单</h3>

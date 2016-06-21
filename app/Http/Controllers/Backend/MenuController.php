@@ -64,7 +64,7 @@ class MenuController extends Controller
                 return redirect()->route('menu.index')->withSuccess("新增菜单成功");
             }
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(array('error' => $e->getMessage()))->withInput();
+            return redirect()->back()->withErrors(['error' => $e->getMessage()])->withInput();
         }
     }
 
@@ -116,7 +116,7 @@ class MenuController extends Controller
                 return redirect()->route('menu.index')->withSuccess('编辑菜单成功');
             }
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(array('error' => $e->getMessage()))->withInput();
+            return redirect()->back()->withErrors(['error' => $e->getMessage()])->withInput();
         }
     }
 
@@ -142,7 +142,7 @@ class MenuController extends Controller
                 return redirect()->back()->withSuccess('删除菜单成功');
             }
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(array('error' => $e->getMessage()));
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
 }

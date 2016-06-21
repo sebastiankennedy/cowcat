@@ -26,7 +26,7 @@ class PermissionComposer
                 'icon'  => 'plus',
                 'title' => '新增',
                 'class' => 'success',
-                'route' => 'permission.create',
+                'route' => 'backend.permission.create',
             ],
         ];
     }

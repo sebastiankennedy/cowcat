@@ -27,7 +27,7 @@ class UserComposer
                 'icon'  => 'plus',
                 'title' => '新增',
                 'class' => 'success',
-                'route' => 'user.create',
+                'route' => 'backend.user.create',
             ],
         ];
     }

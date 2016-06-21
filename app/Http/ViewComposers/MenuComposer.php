@@ -26,7 +26,7 @@ class MenuComposer
     private static function getForm()
     {
         return [
-            'route'  => route('menu.search'),
+            'route'  => route('backend.menu.search'),
             'method' => 'get',
             'class'  => 'form-inline',
             'inputs' => [
@@ -74,7 +74,7 @@ class MenuComposer
     {
         return [
             [
-                'url'   => route('menu.create'),
+                'url'   => route('backend.menu.create'),
                 'attr'  => [
                     'class' => 'btn btn-box btn-success btn-flat',
                 ],
@@ -93,7 +93,7 @@ class MenuComposer
     private static function getSearchInputs()
     {
         return [
-            'route'  => route('menu.search'),
+            'route'  => route('backend.menu.search'),
             'method' => 'get',
             'class'  => 'form-inline',
             'inputs' => [

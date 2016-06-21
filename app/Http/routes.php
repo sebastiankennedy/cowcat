@@ -15,6 +15,7 @@ Route::group(['namespace' => 'Frontend'], function () {
 
 /* 后台管理模块 */
 Route::group([
+    'prefix'     => 'backend',
     'namespace'  => 'Backend',
     'middleware' => ['authenticate', 'authorize'],
 ], function () {

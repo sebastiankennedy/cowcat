@@ -32,13 +32,11 @@ var Backend = window.Backend || {};
                     }, function () {
                         _successFunction();
                     });
-                } else if (response.status == 0) {
-                    swal(response.message, '', 'error');
                 } else {
-                    _errorFunction();
+                    swal(response.message, '', 'error');
                 }
             }).fail(function () {
-                swal("客户端请求错误", '', 'error');
+                _errorFunction();
             });
         }
     };

@@ -2,7 +2,7 @@
 
 /* 菜单管理模块 */
 Route::get('menu/search', [
-    'as'         => 'menu.search',
+    'as'         => 'backend.menu.search',
     'uses'       => 'MenuController@search',
     'middleware' => ['search'],
 ]);
