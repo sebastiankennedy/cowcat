@@ -70,7 +70,7 @@
 
                 Backend.ajax.request({
                     data: {id: id, menus: menus},
-                    href: "{{route('permission.associate.menus')}}"
+                    href: "{{route('backend.permission.associate.menus')}}"
                 });
             });
         });

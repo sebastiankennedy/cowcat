@@ -10,7 +10,7 @@ Route::resource('menu', 'MenuController');
 
 /* 用户管理模块 */
 Route::get('user/search', [
-    'as'         => 'user.search',
+    'as'         => 'backend.user.search',
     'uses'       => 'UserController@search',
     'middleware' => ['search'],
 ]);
@@ -18,35 +18,35 @@ Route::resource("user", 'UserController');
 
 /* 角色管理模块 */
 Route::get('role/search', [
-    'as'         => 'role.search',
+    'as'         => 'backend.role.search',
     'uses'       => 'RoleController@search',
     'middleware' => ['search'],
 ]);
 Route::get('role/permission/{id}', [
-    'as'   => 'role.permission',
+    'as'   => 'backend.role.permission',
     'uses' => 'RoleController@permission',
 ]);
 Route::post('role/associatePermission', [
-    'as'   => 'role.associate.permission',
+    'as'   => 'backend.role.associate.permission',
     'uses' => 'RoleController@associatePermission',
 ]);
 Route::resource("role", 'RoleController');
 
 /* 权限管理模块 */
 Route::get('permission/associate/{id}', [
-    'as'   => 'permission.associate',
+    'as'   => 'backend.permission.associate',
     'uses' => 'PermissionController@associate',
 ]);
 Route::post('permission/associateMenus', [
-    'as'   => 'permission.associate.menus',
+    'as'   => 'backend.permission.associate.menus',
     'uses' => 'PermissionController@associateMenus',
 ]);
 Route::post('permission/associateActions', [
-    'as'   => 'permission.associate.actions',
+    'as'   => 'backend.permission.associate.actions',
     'uses' => 'PermissionController@associateActions',
 ]);
 Route::get('permission/search', [
-    'as'         => 'permission.search',
+    'as'         => 'backend.permission.search',
     'uses'       => 'PermissionController@search',
     'middleware' => ['search'],
 ]);
@@ -54,7 +54,7 @@ Route::resource("permission", 'PermissionController');
 
 /* 操作管理模块 */
 Route::get('action/search', [
-    'as'         => 'action.search',
+    'as'         => 'backend.action.search',
     'uses'       => 'ActionController@search',
     'middleware' => ['search'],
 ]);

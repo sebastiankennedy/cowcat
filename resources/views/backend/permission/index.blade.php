@@ -29,10 +29,10 @@
                                 <td>{{$item->display_name}}</td>
                                 <td>{{$item->description}}</td>
                                 <td>
-                                    <a href="{{route('permission.associate',['id'=>$item->id])}}" class="btn btn-info btn-flat">关联</a>
-                                    <a href="{{route('permission.edit',['id'=>$item->id])}}" class="btn btn-primary btn-flat">编辑</a>
+                                    <a href="{{route('backend.permission.associate',['id'=>$item->id])}}" class="btn btn-info btn-flat">关联</a>
+                                    <a href="{{route('backend.permission.edit',['id'=>$item->id])}}" class="btn btn-primary btn-flat">编辑</a>
                                     <button class="btn btn-danger btn-flat"
-                                            data-url="{{URL::to('permission/'.$item->id)}}"
+                                            data-url="{{URL::to('backend/permission/'.$item->id)}}"
                                             data-toggle="modal"
                                             data-target="#delete-modal"
                                     >

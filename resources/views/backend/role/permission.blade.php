@@ -70,7 +70,7 @@
 
                 Backend.ajax.request({
                     data: {id: id, permissions: permissions},
-                    href: "{{route('role.associate.permission')}}"
+                    href: "{{route('backend.role.associate.permission')}}"
                 });
             });
         });

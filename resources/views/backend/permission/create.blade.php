@@ -3,7 +3,7 @@
 @section("content")
     <div class="row">
         <div class="col-md-6">
-            <form method="post" action="{{route('permission.store')}}">
+            <form method="post" action="{{route('backend.permission.store')}}">
                 <div class="box">
                     <div class="box-header with-border">
                         <h3 class="box-title">新增权限</h3>

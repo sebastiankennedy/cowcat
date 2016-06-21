@@ -3,7 +3,7 @@
 @section("content")
     <div class="row">
         <div class="col-md-6">
-            <form method="post" action="{{route('role.store')}}">
+            <form method="post" action="{{route('backend.role.store')}}">
                 <div class="box">
                     <div class="box-header with-border">
                         <h3 class="box-title">新增角色</h3>

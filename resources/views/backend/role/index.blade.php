@@ -27,10 +27,10 @@
                                 <td>{{$item->display_name}}</td>
                                 <td>{{$item->description}}</td>
                                 <td>
-                                    <a href="{{route('role.permission',['id'=>$item->id])}}" class="btn btn-info btn-flat">赋权</a>
-                                    <a href="{{route('role.edit',['id'=>$item->id])}}" class="btn btn-primary btn-flat">编辑</a>
+                                    <a href="{{route('backend.role.permission',['id'=>$item->id])}}" class="btn btn-info btn-flat">赋权</a>
+                                    <a href="{{route('backend.role.edit',['id'=>$item->id])}}" class="btn btn-primary btn-flat">编辑</a>
                                     <button class="btn btn-danger btn-flat"
-                                            data-url="{{URL::to('role/'.$item->id)}}"
+                                            data-url="{{URL::to('backend/role/'.$item->id)}}"
                                             data-toggle="modal"
                                             data-target="#delete-modal"
                                     >

@@ -73,7 +73,7 @@
 
                 Backend.ajax.request({
                     data: {id: id, actions: actions},
-                    href: "{{route('permission.associate.actions')}}"
+                    href: "{{route('backend.permission.associate.actions')}}"
                 });
             });
         });
