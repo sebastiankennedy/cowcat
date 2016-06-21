@@ -25,9 +25,9 @@
                                 <td>{{$item->email}}</td>
                                 <td>{{$item->name}}</td>
                                 <td>
-                                    <a href="{{route('user.edit',['id'=>$item->id])}}" class="btn btn-primary btn-flat">编辑</a>
+                                    <a href="{{route('backend.user.edit',['id'=>$item->id])}}" class="btn btn-primary btn-flat">编辑</a>
                                     <button class="btn btn-danger btn-flat"
-                                            data-url="{{URL::to('user/'.$item->id)}}"
+                                            data-url="{{URL::to('backend/user/'.$item->id)}}"
                                             data-toggle="modal"
                                             data-target="#delete-modal"
                                     >

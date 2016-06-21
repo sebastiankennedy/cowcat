@@ -84,7 +84,7 @@ class UserController extends Controller
                     $user->attachRole($role);
                 }
 
-                return redirect()->route('user.index')->withSuccess('新增用户成功');
+                return redirect()->route('backend.user.index')->withSuccess('新增用户成功');
             }
 
         } catch (\Exception $e) {
@@ -154,7 +154,7 @@ class UserController extends Controller
                     $user->attachRole($role);
                 }
 
-                return redirect()->route('user.index')->withSuccess("编辑用户成功");
+                return redirect()->route('backend.user.index')->withSuccess("编辑用户成功");
             }
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(array('error' => $e->getMessage()))->withInput();

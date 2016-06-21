@@ -3,7 +3,7 @@
 @section("content")
     <div class="row">
         <div class="col-md-6">
-            <form method="post" action="{{route('user.store')}}">
+            <form method="post" action="{{route('backend.user.store')}}">
                 <div class="box">
                     <div class="box-header with-border">
                         <h3 class="box-title">新增用户</h3>

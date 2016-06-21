@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-6">
-            <form action="{{route('user.update',['id'=>$user->id])}}" method="post">
+            <form action="{{route('backend.user.update',['id'=>$user->id])}}" method="post">
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                 <input type="hidden" name="_method" value="put">
                 <div class="box">

@@ -61,7 +61,7 @@ class MenuController extends Controller
             if (MenuRepository::create($request->all())) {
                 MenuRepository::clearAllMenusCache();
 
-                return redirect()->route('menu.index')->withSuccess("新增菜单成功");
+                return redirect()->route('backend.menu.index')->withSuccess("新增菜单成功");
             }
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()])->withInput();
@@ -113,7 +113,7 @@ class MenuController extends Controller
             if (MenuRepository::updateById($id, $data)) {
                 MenuRepository::clearAllMenusCache();
 
-                return redirect()->route('menu.index')->withSuccess('编辑菜单成功');
+                return redirect()->route('backend.menu.index')->withSuccess('编辑菜单成功');
             }
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()])->withInput();

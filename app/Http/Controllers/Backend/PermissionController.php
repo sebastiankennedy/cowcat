@@ -48,7 +48,7 @@ class PermissionController extends Controller
     {
         try {
             if (PermissionRepository::create($request->all())) {
-                return redirect()->route("permission.index")->withSuccess("新增权限成功");
+                return redirect()->route("backend.permission.index")->withSuccess("新增权限成功");
             }
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(array('error' => $e->getMessage()))->withInput();

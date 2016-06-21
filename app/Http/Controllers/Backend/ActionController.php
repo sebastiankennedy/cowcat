@@ -63,7 +63,7 @@ class ActionController extends Controller
     {
         try {
             if (ActionRepository::create($request->all())) {
-                return redirect()->route("action.index")->withSuccess("新增操作成功");
+                return redirect()->route("backend.action.index")->withSuccess("新增操作成功");
             }
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(array('error' => $e->getMessage()))->withInput();
@@ -114,7 +114,7 @@ class ActionController extends Controller
 
         try {
             if (ActionRepository::updateById($id, $data)) {
-                return redirect()->route("action.index")->withSuccess("编辑操作成功");
+                return redirect()->route("backend.action.index")->withSuccess("编辑操作成功");
             }
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(array('error' => $e->getMessage()))->withInput();
@@ -132,7 +132,7 @@ class ActionController extends Controller
     {
         try {
             if (ActionRepository::destroy($id)) {
-                return redirect()->route("action.index")->withSuccess("删除操作成功");
+                return redirect()->route("backend.action.index")->withSuccess("删除操作成功");
             }
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(array('error' => $e->getMessage()))->withInput();

@@ -48,7 +48,7 @@ class RoleController extends Controller
     {
         try {
             if (RoleRepository::create($request->all())) {
-                return redirect()->route("role.index")->withSuccess("新增角色成功");
+                return redirect()->route("backend.role.index")->withSuccess("新增角色成功");
             }
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(array('error' => $e->getMessage()))->withInput();
