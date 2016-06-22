@@ -63,7 +63,8 @@ class MenuController extends Controller
 
                 return $this->successRoutTo('backend.menu.index', "新增菜单成功");
             }
-        } catch (\Exception $e) {
+        }
+        catch (\Exception $e) {
             return $this->errorBackTo(['error' => $e->getMessage()]);
         }
     }
@@ -104,10 +105,7 @@ class MenuController extends Controller
      */
     public function update(MenuCreateForm $request, $id)
     {
-        $data = $request->all();
-
-        unset($data['_token']);
-        unset($data['_method']);
+        $data = $request->except(['_token', '_method']);
 
         try {
             if (MenuRepository::updateById($id, $data)) {
@@ -115,7 +113,8 @@ class MenuController extends Controller
 
                 return $this->successRoutTo('backend.menu.index', '编辑菜单成功');
             }
-        } catch (\Exception $e) {
+        }
+        catch (\Exception $e) {
             return $this->errorBackTo(['error' => $e->getMessage()]);
         }
     }
@@ -141,7 +140,8 @@ class MenuController extends Controller
 
                 return $this->successBackTo('删除菜单成功');
             }
-        } catch (\Exception $e) {
+        }
+        catch (\Exception $e) {
             return $this->errorBackTo(['error' => $e->getMessage()]);
         }
     }

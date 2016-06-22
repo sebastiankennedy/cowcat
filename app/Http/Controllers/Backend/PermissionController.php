@@ -50,7 +50,8 @@ class PermissionController extends Controller
             if (PermissionRepository::create($request->all())) {
                 return $this->successRoutTo("backend.permission.index", "新增权限成功");
             }
-        } catch (\Exception $e) {
+        }
+        catch (\Exception $e) {
             return $this->errorBackTo(['error' => $e->getMessage()]);
         }
     }
@@ -101,7 +102,8 @@ class PermissionController extends Controller
             if ($permission->save()) {
                 return $this->successBackTo("编辑权限成功");
             }
-        } catch (\Exception $e) {
+        }
+        catch (\Exception $e) {
             return $this->errorBackTo(['error' => $e->getMessage()]);
         }
     }
@@ -119,7 +121,8 @@ class PermissionController extends Controller
             if (PermissionRepository::destroy($id)) {
                 return $this->successBackTo("删除权限成功");
             }
-        } catch (\Exception $e) {
+        }
+        catch (\Exception $e) {
             return $this->errorBackTo(['error' => $e->getMessage()]);
         }
     }
@@ -163,11 +166,12 @@ class PermissionController extends Controller
             $permisson = PermissionRepository::find($id);
 
             if ($permisson->menus()->sync($menus)) {
-                return $this->responseJson(['status' => 1, 'message' => '关联菜单权限失败']);
+                return $this->responseJson(['status' => 1, 'message' => '关联菜单权限成功']);
             } else {
-                return $this->responseJson(['status' => 0]);
+                return $this->responseJson(['status' => 0, 'message' => '关联菜单权限失败']);
             }
-        } catch (\Exception $e) {
+        }
+        catch (\Exception $e) {
             return $this->responseJson(['status' => 0]);
         }
     }
@@ -189,9 +193,10 @@ class PermissionController extends Controller
             if ($permisson->actions()->sync($actions)) {
                 return $this->responseJson(['status' => 1, 'message' => '关联操作权限成功']);
             } else {
-                return $this->responseJson(['status' => 0]);
+                return $this->responseJson(['status' => 0, 'message' => '关联操作权限失败']);
             }
-        } catch (\Exception $e) {
+        }
+        catch (\Exception $e) {
             return $this->responseJson(['status' => 0]);
         }
     }

@@ -73,8 +73,9 @@ class UserController extends Controller
 
         try {
             $roles = RoleRepository::getByWhereIn('id', $request['role_id']);
+
             if (empty($roles->toArray())) {
-                return redirect()->back()->withErrors("用户角色不存在,请刷新页面并选择其他用户角色")->withInput();
+                return $this->errorBackTo("用户角色不存在,请刷新页面并选择其他用户角色");
             }
 
             $user = UserRepository::create($data);
@@ -84,11 +85,12 @@ class UserController extends Controller
                     $user->attachRole($role);
                 }
 
-                return redirect()->route('backend.user.index')->withSuccess('新增用户成功');
+                return $this->successRoutTo('backend.user.index', '新增用户成功');
             }
 
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => $e->getMessage()])->withInput();
+        }
+        catch (\Exception $e) {
+            return $this->errorBackTo(['error' => $e->getMessage()]);
         }
     }
 
@@ -145,7 +147,7 @@ class UserController extends Controller
             $roles = RoleRepository::getByWhereIn('id', $request['role_id']);
 
             if (empty($roles->toArray())) {
-                return redirect()->back()->withErrors("用户角色不存在,请刷新页面并选择其他用户角色")->withInput();
+                return $this->errorBackTo("用户角色不存在,请刷新页面并选择其他用户角色");
             }
 
             if ($user->save()) {
@@ -154,10 +156,11 @@ class UserController extends Controller
                     $user->attachRole($role);
                 }
 
-                return redirect()->route('backend.user.index')->withSuccess("编辑用户成功");
+                return $this->successRoutTo('backend.user.index',"编辑用户成功");
             }
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors(array('error' => $e->getMessage()))->withInput();
+        }
+        catch (\Exception $e) {
+            return $this->errorBackTo(['error' => $e->getMessage()]);
         }
     }
 
@@ -172,10 +175,11 @@ class UserController extends Controller
     {
         try {
             if (UserRepository::destroy($id)) {
-                return redirect()->back()->withSuccess('删除用户成功');
+                return $this->successBackTo('删除用户成功');
             }
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors(array('error' => $e->getMessage()));
+        }
+        catch (\Exception $e) {
+            return $this->errorBackTo(['error' => $e->getMessage()]);
         }
     }
 }

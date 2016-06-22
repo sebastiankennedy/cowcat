@@ -48,10 +48,11 @@ class RoleController extends Controller
     {
         try {
             if (RoleRepository::create($request->all())) {
-                return redirect()->route("backend.role.index")->withSuccess("新增角色成功");
+                return $this->successRoutTo("backend.role.index", "新增角色成功");
             }
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors(array('error' => $e->getMessage()))->withInput();
+        }
+        catch (\Exception $e) {
+            return $this->errorBackTo(['error' => $e->getMessage()]);
         }
     }
 
@@ -98,10 +99,11 @@ class RoleController extends Controller
 
         try {
             if ($role->save()) {
-                return redirect()->back()->withSuccess("编辑角色成功");
+                return $this->successBackTo("编辑角色成功");
             }
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors(array('error' => $e->getMessage()))->withInput();
+        }
+        catch (\Exception $e) {
+            return $this->errorBackTo(['error' => $e->getMessage()]);
         }
     }
 
@@ -116,10 +118,11 @@ class RoleController extends Controller
     {
         try {
             if (RoleRepository::destroy($id)) {
-                return redirect()->back()->withSuccess("删除角色成功");
+                return $this->successBackTo("删除角色成功");
             }
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors(array('error' => $e->getMessage()));
+        }
+        catch (\Exception $e) {
+            return $this->errorBackTo(['error' => $e->getMessage()]);
         }
     }
 
@@ -167,11 +170,12 @@ class RoleController extends Controller
         try {
             $role = RoleRepository::find($id);
             if ($role->perms()->sync($data)) {
-                return $this->responseJson(['status' => 1]);
+                return $this->responseJson(['status' => 1, 'message' => '角色赋权成功']);
             } else {
                 return $this->responseJson(['status' => 0, 'message' => '角色赋权失败']);
             }
-        } catch (\Exception $e) {
+        }
+        catch (\Exception $e) {
             return $this->responseJson(['status' => 0, 'message' => $e->getMessage()]);
         }
     }

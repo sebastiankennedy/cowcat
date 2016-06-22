@@ -65,7 +65,8 @@ class ActionController extends Controller
             if (ActionRepository::create($request->all())) {
                 return $this->successRoutTo("backend.action.index", "新增操作成功");
             }
-        } catch (\Exception $e) {
+        }
+        catch (\Exception $e) {
             return $this->errorBackTo(['error' => $e->getMessage()]);
         }
     }
@@ -116,7 +117,8 @@ class ActionController extends Controller
             if (ActionRepository::updateById($id, $data)) {
                 return $this->successRoutTo("backend.action.index", "编辑操作成功");
             }
-        } catch (\Exception $e) {
+        }
+        catch (\Exception $e) {
             return $this->errorBackTo(['error' => $e->getMessage()]);
         }
     }
@@ -134,7 +136,8 @@ class ActionController extends Controller
             if (ActionRepository::destroy($id)) {
                 return $this->successRoutTo("backend.action.index", "删除操作成功");
             }
-        } catch (\Exception $e) {
+        }
+        catch (\Exception $e) {
             return $this->errorBackTo(['error' => $e->getMessage()]);
         }
     }

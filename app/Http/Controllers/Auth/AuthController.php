@@ -10,22 +10,30 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
+/**
+ * 登录认证控制器
+ *
+ * @package App\Http\Controllers\Auth
+ */
 class AuthController extends Controller
 {
     /**
      * 设置成功登录后转向的页面:
+     *
      * @var string
      */
     public $redirectPath = '/';
 
     /**
      * 设置登录失败后转向的页面
+     *
      * @var string
      */
     protected $loginPath = '/auth/login';
 
     /**
      * 设置退出登录后转向的页面
+     *
      * @var string
      */
     protected $redirectAfterLogout = '/auth/login';
@@ -81,7 +89,7 @@ class AuthController extends Controller
             'password'             => 'required',
         ], [
             'email.required'    => '请输入用户邮箱',
-            'password.required' => '请输入用户密码'
+            'password.required' => '请输入用户密码',
         ]);
 
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
