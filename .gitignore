@@ -2,7 +2,6 @@
 /node_modules
 Homestead.yaml
 Homestead.json
-.env
 .gitignore
 .gitattributes
 .idea
