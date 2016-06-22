@@ -61,10 +61,10 @@ class MenuController extends Controller
             if (MenuRepository::create($request->all())) {
                 MenuRepository::clearAllMenusCache();
 
-                return redirect()->route('backend.menu.index')->withSuccess("新增菜单成功");
+                return $this->successRoutTo('backend.menu.index', "新增菜单成功");
             }
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => $e->getMessage()])->withInput();
+            return $this->errorBackTo(['error' => $e->getMessage()]);
         }
     }
 
@@ -113,10 +113,10 @@ class MenuController extends Controller
             if (MenuRepository::updateById($id, $data)) {
                 MenuRepository::clearAllMenusCache();
 
-                return redirect()->route('backend.menu.index')->withSuccess('编辑菜单成功');
+                return $this->successRoutTo('backend.menu.index', '编辑菜单成功');
             }
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => $e->getMessage()])->withInput();
+            return $this->errorBackTo(['error' => $e->getMessage()]);
         }
     }
 
@@ -132,17 +132,17 @@ class MenuController extends Controller
         $childMenus = MenuRepository::getChildMenusById($id);
 
         if ( ! empty($childMenus)) {
-            return redirect()->back()->withErrors("请先删除其下级分类");
+            return $this->errorBackTo("请先删除其下级分类");
         }
 
         try {
             if (MenuRepository::destroy($id)) {
                 MenuRepository::clearAllMenusCache();
 
-                return redirect()->back()->withSuccess('删除菜单成功');
+                return $this->successBackTo('删除菜单成功');
             }
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+            return $this->errorBackTo(['error' => $e->getMessage()]);
         }
     }
 }

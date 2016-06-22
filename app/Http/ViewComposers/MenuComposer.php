@@ -80,13 +80,6 @@ class MenuComposer
                 ],
                 'title' => '<i class="fa fa-plus"></i> 新增',
             ],
-            [
-                'url'   => '',
-                'attr'  => [
-                    'class' => 'btn btn-box btn-info btn-flat',
-                ],
-                'title' => '<i class="fa fa-sort"></i> 排序',
-            ],
         ];
     }
 

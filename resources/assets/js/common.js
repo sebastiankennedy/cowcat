@@ -25,7 +25,7 @@ var Backend = window.Backend || {};
             }).done(function (response) {
                 if (response.status == 1) {
                     swal({
-                        title: _successTitle,
+                        title: response.message ? response.message : _successTitle,
                         type: 'success',
                         confirmButtonColor: '#8CD4F5',
                         closeOnConfirm: false

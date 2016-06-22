@@ -63,10 +63,10 @@ class ActionController extends Controller
     {
         try {
             if (ActionRepository::create($request->all())) {
-                return redirect()->route("backend.action.index")->withSuccess("新增操作成功");
+                return $this->successRoutTo("backend.action.index", "新增操作成功");
             }
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(array('error' => $e->getMessage()))->withInput();
+            return $this->errorBackTo(['error' => $e->getMessage()]);
         }
     }
 
@@ -114,10 +114,10 @@ class ActionController extends Controller
 
         try {
             if (ActionRepository::updateById($id, $data)) {
-                return redirect()->route("backend.action.index")->withSuccess("编辑操作成功");
+                return $this->successRoutTo("backend.action.index", "编辑操作成功");
             }
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(array('error' => $e->getMessage()))->withInput();
+            return $this->errorBackTo(['error' => $e->getMessage()]);
         }
     }
 
@@ -132,10 +132,10 @@ class ActionController extends Controller
     {
         try {
             if (ActionRepository::destroy($id)) {
-                return redirect()->route("backend.action.index")->withSuccess("删除操作成功");
+                return $this->successRoutTo("backend.action.index", "删除操作成功");
             }
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(array('error' => $e->getMessage()))->withInput();
+            return $this->errorBackTo(['error' => $e->getMessage()]);
         }
     }
 }

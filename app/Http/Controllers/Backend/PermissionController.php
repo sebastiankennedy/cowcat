@@ -48,10 +48,10 @@ class PermissionController extends Controller
     {
         try {
             if (PermissionRepository::create($request->all())) {
-                return redirect()->route("backend.permission.index")->withSuccess("新增权限成功");
+                return $this->successRoutTo("backend.permission.index", "新增权限成功");
             }
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(array('error' => $e->getMessage()))->withInput();
+            return $this->errorBackTo(['error' => $e->getMessage()]);
         }
     }
 
@@ -99,10 +99,10 @@ class PermissionController extends Controller
 
         try {
             if ($permission->save()) {
-                return redirect()->back()->withSuccess("编辑权限成功");
+                return $this->successBackTo("编辑权限成功");
             }
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(array('error' => $e->getMessage()))->withInput();
+            return $this->errorBackTo(['error' => $e->getMessage()]);
         }
     }
 
@@ -117,10 +117,10 @@ class PermissionController extends Controller
     {
         try {
             if (PermissionRepository::destroy($id)) {
-                return redirect()->back()->withSuccess("删除权限成功");
+                return $this->successBackTo("删除权限成功");
             }
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(array('error' => $e->getMessage()))->withInput();
+            return $this->errorBackTo(['error' => $e->getMessage()]);
         }
     }
 
@@ -163,7 +163,7 @@ class PermissionController extends Controller
             $permisson = PermissionRepository::find($id);
 
             if ($permisson->menus()->sync($menus)) {
-                return $this->responseJson(['status' => 1]);
+                return $this->responseJson(['status' => 1, 'message' => '关联菜单权限失败']);
             } else {
                 return $this->responseJson(['status' => 0]);
             }
@@ -187,7 +187,7 @@ class PermissionController extends Controller
         try {
             $permisson = PermissionRepository::find($id);
             if ($permisson->actions()->sync($actions)) {
-                return $this->responseJson(['status' => 1]);
+                return $this->responseJson(['status' => 1, 'message' => '关联操作权限成功']);
             } else {
                 return $this->responseJson(['status' => 0]);
             }

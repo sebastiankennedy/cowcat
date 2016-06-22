@@ -7,28 +7,68 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
+/**
+ * Base Controller
+ *
+ * @package App\Http\Controllers
+ */
 abstract class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function __construct()
     {
-        
+
     }
 
+    /**
+     * JSON 响应
+     *
+     * @param     $data
+     * @param int $code
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function responseJson($data, $code = 200)
     {
         return response()->json($data, $code);
     }
 
-    public function routeTo()
+    /**
+     * 成功时路由跳转
+     *
+     * @param $route
+     * @param $message
+     *
+     * @return mixed
+     */
+    public function successRoutTo($route, $message)
     {
-
+        return redirect()->route($route)->withSuccess($message);
     }
 
-    public function backTo()
+    /**
+     * 成功时返回当前页
+     *
+     * @param $message
+     *
+     * @return mixed
+     */
+    public function successBackTo($message)
     {
+        return redirect()->back()->withSuccess($message);
+    }
 
+    /**
+     * 失败时返回当前页
+     *
+     * @param $message
+     *
+     * @return $this
+     */
+    public function errorBackTo($message)
+    {
+        return redirect()->back()->withErrors($message)->withInput();
     }
 
 }

@@ -16,7 +16,7 @@ abstract class CommonPresenter
      */
     public function showDateFormat($unixTime)
     {
-        return date('Y-m-d H:i',$unixTime);
+        return date('Y-m-d H:i', $unixTime);
     }
 
     /**
@@ -26,6 +26,6 @@ abstract class CommonPresenter
      */
     public function showCopyright()
     {
-        return ' <strong>Copyright © ' . date('Y') . ' <a href="#">CowCat</a>.</strong> All rights reserved.';
+        return ' <strong>Copyright © ' . date('Y') . ' <a href="https://github.com/luisedware" target="_blank">Build with Laravel by Luis </a>.</strong> ';
     }
 }
