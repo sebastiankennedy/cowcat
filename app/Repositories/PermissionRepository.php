@@ -6,11 +6,18 @@ use App\Facades\ActionRepository;
 use App\Facades\MenuRepository;
 
 /**
- *
+ * Permission Model Repository
  */
 class PermissionRepository extends CommonRepository
 {
-    public function getAllMenusTreeByPermission($permission)
+    /**
+     * 根据权限模型获取菜单关联树
+     *
+     * @param $permission
+     *
+     * @return array
+     */
+    public function getAllMenusTreeByPermissionModel($permission)
     {
         $data = [];
         $menus = MenuRepository::getAllMenusLists();
@@ -30,7 +37,14 @@ class PermissionRepository extends CommonRepository
         return $data;
     }
 
-    public function getAllActionsByPermission($permission)
+    /**
+     * 根据权限模型获取才做关联树
+     *
+     * @param $permission
+     *
+     * @return array
+     */
+    public function getAllActionsByPermissionModel($permission)
     {
         $data = [];
         $actions = ActionRepository::all()->toArray();

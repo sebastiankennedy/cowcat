@@ -5,20 +5,27 @@ namespace App\Repositories;
 use App\Facades\PermissionRepository;
 
 /**
+ * Role Model Repository
  */
 class RoleRepository extends CommonRepository
 {
-    public function getTypeGroupPermissionsByRole($role)
+    /**
+     * 根据角色模型获取分组权限
+     *
+     * @param $role
+     *
+     * @return array
+     */
+    public function getTypeGroupPermissionsByRoleModel($role)
     {
         $data = [];
         $permissions = PermissionRepository::all()->toArray();
         $rolePermission = $role->perms()->lists('id')->toArray();
 
-
         foreach ($permissions as $key => $permission) {
             $data[$key]['id'] = $permission['id'];
             $data[$key]['pId'] = $permission['type'];
-            $data[$key]['name'] = $permission['display_name'].'('.$permission['name'].')';
+            $data[$key]['name'] = $permission['display_name'] . '(' . $permission['name'] . ')';
             $data[$key]['open'] = true;
             in_array($permission['id'], $rolePermission) && $data[$key]['checked'] = true;
         }

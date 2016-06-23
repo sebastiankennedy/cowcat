@@ -136,7 +136,7 @@ class RoleController extends Controller
     public function permission($id)
     {
         $role = RoleRepository::find($id);
-        $data = json_encode(RoleRepository::getTypeGroupPermissionsByRole($role));
+        $data = json_encode(RoleRepository::getTypeGroupPermissionsByRoleModel($role));
 
         return view('backend.role.permission', compact('id', 'data', 'role'));
     }
