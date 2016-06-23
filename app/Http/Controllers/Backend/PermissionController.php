@@ -163,9 +163,9 @@ class PermissionController extends Controller
         $menus = $request['menus'];
 
         try {
-            $permisson = PermissionRepository::find($id);
+            $permission = PermissionRepository::find($id);
 
-            if ($permisson->menus()->sync($menus)) {
+            if ($permission->menus()->sync($menus)) {
                 return $this->responseJson(['status' => 1, 'message' => '关联菜单权限成功']);
             } else {
                 return $this->responseJson(['status' => 0, 'message' => '关联菜单权限失败']);
@@ -189,8 +189,9 @@ class PermissionController extends Controller
         $actions = $request['actions'];
 
         try {
-            $permisson = PermissionRepository::find($id);
-            if ($permisson->actions()->sync($actions)) {
+            $permission = PermissionRepository::find($id);
+
+            if ($permission->actions()->sync($actions)) {
                 return $this->responseJson(['status' => 1, 'message' => '关联操作权限成功']);
             } else {
                 return $this->responseJson(['status' => 0, 'message' => '关联操作权限失败']);

@@ -13,16 +13,17 @@ class MainPresenter extends CommonPresenter
     /**
      * 左侧栏视图缓存键
      */
-    const REDIS_SIDEBAR_MENUS_CACHE = 'redis_sidebar_menus_view_cache';
+    const SIDEBAR_MENUS_CACHE = 'sidebar_menus_view_cache';
 
     /**
      * 面包屑导航缓存键
      */
-    const REDIS_BREADCRUMBS_MENUS_CACHE = 'redis_breadcrumbs_menus_view_cache:';
+    const BREADCRUMBS_MENUS_CACHE = 'breadcrumbs_menus_view_cache:';
 
     /**
      * 渲染左侧栏视图
      *
+     * @param  array $route
      * @param  array $menus
      *
      * @return mixed
@@ -34,36 +35,30 @@ class MainPresenter extends CommonPresenter
             return redirect()->to('/auth/logout');
         }
 
-        $sidebar = Cache::get(self::REDIS_BREADCRUMBS_MENUS_CACHE . $user->id);
+        $routes = UserRepository::getUserMenusPermissionsByUserModel($user);
 
-        if ( ! $sidebar) {
-            $routes = UserRepository::getUserMenusPermissionsByUserModel($user);
+        if ( ! $routes) {
+            return "";
+        }
 
-            if ( ! $routes) {
-                return "";
-            }
-
-            if ($user['is_super_admin'] == 0) {
-                foreach ($menus as $key => $menu) {
-                    if ( ! in_array($menu['route'], $routes)) {
-                        unset($menus[$key]);
-                    }
+        if ($user['is_super_admin'] == 0) {
+            foreach ($menus as $key => $menu) {
+                if ( ! in_array($menu['route'], $routes)) {
+                    unset($menus[$key]);
                 }
             }
-
-            $trees = create_node_tree($menus);
-            $array = self::buildBreadcrumbsArray($menus, $route);
-            $active = array_map(function ($value) {
-                return $value['route'];
-            }, $array);
-
-            /* 生成左侧栏 HTML */
-            $sidebar = '<ul class="sidebar-menu">';
-            $sidebar .= self::makeSidebar($trees, $active);
-            $sidebar .= '</ul>';
-
-            Cache::forever(self::REDIS_SIDEBAR_MENUS_CACHE . $user->id, $sidebar);
         }
+
+        $trees = create_node_tree($menus);
+        $array = self::buildBreadcrumbsArray($menus, $route);
+        $active = array_map(function ($value) {
+            return $value['route'];
+        }, $array);
+
+        /* 生成左侧栏 HTML */
+        $sidebar = '<ul class="sidebar-menu">';
+        $sidebar .= self::makeSidebar($trees, $active);
+        $sidebar .= '</ul>';
 
         return $sidebar;
     }
@@ -162,13 +157,13 @@ class MainPresenter extends CommonPresenter
      */
     public function renderBreadcrumbs(array $menus, $route)
     {
-        $breadcrumbs = Cache::get(self::REDIS_BREADCRUMBS_MENUS_CACHE . $route);
+        $breadcrumbs = Cache::get(self::BREADCRUMBS_MENUS_CACHE . $route);
         if ($breadcrumbs) {
             return $breadcrumbs;
         } else {
             $array = self::buildBreadcrumbsArray($menus, $route);
             $breadcrumbs = self::makeBreadcrumbs($array);
-            Cache::forever(self::REDIS_BREADCRUMBS_MENUS_CACHE . $route, $breadcrumbs);
+            Cache::forever(self::BREADCRUMBS_MENUS_CACHE . $route, $breadcrumbs);
 
             return $breadcrumbs;
         }

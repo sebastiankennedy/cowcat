@@ -29,9 +29,9 @@
                                 <td>{{$item->group}}</td>
                                 <td>{{$item->action}}</td>
                                 <td>
-                                    <a href="{{route('action.edit',['id'=>$item->id])}}" class="btn btn-primary btn-flat">编辑</a>
+                                    <a href="{{route('backend.action.edit',['id'=>$item->id])}}" class="btn btn-primary btn-flat">编辑</a>
                                     <button class="btn btn-danger btn-flat"
-                                            data-url="{{URL::to('action/'.$item->id)}}"
+                                            data-url="{{URL::to('backend/action/'.$item->id)}}"
                                             data-toggle="modal"
                                             data-target="#delete-modal"
                                     >

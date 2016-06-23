@@ -28,7 +28,8 @@ class UserRepository extends CommonRepository
      */
     public function getUserMenusPermissionsByUserModel($user)
     {
-        $routes = Cache::get(self::USER_MENU_PERMISSIONS_CACHE . $user->id);
+        $routes = Cache::get(self::USER_MENU_PERMISSIONS_CACHE . $user['id']);
+
         if (empty($routes)) {
 
             $roles = $user->roles;
@@ -113,6 +114,7 @@ class UserRepository extends CommonRepository
     public function clearCache()
     {
         $user = Auth::user();
+        \Log::debug("执行缓存清除,用户ID是".$user->id);
         Cache::forget(self::USER_MENU_PERMISSIONS_CACHE . $user->id);
         Cache::forget(self::USER_ACTION_PERMISSIONS_CACHE . $user->id);
     }

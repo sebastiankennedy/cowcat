@@ -3,7 +3,7 @@
 @section("content")
     <div class="row">
         <div class="col-md-12">
-            <form method="POST" action="{{route('action.store')}}">
+            <form method="POST" action="{{route('backend.action.store')}}">
                 {!! csrf_field() !!}
                 <div class="box">
                     <div class="box-header with-border">
