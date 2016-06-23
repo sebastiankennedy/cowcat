@@ -11,6 +11,6 @@ class ActionRepository extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return 'actionrepository';
+        return 'ActionRepository';
     }
 }

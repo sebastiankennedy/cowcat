@@ -35,6 +35,7 @@ class MainPresenter extends CommonPresenter
         }
 
         $sidebar = Cache::get(self::REDIS_BREADCRUMBS_MENUS_CACHE . $user->id);
+
         if ( ! $sidebar) {
             $routes = UserRepository::getUserMenusPermissionsByUserModel($user);
 
@@ -42,18 +43,21 @@ class MainPresenter extends CommonPresenter
                 return "";
             }
 
-            foreach ($menus as $key => $menu) {
-                if ( ! in_array($menu['route'], $routes)) {
-                    unset($menus[$key]);
+            if ($user['is_super_admin'] == 0) {
+                foreach ($menus as $key => $menu) {
+                    if ( ! in_array($menu['route'], $routes)) {
+                        unset($menus[$key]);
+                    }
                 }
             }
+
             $trees = create_node_tree($menus);
             $array = self::buildBreadcrumbsArray($menus, $route);
-
-
             $active = array_map(function ($value) {
                 return $value['route'];
             }, $array);
+
+            /* 生成左侧栏 HTML */
             $sidebar = '<ul class="sidebar-menu">';
             $sidebar .= self::makeSidebar($trees, $active);
             $sidebar .= '</ul>';

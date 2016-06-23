@@ -28,4 +28,9 @@ abstract class CommonRepository
     {
         return $this->validator;
     }
+
+    public function clearCache()
+    {
+
+    }
 }

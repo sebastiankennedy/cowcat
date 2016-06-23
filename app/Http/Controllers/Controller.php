@@ -16,6 +16,9 @@ abstract class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    /**
+     * Controller constructor.
+     */
     public function __construct()
     {
 
@@ -57,6 +60,19 @@ abstract class Controller extends BaseController
     public function successBackTo($message)
     {
         return redirect()->back()->withSuccess($message);
+    }
+
+    /**
+     * 失败时路由跳转
+     *
+     * @param $route
+     * @param $message
+     *
+     * @return $this
+     */
+    public function errorRouteTo($route, $message)
+    {
+        return redirect()->route($route)->withErrors($message);
     }
 
     /**

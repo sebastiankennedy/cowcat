@@ -59,7 +59,6 @@ class MenuController extends Controller
     {
         try {
             if (MenuRepository::create($request->all())) {
-                MenuRepository::clearAllMenusCache();
 
                 return $this->successRoutTo('backend.menu.index', "新增菜单成功");
             }
@@ -109,7 +108,6 @@ class MenuController extends Controller
 
         try {
             if (MenuRepository::updateById($id, $data)) {
-                MenuRepository::clearAllMenusCache();
 
                 return $this->successRoutTo('backend.menu.index', '编辑菜单成功');
             }
@@ -136,7 +134,6 @@ class MenuController extends Controller
 
         try {
             if (MenuRepository::destroy($id)) {
-                MenuRepository::clearAllMenusCache();
 
                 return $this->successBackTo('删除菜单成功');
             }
