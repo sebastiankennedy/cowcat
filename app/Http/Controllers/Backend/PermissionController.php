@@ -165,7 +165,8 @@ class PermissionController extends Controller
         try {
             $permission = PermissionRepository::find($id);
 
-            if ($permission->menus()->sync($menus)) {
+            if ($permission->menus()->sync($menus ? $menus : [])) {
+
                 return $this->responseJson(['status' => 1, 'message' => '关联菜单权限成功']);
             } else {
                 return $this->responseJson(['status' => 0, 'message' => '关联菜单权限失败']);

@@ -12,7 +12,7 @@ var Backend = window.Backend || {};
                     },
                 _errorTitle = params.errorTitle || "操作失败",
                 _errorFunction = params.errorFunction || function () {
-                        swal(_errorTitle, 'error');
+                        swal(_errorTitle, '客户端请求错误');
                     };
 
             $.ajax({
@@ -33,7 +33,7 @@ var Backend = window.Backend || {};
                         _successFunction();
                     });
                 } else {
-                    swal(response.message, '', 'error');
+                    swal(response.message, '', response.message ? response.message : "未知错误");
                 }
             }).fail(function () {
                 _errorFunction();

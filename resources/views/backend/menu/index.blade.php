@@ -32,7 +32,7 @@
                                 <td>{{$item->sort}}</td>
                                 <td>{{$menuPresenter->showDisplayFormat($item->hide)}}</td>
                                 <td>
-                                    <a href="{{route('backend.menu.edit',['id'=>$item->id])}}" class="btn btn-primary btn-flat">编辑</a>
+                                    <a href="{{route('backend.menu.edit',['id'=>$item->id])}}" class="btn btn-warning btn-flat">编辑</a>
                                     <button class="btn btn-danger btn-flat"
                                             data-url="{{URL::to('backend/menu/'.$item->id)}}"
                                             data-toggle="modal"
