@@ -2,20 +2,12 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Routing\Router;
 use App\Facades\UserRepository;
+use Auth, Route, URL;
 use Closure;
-use Route, Auth, URL;
 
 class Authorize
 {
-    protected $router;
-
-    public function __construct(Router $router)
-    {
-        $this->router = $router;
-    }
-
     /**
      * Handle an incoming request.
      *

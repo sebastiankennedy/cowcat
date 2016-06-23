@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Facades\MenuRepository;
+use App\Facades\UserRepository;
+use App\Models\ActionPermission;
 use App\Models\Menu;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,7 +17,8 @@ class ModelEventsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        self::listenMenuModel();
+        $this->listenMenuModel();
+        $this->listenActionPermissionModel();
     }
 
     protected function listenMenuModel()
@@ -26,6 +29,17 @@ class ModelEventsServiceProvider extends ServiceProvider
 
         Menu::deleted(function () {
             MenuRepository::clearCache();
+        });
+    }
+
+    protected function listenActionPermissionModel()
+    {
+        ActionPermission::saved(function () {
+            UserRepository::clearCache();
+        });
+
+        ActionPermission::deleted(function () {
+            UserRepository::clearCache();
         });
     }
 

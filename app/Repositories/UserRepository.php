@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use Cache;
+use Cache, Auth;
 
 /**
  * User Model Repository
@@ -105,5 +105,15 @@ class UserRepository extends CommonRepository
         }
 
         return $actions;
+    }
+
+    /**
+     * 删除缓存
+     */
+    public function clearCache()
+    {
+        $user = Auth::user();
+        Cache::forget(self::USER_MENU_PERMISSIONS_CACHE . $user->id);
+        Cache::forget(self::USER_ACTION_PERMISSIONS_CACHE . $user->id);
     }
 }
