@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Models\RoleUser;
 use Illuminate\Http\Request;
 use App\Facades\RoleRepository;
 use App\Facades\UserRepository;
@@ -10,6 +9,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Form\UserCreateForm;
 use App\Http\Requests\Form\UserUpdateForm;
+use Auth;
 
 /**
  * 用户管理控制器
@@ -28,20 +28,6 @@ class UserController extends Controller
         $data = UserRepository::paginate(config('repository.page-limit'));
 
         return view("backend.user.index", compact('data'));
-    }
-
-    /**
-     * Display a listing of the resource by the search condition.
-     *
-     * @param  \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function search(Request $request)
-    {
-        $data = UserRepository::paginateWhere($request->get('where'), config('repository.page-limit'));
-
-        return view('backend.user.search', compact('data'));
     }
 
     /**
@@ -135,6 +121,10 @@ class UserController extends Controller
      */
     public function update(UserUpdateForm $request, $id)
     {
+        if ($id != Auth::user()->id && Auth::user()->is_super_admin == 0) {
+            return $this->errorBackTo("只允许编辑自身资料");
+        }
+
         $user = UserRepository::find($id);
         $user->name = $request['name'];
         $user->email = $request['email'];
@@ -156,7 +146,7 @@ class UserController extends Controller
                     $user->attachRole($role);
                 }
 
-                return $this->successRoutTo('backend.user.index',"编辑用户成功");
+                return $this->successRoutTo('backend.user.index', "编辑用户成功");
             }
         }
         catch (\Exception $e) {

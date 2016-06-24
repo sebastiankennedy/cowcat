@@ -23,9 +23,12 @@ return [
     ],
     /* 操作管理类型 */
     'action-group'                 => [
-        'backend'  => '后台操作',
-        'frontend' => '前端操作',
-        'api'      => '接口操作',
+        'menu'       => '菜单管理',
+        'user'       => '用户管理',
+        'role'       => '角色管理',
+        'permission' => '权限管理',
+        'action'     => '操作管理',
+        'log'        => '日志管理',
     ],
     /* 无需验证的操作 */
     'without-verification-actions' => [
@@ -39,9 +42,5 @@ return [
         'Barryvdh\Debugbar\Controllers\OpenHandlerController@clockwork',
         'Barryvdh\Debugbar\Controllers\AssetController@css',
         'Barryvdh\Debugbar\Controllers\AssetController@js',
-    ],
-    /* 禁用的控制器成员方法 */
-    'without-verification-methods' => [
-
     ],
 ];

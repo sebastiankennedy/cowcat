@@ -40,8 +40,8 @@
                             <label for="state">是否禁用</label>
                             <div class="form-group">
                                 <select class="form-control select2" name="state">
-                                    <option selected="selected" value="0">禁用</option>
-                                    <option value="1">启用</option>
+                                    <option value="0">禁用</option>
+                                    <option selected="selected" value="1">启用</option>
                                 </select>
                             </div>
                         </div>

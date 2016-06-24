@@ -33,9 +33,7 @@ class ActionController extends Controller
      */
     public function search(Request $request)
     {
-        $data = MenuRepository::paginateWhere($request->get('where'), config('repository.page-limit'));
 
-        return view('backend.menu.search', compact('data'));
     }
 
     /**
@@ -86,7 +84,8 @@ class ActionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param  int    $id
+     * @param  Router $router
      *
      * @return \Illuminate\Http\Response
      */

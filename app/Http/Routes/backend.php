@@ -9,19 +9,9 @@ Route::get('menu/search', [
 Route::resource('menu', 'MenuController');
 
 /* 用户管理模块 */
-Route::get('user/search', [
-    'as'         => 'backend.user.search',
-    'uses'       => 'UserController@search',
-    'middleware' => ['search'],
-]);
 Route::resource("user", 'UserController');
 
 /* 角色管理模块 */
-Route::get('role/search', [
-    'as'         => 'backend.role.search',
-    'uses'       => 'RoleController@search',
-    'middleware' => ['search'],
-]);
 Route::get('role/permission/{id}', [
     'as'   => 'backend.role.permission',
     'uses' => 'RoleController@permission',
@@ -45,18 +35,8 @@ Route::post('permission/associateActions', [
     'as'   => 'backend.permission.associate.actions',
     'uses' => 'PermissionController@associateActions',
 ]);
-Route::get('permission/search', [
-    'as'         => 'backend.permission.search',
-    'uses'       => 'PermissionController@search',
-    'middleware' => ['search'],
-]);
 Route::resource("permission", 'PermissionController');
 
 /* 操作管理模块 */
-Route::get('action/search', [
-    'as'         => 'backend.action.search',
-    'uses'       => 'ActionController@search',
-    'middleware' => ['search'],
-]);
 Route::resource('action', 'ActionController');
 

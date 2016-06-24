@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Events\Cache\ClearUserPermissionCacheEvent;
 use App\Facades\RoleRepository;
 use App\Http\Requests\Form\RoleCreateForm;
 use App\Http\Requests;
@@ -170,6 +171,8 @@ class RoleController extends Controller
         try {
             $role = RoleRepository::find($id);
             if ($role->perms()->sync($data)) {
+                event(new ClearUserPermissionCacheEvent());
+
                 return $this->responseJson(['status' => 1, 'message' => '角色赋权成功']);
             } else {
                 return $this->responseJson(['status' => 0, 'message' => '角色赋权失败']);

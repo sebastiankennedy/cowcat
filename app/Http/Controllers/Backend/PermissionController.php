@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Events\Cache\ClearUserPermissionCacheEvent;
 use App\Facades\PermissionRepository;
 use App\Http\Requests\Form\PermissionCreateForm;
 use App\Http\Requests;
@@ -119,6 +120,8 @@ class PermissionController extends Controller
     {
         try {
             if (PermissionRepository::destroy($id)) {
+                event(new ClearUserPermissionCacheEvent());
+
                 return $this->successBackTo("删除权限成功");
             }
         }
@@ -166,6 +169,7 @@ class PermissionController extends Controller
             $permission = PermissionRepository::find($id);
 
             if ($permission->menus()->sync($menus ? $menus : [])) {
+                event(new ClearUserPermissionCacheEvent());
 
                 return $this->responseJson(['status' => 1, 'message' => '关联菜单权限成功']);
             } else {
@@ -193,6 +197,8 @@ class PermissionController extends Controller
             $permission = PermissionRepository::find($id);
 
             if ($permission->actions()->sync($actions)) {
+                event(new ClearUserPermissionCacheEvent());
+
                 return $this->responseJson(['status' => 1, 'message' => '关联操作权限成功']);
             } else {
                 return $this->responseJson(['status' => 0, 'message' => '关联操作权限失败']);

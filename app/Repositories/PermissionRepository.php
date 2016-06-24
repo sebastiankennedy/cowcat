@@ -38,7 +38,7 @@ class PermissionRepository extends CommonRepository
     }
 
     /**
-     * 根据权限模型获取才做关联树
+     * 根据权限模型获取操作关联树
      *
      * @param $permission
      *
