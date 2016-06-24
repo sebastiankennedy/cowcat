@@ -23,11 +23,7 @@ class ModelEventsServiceProvider extends ServiceProvider
      */
     public function listenMenuModelEvents()
     {
-        Menu::created(function () {
-            event(new ClearMenuCacheEvent());
-        });
-
-        Menu::updated(function () {
+        Menu::saved(function () {
             event(new ClearMenuCacheEvent());
         });
 

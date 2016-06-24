@@ -104,9 +104,8 @@ class MenuController extends Controller
     public function update(MenuCreateForm $request, $id)
     {
         $data = $request->except(['_token', '_method']);
-
         try {
-            if (MenuRepository::updateById($id, $data)) {
+            if (MenuRepository::saveById($id, $data)) {
 
                 return $this->successRoutTo('backend.menu.index', '编辑菜单成功');
             }

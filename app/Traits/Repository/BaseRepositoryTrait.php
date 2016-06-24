@@ -18,19 +18,15 @@ trait BaseRepositoryTrait
         return $model::create($input);
     }
 
-    /**
-     * Update the model By id.
-     *
-     * @param int   $id
-     * @param array $input
-     *
-     * @return \Illuminate\Database\Eloquent\Model
-     */
-    public function updateById($id, array $input)
+    public function saveById($id, array $data)
     {
-        $model = $this->model;
+        $item = self::find($id);
 
-        return $model::whereId($id)->update($input);
+        foreach ($data as $key => $value) {
+            $item->$key = $value;
+        }
+
+        return $item->save();
     }
 
     /**
@@ -46,6 +42,21 @@ trait BaseRepositoryTrait
         $model = $this->model;
 
         return $model::find($id, $columns);
+    }
+
+    /**
+     * Update the model By id.
+     *
+     * @param int   $id
+     * @param array $input
+     *
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function updateById($id, array $input)
+    {
+        $model = $this->model;
+
+        return $model::where('id', $id)->update($input);
     }
 
     /**

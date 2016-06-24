@@ -221,26 +221,27 @@ if ( ! function_exists('get_dir_files')) {
      */
     function get_dir_files($dir)
     {
-        $files = array();
+        $files = [];
 
-        if(!is_dir($dir)) {
+        if ( ! is_dir($dir)) {
             return $files;
         }
 
         $handle = opendir($dir);
-        if($handle) {
-            while(false !== ($file = readdir($handle))) {
+        if ($handle) {
+            while (false !== ($file = readdir($handle))) {
                 if ($file != '.' && $file != '..') {
-                    $filename = $dir . "/"  . $file;
-                    if(is_file($filename)) {
+                    $filename = $dir . "/" . $file;
+                    if (is_file($filename)) {
                         $files[] = $filename;
-                    }else {
+                    } else {
                         $files = array_merge($files, get_dir_files($filename));
                     }
                 }
             }   //  end while
             closedir($handle);
         }
+
         return $files;
     }
 }

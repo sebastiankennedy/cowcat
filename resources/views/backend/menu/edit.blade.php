@@ -27,12 +27,12 @@
                             <input type="text" class="form-control" id="name" name="name" placeholder="菜单名称" value="{{$data->name}}">
                         </div>
                         <div class="form-group">
-                            <label for="route">菜单路由</label>
-                            <input type="text" class="form-control" id="route" name="route" placeholder="菜单路由" value="{{$data->route}}">
-                        </div>
-                        <div class="form-group">
                             <label for="description">菜单描述</label>
                             <input type="text" class="form-control" id="description" name="description" placeholder="菜单描述" value="{{$data->description}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="route">菜单路由</label>
+                            <input type="text" class="form-control" id="route" name="route" placeholder="菜单路由" value="{{$data->route}}">
                         </div>
                         <div class="form-group">
                             <label for="icon">菜单图标</label>
