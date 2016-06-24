@@ -5,6 +5,11 @@ namespace App\Listeners\Subscribe;
 use App\Facades\MenuRepository;
 use App\Facades\UserRepository;
 
+/**
+ * 缓存事件订阅器
+ *
+ * @package App\Listeners\Subscribe
+ */
 class CacheEventSubscribe
 {
     /**
@@ -15,22 +20,28 @@ class CacheEventSubscribe
     public function subscribe($events)
     {
         $events->listen(
-            'App\Events\clearUserPermissionCache',
-            'App\Listeners\Subscribe\CacheEventSubscribe@clearUserPermissionCacheEvent'
+            'App\Events\Cache\ClearUserPermissionCacheEvent',
+            'App\Listeners\Subscribe\CacheEventSubscribe@clearUserPermissionCache'
         );
 
         $events->listen(
-            'App\Events\clearMenuPermissionCache',
-            'App\Listeners\Subscribe\CacheEventSubscribe@clearMenuPermissionCacheEvent'
+            'App\Events\Cache\ClearMenuCacheEvent',
+            'App\Listeners\Subscribe\CacheEventSubscribe@clearMenuCache'
         );
     }
 
-    public function clearUserPermissionCache($event)
+    /**
+     * 清除用户权限缓存
+     */
+    public function clearUserPermissionCache()
     {
         UserRepository::clearCache();
     }
 
-    public function clearMenuPermissionCache($event)
+    /**
+     * 清除菜单缓存
+     */
+    public function clearMenuCache()
     {
         MenuRepository::clearCache();
     }

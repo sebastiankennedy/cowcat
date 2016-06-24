@@ -59,7 +59,6 @@ class MenuController extends Controller
     {
         try {
             if (MenuRepository::create($request->all())) {
-
                 return $this->successRoutTo('backend.menu.index', "新增菜单成功");
             }
         }

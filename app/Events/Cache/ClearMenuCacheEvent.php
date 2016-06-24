@@ -6,7 +6,7 @@ use App\Events\Event;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class clearUserPermissionCacheEvent extends Event
+class ClearMenuCacheEvent extends Event
 {
     use SerializesModels;
 

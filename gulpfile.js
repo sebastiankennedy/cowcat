@@ -10,15 +10,16 @@ elixir(function (mix) {
     mix.copy('node_modules/bootstrap/dist/fonts/', 'public/assets/fonts/');
 
     // AdminLTE
-    mix.copy('node_modules/admin-lte/dist/js/app.min.js', 'resources/assets/js/adminlte.min.js');
     mix.copy('node_modules/admin-lte/dist/img/', 'public/assets/images/');
+    mix.copy('node_modules/admin-lte/dist/js/app.min.js', 'resources/assets/js/adminlte.min.js');
     mix.copy('node_modules/admin-lte/dist/css/AdminLTE.min.css', 'resources/assets/css/adminlte.min.css');
     mix.copy('node_modules/admin-lte/dist/css/skins/skin-black.min.css', 'resources/assets/css/adminlte-skin.min.css');
+
     mix.copy('node_modules/admin-lte/plugins/*', 'public/assets/plugins/');
+    mix.copy("node_modules/admin-lte/plugins/select2/select2.min.css", "resources/assets/css/");
     mix.copy("node_modules/admin-lte/plugins/select2/select2.full.min.js", "resources/assets/js/");
     mix.copy("node_modules/admin-lte/plugins/daterangepicker/moment.min.js", "resources/assets/js/");
     mix.copy("node_modules/admin-lte/plugins/daterangepicker/daterangepicker.js", "resources/assets/js/");
-    mix.copy("node_modules/admin-lte/plugins/select2/select2.min.css", "resources/assets/css/");
     mix.copy("node_modules/admin-lte/plugins/daterangepicker/daterangepicker-bs3.css", "resources/assets/css/");
 
     // Ionicons
