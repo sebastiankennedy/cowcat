@@ -176,7 +176,6 @@ trait BaseRepositoryTrait
         return $model->lists($value, $key);
     }
 
-
     public function destroy($id)
     {
         $model = $this->model;
