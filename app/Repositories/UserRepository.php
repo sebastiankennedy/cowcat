@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use Cache, Auth;
+use Cache;
 
 /**
  * User Model Repository
