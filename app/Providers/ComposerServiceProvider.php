@@ -40,6 +40,11 @@ class ComposerServiceProvider extends ServiceProvider
             'backend.permission.index',
             'backend.permission.search',
         ];
+
+        $this->userInfo = [
+            'backend.layout.sidebar',
+            'backend.layout.header',
+        ];
     }
 
     /**
@@ -49,6 +54,11 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        view()->composer($this->userInfo, function ($view) {
+            $userInfo = \Auth::user();
+            $view->with(compact('userInfo'));
+        });
+
         view()->composer($this->main, 'App\Http\ViewComposers\MainComposer');
         view()->composer($this->menu, 'App\Http\ViewComposers\MenuComposer');
         view()->composer($this->user, 'App\Http\ViewComposers\UserComposer');

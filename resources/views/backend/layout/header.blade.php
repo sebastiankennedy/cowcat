@@ -83,13 +83,13 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="/assets/images/user2-160x160.jpg" class="user-image" alt="User Image"/>
-                        <span class="hidden-xs">{{Auth::user()->name}}</span>
+                        <span class="hidden-xs">{{$userInfo['name']}}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="user-header">
-                            <img src="/assets/images/user2-160x160.jpg" class="img-circle" alt="User Image" />
+                            <img src="/assets/images/user2-160x160.jpg" class="img-circle" alt="User Image"/>
                             <p>
-                                {{Auth::user()->name}} - Web Developer
+                                {{$userInfo['name']}} - Web Developer
                                 <small>Member since Nov. 2012</small>
                             </p>
                         </li>
