@@ -12,7 +12,7 @@ class ActionsTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         \DB::table('actions')->delete();
         
@@ -315,7 +315,7 @@ class ActionsTableSeeder extends Seeder
                 'updated_at' => '2016-06-24 17:30:07',
             ),
         ));
-        
-        
+
+
     }
 }

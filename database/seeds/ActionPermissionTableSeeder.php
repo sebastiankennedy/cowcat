@@ -12,11 +12,11 @@ class ActionPermissionTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         \DB::table('action_permission')->delete();
-        
-        
-        
+
+
+
     }
 }
