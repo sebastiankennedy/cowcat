@@ -4,13 +4,15 @@ namespace App\Traits\Repository;
 
 trait BaseRepositoryTrait
 {
-    /**
-     * Create a new model.
-     *
-     * @param array $input
-     *
-     * @return \Illuminate\Database\Eloquent\Model
-     */
+    public function validate(array $data, $rules = null, $custom = false)
+    {
+        if ( ! $custom) {
+            $rules = $this->rules($rules);
+        }
+
+        return $this->validator->make($data, $rules);
+    }
+
     public function create(array $input)
     {
         $model = $this->model;
@@ -29,14 +31,6 @@ trait BaseRepositoryTrait
         return $item->save();
     }
 
-    /**
-     * Find an existing model.
-     *
-     * @param int      $id
-     * @param string[] $columns
-     *
-     * @return \Illuminate\Database\Eloquent\Model
-     */
     public function find($id, array $columns = ['*'])
     {
         $model = $this->model;
@@ -44,14 +38,6 @@ trait BaseRepositoryTrait
         return $model::find($id, $columns);
     }
 
-    /**
-     * Update the model By id.
-     *
-     * @param int   $id
-     * @param array $input
-     *
-     * @return \Illuminate\Database\Eloquent\Model
-     */
     public function updateById($id, array $input)
     {
         $model = $this->model;
@@ -59,13 +45,6 @@ trait BaseRepositoryTrait
         return $model::where('id', $id)->update($input);
     }
 
-    /**
-     * Find all models.
-     *
-     * @param string[] $columns
-     *
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
     public function all(array $columns = ['*'])
     {
         $model = $this->model;
@@ -73,11 +52,6 @@ trait BaseRepositoryTrait
         return $model::all($columns);
     }
 
-    /**
-     * Get a list of the models.
-     *
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
     public function index()
     {
         $model = $this->model;
@@ -89,35 +63,11 @@ trait BaseRepositoryTrait
         return $model::get($model::$index);
     }
 
-
-    /**
-     * Get the number of rows.
-     *
-     * @return int
-     */
     public function count()
     {
         $model = $this->model;
 
         return $model::where('id', '>=', 1)->count();
-    }
-
-    /**
-     * Validate the data.
-     *
-     * @param array           $data
-     * @param string|string[] $rules
-     * @param bool            $custom
-     *
-     * @return \Illuminate\Validation\Validator
-     */
-    public function validate(array $data, $rules = null, $custom = false)
-    {
-        if ( ! $custom) {
-            $rules = $this->rules($rules);
-        }
-
-        return $this->validator->make($data, $rules);
     }
 
     public function paginate($limit, array $columns = ['*'])
