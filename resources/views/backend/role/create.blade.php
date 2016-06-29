@@ -2,7 +2,7 @@
 
 @section("content")
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <form method="post" action="{{route('backend.role.store')}}">
                 <div class="box">
                     <div class="box-header with-border">

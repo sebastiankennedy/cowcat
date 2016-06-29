@@ -5,7 +5,7 @@
 @endsection
 @section("content")
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">角色赋权</h3>
