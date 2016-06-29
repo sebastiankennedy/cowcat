@@ -33,7 +33,7 @@ var Backend = window.Backend || {};
                         _successFunction();
                     });
                 } else {
-                    swal(response.message, '', response.message ? response.message : "未知错误");
+                    swal(_errorTitle, response.message ? response.message : "未知错误", "error");
                 }
             }).fail(function () {
                 _errorFunction();
