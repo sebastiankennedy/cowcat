@@ -22,10 +22,6 @@ elixir(function (mix) {
     mix.copy("node_modules/admin-lte/plugins/daterangepicker/daterangepicker.js", "resources/assets/js/");
     mix.copy("node_modules/admin-lte/plugins/daterangepicker/daterangepicker-bs3.css", "resources/assets/css/");
 
-    // Ionicons
-    mix.copy('node_modules/ionicons/dist/css/ionicons.min.css', 'resources/assets/css/');
-    mix.copy('node_modules/ionicons/dist/fonts/', 'public/build/assets/fonts/');
-
     // Font-Awesome
     mix.copy('node_modules/font-awesome/css/font-awesome.min.css', 'resources/assets/css/');
     mix.copy('node_modules/font-awesome/fonts/', 'public/build/assets/fonts/');
@@ -43,7 +39,6 @@ elixir(function (mix) {
         'daterangepicker-bs3.css',
         'bootstrap.min.css',
         'font-awesome.min.css',
-        'ionicons.min.css',
         'adminlte.min.css',
         'adminlte-skin.min.css',
         'sweetalert.css',

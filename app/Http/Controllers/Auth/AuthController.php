@@ -22,7 +22,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    public $redirectPath = '/';
+    public $redirectPath = '/backend/index';
 
     /**
      * 设置登录失败后转向的页面

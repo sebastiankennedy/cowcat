@@ -1,7 +1,4 @@
 <?php
-Route::get('/', function () {
-    return view('backend.layout.main');
-});
 
 /* 后台登录模块 */
 Route::group(['namespace' => 'Auth'], function () {
