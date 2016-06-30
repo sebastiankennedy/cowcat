@@ -6,53 +6,69 @@
         <div class="col-lg-3 col-xs-6">
             <div class="small-box bg-aqua">
                 <div class="inner">
-                    <h3>150</h3>
+                    <h3>{{\App\Facades\MenuRepository::count()}}</h3>
 
-                    <p>New Orders</p>
+                    <p>菜单管理</p>
                 </div>
+
                 <div class="icon">
-                    <i class="ion ion-bag"></i>
+                    <i class="fa fa-bars"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+
+                <a href="{{route('backend.menu.index')}}" class="small-box-footer">更多信息
+                    <i class="fa fa-arrow-circle-right"></i>
+                </a>
             </div>
         </div>
         <div class="col-lg-3 col-xs-6">
             <div class="small-box bg-green">
                 <div class="inner">
-                    <h3>53<sup style="font-size: 20px">%</sup></h3>
+                    <h3>{{\App\Facades\RoleRepository::count()}}</h3>
 
-                    <p>Bounce Rate</p>
+                    <p>角色管理</p>
                 </div>
+
                 <div class="icon">
-                    <i class="ion ion-stats-bars"></i>
+                    <i class="fa fa-users"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+
+                <a href="{{route('backend.role.index')}}" class="small-box-footer">更多信息
+                    <i class="fa fa-arrow-circle-right"></i>
+                </a>
             </div>
         </div>
         <div class="col-lg-3 col-xs-6">
             <div class="small-box bg-yellow">
                 <div class="inner">
-                    <h3>44</h3>
+                    <h3>{{\App\Facades\PermissionRepository::count()}}</h3>
 
-                    <p>User Registrations</p>
+                    <p>权限管理</p>
                 </div>
+
                 <div class="icon">
-                    <i class="ion ion-person-add"></i>
+                    <i class="fa fa-key"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+
+                <a href="{{route('backend.permission.index')}}" class="small-box-footer">更多信息
+                    <i class="fa fa-arrow-circle-right"></i>
+                </a>
             </div>
         </div>
         <div class="col-lg-3 col-xs-6">
             <div class="small-box bg-red">
                 <div class="inner">
-                    <h3>65</h3>
+                    <h3>{{\App\Facades\ActionRepository::count()}}</h3>
 
-                    <p>Unique Visitors</p>
+                    <p>操作管理</p>
                 </div>
+
                 <div class="icon">
-                    <i class="fa fa-plus"></i>
+                    <i class="fa fa-keyboard-o"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+
+                <a href="{{route('backend.action.index')}}" class="small-box-footer">更多信息
+                    <i class="fa fa-arrow-circle-right"></i>
+                </a>
             </div>
         </div>
     </div>
