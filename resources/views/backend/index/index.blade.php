@@ -12,7 +12,7 @@
                 </div>
 
                 <div class="icon">
-                    <i class="fa fa-bars"></i>
+                    <i class="fa fa-list-alt"></i>
                 </div>
 
                 <a href="{{route('backend.menu.index')}}" class="small-box-footer">更多信息
