@@ -82,17 +82,17 @@
                 {{--</li>--}}
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="/assets/images/user2-160x160.jpg" class="user-image" alt="User Image"/>
+                        {{--<img src="/assets/images/user2-160x160.jpg" class="user-image" alt="User Image"/>--}}
                         <span class="hidden-xs">{{$userInfo['name']}}</span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="user-header">
-                            <img src="/assets/images/user2-160x160.jpg" class="img-circle" alt="User Image"/>
-                            <p>
-                                {{$userInfo['name']}}
+                        {{--<li class="user-header">--}}
+                            {{--<img src="/assets/images/user2-160x160.jpg" class="img-circle" alt="User Image"/>--}}
+                            {{--<p>--}}
+                                {{--{{$userInfo['name']}}--}}
                                 {{--<small>Member since Nov. 2012</small>--}}
-                            </p>
-                        </li>
+                            {{--</p>--}}
+                        {{--</li>--}}
                         {{--<li class="user-body">--}}
                             {{--<div class="col-xs-4 text-center">--}}
                                 {{--<a href="#">Followers</a>--}}
@@ -106,7 +106,7 @@
                         {{--</li>--}}
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                <a href="https://github.com/luisedware/CowCat" class="btn btn-default btn-flat">Star</a>
                             </div>
                             <div class="pull-right">
                                 <a href="/auth/logout" class="btn btn-default btn-flat">退出登录</a>

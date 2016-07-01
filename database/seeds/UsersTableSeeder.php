@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
             0 =>
                 [
                     'id'             => 3,
-                    'name'           => 'admin',
+                    'name'           => 'Admin',
                     'email'          => 'admin@qq.com',
                     'password'       => '$2y$10$THzCWaxn/DPlwFGNX6o8/uEy5kK/0AFBa8z5GBG6ApyOgEvBwxwUG',
                     'remember_token' => 'vnjLoBsi4zCqywOa0PBtWXz9ulfBTUHbjoACRXHe3HthmA8wDQO4bPBpOQs8',
@@ -31,8 +31,8 @@ class UsersTableSeeder extends Seeder
             1 =>
                 [
                     'id'             => 4,
-                    'name'           => 'luis',
-                    'email'          => 'luisedware@qq.com',
+                    'name'           => 'User',
+                    'email'          => 'user@qq.com',
                     'password'       => '$2y$10$THzCWaxn/DPlwFGNX6o8/uEy5kK/0AFBa8z5GBG6ApyOgEvBwxwUG',
                     'remember_token' => 'BayXDcNkKpQkkbmaWaYA9ktn0eOybLCHeH2jTVZngiAJIQx3iy0agNvbDi35',
                     'created_at'     => '2016-06-14 17:18:09',
