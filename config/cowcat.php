@@ -13,6 +13,7 @@ return [
         '/assets/images/background/11.jpg',
         '/assets/images/background/12.jpg',
         '/assets/images/background/13.jpg',
+        '/assets/images/background/14.jpg',
     ],
     /* 权限管理类型 */
     'permission-type'              => [
