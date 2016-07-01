@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-
 class ComposerServiceProvider extends ServiceProvider
 {
     private $main, $menu, $user, $role, $permission;

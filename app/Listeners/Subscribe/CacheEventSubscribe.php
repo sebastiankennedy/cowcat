@@ -6,16 +6,14 @@ use App\Facades\MenuRepository;
 use App\Facades\UserRepository;
 
 /**
- * 缓存事件订阅器
- *
- * @package App\Listeners\Subscribe
+ * 缓存事件订阅器.
  */
 class CacheEventSubscribe
 {
     /**
      * 注册侦听器的订阅者。
      *
-     * @param  Illuminate\Events\Dispatcher $events
+     * @param Illuminate\Events\Dispatcher $events
      */
     public function subscribe($events)
     {
@@ -31,7 +29,7 @@ class CacheEventSubscribe
     }
 
     /**
-     * 清除用户权限缓存
+     * 清除用户权限缓存.
      */
     public function clearUserPermissionCache()
     {
@@ -39,7 +37,7 @@ class CacheEventSubscribe
     }
 
     /**
-     * 清除菜单缓存
+     * 清除菜单缓存.
      */
     public function clearMenuCache()
     {

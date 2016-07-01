@@ -4,15 +4,12 @@ namespace App\Http\Controllers\Backend;
 
 use App\Events\Cache\ClearUserPermissionCacheEvent;
 use App\Facades\RoleRepository;
-use App\Http\Requests\Form\RoleCreateForm;
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Form\RoleCreateForm;
 use Illuminate\Http\Request;
 
 /**
- * 角色管理控制器
- *
- * @package App\Http\Controllers\Backend
+ * 角色管理控制器.
  */
 class RoleController extends Controller
 {
@@ -25,7 +22,7 @@ class RoleController extends Controller
     {
         $data = RoleRepository::paginate(config('repository.page-limit'));
 
-        return view('backend.role.index', compact("data"));
+        return view('backend.role.index', compact('data'));
     }
 
     /**
@@ -41,7 +38,7 @@ class RoleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\Form\RoleCreateForm $request
+     * @param \App\Http\Requests\Form\RoleCreateForm $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -49,10 +46,9 @@ class RoleController extends Controller
     {
         try {
             if (RoleRepository::create($request->all())) {
-                return $this->successRoutTo("backend.role.index", "新增角色成功");
+                return $this->successRoutTo('backend.role.index', '新增角色成功');
             }
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             return $this->errorBackTo(['error' => $e->getMessage()]);
         }
     }
@@ -60,7 +56,7 @@ class RoleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -72,7 +68,7 @@ class RoleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -86,8 +82,8 @@ class RoleController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\Form\RoleCreateForm $request
-     * @param  int                                    $id
+     * @param \App\Http\Requests\Form\RoleCreateForm $request
+     * @param int                                    $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -100,10 +96,9 @@ class RoleController extends Controller
 
         try {
             if ($role->save()) {
-                return $this->successBackTo("编辑角色成功");
+                return $this->successBackTo('编辑角色成功');
             }
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             return $this->errorBackTo(['error' => $e->getMessage()]);
         }
     }
@@ -111,7 +106,7 @@ class RoleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -119,16 +114,15 @@ class RoleController extends Controller
     {
         try {
             if (RoleRepository::destroy($id)) {
-                return $this->successBackTo("删除角色成功");
+                return $this->successBackTo('删除角色成功');
             }
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             return $this->errorBackTo(['error' => $e->getMessage()]);
         }
     }
 
     /**
-     * 角色赋权页面
+     * 角色赋权页面.
      *
      * @param int $id
      *
@@ -142,9 +136,8 @@ class RoleController extends Controller
         return view('backend.role.permission', compact('id', 'data', 'role'));
     }
 
-
     /**
-     * 角色赋权操作
+     * 角色赋权操作.
      *
      * @param Request $request
      *
@@ -157,7 +150,7 @@ class RoleController extends Controller
 
         $data = [];
         foreach ($permissions as $permission) {
-            if ( ! $permission) {
+            if (!$permission) {
                 continue;
             }
 
@@ -177,8 +170,7 @@ class RoleController extends Controller
             } else {
                 return $this->responseJson(['status' => 0, 'message' => '角色赋权失败']);
             }
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             return $this->responseJson(['status' => 0, 'message' => $e->getMessage()]);
         }
     }

@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Route;
 class MainComposer
 {
     /**
-     * 将数据绑定到视图
+     * 将数据绑定到视图.
      *
-     * @param  View $view
+     * @param View $view
      *
      * @return mixed
      */

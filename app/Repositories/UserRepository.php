@@ -5,22 +5,22 @@ namespace App\Repositories;
 use Cache;
 
 /**
- * User Model Repository
+ * User Model Repository.
  */
 class UserRepository extends CommonRepository
 {
     /**
-     *  菜单权限缓存标识
+     *  菜单权限缓存标识.
      */
-    const USER_MENU_PERMISSIONS_CACHE = "user_menu_permissions_cache";
+    const USER_MENU_PERMISSIONS_CACHE = 'user_menu_permissions_cache';
 
     /**
-     * 操作权限缓存标识
+     * 操作权限缓存标识.
      */
-    const USER_ACTION_PERMISSIONS_CACHE = "user_action_permissions_cache";
+    const USER_ACTION_PERMISSIONS_CACHE = 'user_action_permissions_cache';
 
     /**
-     * 根据用户模型获取用户的菜单权限
+     * 根据用户模型获取用户的菜单权限.
      *
      * @param $user
      *
@@ -28,10 +28,9 @@ class UserRepository extends CommonRepository
      */
     public function getUserMenusPermissionsByUserModel($user)
     {
-        $routes = Cache::get(self::USER_MENU_PERMISSIONS_CACHE . $user->id);
+        $routes = Cache::get(self::USER_MENU_PERMISSIONS_CACHE.$user->id);
 
         if (empty($routes)) {
-
             $roles = $user->roles;
 
             $permissions = [];
@@ -59,14 +58,14 @@ class UserRepository extends CommonRepository
                 $routes = array_unique($routes);
             }
 
-            Cache::forever(self::USER_MENU_PERMISSIONS_CACHE . $user->id, $routes);
+            Cache::forever(self::USER_MENU_PERMISSIONS_CACHE.$user->id, $routes);
         }
 
         return $routes;
     }
 
     /**
-     * 根据用户模型获取用户的操作权限
+     * 根据用户模型获取用户的操作权限.
      *
      * @param $user
      *
@@ -74,7 +73,7 @@ class UserRepository extends CommonRepository
      */
     public function getUserActionPermissionsByUserModel($user)
     {
-        $actions = Cache::get(self::USER_ACTION_PERMISSIONS_CACHE . $user->id);
+        $actions = Cache::get(self::USER_ACTION_PERMISSIONS_CACHE.$user->id);
 
         if (empty($actions)) {
             $roles = $user->roles;
@@ -102,20 +101,20 @@ class UserRepository extends CommonRepository
             if ($actions) {
                 $actions = array_unique($actions);
             }
-            Cache::forever(self::USER_ACTION_PERMISSIONS_CACHE . $user->id, $actions);
+            Cache::forever(self::USER_ACTION_PERMISSIONS_CACHE.$user->id, $actions);
         }
 
         return $actions;
     }
 
     /**
-     * 删除缓存
+     * 删除缓存.
      */
     public function clearCache()
     {
         foreach (\App\Facades\UserRepository::all() as $user) {
-            Cache::forget(self::USER_MENU_PERMISSIONS_CACHE . $user->id);
-            Cache::forget(self::USER_ACTION_PERMISSIONS_CACHE . $user->id);
+            Cache::forget(self::USER_MENU_PERMISSIONS_CACHE.$user->id);
+            Cache::forget(self::USER_ACTION_PERMISSIONS_CACHE.$user->id);
         }
     }
 }

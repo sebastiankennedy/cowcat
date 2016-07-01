@@ -2,19 +2,15 @@
 
 namespace App\Http\Controllers\Backend;
 
-use Illuminate\Http\Request;
 use App\Facades\RoleRepository;
 use App\Facades\UserRepository;
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Form\UserCreateForm;
 use App\Http\Requests\Form\UserUpdateForm;
 use Auth;
 
 /**
- * 用户管理控制器
- *
- * @package App\Http\Controllers\Backend
+ * 用户管理控制器.
  */
 class UserController extends Controller
 {
@@ -27,7 +23,7 @@ class UserController extends Controller
     {
         $data = UserRepository::paginate(config('repository.page-limit'));
 
-        return view("backend.user.index", compact('data'));
+        return view('backend.user.index', compact('data'));
     }
 
     /**
@@ -39,13 +35,13 @@ class UserController extends Controller
     {
         $roles = RoleRepository::all();
 
-        return view("backend.user.create", compact('roles'));
+        return view('backend.user.create', compact('roles'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\Form\UserCreateForm $request
+     * @param \App\Http\Requests\Form\UserCreateForm $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -61,21 +57,18 @@ class UserController extends Controller
             $roles = RoleRepository::getByWhereIn('id', $request['role_id']);
 
             if (empty($roles->toArray())) {
-                return $this->errorBackTo("用户角色不存在,请刷新页面并选择其他用户角色");
+                return $this->errorBackTo('用户角色不存在,请刷新页面并选择其他用户角色');
             }
 
             $user = UserRepository::create($data);
             if ($user) {
-
                 foreach ($roles as $role) {
                     $user->attachRole($role);
                 }
 
                 return $this->successRoutTo('backend.user.index', '新增用户成功');
             }
-
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             return $this->errorBackTo(['error' => $e->getMessage()]);
         }
     }
@@ -83,7 +76,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -95,7 +88,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -114,15 +107,15 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\Form\UserUpdateForm $request
-     * @param  int                                    $id
+     * @param \App\Http\Requests\Form\UserUpdateForm $request
+     * @param int                                    $id
      *
      * @return \Illuminate\Http\Response
      */
     public function update(UserUpdateForm $request, $id)
     {
         if ($id != Auth::user()->id && Auth::user()->is_super_admin == 0) {
-            return $this->errorBackTo("只允许编辑自身资料");
+            return $this->errorBackTo('只允许编辑自身资料');
         }
 
         $user = UserRepository::find($id);
@@ -137,7 +130,7 @@ class UserController extends Controller
             $roles = RoleRepository::getByWhereIn('id', $request['role_id']);
 
             if (empty($roles->toArray())) {
-                return $this->errorBackTo("用户角色不存在,请刷新页面并选择其他用户角色");
+                return $this->errorBackTo('用户角色不存在,请刷新页面并选择其他用户角色');
             }
 
             if ($user->save()) {
@@ -146,10 +139,9 @@ class UserController extends Controller
                     $user->attachRole($role);
                 }
 
-                return $this->successRoutTo('backend.user.index', "编辑用户成功");
+                return $this->successRoutTo('backend.user.index', '编辑用户成功');
             }
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             return $this->errorBackTo(['error' => $e->getMessage()]);
         }
     }
@@ -157,7 +149,7 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -167,8 +159,7 @@ class UserController extends Controller
             if (UserRepository::destroy($id)) {
                 return $this->successBackTo('删除用户成功');
             }
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             return $this->errorBackTo(['error' => $e->getMessage()]);
         }
     }

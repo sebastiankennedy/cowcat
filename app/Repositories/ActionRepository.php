@@ -4,9 +4,8 @@ namespace App\Repositories;
 
 use App\Facades\MenuRepository;
 
-
 /**
- * Action Model Repository
+ * Action Model Repository.
  */
 class ActionRepository extends CommonRepository
 {
@@ -27,7 +26,7 @@ class ActionRepository extends CommonRepository
                 if (in_array($route->getAction()['as'], $menus)) {
                     continue;
                 }
-            };
+            }
 
             /* 排除已存在的操作 */
             if (in_array($route->getActionName(), $actions)) {

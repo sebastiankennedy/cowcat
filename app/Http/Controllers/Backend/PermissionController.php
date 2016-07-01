@@ -4,15 +4,12 @@ namespace App\Http\Controllers\Backend;
 
 use App\Events\Cache\ClearUserPermissionCacheEvent;
 use App\Facades\PermissionRepository;
-use App\Http\Requests\Form\PermissionCreateForm;
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Form\PermissionCreateForm;
 use Illuminate\Http\Request;
 
 /**
- * 权限管理控制器
- *
- * @package App\Http\Controllers\Backend
+ * 权限管理控制器.
  */
 class PermissionController extends Controller
 {
@@ -25,7 +22,7 @@ class PermissionController extends Controller
     {
         $data = PermissionRepository::paginate(config('repository.page-limit'));
 
-        return view('backend.permission.index', compact("data"));
+        return view('backend.permission.index', compact('data'));
     }
 
     /**
@@ -41,7 +38,7 @@ class PermissionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\Form\PermissionCreateForm $request
+     * @param \App\Http\Requests\Form\PermissionCreateForm $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -49,10 +46,9 @@ class PermissionController extends Controller
     {
         try {
             if (PermissionRepository::create($request->all())) {
-                return $this->successRoutTo("backend.permission.index", "新增权限成功");
+                return $this->successRoutTo('backend.permission.index', '新增权限成功');
             }
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             return $this->errorBackTo(['error' => $e->getMessage()]);
         }
     }
@@ -60,19 +56,18 @@ class PermissionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  integer $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -80,14 +75,14 @@ class PermissionController extends Controller
     {
         $data = PermissionRepository::find($id);
 
-        return view('backend.permission.edit', compact("data"));
+        return view('backend.permission.edit', compact('data'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int                      $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -101,10 +96,9 @@ class PermissionController extends Controller
 
         try {
             if ($permission->save()) {
-                return $this->successBackTo("编辑权限成功");
+                return $this->successBackTo('编辑权限成功');
             }
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             return $this->errorBackTo(['error' => $e->getMessage()]);
         }
     }
@@ -112,7 +106,7 @@ class PermissionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -122,16 +116,15 @@ class PermissionController extends Controller
             if (PermissionRepository::destroy($id)) {
                 event(new ClearUserPermissionCacheEvent());
 
-                return $this->successBackTo("删除权限成功");
+                return $this->successBackTo('删除权限成功');
             }
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             return $this->errorBackTo(['error' => $e->getMessage()]);
         }
     }
 
     /**
-     * 关联权限页面
+     * 关联权限页面.
      *
      * @param $id
      *
@@ -150,11 +143,11 @@ class PermissionController extends Controller
 
         }
 
-        return view('backend.permission.' . $permission->type, compact('data', 'id'));
+        return view('backend.permission.'.$permission->type, compact('data', 'id'));
     }
 
     /**
-     * 关联菜单权限操作
+     * 关联菜单权限操作.
      *
      * @param Request $request
      *
@@ -175,14 +168,13 @@ class PermissionController extends Controller
             } else {
                 return $this->responseJson(['status' => 0, 'message' => '关联菜单权限失败']);
             }
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             return $this->responseJson(['status' => 0]);
         }
     }
 
     /**
-     * 关联操作权限操作
+     * 关联操作权限操作.
      *
      * @param Request $request
      *
@@ -203,8 +195,7 @@ class PermissionController extends Controller
             } else {
                 return $this->responseJson(['status' => 0, 'message' => '关联操作权限失败']);
             }
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             return $this->responseJson(['status' => 0]);
         }
     }

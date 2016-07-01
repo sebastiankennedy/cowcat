@@ -6,12 +6,12 @@ use App\Facades\ActionRepository;
 use App\Facades\MenuRepository;
 
 /**
- * Permission Model Repository
+ * Permission Model Repository.
  */
 class PermissionRepository extends CommonRepository
 {
     /**
-     * 根据权限模型获取菜单关联树
+     * 根据权限模型获取菜单关联树.
      *
      * @param $permission
      *
@@ -38,7 +38,7 @@ class PermissionRepository extends CommonRepository
     }
 
     /**
-     * 根据权限模型获取操作关联树
+     * 根据权限模型获取操作关联树.
      *
      * @param $permission
      *

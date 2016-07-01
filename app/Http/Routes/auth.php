@@ -1,4 +1,5 @@
 <?php
+
 // 登录认证
 Route::get('auth/login', 'AuthController@getLogin');
 Route::post('auth/login', 'AuthController@postLogin');

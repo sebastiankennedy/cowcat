@@ -5,27 +5,27 @@ namespace App\Repositories;
 use Cache;
 
 /**
- * Menu Model Repository
+ * Menu Model Repository.
  */
 class MenuRepository extends CommonRepository
 {
     /**
-     * 所有菜单缓存键
+     * 所有菜单缓存键.
      */
     const ALL_MENUS_CACHE = 'all_menus_cache';
 
     /**
-     *所有顶级显示菜单缓存键
+     *所有顶级显示菜单缓存键.
      */
     const ALL_TOP_MENUS_CACHE = 'all_top_menus_cache';
 
     /**
-     * 所有显示菜单缓存键
+     * 所有显示菜单缓存键.
      */
     const ALL_DISPLAY_MENUS_CACHE = 'all_display_menus_array_cache';
 
     /**
-     * 获取所有菜单
+     * 获取所有菜单.
      *
      * @return array
      */
@@ -44,7 +44,7 @@ class MenuRepository extends CommonRepository
     }
 
     /**
-     * 获取所有显示菜单
+     * 获取所有显示菜单.
      *
      * @return array
      */
@@ -63,7 +63,7 @@ class MenuRepository extends CommonRepository
     }
 
     /**
-     * 获取所有顶级显示菜单
+     * 获取所有顶级显示菜单.
      *
      * @return mixed
      */
@@ -85,7 +85,7 @@ class MenuRepository extends CommonRepository
     }
 
     /**
-     * 根据菜单ID获取子菜单
+     * 根据菜单ID获取子菜单.
      *
      * @param $id
      *
@@ -97,7 +97,7 @@ class MenuRepository extends CommonRepository
     }
 
     /**
-     * 清除所有的菜单缓存
+     * 清除所有的菜单缓存.
      *
      * @return array
      */

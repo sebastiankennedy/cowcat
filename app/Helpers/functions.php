@@ -1,5 +1,6 @@
 <?php
-if ( ! function_exists('two_dimensional_array_unique')) {
+
+if (!function_exists('two_dimensional_array_unique')) {
 
     /**
      * 移除二维数组中指定键名重复的值
@@ -16,7 +17,7 @@ if ( ! function_exists('two_dimensional_array_unique')) {
         $temp_array = [];
 
         foreach ($array as $value) {
-            if ( ! in_array($value[$key], $key_array)) {
+            if (!in_array($value[$key], $key_array)) {
                 $key_array[$i] = $value[$key];
                 $temp_array[$i] = $value;
             }
@@ -27,7 +28,7 @@ if ( ! function_exists('two_dimensional_array_unique')) {
     }
 }
 
-if ( ! function_exists('array_random')) {
+if (!function_exists('array_random')) {
 
     /**
      * 随机返回数组中的值
@@ -42,10 +43,10 @@ if ( ! function_exists('array_random')) {
     }
 }
 
-if ( ! function_exists('two_dimensional_array_sort')) {
+if (!function_exists('two_dimensional_array_sort')) {
 
     /**
-     * 二维数组排序
+     * 二维数组排序.
      *
      * @param  $array
      * @param  $on
@@ -57,7 +58,7 @@ if ( ! function_exists('two_dimensional_array_sort')) {
     {
         $new_array = [];
         $sortable_array = [];
-        $on = (string)$on;
+        $on = (string) $on;
         if (count($array) > 0) {
             foreach ($array as $k => $v) {
                 if (is_array($v)) {
@@ -89,10 +90,10 @@ if ( ! function_exists('two_dimensional_array_sort')) {
     }
 }
 
-if ( ! function_exists('create_level_tree')) {
+if (!function_exists('create_level_tree')) {
 
     /**
-     * 生成一维数组 HTML 层级树
+     * 生成一维数组 HTML 层级树.
      *
      * @param        $data
      * @param int    $parent_id
@@ -106,7 +107,7 @@ if ( ! function_exists('create_level_tree')) {
         $tree = [];
         foreach ($data as $item) {
             $item['html'] = str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $level);
-            $item['html'] .= $level === 0 ? "" : '|';
+            $item['html'] .= $level === 0 ? '' : '|';
             $item['html'] .= str_repeat($html, $level);
 
             if ($item['parent_id'] == $parent_id) {
@@ -119,10 +120,10 @@ if ( ! function_exists('create_level_tree')) {
     }
 }
 
-if ( ! function_exists('create_node_tree')) {
+if (!function_exists('create_node_tree')) {
 
     /**
-     * 生成二维数组节点树
+     * 生成二维数组节点树.
      *
      * @param        $data
      * @param int    $parent_id
@@ -145,7 +146,7 @@ if ( ! function_exists('create_node_tree')) {
     }
 }
 
-if ( ! function_exists('get_week_start_time_and_end_date')) {
+if (!function_exists('get_week_start_time_and_end_date')) {
 
     /**
      * 获取一个星期的开始(星期日)与结束(星期六)日期
@@ -157,16 +158,16 @@ if ( ! function_exists('get_week_start_time_and_end_date')) {
         $day = date('w');
         $end = 6 - $day;
         $start = 6 - $end;
-        $arr[] = date('Y-m-d 00:00:00', strtotime('now -' . $start . ' day'));
-        $arr[] = date('Y-m-d 23:59:59', strtotime('now +' . $end . ' day'));
+        $arr[] = date('Y-m-d 00:00:00', strtotime('now -'.$start.' day'));
+        $arr[] = date('Y-m-d 23:59:59', strtotime('now +'.$end.' day'));
 
         return $arr;
     }
 }
 
-if ( ! function_exists('getParentsByChildId')) {
+if (!function_exists('getParentsByChildId')) {
     /**
-     * 根据子元素 ID 获取所有的父元素
+     * 根据子元素 ID 获取所有的父元素.
      *
      * @param $data
      * @param $child_id
@@ -187,9 +188,9 @@ if ( ! function_exists('getParentsByChildId')) {
     }
 }
 
-if ( ! function_exists('getChildsByParentId')) {
+if (!function_exists('getChildsByParentId')) {
     /**
-     * 根据父元素 ID 获取所有的子元素
+     * 根据父元素 ID 获取所有的子元素.
      *
      * @param $data
      * @param $parent_id
@@ -210,10 +211,10 @@ if ( ! function_exists('getChildsByParentId')) {
     }
 }
 
-if ( ! function_exists('get_dir_files')) {
+if (!function_exists('get_dir_files')) {
 
     /**
-     * 遍历文件目录,获取所有的文件路径
+     * 遍历文件目录,获取所有的文件路径.
      *
      * @param $dir
      *
@@ -223,7 +224,7 @@ if ( ! function_exists('get_dir_files')) {
     {
         $files = [];
 
-        if ( ! is_dir($dir)) {
+        if (!is_dir($dir)) {
             return $files;
         }
 
@@ -231,7 +232,7 @@ if ( ! function_exists('get_dir_files')) {
         if ($handle) {
             while (false !== ($file = readdir($handle))) {
                 if ($file != '.' && $file != '..') {
-                    $filename = $dir . "/" . $file;
+                    $filename = $dir.'/'.$file;
                     if (is_file($filename)) {
                         $files[] = $filename;
                     } else {

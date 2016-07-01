@@ -4,21 +4,17 @@ use Illuminate\Database\Seeder;
 
 class PermissionsTableSeeder extends Seeder
 {
-
     /**
-     * Auto generated seed file
+     * Auto generated seed file.
      *
      * @return void
      */
     public function run()
     {
-
-
         \DB::table('permissions')->delete();
 
         \DB::table('permissions')->insert([
-            0 =>
-                [
+            0 => [
                     'id'           => 40,
                     'type'         => 'menu',
                     'name'         => 'all.menus.visible',
@@ -27,8 +23,7 @@ class PermissionsTableSeeder extends Seeder
                     'created_at'   => '2016-06-14 11:53:36',
                     'updated_at'   => '2016-06-14 13:41:58',
                 ],
-            1 =>
-                [
+            1 => [
                     'id'           => 41,
                     'type'         => 'action',
                     'name'         => 'all.actions.available',
@@ -37,8 +32,7 @@ class PermissionsTableSeeder extends Seeder
                     'created_at'   => '2016-06-15 16:34:26',
                     'updated_at'   => '2016-06-15 16:34:26',
                 ],
-            2 =>
-                [
+            2 => [
                     'id'           => 42,
                     'type'         => 'menu',
                     'name'         => 'management.menu.visible',
@@ -47,8 +41,7 @@ class PermissionsTableSeeder extends Seeder
                     'created_at'   => '2016-06-20 14:07:13',
                     'updated_at'   => '2016-06-20 14:07:13',
                 ],
-            3 =>
-                [
+            3 => [
                     'id'           => 43,
                     'type'         => 'menu',
                     'name'         => 'management.permission.visible',
@@ -58,7 +51,5 @@ class PermissionsTableSeeder extends Seeder
                     'updated_at'   => '2016-06-21 12:19:55',
                 ],
         ]);
-
-
     }
 }

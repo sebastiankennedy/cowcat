@@ -4,9 +4,8 @@ use Illuminate\Database\Seeder;
 
 class MenusTableSeeder extends Seeder
 {
-
     /**
-     * Auto generated seed file
+     * Auto generated seed file.
      *
      * @return void
      */
@@ -15,8 +14,7 @@ class MenusTableSeeder extends Seeder
         \DB::table('menus')->delete();
 
         \DB::table('menus')->insert([
-            0  =>
-                [
+            0  => [
                     'id'          => 1,
                     'parent_id'   => 24,
                     'icon'        => 'fa fa-list-alt',
@@ -28,8 +26,7 @@ class MenusTableSeeder extends Seeder
                     'created_at'  => '2016-05-03 19:55:02',
                     'updated_at'  => '2016-06-22 17:17:01',
                 ],
-            1  =>
-                [
+            1  => [
                     'id'          => 2,
                     'parent_id'   => 1,
                     'icon'        => 'fa fa-list',
@@ -41,8 +38,7 @@ class MenusTableSeeder extends Seeder
                     'created_at'  => '2016-05-03 20:15:42',
                     'updated_at'  => '2016-06-02 15:34:42',
                 ],
-            2  =>
-                [
+            2  => [
                     'id'          => 6,
                     'parent_id'   => 1,
                     'icon'        => 'fa fa-plus',
@@ -54,8 +50,7 @@ class MenusTableSeeder extends Seeder
                     'created_at'  => '2016-05-03 20:26:23',
                     'updated_at'  => '2016-06-02 15:34:47',
                 ],
-            3  =>
-                [
+            3  => [
                     'id'          => 7,
                     'parent_id'   => 1,
                     'icon'        => 'fa fa-edit',
@@ -67,8 +62,7 @@ class MenusTableSeeder extends Seeder
                     'created_at'  => '2016-05-04 17:49:50',
                     'updated_at'  => '2016-06-03 17:53:39',
                 ],
-            4  =>
-                [
+            4  => [
                     'id'          => 8,
                     'parent_id'   => 24,
                     'icon'        => 'fa fa-info',
@@ -80,8 +74,7 @@ class MenusTableSeeder extends Seeder
                     'created_at'  => '2016-05-11 10:52:22',
                     'updated_at'  => '2016-05-31 09:27:10',
                 ],
-            5  =>
-                [
+            5  => [
                     'id'          => 9,
                     'parent_id'   => 8,
                     'icon'        => 'fa fa-list',
@@ -93,8 +86,7 @@ class MenusTableSeeder extends Seeder
                     'created_at'  => '2016-05-11 11:03:49',
                     'updated_at'  => '2016-05-11 11:03:49',
                 ],
-            6  =>
-                [
+            6  => [
                     'id'          => 10,
                     'parent_id'   => 8,
                     'icon'        => 'fa fa-pie-chart',
@@ -106,8 +98,7 @@ class MenusTableSeeder extends Seeder
                     'created_at'  => '2016-05-11 11:04:30',
                     'updated_at'  => '2016-05-11 11:04:30',
                 ],
-            7  =>
-                [
+            7  => [
                     'id'          => 11,
                     'parent_id'   => 24,
                     'icon'        => 'fa fa-user',
@@ -119,8 +110,7 @@ class MenusTableSeeder extends Seeder
                     'created_at'  => '2016-05-31 09:18:59',
                     'updated_at'  => '2016-06-02 15:33:29',
                 ],
-            8  =>
-                [
+            8  => [
                     'id'          => 12,
                     'parent_id'   => 11,
                     'icon'        => 'fa fa-list',
@@ -132,8 +122,7 @@ class MenusTableSeeder extends Seeder
                     'created_at'  => '2016-05-31 09:23:28',
                     'updated_at'  => '2016-05-31 09:23:28',
                 ],
-            9  =>
-                [
+            9  => [
                     'id'          => 13,
                     'parent_id'   => 11,
                     'icon'        => 'fa fa-plus',
@@ -145,8 +134,7 @@ class MenusTableSeeder extends Seeder
                     'created_at'  => '2016-05-31 09:29:54',
                     'updated_at'  => '2016-05-31 09:29:54',
                 ],
-            10 =>
-                [
+            10 => [
                     'id'          => 14,
                     'parent_id'   => 11,
                     'icon'        => 'fa fa-edit',
@@ -158,8 +146,7 @@ class MenusTableSeeder extends Seeder
                     'created_at'  => '2016-05-31 09:36:54',
                     'updated_at'  => '2016-06-03 17:11:48',
                 ],
-            11 =>
-                [
+            11 => [
                     'id'          => 17,
                     'parent_id'   => 24,
                     'icon'        => 'fa fa-users',
@@ -171,8 +158,7 @@ class MenusTableSeeder extends Seeder
                     'created_at'  => '2016-06-12 09:51:26',
                     'updated_at'  => '2016-06-12 09:51:26',
                 ],
-            12 =>
-                [
+            12 => [
                     'id'          => 18,
                     'parent_id'   => 17,
                     'icon'        => 'fa fa-list',
@@ -184,8 +170,7 @@ class MenusTableSeeder extends Seeder
                     'created_at'  => '2016-06-12 09:52:06',
                     'updated_at'  => '2016-06-12 09:52:06',
                 ],
-            13 =>
-                [
+            13 => [
                     'id'          => 19,
                     'parent_id'   => 17,
                     'icon'        => 'fa fa-plus',
@@ -197,8 +182,7 @@ class MenusTableSeeder extends Seeder
                     'created_at'  => '2016-06-12 09:52:30',
                     'updated_at'  => '2016-06-12 10:02:30',
                 ],
-            14 =>
-                [
+            14 => [
                     'id'          => 20,
                     'parent_id'   => 24,
                     'icon'        => 'fa fa-check',
@@ -210,8 +194,7 @@ class MenusTableSeeder extends Seeder
                     'created_at'  => '2016-06-12 10:00:44',
                     'updated_at'  => '2016-06-12 10:00:44',
                 ],
-            15 =>
-                [
+            15 => [
                     'id'          => 21,
                     'parent_id'   => 20,
                     'icon'        => 'fa fa-list',
@@ -223,8 +206,7 @@ class MenusTableSeeder extends Seeder
                     'created_at'  => '2016-06-12 10:01:12',
                     'updated_at'  => '2016-06-12 10:01:12',
                 ],
-            16 =>
-                [
+            16 => [
                     'id'          => 22,
                     'parent_id'   => 20,
                     'icon'        => 'fa fa-plus',
@@ -236,8 +218,7 @@ class MenusTableSeeder extends Seeder
                     'created_at'  => '2016-06-12 10:01:58',
                     'updated_at'  => '2016-06-12 10:01:58',
                 ],
-            17 =>
-                [
+            17 => [
                     'id'          => 23,
                     'parent_id'   => 0,
                     'icon'        => 'fa fa-tachometer',
@@ -249,8 +230,7 @@ class MenusTableSeeder extends Seeder
                     'created_at'  => '2016-06-12 21:32:14',
                     'updated_at'  => '2016-06-12 21:45:16',
                 ],
-            18 =>
-                [
+            18 => [
                     'id'          => 24,
                     'parent_id'   => 0,
                     'icon'        => 'fa fa-desktop',
@@ -262,8 +242,7 @@ class MenusTableSeeder extends Seeder
                     'created_at'  => '2016-06-13 09:45:49',
                     'updated_at'  => '2016-06-13 09:45:49',
                 ],
-            19 =>
-                [
+            19 => [
                     'id'          => 25,
                     'parent_id'   => 1,
                     'icon'        => 'fa fa-search',
@@ -275,8 +254,7 @@ class MenusTableSeeder extends Seeder
                     'created_at'  => '2016-06-20 09:53:19',
                     'updated_at'  => '2016-06-20 09:53:19',
                 ],
-            20 =>
-                [
+            20 => [
                     'id'          => 26,
                     'parent_id'   => 20,
                     'icon'        => '',
@@ -288,8 +266,7 @@ class MenusTableSeeder extends Seeder
                     'created_at'  => '2016-06-21 11:58:39',
                     'updated_at'  => '2016-06-21 11:58:39',
                 ],
-            21 =>
-                [
+            21 => [
                     'id'          => 27,
                     'parent_id'   => 20,
                     'icon'        => '',
@@ -301,8 +278,7 @@ class MenusTableSeeder extends Seeder
                     'created_at'  => '2016-06-21 11:59:06',
                     'updated_at'  => '2016-06-21 11:59:06',
                 ],
-            22 =>
-                [
+            22 => [
                     'id'          => 51,
                     'parent_id'   => 24,
                     'icon'        => 'fa fa-keyboard-o',
@@ -314,8 +290,7 @@ class MenusTableSeeder extends Seeder
                     'created_at'  => '2016-06-24 15:41:28',
                     'updated_at'  => '2016-06-24 15:43:06',
                 ],
-            23 =>
-                [
+            23 => [
                     'id'          => 52,
                     'parent_id'   => 51,
                     'icon'        => 'fa fa-plus',
@@ -327,8 +302,7 @@ class MenusTableSeeder extends Seeder
                     'created_at'  => '2016-06-24 15:45:35',
                     'updated_at'  => '2016-06-24 15:45:35',
                 ],
-            24 =>
-                [
+            24 => [
                     'id'          => 53,
                     'parent_id'   => 51,
                     'icon'        => 'fa fa-list',
@@ -340,8 +314,7 @@ class MenusTableSeeder extends Seeder
                     'created_at'  => '2016-06-24 15:46:07',
                     'updated_at'  => '2016-06-24 15:46:39',
                 ],
-            25 =>
-                [
+            25 => [
                     'id'          => 54,
                     'parent_id'   => 51,
                     'icon'        => '',
@@ -353,8 +326,7 @@ class MenusTableSeeder extends Seeder
                     'created_at'  => '2016-06-24 15:50:25',
                     'updated_at'  => '2016-06-24 15:50:25',
                 ],
-            26 =>
-                [
+            26 => [
                     'id'          => 55,
                     'parent_id'   => 17,
                     'icon'        => '',
@@ -366,8 +338,7 @@ class MenusTableSeeder extends Seeder
                     'created_at'  => '2016-06-24 17:16:17',
                     'updated_at'  => '2016-06-24 17:22:18',
                 ],
-            27 =>
-                [
+            27 => [
                     'id'          => 56,
                     'parent_id'   => 17,
                     'icon'        => '',
@@ -380,7 +351,5 @@ class MenusTableSeeder extends Seeder
                     'updated_at'  => '2016-06-24 17:21:24',
                 ],
         ]);
-
-
     }
 }

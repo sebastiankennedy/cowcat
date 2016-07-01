@@ -5,7 +5,7 @@ namespace App\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * This is the menu repository facade class
+ * This is the menu repository facade class.
  */
 class PermissionRepository extends Facade
 {

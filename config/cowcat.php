@@ -1,4 +1,5 @@
 <?php
+
 return [
     /* 后台登录页面背景图片 */
     'background-images'            => [

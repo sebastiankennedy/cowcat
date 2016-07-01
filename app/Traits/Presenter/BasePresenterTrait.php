@@ -7,9 +7,8 @@ use Html;
 
 trait BasePresenterTrait
 {
-
     /**
-     * render action links
+     * render action links.
      *
      * @param $action
      *
@@ -27,9 +26,8 @@ trait BasePresenterTrait
         return $links;
     }
 
-
     /**
-     * render search form
+     * render search form.
      *
      * @param $form
      *
@@ -40,18 +38,17 @@ trait BasePresenterTrait
         $search = '<div class="row"><div class="col-md-12"><div class="box"><div class="box-body">';
         $search .= Form::open(['url' => $form['route'], 'method' => $form['method'], 'class' => $form['class']]);
         $array = array_map(function ($input) {
-            return '<div class="form-group">' . $this->buildInputByType($input) . '</div>';
+            return '<div class="form-group">'.$this->buildInputByType($input).'</div>';
         }, $form['inputs']);
-        $search .= implode(" ", $array);
+        $search .= implode(' ', $array);
         $search .= Form::close();
         $search .= '</div></div></div></div>';
 
         return $search;
     }
 
-
     /**
-     * build input by input type
+     * build input by input type.
      *
      * @param $input
      *
