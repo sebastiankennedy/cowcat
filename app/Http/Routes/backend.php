@@ -1,4 +1,5 @@
 <?php
+
 /* 后台首页 */
 Route::get('index/', [
     'as'   => 'backend.index.index',
@@ -14,7 +15,7 @@ Route::get('menu/search', [
 Route::resource('menu', 'MenuController');
 
 /* 用户管理模块 */
-Route::resource("user", 'UserController');
+Route::resource('user', 'UserController');
 
 /* 角色管理模块 */
 Route::get('role/permission/{id}', [
@@ -25,7 +26,7 @@ Route::post('role/associatePermission', [
     'as'   => 'backend.role.associate.permission',
     'uses' => 'RoleController@associatePermission',
 ]);
-Route::resource("role", 'RoleController');
+Route::resource('role', 'RoleController');
 
 /* 权限管理模块 */
 Route::get('permission/associate/{id}', [
@@ -40,8 +41,7 @@ Route::post('permission/associateActions', [
     'as'   => 'backend.permission.associate.actions',
     'uses' => 'PermissionController@associateActions',
 ]);
-Route::resource("permission", 'PermissionController');
+Route::resource('permission', 'PermissionController');
 
 /* 操作管理模块 */
 Route::resource('action', 'ActionController');
-

@@ -7,9 +7,9 @@ use Illuminate\Contracts\View\View;
 class RoleComposer
 {
     /**
-     * 将数据绑定到视图
+     * 将数据绑定到视图.
      *
-     * @param  View $view
+     * @param View $view
      *
      * @return mixed
      */

@@ -3,16 +3,18 @@
 namespace App\Http\Middleware;
 
 use App\Facades\UserRepository;
-use Auth, Route, URL;
+use Auth;
 use Closure;
+use Route;
+use URL;
 
 class Authorize
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Closure                 $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
      *
      * @return mixed
      */
@@ -20,7 +22,7 @@ class Authorize
     {
         /* 判断当前用户是否登录或缓存是否过期 */
         $user = Auth::user();
-        if ( ! $user) {
+        if (!$user) {
             return redirect()->to('/auth/logout');
         }
 
@@ -34,42 +36,36 @@ class Authorize
         $action = Route::current()->getActionName();
         $previousUrl = URL::previous();
 
-        if ( ! $request->ajax()) {
-
+        if (!$request->ajax()) {
             if ($request->getMethod() == 'GET') {
-
                 $menus = UserRepository::getUserMenusPermissionsByUserModel($user);
 
-                if ( ! $menus) {
+                if (!$menus) {
                     return view('backend.errors.403', compact('previousUrl'));
                 }
 
-                if ( ! in_array($route, $menus)) {
-
+                if (!in_array($route, $menus)) {
                     return view('backend.errors.403', compact('previousUrl'));
                 }
             } else {
                 $actions = UserRepository::getUserActionPermissionsByUserModel($user);
 
-                if ( ! $actions) {
+                if (!$actions) {
                     return view('backend.errors.403', compact('previousUrl'));
                 }
 
-                if ( ! in_array($action, $actions)) {
-
+                if (!in_array($action, $actions)) {
                     return view('backend.errors.403', compact('previousUrl'));
                 }
             }
         } else {
-
             $actions = UserRepository::getUserActionPermissionsByUserModel($user);
 
-            if ( ! $actions) {
+            if (!$actions) {
                 return response()->json(['status' => 0, 'message' => '没有权限执行此操作']);
             }
 
-            if ( ! in_array($action, $actions)) {
-
+            if (!in_array($action, $actions)) {
                 return response()->json(['status' => 0, 'message' => '没有权限执行此操作']);
             }
         }

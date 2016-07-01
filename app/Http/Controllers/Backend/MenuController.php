@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Backend;
 
 use App\Facades\MenuRepository;
 use App\Http\Controllers\Controller;
-use App\Http\Requests;
 use App\Http\Requests\Form\MenuCreateForm;
 use Illuminate\Http\Request;
 
@@ -25,7 +24,7 @@ class MenuController extends Controller
     /**
      * Display a listing of the resource by the search condition.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -51,7 +50,7 @@ class MenuController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\Form\MenuCreateForm $request
+     * @param \App\Http\Requests\Form\MenuCreateForm $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -59,10 +58,9 @@ class MenuController extends Controller
     {
         try {
             if (MenuRepository::create($request->all())) {
-                return $this->successRoutTo('backend.menu.index', "新增菜单成功");
+                return $this->successRoutTo('backend.menu.index', '新增菜单成功');
             }
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             return $this->errorBackTo(['error' => $e->getMessage()]);
         }
     }
@@ -70,7 +68,7 @@ class MenuController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -81,7 +79,7 @@ class MenuController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -96,8 +94,8 @@ class MenuController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\Form\MenuCreateForm $request
-     * @param  int                                    $id
+     * @param \App\Http\Requests\Form\MenuCreateForm $request
+     * @param int                                    $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -106,11 +104,9 @@ class MenuController extends Controller
         $data = $request->except(['_token', '_method']);
         try {
             if (MenuRepository::saveById($id, $data)) {
-
                 return $this->successRoutTo('backend.menu.index', '编辑菜单成功');
             }
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             return $this->errorBackTo(['error' => $e->getMessage()]);
         }
     }
@@ -118,7 +114,7 @@ class MenuController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -126,17 +122,15 @@ class MenuController extends Controller
     {
         $childMenus = MenuRepository::getChildMenusById($id);
 
-        if ( ! empty($childMenus)) {
-            return $this->errorBackTo("请先删除其下级分类");
+        if (!empty($childMenus)) {
+            return $this->errorBackTo('请先删除其下级分类');
         }
 
         try {
             if (MenuRepository::destroy($id)) {
-
                 return $this->successBackTo('删除菜单成功');
             }
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             return $this->errorBackTo(['error' => $e->getMessage()]);
         }
     }

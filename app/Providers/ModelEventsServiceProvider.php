@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
+use App\Events\Cache\ClearMenuCacheEvent;
 use App\Models\Menu;
 use Illuminate\Support\ServiceProvider;
-use App\Events\Cache\ClearMenuCacheEvent;
 
 class ModelEventsServiceProvider extends ServiceProvider
 {
@@ -19,7 +19,7 @@ class ModelEventsServiceProvider extends ServiceProvider
     }
 
     /**
-     * 监听菜单模型事件
+     * 监听菜单模型事件.
      */
     public function listenMenuModelEvents()
     {

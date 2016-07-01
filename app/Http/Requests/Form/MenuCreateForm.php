@@ -32,7 +32,7 @@ class MenuCreateForm extends Request
     }
 
     /**
-     * Get the validation message that apply to the request
+     * Get the validation message that apply to the request.
      *
      * @return array
      */

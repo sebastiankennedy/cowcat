@@ -3,47 +3,49 @@
 namespace App\Presenters;
 
 use App\Facades\UserRepository;
-use Cache, Route, Auth;
+use Auth;
+use Cache;
+use Route;
 
 /**
- * Menu View Presenters
+ * Menu View Presenters.
  */
 class MainPresenter extends CommonPresenter
 {
     /**
-     * 左侧栏视图缓存键
+     * 左侧栏视图缓存键.
      */
     const SIDEBAR_MENUS_CACHE = 'sidebar_menus_view_cache';
 
     /**
-     * 面包屑导航缓存键
+     * 面包屑导航缓存键.
      */
     const BREADCRUMBS_MENUS_CACHE = 'breadcrumbs_menus_view_cache:';
 
     /**
-     * 渲染左侧栏视图
+     * 渲染左侧栏视图.
      *
-     * @param  array $route
-     * @param  array $menus
+     * @param array $route
+     * @param array $menus
      *
      * @return mixed
      */
     public function renderSidebar(array $menus, $route)
     {
         $user = Auth::user();
-        if ( ! $user) {
+        if (!$user) {
             return redirect()->to('/auth/logout');
         }
 
         $routes = UserRepository::getUserMenusPermissionsByUserModel($user);
 
-        if ( ! $routes) {
-            return "";
+        if (!$routes) {
+            return '';
         }
 
         if ($user['is_super_admin'] == 0) {
             foreach ($menus as $key => $menu) {
-                if ( ! in_array($menu['route'], $routes)) {
+                if (!in_array($menu['route'], $routes)) {
                     unset($menus[$key]);
                 }
             }
@@ -63,9 +65,8 @@ class MainPresenter extends CommonPresenter
         return $sidebar;
     }
 
-
     /**
-     * 生成面包屑数组
+     * 生成面包屑数组.
      *
      * @param array  $menus
      * @param string $route
@@ -96,7 +97,7 @@ class MainPresenter extends CommonPresenter
     }
 
     /**
-     * 生成左侧栏
+     * 生成左侧栏.
      *
      * @param array $menus
      * @param array $active
@@ -105,7 +106,7 @@ class MainPresenter extends CommonPresenter
      */
     protected static function makeSidebar(array $menus, $active)
     {
-        $sidebar = "";
+        $sidebar = '';
 
         foreach ($menus as $menu) {
             if ($menu['hide'] == 0) {
@@ -116,12 +117,12 @@ class MainPresenter extends CommonPresenter
                         $sidebar .= '<li class="treeview">';
                     }
                     $sidebar .= '<a href="javascript:void(0);">
-                                    <i class="' . $menu['icon'] . '"></i>
-                                    <span>' . $menu['name'] . '</span>
+                                    <i class="'.$menu['icon'].'"></i>
+                                    <span>'.$menu['name'].'</span>
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </a>
-                            <ul class="treeview-menu">' .
-                        self::makeSidebar($menu['child'], $active) . '
+                            <ul class="treeview-menu">'.
+                        self::makeSidebar($menu['child'], $active).'
                             </ul>
                         </li>';
                 } else {
@@ -132,12 +133,12 @@ class MainPresenter extends CommonPresenter
                     }
 
                     if (Route::has($menu['route'])) {
-                        $sidebar .= '<a href="' . route($menu['route']) . '">';
+                        $sidebar .= '<a href="'.route($menu['route']).'">';
                     } else {
                         $sidebar .= '<a href="javascript:void(0);">';
                     }
-                    $sidebar .= '<i class="' . $menu['icon'] . '"></i>
-                                <span> ' . $menu['name'] . '</span>
+                    $sidebar .= '<i class="'.$menu['icon'].'"></i>
+                                <span> '.$menu['name'].'</span>
                             </a>
                         </li>';
                 }
@@ -148,29 +149,29 @@ class MainPresenter extends CommonPresenter
     }
 
     /**
-     * 渲染面包屑导航条视图
+     * 渲染面包屑导航条视图.
      *
-     * @param  array  $menus
-     * @param  string $route
+     * @param array  $menus
+     * @param string $route
      *
      * @return mixed
      */
     public function renderBreadcrumbs(array $menus, $route)
     {
-        $breadcrumbs = Cache::get(self::BREADCRUMBS_MENUS_CACHE . $route);
+        $breadcrumbs = Cache::get(self::BREADCRUMBS_MENUS_CACHE.$route);
         if ($breadcrumbs) {
             return $breadcrumbs;
         } else {
             $array = self::buildBreadcrumbsArray($menus, $route);
             $breadcrumbs = self::makeBreadcrumbs($array);
-            Cache::forever(self::BREADCRUMBS_MENUS_CACHE . $route, $breadcrumbs);
+            Cache::forever(self::BREADCRUMBS_MENUS_CACHE.$route, $breadcrumbs);
 
             return $breadcrumbs;
         }
     }
 
     /**
-     * 生成面包屑
+     * 生成面包屑.
      *
      * @param array $array
      *
@@ -181,7 +182,6 @@ class MainPresenter extends CommonPresenter
         $array = two_dimensional_array_sort($array, 'sort', SORT_ASC);
         $breadcrumbs = '<ol class="breadcrumb">';
         foreach ($array as $key => $value) {
-
             if (count($array) == $key + 1) {
                 $breadcrumbs .= '<li class="active">';
             } else {
@@ -190,7 +190,7 @@ class MainPresenter extends CommonPresenter
 
             if ($value['route']) {
                 if (Route::has($value['route'])) {
-                    $breadcrumbs .= '<a href="' . route($value['route']) . '">';
+                    $breadcrumbs .= '<a href="'.route($value['route']).'">';
                 } else {
                     $breadcrumbs .= '<a href="#">';
                 }
@@ -199,7 +199,7 @@ class MainPresenter extends CommonPresenter
             }
 
             if ($value['icon']) {
-                $breadcrumbs .= '<i class="fa ' . $value['icon'] . '"></i> ';
+                $breadcrumbs .= '<i class="fa '.$value['icon'].'"></i> ';
             }
             $breadcrumbs .= $value['name'];
             $breadcrumbs .= '</a>';

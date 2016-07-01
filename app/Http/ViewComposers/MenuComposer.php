@@ -8,9 +8,9 @@ use Illuminate\Contracts\View\View;
 class MenuComposer
 {
     /**
-     * building data to the view
+     * building data to the view.
      *
-     * @param  View $view
+     * @param View $view
      *+
      *
      * @return mixed

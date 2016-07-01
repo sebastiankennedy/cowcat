@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Repositories;
 
 use App\Traits\Repository\BaseRepositoryTrait;
@@ -31,6 +32,5 @@ abstract class CommonRepository
 
     public function clearCache()
     {
-
     }
 }

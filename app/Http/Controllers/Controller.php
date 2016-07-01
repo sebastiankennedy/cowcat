@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Routing\Controller as BaseController;
 
 /**
- * Base Controller
- *
- * @package App\Http\Controllers
+ * Base Controller.
  */
 abstract class Controller extends BaseController
 {
@@ -21,11 +19,10 @@ abstract class Controller extends BaseController
      */
     public function __construct()
     {
-
     }
 
     /**
-     * JSON 响应
+     * JSON 响应.
      *
      * @param     $data
      * @param int $code
@@ -38,7 +35,7 @@ abstract class Controller extends BaseController
     }
 
     /**
-     * 成功时路由跳转
+     * 成功时路由跳转.
      *
      * @param $route
      * @param $message
@@ -51,7 +48,7 @@ abstract class Controller extends BaseController
     }
 
     /**
-     * 成功时返回当前页
+     * 成功时返回当前页.
      *
      * @param $message
      *
@@ -63,7 +60,7 @@ abstract class Controller extends BaseController
     }
 
     /**
-     * 失败时路由跳转
+     * 失败时路由跳转.
      *
      * @param $route
      * @param $message
@@ -76,7 +73,7 @@ abstract class Controller extends BaseController
     }
 
     /**
-     * 失败时返回当前页
+     * 失败时返回当前页.
      *
      * @param $message
      *
@@ -86,5 +83,4 @@ abstract class Controller extends BaseController
     {
         return redirect()->back()->withErrors($message)->withInput();
     }
-
 }

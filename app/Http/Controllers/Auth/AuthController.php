@@ -2,37 +2,35 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\User;
 use App\Http\Controllers\Controller;
-use Validator;
+use App\Models\User;
+use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Validator;
 
 /**
- * 登录认证控制器
- *
- * @package App\Http\Controllers\Auth
+ * 登录认证控制器.
  */
 class AuthController extends Controller
 {
     /**
-     * 设置成功登录后转向的页面:
+     * 设置成功登录后转向的页面:.
      *
      * @var string
      */
     public $redirectPath = '/backend/index';
 
     /**
-     * 设置登录失败后转向的页面
+     * 设置登录失败后转向的页面.
      *
      * @var string
      */
     protected $loginPath = '/auth/login';
 
     /**
-     * 设置退出登录后转向的页面
+     * 设置退出登录后转向的页面.
      *
      * @var string
      */
@@ -78,7 +76,7 @@ class AuthController extends Controller
     /**
      * Handle a login request to the application.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -124,7 +122,7 @@ class AuthController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array $data
+     * @param array $data
      *
      * @return \Illuminate\Contracts\Validation\Validator
      */
@@ -140,7 +138,7 @@ class AuthController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array $data
+     * @param array $data
      *
      * @return User
      */

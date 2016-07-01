@@ -6,7 +6,7 @@ trait BaseRepositoryTrait
 {
     public function validate(array $data, $rules = null, $custom = false)
     {
-        if ( ! $custom) {
+        if (!$custom) {
             $rules = $this->rules($rules);
         }
 
@@ -111,12 +111,12 @@ trait BaseRepositoryTrait
     {
         $model = $this->model;
 
-        if ( ! empty($where)) {
+        if (!empty($where)) {
             foreach ($where as $field => $value) {
                 if (is_array($value)) {
                     list($field, $condition, $val) = $value;
                     if ($condition !== '=') {
-                        $condition = 'where' . ucfirst($condition);
+                        $condition = 'where'.ucfirst($condition);
                         $model = $model->$condition($field, $val);
                     } else {
                         $model = $model->where($field, $condition, $val);

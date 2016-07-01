@@ -1,4 +1,5 @@
 <?php
+
 return [
     'models'     => [
         'menu'       => 'App\Models\Menu',

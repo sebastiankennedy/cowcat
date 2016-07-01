@@ -2,11 +2,11 @@
 
 namespace App\Providers;
 
-use App\Repositories\UserRepository;
-use App\Repositories\MenuRepository;
-use App\Repositories\RoleRepository;
 use App\Repositories\ActionRepository;
+use App\Repositories\MenuRepository;
 use App\Repositories\PermissionRepository;
+use App\Repositories\RoleRepository;
+use App\Repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -19,7 +19,7 @@ class RepositoryServiceProvider extends ServiceProvider
     public function boot()
     {
         // 合并自定义配置文件
-        $configuration = realpath(__DIR__ . '/../../config/repository.php');
+        $configuration = realpath(__DIR__.'/../../config/repository.php');
         $this->mergeConfigFrom($configuration, 'repository');
     }
 
@@ -38,7 +38,7 @@ class RepositoryServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the Menu Repository
+     * Register the Menu Repository.
      *
      * @return mixed
      */

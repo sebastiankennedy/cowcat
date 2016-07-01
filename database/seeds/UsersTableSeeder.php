@@ -4,21 +4,17 @@ use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
 {
-
     /**
-     * Auto generated seed file
+     * Auto generated seed file.
      *
      * @return void
      */
     public function run()
     {
-
-
         \DB::table('users')->delete();
 
         \DB::table('users')->insert([
-            0 =>
-                [
+            0 => [
                     'id'             => 3,
                     'name'           => 'admin',
                     'email'          => 'admin@qq.com',
@@ -28,8 +24,7 @@ class UsersTableSeeder extends Seeder
                     'updated_at'     => '2016-06-27 09:06:34',
                     'is_super_admin' => 1,
                 ],
-            1 =>
-                [
+            1 => [
                     'id'             => 4,
                     'name'           => 'luis',
                     'email'          => 'luisedware@qq.com',
@@ -40,7 +35,5 @@ class UsersTableSeeder extends Seeder
                     'is_super_admin' => 0,
                 ],
         ]);
-
-
     }
 }

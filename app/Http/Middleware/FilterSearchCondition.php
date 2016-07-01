@@ -11,8 +11,8 @@ class FilterSearchCondition
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Closure                 $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
      *
      * @return mixed
      */
@@ -20,7 +20,7 @@ class FilterSearchCondition
     {
         $array = [];
         foreach ($request->all() as $field => $value) {
-            if (( ! empty($value) || $value === '0')) {
+            if ((!empty($value) || $value === '0')) {
                 if ($field === 'page') {
                     $array['page'] = $value;
                     continue;
@@ -40,9 +40,9 @@ class FilterSearchCondition
     }
 
     /**
-     * format string time to array time
+     * format string time to array time.
      *
-     * @param  mixed $value
+     * @param mixed $value
      *
      * @return array
      */

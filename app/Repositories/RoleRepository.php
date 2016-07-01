@@ -5,12 +5,12 @@ namespace App\Repositories;
 use App\Facades\PermissionRepository;
 
 /**
- * Role Model Repository
+ * Role Model Repository.
  */
 class RoleRepository extends CommonRepository
 {
     /**
-     * 根据角色模型获取分组权限
+     * 根据角色模型获取分组权限.
      *
      * @param $role
      *
@@ -25,7 +25,7 @@ class RoleRepository extends CommonRepository
         foreach ($permissions as $key => $permission) {
             $data[$key]['id'] = $permission['id'];
             $data[$key]['pId'] = $permission['type'];
-            $data[$key]['name'] = $permission['display_name'] . '(' . $permission['name'] . ')';
+            $data[$key]['name'] = $permission['display_name'].'('.$permission['name'].')';
             $data[$key]['open'] = true;
             in_array($permission['id'], $rolePermission) && $data[$key]['checked'] = true;
         }
@@ -41,8 +41,8 @@ class RoleRepository extends CommonRepository
 
         $arr = [];
         $arr['id'] = 0;
-        $arr['pId'] = "";
-        $arr['name'] = "全部权限";
+        $arr['pId'] = '';
+        $arr['name'] = '全部权限';
         $arr['open'] = true;
         array_push($data, $arr);
 

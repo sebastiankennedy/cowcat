@@ -7,16 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Action extends Model
 {
     /**
-     * [$guarded description]
+     * [$guarded description].
      *
      * @var array
      */
     protected $guarded = [];
 
     /**
-     * [$guarded description]
+     * [$guarded description].
      *
      * @var string
      */
-    protected $table = "actions";
+    protected $table = 'actions';
 }
