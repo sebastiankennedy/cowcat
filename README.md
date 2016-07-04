@@ -20,7 +20,7 @@ Free,open-source CMS based on the Laravel PHP Framework
 ## Page PreView
 
 
-![](http://o93kt6djh.bkt.clouddn.com/cowcat1.Login.png)
+<!-- ![](http://o93kt6djh.bkt.clouddn.com/cowcat1.Login.png)
 
 ![](http://o93kt6djh.bkt.clouddn.com/cowcat2.Index.png)
 
@@ -30,7 +30,7 @@ Free,open-source CMS based on the Laravel PHP Framework
 
 ![](http://o93kt6djh.bkt.clouddn.com/cowcat5.Permission.png)
 
-![](http://o93kt6djh.bkt.clouddn.com/cowcat6.Assocate.png)
+![](http://o93kt6djh.bkt.clouddn.com/cowcat6.Assocate.png) -->
 
 
 ## Requirements
