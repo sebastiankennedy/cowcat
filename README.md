@@ -8,15 +8,6 @@ Free,open-source CMS based on the Laravel PHP Framework
 
 ## Features
 
-![]("http://o93kt6djh.bkt.clouddn.com/cowcatv1.01.Login.png","")
-
-![]("http://o93kt6djh.bkt.clouddn.com/cowcatv1.02.Index.png","")
-
-![]("http://o93kt6djh.bkt.clouddn.com/cowcatv1.03.Menu.png","")
-![]("http://o93kt6djh.bkt.clouddn.com/cowcatv1.04.Log.png","")
-![]("http://o93kt6djh.bkt.clouddn.com/cowcatv1.05.Permission.png","")
-![]("http://o93kt6djh.bkt.clouddn.com/cowcatv1.06.Asscocate.png","")
-
 * Simple
 * Log
 * Auth
@@ -24,10 +15,22 @@ Free,open-source CMS based on the Laravel PHP Framework
 * Menu
 * Action
 * Roles & Permissions
+* Repository && Presenters && Services
 
 ## Page PreView
 
 
+![](http://o93kt6djh.bkt.clouddn.com/cowcat1.Login.png)
+
+![](http://o93kt6djh.bkt.clouddn.com/cowcat2.Index.png)
+
+![](http://o93kt6djh.bkt.clouddn.com/cowcat3.Menu.png)
+
+![](http://o93kt6djh.bkt.clouddn.com/cowcat4.Log.png)
+
+![](http://o93kt6djh.bkt.clouddn.com/cowcat5.Permission.png)
+
+![](http://o93kt6djh.bkt.clouddn.com/cowcat6.Assocate.png)
 
 
 ## Requirements
