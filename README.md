@@ -20,17 +20,17 @@ Free,open-source CMS based on the Laravel PHP Framework
 ## Page PreView
 
 
-![](http://luisedware.oss-cn-shenzhen.aliyuncs.com/1.Login.png)
+![](http://o93kt6djh.bkt.clouddn.com/cowcat-1.Login.png)
 
-![](http://luisedware.oss-cn-shenzhen.aliyuncs.com/2.Index.png)
+![](http://o93kt6djh.bkt.clouddn.com/cowcat-2.Index.png)
 
-![](http://luisedware.oss-cn-shenzhen.aliyuncs.com/3.Menu.png)
+![](http://o93kt6djh.bkt.clouddn.com/cowcat-3.Menu.png)
 
-![](http://luisedware.oss-cn-shenzhen.aliyuncs.com/4.Log.png)
+![](http://o93kt6djh.bkt.clouddn.com/cowcat-4.Log.png)
 
-![](http://luisedware.oss-cn-shenzhen.aliyuncs.com/5.Permission.png)
+![](http://o93kt6djh.bkt.clouddn.com/cowcat-5.Permission.png)
 
-![](http://luisedware.oss-cn-shenzhen.aliyuncs.com/6.Assocate.png)
+![](http://o93kt6djh.bkt.clouddn.com/cowcat-6.Assocate.png)
 
 
 ## Requirements
