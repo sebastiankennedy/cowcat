@@ -20,7 +20,7 @@ Free,open-source CMS based on the Laravel PHP Framework
 ## Page PreView
 
 
-<!-- ![](http://o93kt6djh.bkt.clouddn.com/cowcat1.Login.png)
+![](http://o93kt6djh.bkt.clouddn.com/cowcat1.Login.png)
 
 ![](http://o93kt6djh.bkt.clouddn.com/cowcat2.Index.png)
 
@@ -30,7 +30,7 @@ Free,open-source CMS based on the Laravel PHP Framework
 
 ![](http://o93kt6djh.bkt.clouddn.com/cowcat5.Permission.png)
 
-![](http://o93kt6djh.bkt.clouddn.com/cowcat6.Assocate.png) -->
+![](http://o93kt6djh.bkt.clouddn.com/cowcat6.Assocate.png)
 
 
 ## Requirements
@@ -63,13 +63,34 @@ Free,open-source CMS based on the Laravel PHP Framework
 
 - [ ] Email
 - [ ] Billing
+- [ ] Wechat
 - [ ] Image Upload
-- [ ] Rich Text Editor && Markdown
 - [ ] Register & Login By OAuth
+- [ ] Rich Text Editor && Markdown
 
 
-## Thinks
+## Thinks :D
 
+- Site
+	- [PHPHub](https://phphub.org/)
+	- [LaraBase](http://laravelbase.com/)
+	- [Laravel.So](http://laravel.so/)
+	- [Laravel 学院](http://laravelacademy.org/)
+- Project
+	- [BootstrapCMS/CMS](https://github.com/BootstrapCMS/CMS)
+	- [yccphp/laravel-5-blog](https://github.com/yccphp/laravel-5-blog)
+	- [yuansir/laravel5-rbac-example](https://github.com/yuansir/laravel5-rbac-example)
+	- [rappasoft/laravel-5-boilerplate](https://github.com/rappasoft/laravel-5-boilerplate)
+- PHP Package
+	- [zizaco/entrust](https://github.com/Zizaco/entrust)
+	- [orangehill/iseed](https://github.com/orangehill/iseed)
+	- [arcanedev/log-viewer](https://packagist.org/packages/arcanedev/log-viewer)
+	- [barryvdh/laravel-debugbar](https://github.com/barryvdh/laravel-debugbar)
+	- [barryvdh/laravel-ide-helper](https://github.com/barryvdh/laravel-ide-helper)
+- Javascript Package
+	- [ztree](https://github.com/uibox/ztree)
+	- [admin-lte](http://github.com/almasaeed2010/AdminLTE)
+	- [sweetalert](https://github.com/t4t5/sweetalert)
 
 
 ## License
