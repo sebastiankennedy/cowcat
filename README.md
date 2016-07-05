@@ -43,14 +43,15 @@ Free,open-source CMS based on the Laravel PHP Framework
 
 - Homebrew
 - PHP - 7.0.7
-- MySQL - 5.7.13
 - Redis - 3.2.0
 - Nginx - 1.10.1
+- MySQL - 5.7.13
 
 ## Installation
 
 1. **`git clone https://github.com/luisedware/CowCat.git`**
 1. **`cd CowCat`**
+1. **`sudo chmod -R 777 storage/`**
 1. **`sudo composer install`**
 1. **`sudo npm install`**
 1. **`sudo vi .env`**
@@ -58,6 +59,8 @@ Free,open-source CMS based on the Laravel PHP Framework
 1. **`php artisan serve`**
 1. **`gulp watch`**
 
+> UserName: admin@qq.com or user@qq.com
+> password: 123456
 
 ## Todo
 
@@ -96,3 +99,5 @@ Free,open-source CMS based on the Laravel PHP Framework
 ## License
 
 [MIT License](http://opensource.org/licenses/MIT)
+
+

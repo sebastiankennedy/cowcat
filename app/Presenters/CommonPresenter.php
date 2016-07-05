@@ -26,6 +26,6 @@ abstract class CommonPresenter
      */
     public function showCopyright()
     {
-        return ' <strong>Copyright © ' . date('Y') . ' <a href="https://github.com/luisedware" target="_blank">Build with Laravel by Luis </a></strong> ';
+        return ' <strong>Copyright © ' . date('Y') . ' <a href="https://github.com/luisedware" target="_blank">Build with Laravel by Luis Edware </a></strong> ';
     }
 }
