@@ -59,8 +59,19 @@ Free,open-source CMS based on the Laravel PHP Framework
 1. **`gulp watch`**
 
 
+## Todo
+
+- [ ] Email
+- [ ] Billing
+- [ ] Image Upload
+- [ ] Rich Text Editor && Markdown
+- [ ] Register & Login By OAuth
+
+
+## Thinks
+
+
+
 ## License
 
 [MIT License](http://opensource.org/licenses/MIT)
-
-## Thinks
