@@ -101,3 +101,6 @@ Free,open-source CMS based on the Laravel PHP Framework
 [MIT License](http://opensource.org/licenses/MIT)
 
 
+## 公告
+
+最近搬家,没有网络,更新略慢些。

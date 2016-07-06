@@ -107,10 +107,7 @@ class ActionController extends Controller
      */
     public function update(ActionCreateForm $request, $id)
     {
-        $data = $request->all();
-
-        unset($data['_token']);
-        unset($data['_method']);
+        $data = $request->except(['_token', '_method']);
 
         try {
             if (ActionRepository::updateById($id, $data)) {
