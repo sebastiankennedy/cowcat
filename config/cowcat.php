@@ -42,4 +42,11 @@ return [
         'Barryvdh\Debugbar\Controllers\AssetController@css',
         'Barryvdh\Debugbar\Controllers\AssetController@js',
     ],
+    /* 上传文件配置 */
+    'uploads'                      => [
+        'storage' => 'local',
+        'webpath' => '/uploads',
+    ],
+
+
 ];

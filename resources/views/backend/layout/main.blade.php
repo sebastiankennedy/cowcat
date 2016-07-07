@@ -8,7 +8,7 @@
     <title>{{ $page_title or "Cowcat Dashboard" }}</title>
     @yield('before.css')
     <link rel="stylesheet" type="text/css" href="/assets/plugins/pace/pace.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ elixir('assets/css/app.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ elixir('assets/backend/css/app.min.css') }}">
     @yield('after.css')
 </head>
 
@@ -31,7 +31,7 @@
 </div>
 
 @yield('before.js')
-<script type="text/javascript" src="{{ elixir('assets/js/app.min.js') }}"></script>
+<script type="text/javascript" src="{{ elixir('assets/backend/js/app.min.js') }}"></script>
 <script type="text/javascript" src="/assets/plugins/pace/pace.min.js"></script>
 <script type="text/javascript">
     $(function () {
