@@ -2,18 +2,18 @@
 return [
     /* 后台登录页面背景图片 */
     'background-images'            => [
-        '/assets/images/background/1.jpg',
-        '/assets/images/background/2.jpg',
-        '/assets/images/background/3.jpg',
-        '/assets/images/background/4.jpg',
-        '/assets/images/background/5.jpg',
-        '/assets/images/background/8.jpg',
-        '/assets/images/background/9.jpg',
-        '/assets/images/background/10.jpg',
-        '/assets/images/background/11.jpg',
-        '/assets/images/background/12.jpg',
-        '/assets/images/background/13.jpg',
-        '/assets/images/background/14.jpg',
+        '/assets/backend/images/background/1.jpg',
+        '/assets/backend/images/background/2.jpg',
+        '/assets/backend/images/background/3.jpg',
+        '/assets/backend/images/background/4.jpg',
+        '/assets/backend/images/background/5.jpg',
+        '/assets/backend/images/background/8.jpg',
+        '/assets/backend/images/background/9.jpg',
+        '/assets/backend/images/background/10.jpg',
+        '/assets/backend/images/background/11.jpg',
+        '/assets/backend/images/background/12.jpg',
+        '/assets/backend/images/background/13.jpg',
+        '/assets/backend/images/background/14.jpg',
     ],
     /* 权限管理类型 */
     'permission-type'              => [

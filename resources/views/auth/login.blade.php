@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Cow Cat CMS</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <link rel="stylesheet" type="text/css" href="{{ elixir('assets/css/app.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="/assets/plugins/iCheck/all.css">
+    <link rel="stylesheet" type="text/css" href="{{ elixir('assets/backend/css/app.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="/assets/backend/plugins/iCheck/all.css">
 </head>
 <body id="login" class="hold-transition login-page" style="background-image: url('{{array_random(config('cowcat.background-images'))}}');">
 <div class="login-box">
@@ -53,7 +53,7 @@
         </form>
     </div>
 </div>
-<script type="text/javascript" src="{{ elixir('assets/js/app.min.js') }}"></script>
+<script type="text/javascript" src="{{ elixir('assets/backend/js/app.min.js') }}"></script>
 <script type="text/javascript" src="/assets/plugins/iCheck/icheck.min.js"></script>
 <script>
     $(function () {
