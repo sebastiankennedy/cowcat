@@ -19429,3 +19429,9 @@ body#login {
 .login-box-body {
   border-radius: 10px;
 }
+
+.dropzone {
+  border: 2px dashed #d2d6de;
+  border-radius: 5px;
+  background: white;
+}

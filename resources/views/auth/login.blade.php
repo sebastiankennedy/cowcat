@@ -7,7 +7,6 @@
     <title>Cow Cat CMS</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" type="text/css" href="{{ elixir('assets/backend/css/app.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="/assets/backend/plugins/iCheck/all.css">
 </head>
 <body id="login" class="hold-transition login-page" style="background-image: url('{{array_random(config('cowcat.background-images'))}}');">
 <div class="login-box">
@@ -39,14 +38,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-8">
-                    <div class="checkbox icheck">
-                        <label>
-                            <input type="checkbox" name="remember" value="1"> 保持登录
-                        </label>
-                    </div>
-                </div>
-                <div class="col-xs-4">
+                <div class="col-xs-4 pull-right">
                     <button type="submit" class="btn btn-success btn-block btn-flat">登 录</button>
                 </div>
             </div>
@@ -54,15 +46,6 @@
     </div>
 </div>
 <script type="text/javascript" src="{{ elixir('assets/backend/js/app.min.js') }}"></script>
-<script type="text/javascript" src="/assets/plugins/iCheck/icheck.min.js"></script>
-<script>
-    $(function () {
-        $('input').iCheck({
-            checkboxClass: 'icheckbox_square-yellow',
-            increaseArea: '20%'
-        });
-    });
-</script>
 </body>
 
 </html>

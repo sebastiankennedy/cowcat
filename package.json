@@ -7,6 +7,7 @@
     "admin-lte": "^2.3.3",
     "bootstrap": "^3.3.6",
     "bootstrap-sass": "^3.0.0",
+    "dropzone": "^4.3.0",
     "font-awesome": "^4.6.3",
     "ionicons": "^3.0.0",
     "jquery": "^2.2.0",

@@ -1,4 +1,4 @@
-<div class="modal fade modal-danger" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel">
+<div class="modal fade modal-danger" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel">
     <form class="form-horizontal" method="post" enctype="multipart/form-data">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
