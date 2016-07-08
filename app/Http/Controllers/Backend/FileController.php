@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\File;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -17,7 +18,9 @@ class FileController extends Controller
      */
     public function index()
     {
-        return view('backend.file.index');
+        $data = File::paginate(config('repository.page-limit'));
+
+        return view('backend.file.index', compact('data'));
     }
 
     public function upload(Request $request)
@@ -31,8 +34,13 @@ class FileController extends Controller
             if ($result['status'] == 0) {
                 return $this->responseJson($result);
             }
+
+            if (File::create($result['data'])) {
+                return $this->responseJson($result);
+            }
         }
         catch (\Exception $e) {
+            return $this->responseJson($e->getMessage());
         }
     }
 }

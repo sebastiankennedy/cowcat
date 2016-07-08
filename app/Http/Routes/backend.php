@@ -45,8 +45,12 @@ Route::resource("permission", 'PermissionController');
 /* 操作管理模块 */
 Route::resource('action', 'ActionController');
 
-Route::get('file', 'FileController@index');
+/* 文件管理木块 */
+Route::get('file', [
+    'as'   => 'backend.file.index',
+    'uses' => 'FileController@index',
+]);
 Route::post('file/upload', [
-    'as'   => 'file.upload',
+    'as'   => 'backend.file.upload',
     'uses' => 'FileController@upload',
 ]);

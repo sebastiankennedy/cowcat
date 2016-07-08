@@ -70,11 +70,4 @@ class UploadService
 
         return ['message' => '上传文件成功', 'status' => 1, 'data' => $info];
     }
-
-    public function down()
-    {
-
-    }
-
-
 }

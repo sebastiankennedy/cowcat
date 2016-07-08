@@ -38,7 +38,7 @@ class Menu extends Model
      *
      * @var array
      */
-    protected $guarded = ['_token','_method'];
+    protected $guarded = [];
 
     /**
      * [$guarded description]
