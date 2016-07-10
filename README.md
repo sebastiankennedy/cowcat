@@ -103,4 +103,4 @@ Free,open-source CMS based on the Laravel PHP Framework
 
 ## 公告
 
-最近搬家,没有网络,更新略慢些。
+家里的网络还是不稳定,准备从移动网络换成电信光纤,七月份比较忙,更新会略慢些。
