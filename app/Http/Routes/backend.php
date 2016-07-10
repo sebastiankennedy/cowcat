@@ -45,7 +45,7 @@ Route::resource("permission", 'PermissionController');
 /* 操作管理模块 */
 Route::resource('action', 'ActionController');
 
-/* 文件管理木块 */
+/* 文件管理模块 */
 Route::get('file', [
     'as'   => 'backend.file.index',
     'uses' => 'FileController@index',
