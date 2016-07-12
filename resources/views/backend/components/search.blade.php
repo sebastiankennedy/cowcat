@@ -9,18 +9,20 @@
                                 <input class="form-control" name="{{$input['name']}}" type="text" value="{{old($input['name'])}}" placeholder="{{$input['placeholder']}}">
                             @elseif($input['type'] == 'select')
                                 <select class="form-control select2" name="{{$input['name']}}" style="width: 100%">
-                                    @forelse ($input['options'] as $option)
+                                    @forelse ($input['options'] as $value => $title)
                                         <option
-                                                value="{{$option['value']}}"
-                                                @if($option['value'] == old($input['name']))
+                                                value="{{$value}}"
+                                                @if($title == old($input['name']))
                                                 selected
                                                 @endif
                                         >
-                                            {{$option['title']}}
+                                            {{$title}}
                                         </option>
                                     @empty
                                     @endforelse
                                 </select>
+                            @elseif($input['type'] == 'date')
+                                <input class="form-control" id="{{$input['name']}}" name="{{$input['name']}}" type="text" value="{{old($input['name'])}}">
                             @endif
                         </div>
                     @empty

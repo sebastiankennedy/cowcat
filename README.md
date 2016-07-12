@@ -72,7 +72,7 @@ Free,open-source CMS based on the Laravel PHP Framework
 - [ ] Rich Text Editor && Markdown
 
 
-## Thinks :D
+## Thanks :D
 
 - Site
 	- [PHPHub](https://phphub.org/)

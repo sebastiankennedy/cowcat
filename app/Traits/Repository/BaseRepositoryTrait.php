@@ -85,8 +85,7 @@ trait BaseRepositoryTrait
             if (is_array($value)) {
                 list($field, $condition, $val) = $value;
                 $this->model = $this->model->where($field, $condition, $val);
-            }
-            else {
+            } else {
                 $this->model = $this->model->where($field, 'like', '%' . $value . '%');
             }
         }
@@ -111,20 +110,18 @@ trait BaseRepositoryTrait
     public function paginateWhere($where, $limit, $columns = ['*'])
     {
         $model = $this->model;
+
         if ( ! empty($where)) {
             foreach ($where as $field => $value) {
                 if (is_array($value)) {
                     list($field, $condition, $val) = $value;
-
                     if ($condition == '=') {
                         $condition = 'where' . ucfirst($condition);
                         $model = $model->$condition($field, $val);
-                    }
-                    else {
+                    } else {
                         $model = $model->where($field, $condition, $val);
                     }
-                }
-                else {
+                } else {
                     $model = $model->where($field, 'like', '%' . $value . '%');
                 }
             }

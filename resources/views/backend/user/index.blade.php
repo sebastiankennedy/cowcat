@@ -1,7 +1,9 @@
 @extends("backend.layout.main")
 
+@inject("userPresenter","App\Presenters\UserPresenter")
+
 @section("content")
-    @include('backend.components.handle',$handle)
+    @include('backend.components.handle',$handle = $userPresenter->getHandle())
     <div class="row">
         <div class="col-md-12">
             <div class="box">

@@ -7,7 +7,6 @@ use Html;
 
 trait BasePresenterTrait
 {
-
     /**
      * render action links
      *
@@ -26,7 +25,6 @@ trait BasePresenterTrait
 
         return $links;
     }
-
 
     /**
      * render search form
@@ -48,7 +46,6 @@ trait BasePresenterTrait
 
         return $search;
     }
-
 
     /**
      * build input by input type

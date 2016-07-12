@@ -1,7 +1,9 @@
 @extends("backend.layout.main")
 
+@inject("permissionPresenter","App\Presenters\permissionPresenter")
+
 @section("content")
-    @include('backend.components.handle',$handle)
+    @include('backend.components.handle',$handle = $permissionPresenter->getHandle())
     <div class="row">
         <div class="col-md-12">
             <div class="box">

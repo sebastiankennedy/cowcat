@@ -1,7 +1,9 @@
 @extends("backend.layout.main")
 
+@inject('rolePresenter','App\Presenters\RolePresenter')
+
 @section("content")
-    @include('backend.components.handle',$handle)
+    @include('backend.components.handle',$handle = $rolePresenter->getHandle())
     <div class="row">
         <div class="col-md-12">
             <div class="box">
