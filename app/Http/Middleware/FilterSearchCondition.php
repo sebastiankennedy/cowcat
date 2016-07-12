@@ -27,8 +27,9 @@ class FilterSearchCondition
                 }
                 if (in_array($field, $this->betweenFields)) {
                     $array['where'][] = [$field, 'between', $this->formatBetweentField($value)];
-                } else {
-                    $array['where'][] = [$field, '=', $value];
+                }
+                else {
+                    $array['where'][] = [$field, 'like', '%' . $value . '%'];
                 }
             }
         }
