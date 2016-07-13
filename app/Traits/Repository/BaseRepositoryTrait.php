@@ -86,7 +86,7 @@ trait BaseRepositoryTrait
                 list($field, $condition, $val) = $value;
                 $this->model = $this->model->where($field, $condition, $val);
             } else {
-                $this->model = $this->model->where($field, 'like', '%' . $value . '%');
+                $this->model = $this->model->where($field, '=', $value);
             }
         }
 
@@ -122,7 +122,7 @@ trait BaseRepositoryTrait
                         $model = $model->where($field, $condition, $val);
                     }
                 } else {
-                    $model = $model->where($field, 'like', '%' . $value . '%');
+                    $model = $model->where($field, '=', $value);
                 }
             }
         }

@@ -59,15 +59,13 @@ Free,open-source CMS based on the Laravel PHP Framework
 1. **`php artisan serve`**
 1. **`gulp watch`**
 
-> UserName: admin@qq.com or user@qq.com
-> password: 123456
+> 默认账号: user@qq.com / admin@qq.com 密码: 123456
 
 ## Todo
 
 - [ ] Email
 - [ ] Billing
-- [ ] Wechat
-- [ ] Image Upload
+- [x] Image Upload
 - [ ] Register & Login By OAuth
 - [ ] Rich Text Editor && Markdown
 
@@ -101,6 +99,10 @@ Free,open-source CMS based on the Laravel PHP Framework
 [MIT License](http://opensource.org/licenses/MIT)
 
 
-## 公告
+## 关于
 
-家里的网络还是不稳定,准备从移动网络换成电信光纤,七月份比较忙,更新会略慢些。
+联系方式（欢迎交流）
+```
+企鹅：2794408425
+微信：AnnEason
+```
