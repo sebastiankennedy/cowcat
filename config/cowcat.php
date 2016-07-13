@@ -44,7 +44,7 @@ return [
     ],
     /* 上传文件配置 */
     'uploads'                      => [
-        'mimes'     => ['application/vnd.ms-excel', 'application/octet-stream', '"application/msword"', 'image/png'],
+        'mimes'     => [],
         'storage'   => 'local',
         'max_size'  => 10 * 1024 * 1024,
         'extension' => ['jpg', 'gif', 'png', 'jpeg', 'zip', 'rar', 'tar', 'gz', '7z', 'doc', 'docx', 'txt', 'xml'],

@@ -37,7 +37,7 @@
             done();
         },
         success: function (file, done) {
-
+            console.log(done);
         }
     };
 </script>

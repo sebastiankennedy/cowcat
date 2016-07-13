@@ -2,8 +2,8 @@
 @inject('menuPresenter','App\Presenters\MenuPresenter')
 
 @section('content')
-    @include('backend.components.handle',$handle = $menuPresenter->getHandle())
-    @include('backend.components.search',$search = $menuPresenter->getSearch())
+    @include('backend.components.handle',$handle = $menuPresenter->getHandleParams())
+    @include('backend.components.search',$search = $menuPresenter->getSearchParams())
 
     <div class="row">
         <div class="col-md-12">

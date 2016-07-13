@@ -28,7 +28,7 @@ class MenuPresenter extends CommonPresenter
         }
     }
 
-    public function getSearch()
+    public function getSearchParams()
     {
         return [
             'route'  => 'backend.menu.search',
@@ -51,7 +51,7 @@ class MenuPresenter extends CommonPresenter
         ];
     }
 
-    public function getHandle()
+    public function getHandleParams()
     {
         return [
             [
@@ -59,6 +59,32 @@ class MenuPresenter extends CommonPresenter
                 'icon'  => 'plus',
                 'class' => 'success',
                 'title' => '新增',
+            ],
+        ];
+    }
+
+    public function getTableParams()
+    {
+        return [
+            'title'  => '菜单管理',
+            'fields' => [
+                'id'    => '菜单编号',
+                'name'  => '菜单名称',
+                'route' => '菜单路由',
+                'sort'  => '菜单排序',
+                'hide'  => '是否显示',
+            ],
+            'handle' => [
+                [
+                    'type'  => 'edit',
+                    'title' => '编辑',
+                    'route' => 'backend.menu.edit',
+                ],
+                [
+                    'type'  => 'delete',
+                    'title' => '删除',
+                    'route' => 'backend.menu.destroy',
+                ],
             ],
         ];
     }
