@@ -38,10 +38,10 @@
                                         >
                                             删除
                                         </a>
-                                @section("after.js")
-                                    @include('backend.components.modal.delete',['title'=>'操作提示','content'=>'你确定要删除这条菜单吗?'])
-                                @endsection
-                                @endif
+                                        @section("after.js")
+                                            @include('backend.components.modal.delete',['title'=>'操作提示','content'=>'你确定要删除这条菜单吗?'])
+                                        @endsection
+                                    @endif
                                 @endforeach
                             </td>
                         </tr>

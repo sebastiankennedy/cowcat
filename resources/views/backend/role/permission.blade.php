@@ -1,7 +1,7 @@
 @extends("backend.layout.main")
 @section('after.css')
-    <link rel="stylesheet" href="/assets/css/zTreeStyle.css">
-    <link rel="stylesheet" href="/assets/css/font-awesome-zTree.css">
+    <link rel="stylesheet" href="/assets/backend/css/zTreeStyle.css">
+    <link rel="stylesheet" href="/assets/backend/css/font-awesome-zTree.css">
 @endsection
 @section("content")
     <div class="row">
@@ -32,7 +32,7 @@
     </div>
 @endsection
 @section("after.js")
-    <script src="/assets/js/jquery.ztree.all-3.5.min.js"></script>
+    <script src="/assets/backend/js/jquery.ztree.all-3.5.min.js"></script>
     <script type="text/javascript">
         var id = {{ $id }};
         var nodes = {!! $data !!};
