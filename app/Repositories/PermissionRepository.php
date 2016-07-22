@@ -2,8 +2,8 @@
 
 namespace App\Repositories;
 
-use App\Facades\ActionRepository;
 use App\Facades\MenuRepository;
+use App\Facades\ActionRepository;
 
 /**
  * Permission Model Repository
