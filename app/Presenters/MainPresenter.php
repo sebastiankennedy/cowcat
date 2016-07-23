@@ -117,7 +117,7 @@ class MainPresenter extends CommonPresenter
                     }
                     $sidebar .= '<a href="javascript:void(0);">
                                     <i class="' . $menu['icon'] . '"></i>
-                                    <span>' . $menu['name'] . '</span>
+                                    <span>' . trans($menu['name']) . '</span>
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </a>
                             <ul class="treeview-menu">' .
@@ -137,7 +137,7 @@ class MainPresenter extends CommonPresenter
                         $sidebar .= '<a href="javascript:void(0);">';
                     }
                     $sidebar .= '<i class="' . $menu['icon'] . '"></i>
-                                <span> ' . $menu['name'] . '</span>
+                                <span> ' . trans($menu['name']) . '</span>
                             </a>
                         </li>';
                 }
@@ -199,9 +199,9 @@ class MainPresenter extends CommonPresenter
             }
 
             if ($value['icon']) {
-                $breadcrumbs .= '<i class="fa ' . $value['icon'] . '"></i> ';
+                $breadcrumbs .= '<i class="fa ' . trans($value['icon']) . '"></i> ';
             }
-            $breadcrumbs .= $value['name'];
+            $breadcrumbs .= trans($value['name']);
             $breadcrumbs .= '</a>';
             $breadcrumbs .= '</li>';
         }

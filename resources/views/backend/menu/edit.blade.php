@@ -8,7 +8,7 @@
                 <input type="hidden" name="_method" value="put">
                 <div class="box">
                     <div class="box-header with-border">
-                        <h3 class="box-title">新增菜单</h3>
+                        <h3 class="box-title">编辑菜单</h3>
                     </div>
                     <div class="box-body">
                         <div class="form-group">
@@ -17,7 +17,7 @@
                                 <option selected="selected" value="0">顶级分类</option>
                                 @foreach($tree as $item)
                                     <option value="{{$item['id']}}" @if($data['parent_id'] == $item['id']) selected="selected" @endif>
-                                        {{ $item['html'] }}{{ $item['name'] }}
+                                        {{ $item['html'] }}{{ trans($item['name']) }}
                                     </option>
                                 @endforeach
                             </select>
