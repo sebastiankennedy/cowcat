@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Facades\ActionRepository;
+use App\Facades\MenuRepository;
+use App\Facades\PermissionRepository;
+use App\Facades\RoleRepository;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,6 +20,11 @@ class IndexController extends Controller
      */
     public function index()
     {
-        return view('backend.index.index');
+        $menus = MenuRepository::count();
+        $roles = RoleRepository::count();
+        $actions = ActionRepository::count();
+        $permissions = PermissionRepository::count();
+
+        return view('backend.index.index', compact('menus', 'roles', 'actions', 'permissions'));
     }
 }
