@@ -52,7 +52,7 @@ class RepositoryServiceProvider extends ServiceProvider
             return new MenuRepository($menu, $validator);
         });
 
-        $this->app->alias('MenuRepository', MenuRepository::class);
+        $this->app->alias('menurepository', MenuRepository::class);
     }
 
     public function registerUserRepository()
@@ -65,7 +65,7 @@ class RepositoryServiceProvider extends ServiceProvider
             return new UserRepository($user, $validator);
         });
 
-        $this->app->alias('UserRepository', UserRepository::class);
+        $this->app->alias('userrepository', UserRepository::class);
     }
 
     public function registerRoleRepository()
@@ -78,7 +78,7 @@ class RepositoryServiceProvider extends ServiceProvider
             return new RoleRepository($role, $validator);
         });
 
-        $this->app->alias('RoleRepository', RoleRepository::class);
+        $this->app->alias('rolerepository', RoleRepository::class);
     }
 
     public function registerActionRepository()
@@ -91,7 +91,7 @@ class RepositoryServiceProvider extends ServiceProvider
             return new ActionRepository($action, $validator);
         });
 
-        $this->app->alias('ActionRepository', ActionRepository::class);
+        $this->app->alias('actionrepository', ActionRepository::class);
     }
 
     public function registerPermissionRepository()
@@ -104,6 +104,6 @@ class RepositoryServiceProvider extends ServiceProvider
             return new PermissionRepository($permission, $validator);
         });
 
-        $this->app->alias('PermissionRepository', PermissionRepository::class);
+        $this->app->alias('permissionrepository', PermissionRepository::class);
     }
 }

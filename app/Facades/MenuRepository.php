@@ -11,6 +11,6 @@ class MenuRepository extends Facade
 {
 	protected static function getFacadeAccessor()
 	{
-		return 'MenuRepository';
+		return 'menurepository';
 	}
 }

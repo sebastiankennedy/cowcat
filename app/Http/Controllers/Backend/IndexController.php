@@ -7,7 +7,6 @@ use App\Facades\MenuRepository;
 use App\Facades\PermissionRepository;
 use App\Facades\RoleRepository;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
