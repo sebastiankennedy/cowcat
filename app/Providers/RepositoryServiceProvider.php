@@ -44,7 +44,7 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function registerMenuRepository()
     {
-        $this->app->singleton('MenuRepository', function ($app) {
+        $this->app->singleton('menurepository', function ($app) {
             $model = config('repository.models.menu');
             $menu = new $model();
             $validator = $app['validator'];
@@ -52,12 +52,12 @@ class RepositoryServiceProvider extends ServiceProvider
             return new MenuRepository($menu, $validator);
         });
 
-        $this->app->alias('menurepository', MenuRepository::class);
+        $this->app->alias('MenuRepository', MenuRepository::class);
     }
 
     public function registerUserRepository()
     {
-        $this->app->singleton('UserRepository', function ($app) {
+        $this->app->singleton('userrepository', function ($app) {
             $model = config('repository.models.user');
             $user = new $model();
             $validator = $app['validator'];
@@ -65,12 +65,12 @@ class RepositoryServiceProvider extends ServiceProvider
             return new UserRepository($user, $validator);
         });
 
-        $this->app->alias('userrepository', UserRepository::class);
+        $this->app->alias('UserRepository', UserRepository::class);
     }
 
     public function registerRoleRepository()
     {
-        $this->app->singleton('RoleRepository', function ($app) {
+        $this->app->singleton('rolerepository', function ($app) {
             $model = config('repository.models.role');
             $role = new $model();
             $validator = $app['validator'];
@@ -78,12 +78,12 @@ class RepositoryServiceProvider extends ServiceProvider
             return new RoleRepository($role, $validator);
         });
 
-        $this->app->alias('rolerepository', RoleRepository::class);
+        $this->app->alias('RoleRepository', RoleRepository::class);
     }
 
     public function registerActionRepository()
     {
-        $this->app->singleton('ActionRepository', function ($app) {
+        $this->app->singleton('actionrepository', function ($app) {
             $model = config('repository.models.action');
             $action = new $model();
             $validator = $app['validator'];
@@ -91,12 +91,12 @@ class RepositoryServiceProvider extends ServiceProvider
             return new ActionRepository($action, $validator);
         });
 
-        $this->app->alias('actionrepository', ActionRepository::class);
+        $this->app->alias('ActionRepository', ActionRepository::class);
     }
 
     public function registerPermissionRepository()
     {
-        $this->app->singleton('PermissionRepository', function ($app) {
+        $this->app->singleton('permissionrepository', function ($app) {
             $model = config('repository.models.permission');
             $permission = new $model();
             $validator = $app['validator'];
@@ -104,6 +104,6 @@ class RepositoryServiceProvider extends ServiceProvider
             return new PermissionRepository($permission, $validator);
         });
 
-        $this->app->alias('permissionrepository', PermissionRepository::class);
+        $this->app->alias('PermissionRepository', PermissionRepository::class);
     }
 }
