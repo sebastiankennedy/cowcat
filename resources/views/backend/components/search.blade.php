@@ -12,11 +12,11 @@
                                     @forelse ($input['options'] as $value => $title)
                                         <option
                                                 value="{{$value}}"
-                                                @if($title == old($input['name']))
+                                                @if($value == old($input['name']))
                                                 selected
                                                 @endif
                                         >
-                                            {{$title}}
+                                            {{trans($title)}}
                                         </option>
                                     @empty
                                     @endforelse

@@ -55,6 +55,7 @@ Free,open-source CMS based on the Laravel PHP Framework
 1. **`sudo composer install`**
 1. **`sudo npm install`**
 1. **`sudo vi .env`**
+1. **`gulp`**
 1. **`php artisan migrate:refresh --seed`**
 1. **`php artisan serve`**
 1. **`gulp watch`**

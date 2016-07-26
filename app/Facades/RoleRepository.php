@@ -11,6 +11,6 @@ class RoleRepository extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return 'RoleRepository';
+        return 'rolerepository';
     }
 }

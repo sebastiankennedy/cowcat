@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Facades\MenuRepository;
+use App\Facades\MenuRepository as MenuFacades;
 
 
 /**
@@ -13,7 +13,7 @@ class ActionRepository extends CommonRepository
     public function getActionsByRoutes($routes)
     {
         $data = [];
-        $menus = MenuRepository::lists('route', 'id')->toArray();
+        $menus = MenuFacades::lists('route', 'id')->toArray();
         $actions = $this->getAllActions()->toArray();
 
         foreach ($routes as $route) {

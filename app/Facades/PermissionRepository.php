@@ -11,6 +11,6 @@ class PermissionRepository extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return 'PermissionRepository';
+        return 'permissionrepository';
     }
 }

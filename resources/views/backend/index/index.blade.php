@@ -6,7 +6,7 @@
         <div class="col-lg-3 col-xs-6">
             <div class="small-box bg-aqua">
                 <div class="inner">
-                    <h3>{{\App\Facades\MenuRepository::count()}}</h3>
+                    <h3>{{$menus}}</h3>
 
                     <p>菜单管理</p>
                 </div>
@@ -23,7 +23,7 @@
         <div class="col-lg-3 col-xs-6">
             <div class="small-box bg-green">
                 <div class="inner">
-                    <h3>{{\App\Facades\RoleRepository::count()}}</h3>
+                    <h3>{{$roles}}</h3>
 
                     <p>角色管理</p>
                 </div>
@@ -40,7 +40,7 @@
         <div class="col-lg-3 col-xs-6">
             <div class="small-box bg-yellow">
                 <div class="inner">
-                    <h3>{{\App\Facades\PermissionRepository::count()}}</h3>
+                    <h3>{{$permissions}}</h3>
 
                     <p>权限管理</p>
                 </div>
@@ -57,7 +57,7 @@
         <div class="col-lg-3 col-xs-6">
             <div class="small-box bg-red">
                 <div class="inner">
-                    <h3>{{\App\Facades\ActionRepository::count()}}</h3>
+                    <h3>{{$actions}}</h3>
 
                     <p>操作管理</p>
                 </div>
