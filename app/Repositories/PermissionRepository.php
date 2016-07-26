@@ -2,8 +2,8 @@
 
 namespace App\Repositories;
 
-use App\Facades\MenuRepository;
-use App\Facades\ActionRepository;
+use App\Facades\MenuRepository as MenuFacades;
+use App\Facades\ActionRepository as ActionFacades;
 
 /**
  * Permission Model Repository
@@ -20,7 +20,7 @@ class PermissionRepository extends CommonRepository
     public function getAllMenusTreeByPermissionModel($permission)
     {
         $data = [];
-        $menus = MenuRepository::getAllMenusLists();
+        $menus = MenuFacades::getAllMenusLists();
         $permissions = $permission->menus()->lists('id')->toArray();
 
         foreach ($menus as $key => $menu) {
@@ -47,7 +47,7 @@ class PermissionRepository extends CommonRepository
     public function getAllActionsByPermissionModel($permission)
     {
         $data = [];
-        $actions = ActionRepository::all()->toArray();
+        $actions = ActionFacades::all()->toArray();
         $permissions = $permission->actions()->lists('id')->toArray();
 
         foreach ($actions as $key => $action) {
