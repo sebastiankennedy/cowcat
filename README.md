@@ -1,23 +1,22 @@
 ## CowCat CMS
 
-[![StyleCI](https://styleci.io/repos/60775510/shield)](https://styleci.io/repos/54703399)
-[![Build Status](https://img.shields.io/travis/Hifone/Hifone/master.svg?style=flat-square)](https://travis-ci.org/Hifone/Hifone)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 
 Free,open-source CMS based on the Laravel PHP Framework
 
-## Features
+## 功能特点（Features）
 
-* Simple
-* Log
-* Auth
-* User
-* Menu
-* Action
-* Roles & Permissions
-* Repository && Presenters && Services
+* 简单易用（Simple and easy to use）
+* 日志管理（Log Manager）
+* 用户验证（Auth Manager）
+* 用户管理（User Manager）
+* 菜单管理（Menu Manager）
+* 操作管理（Action Manager）
+* 中英文切换（Switch in Chinese and English）
+* 角色与权限管理（Roles & Permissions Manager）
+* 模型视图分层，代码解耦（Repository && Presenters && Services）
 
-## Page PreView
+## 页面预览（Page PreView）
 
 
 <!-- ![](http://o93kt6djh.bkt.clouddn.com/cowcat-1.Login.png) -->
@@ -33,13 +32,13 @@ Free,open-source CMS based on the Laravel PHP Framework
 <!-- ![](http://o93kt6djh.bkt.clouddn.com/cowcat-6.Assocate.png) -->
 
 
-## Requirements
+## 环境要求（Requirements）
 
 - **PHP : 5.6**
 - **Laravel : 5.1.***
 - **Composer**
 
-## My Development Environment
+## 我的开发环境（My Development Environment）
 
 - Homebrew
 - PHP - 7.0.7
@@ -47,7 +46,7 @@ Free,open-source CMS based on the Laravel PHP Framework
 - Nginx - 1.10.1
 - MySQL - 5.7.13
 
-## Installation
+## 安装步骤（Installation）
 
 1. **`git clone https://github.com/luisedware/CowCat.git`**
 1. **`cd CowCat`**
@@ -62,16 +61,16 @@ Free,open-source CMS based on the Laravel PHP Framework
 
 > 默认账号: user@qq.com / admin@qq.com 密码: 123456
 
-## Todo
+## 计划新增功能（Todo）
 
-- [ ] Email
-- [ ] Billing
-- [x] Image Upload
-- [ ] Register & Login By OAuth
-- [ ] Rich Text Editor && Markdown
+- [ ] 发送邮件（Send Email）
+- [ ] 在线支付（Online payment）
+- [x] 文件上传（File Upload）-- 初步实现
+- [ ] OAuth2.0 注册与登录（Register & Login By OAuth2.0）
+- [ ] 富文本编辑器和 Markdown 编辑器（Rich Text Editor && Markdown）
 
 
-## Thanks :D
+## 感谢（Thanks）
 
 - Site
 	- [PHPHub](https://phphub.org/)
@@ -95,15 +94,17 @@ Free,open-source CMS based on the Laravel PHP Framework
 	- [sweetalert](https://github.com/t4t5/sweetalert)
 
 
-## License
+## 开源协议（License）
 
 [MIT License](http://opensource.org/licenses/MIT)
 
 
-## 关于
+## 关于（About）
 
 联系方式（欢迎交流）
 ```
 企鹅：2794408425
-微信：AnnEason
 ```
+
+最近一直在守望屁股，一玩起来就停不下来了...
+战网ID：七月十五九月初七#5460，求老司机带我脱离鱼塘。
