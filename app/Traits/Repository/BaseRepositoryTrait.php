@@ -91,7 +91,7 @@ trait BaseRepositoryTrait
                         list($condition, $val) = $value;
                     }
 
-                    if(in_array($condition, ['=', '>', '<', '>=', '<=', '<>'])){
+                    if(in_array($condition, ['=', '>', '<', '>=', '<=', '<>','!='])){
                         $model = $model->where($field, $condition, $val);
                     } elseif($condition == 'like') {
                         $model = $model->where($field, $condition, '%' . $value . '%');
@@ -109,6 +109,8 @@ trait BaseRepositoryTrait
                         $map = explode(' ', $condition);
                         $condition = 'where' . ucfirst($map[0]) . ucfirst($map[1]);
                         $model = $model->$condition($field, $value);
+                    } else {
+                        throw new Exception("请输入正确的查询条件");
                     }
                 } else {
                     $model = $model->where($field, '=', $value);
@@ -147,7 +149,7 @@ trait BaseRepositoryTrait
                         list($condition, $val) = $value;
                     }
 
-                    if(in_array($condition, ['=', '>', '<', '>=', '<=', '<>'])){
+                    if(in_array($condition, ['=', '>', '<', '>=', '<=', '<>','!='])){
                         $model = $model->where($field, $condition, $val);
                     } elseif($condition == 'like') {
                         $model = $model->where($field, $condition, '%' . $value . '%');
@@ -165,6 +167,8 @@ trait BaseRepositoryTrait
                         $map = explode(' ', $condition);
                         $condition = 'where' . ucfirst($map[0]) . ucfirst($map[1]);
                         $model = $model->$condition($field, $value);
+                    } else {
+                        throw new Exception("请输入正确的查询条件");
                     }
                 } else {
                     $model = $model->where($field, '=', $value);
