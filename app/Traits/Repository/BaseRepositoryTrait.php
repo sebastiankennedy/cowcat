@@ -6,7 +6,7 @@ trait BaseRepositoryTrait
 {
     public function validate(array $data, $rules = null, $custom = false)
     {
-        if ( ! $custom) {
+        if( ! $custom){
             $rules = $this->rules($rules);
         }
 
@@ -56,7 +56,7 @@ trait BaseRepositoryTrait
     {
         $model = $this->model;
 
-        if (property_exists($model, 'order')) {
+        if(property_exists($model, 'order')){
             return $model::orderBy($model::$order, $model::$sort)->get($model::$index);
         }
 
@@ -81,12 +81,38 @@ trait BaseRepositoryTrait
     {
         $model = $this->model;
 
-        foreach ($where as $field => $value) {
-            if (is_array($value)) {
-                list($field, $condition, $val) = $value;
-                $this->model = $this->model->where($field, $condition, $val);
-            } else {
-                $this->model = $this->model->where($field, '=', $value);
+        if( ! empty($where)){
+            foreach ($where as $field => $value) {
+                if(is_array($value)){
+
+                    if(count($value) == 3){
+                        list($field, $condition, $val) = $value;
+                    } else {
+                        list($condition, $val) = $value;
+                    }
+
+                    if(in_array($condition, ['=', '>', '<', '>=', '<=', '<>'])){
+                        $model = $model->where($field, $condition, $val);
+                    } elseif($condition == 'like') {
+                        $model = $model->where($field, $condition, '%' . $value . '%');
+                    } elseif($condition == 'null') {
+                        $condition = 'where' . ucfirst($condition);
+                        $model = $model->$condition($field);
+                    } elseif($condition == 'not null') {
+                        $map = explode(' ', $condition);
+                        $condition = 'where' . ucfirst($map[0]) . ucfirst($map[1]);
+                        $model = $model->$condition($field);
+                    } elseif(in_array($condition, ['between', 'in'])) {
+                        $condition = 'where' . ucfirst($condition);
+                        $model = $model->$condition($field, $val);
+                    } elseif(in_array($condition, ['not between', 'not in'])) {
+                        $map = explode(' ', $condition);
+                        $condition = 'where' . ucfirst($map[0]) . ucfirst($map[1]);
+                        $model = $model->$condition($field, $value);
+                    }
+                } else {
+                    $model = $model->where($field, '=', $value);
+                }
             }
         }
 
@@ -111,15 +137,34 @@ trait BaseRepositoryTrait
     {
         $model = $this->model;
 
-        if ( ! empty($where)) {
+        if( ! empty($where)){
             foreach ($where as $field => $value) {
-                if (is_array($value)) {
-                    list($field, $condition, $val) = $value;
-                    if ($condition == '=') {
+                if(is_array($value)){
+
+                    if(count($value) == 3){
+                        list($field, $condition, $val) = $value;
+                    } else {
+                        list($condition, $val) = $value;
+                    }
+
+                    if(in_array($condition, ['=', '>', '<', '>=', '<=', '<>'])){
+                        $model = $model->where($field, $condition, $val);
+                    } elseif($condition == 'like') {
+                        $model = $model->where($field, $condition, '%' . $value . '%');
+                    } elseif($condition == 'null') {
+                        $condition = 'where' . ucfirst($condition);
+                        $model = $model->$condition($field);
+                    } elseif($condition == 'not null') {
+                        $map = explode(' ', $condition);
+                        $condition = 'where' . ucfirst($map[0]) . ucfirst($map[1]);
+                        $model = $model->$condition($field);
+                    } elseif(in_array($condition, ['between', 'in'])) {
                         $condition = 'where' . ucfirst($condition);
                         $model = $model->$condition($field, $val);
-                    } else {
-                        $model = $model->where($field, $condition, $val);
+                    } elseif(in_array($condition, ['not between', 'not in'])) {
+                        $map = explode(' ', $condition);
+                        $condition = 'where' . ucfirst($map[0]) . ucfirst($map[1]);
+                        $model = $model->$condition($field, $value);
                     }
                 } else {
                     $model = $model->where($field, '=', $value);
@@ -143,4 +188,6 @@ trait BaseRepositoryTrait
 
         return $model::destroy($id);
     }
+
+
 }
