@@ -80,7 +80,6 @@ trait BaseRepositoryTrait
     public function getByWhere(array $where, $columns = ['*'])
     {
         $model = $this->model;
-
         try {
             if( ! empty($where)){
                 foreach ($where as $field => $value) {
@@ -92,10 +91,8 @@ trait BaseRepositoryTrait
                             list($condition, $val) = $value;
                         }
 
-                        if(in_array($condition, ['=', '>', '<', '>=', '<=', '<>', '!='])){
+                        if(in_array($condition, ['=', '>', '<', '>=', '<=', '<>', '!=', 'like'])){
                             $model = $model->where($field, $condition, $val);
-                        } elseif($condition == 'like') {
-                            $model = $model->where($field, $condition, '%' . $value . '%');
                         } elseif($condition == 'null') {
                             $condition = 'where' . ucfirst($condition);
                             $model = $model->$condition($field);
@@ -118,12 +115,13 @@ trait BaseRepositoryTrait
                     }
                 }
             }
+
+            return $model->get($limit, $columns);
         }
         catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => $e->getMessage()])->withInput();
+            dump($e->getMessage());
+            exit;
         }
-
-        return $model->get($columns);
     }
 
     public function getByWhereIn($field, array $value, $columns = ['*'])
@@ -154,10 +152,8 @@ trait BaseRepositoryTrait
                             list($condition, $val) = $value;
                         }
 
-                        if(in_array($condition, ['=', '>', '<', '>=', '<=', '<>', '!='])){
+                        if(in_array($condition, ['=', '>', '<', '>=', '<=', '<>', '!=', 'like'])){
                             $model = $model->where($field, $condition, $val);
-                        } elseif($condition == 'like') {
-                            $model = $model->where($field, $condition, '%' . $value . '%');
                         } elseif($condition == 'null') {
                             $condition = 'where' . ucfirst($condition);
                             $model = $model->$condition($field);
@@ -180,12 +176,13 @@ trait BaseRepositoryTrait
                     }
                 }
             }
+
+            return $model->paginate($limit, $columns);
         }
         catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => $e->getMessage()])->withInput();
+            dump($e->getMessage());
+            exit;
         }
-
-        return $model->paginate($limit, $columns);
     }
 
     public function lists($value, $key)

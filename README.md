@@ -105,6 +105,3 @@ Free,open-source CMS based on the Laravel PHP Framework
 ```
 企鹅：2794408425
 ```
-
-最近一直在守望屁股，一玩起来就停不下来了...
-战网ID：七月十五九月初七#5460，求老司机带我脱离鱼塘。

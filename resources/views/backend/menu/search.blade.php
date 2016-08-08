@@ -11,7 +11,7 @@
                 <div class="box-header">
                     <h3 class="box-title">菜单列表</h3>
 
-                    <div class="box-tools">{!! $data->appends(['name'=>old('name'),'parent_id'=>old('parent_id'),'created_at'=>old('created_at')])->render() !!}</div>
+                    <div class="box-tools"></div>
                 </div>
 
                 <div class="box-body table-responsive no-padding">
@@ -39,9 +39,9 @@
                         @endforeach
                     </table>
                 </div>
-                @if($data->appends(['name'=>old('name'),'parent_id'=>old('parent_id'),'created_at'=>old('created_at')])->render())
+                @if($data->render())
                     <div class="box-footer clearfix">
-                        {!! $data->appends(['name'=>old('name'),'parent_id'=>old('parent_id'),'created_at'=>old('created_at')])->render() !!}
+                        {!! $data->render() !!}
                     </div>
                 @endif
             </div>

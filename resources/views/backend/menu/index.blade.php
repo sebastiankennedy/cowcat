@@ -4,5 +4,5 @@
 @section('content')
     @include('backend.components.handle', ['handle' => $menuPresenter->getHandleParams()])
     @include('backend.components.search', ['search' => $menuPresenter->getSearchParams()])
-    @include('backend.components.table',  ['table' => $menuPresenter->getTableParams()])
+    @include('backend.components.table',  ['table' => $menuPresenter->getTableParams(),'params'=>$menuPresenter->getPageParams()])
 @endsection

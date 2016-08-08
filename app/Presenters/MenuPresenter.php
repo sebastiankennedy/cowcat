@@ -75,14 +75,14 @@ class MenuPresenter extends CommonPresenter
     public function getTableParams()
     {
         return [
-            'title'    => '菜单管理',
-            'fields'   => [
+            'title'  => '菜单管理',
+            'fields' => [
                 'id'    => '菜单编号',
                 'name'  => '菜单名称',
                 'route' => '菜单路由',
                 'sort'  => '菜单排序',
             ],
-            'handle'   => [
+            'handle' => [
                 [
                     'type'  => 'edit',
                     'title' => '编辑',
@@ -94,6 +94,15 @@ class MenuPresenter extends CommonPresenter
                     'route' => 'backend.menu.destroy',
                 ],
             ],
+        ];
+    }
+
+    public function getPageParams()
+    {
+        return [
+            'name'       => old('name'),
+            'parent_id'  => old('parent_id'),
+            'created_at' => old('created_at'),
         ];
     }
 }
