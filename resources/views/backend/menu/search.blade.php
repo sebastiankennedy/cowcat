@@ -27,7 +27,7 @@
                         @foreach($data as $item)
                             <tr>
                                 <td>{{$item->id}}</td>
-                                <td>{{$item->name}}</td>
+                                <td>{{trans($item->name)}}</td>
                                 <td>{{$item->route}}</td>
                                 <td>{{$item->sort}}</td>
                                 <td>{{$menuPresenter->showDisplayFormat($item->hide)}}</td>
@@ -39,9 +39,9 @@
                         @endforeach
                     </table>
                 </div>
-                @if($data->render())
+                @if($data->appends($menuPresenter->getPageParams())->render())
                     <div class="box-footer clearfix">
-                        {!! $data->render() !!}
+                        {!! $data->appends($menuPresenter->getPageParams())->render() !!}
                     </div>
                 @endif
             </div>

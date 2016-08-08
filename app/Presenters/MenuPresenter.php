@@ -42,11 +42,6 @@ class MenuPresenter extends CommonPresenter
                     'options' => MenuRepository::getAllTopMenus(),
                 ],
                 [
-                    'type'        => 'text',
-                    'name'        => 'name',
-                    'placeholder' => '菜单名称',
-                ],
-                [
                     'type' => 'date',
                     'name' => 'created_at',
                 ],
@@ -100,7 +95,6 @@ class MenuPresenter extends CommonPresenter
     public function getPageParams()
     {
         return [
-            'name'       => old('name'),
             'parent_id'  => old('parent_id'),
             'created_at' => old('created_at'),
         ];
