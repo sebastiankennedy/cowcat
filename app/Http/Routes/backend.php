@@ -54,3 +54,9 @@ Route::post('file/upload', [
     'as'   => 'backend.file.upload',
     'uses' => 'FileController@upload',
 ]);
+
+/* 邮件管理模块 */
+Route::get('email/send/{id}', [
+    'as'   => 'backend.email.send',
+    'uses' => 'EmailController@send',
+]);

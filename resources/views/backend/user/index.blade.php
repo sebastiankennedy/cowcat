@@ -35,6 +35,7 @@
                                     >
                                         删除
                                     </button>
+                                    <a href="{{route('backend.email.send',['id'=>$item->id])}}" class="btn btn-primary btn-flat">发送测试邮件</a>
                                 </td>
                             </tr>
                         @endforeach
