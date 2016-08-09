@@ -16,14 +16,25 @@ class EmailController extends Controller
     {
         $user = UserRepository::find($id);
 
-        $result = Mail::send('emails.test', ['user' => $user], function ($email) use ($user) {
-            $email->to('2794408425@qq.com')->subject('Hello World');
+        Mail::send('emails.test', ['user' => $user], function ($email) use ($user) {
+            $someOne = '2794408425@qq.com';
+            $email->to($someOne)->subject('文字邮件标题');
         });
 
-        if($result){
-            echo '发送邮件成功';
-        } else {
-            echo '发送邮件失败';
-        }
+        echo "已发送邮件,请注意查收";
+    }
+
+    public function sendPicture(Request $request, $id)
+    {
+        $user = UserRepository::find($id);
+        $icon = "http://o93kt6djh.bkt.clouddn.com/Laravel-SendEmaillaravel-200x50.png";
+        $image = "http://o93kt6djh.bkt.clouddn.com/Laravel-SendEmaillaravel-600x300.jpg";
+
+        Mail::send('emails.image', ['name' => $user->name, 'icon' => $icon, 'image' => $image], function ($email) {
+            $someOne = '2794408425@qq.com';
+            $email->to($someOne)->subject('图文邮件标题');
+        });
+
+        echo "已发送邮件,请注意查收";
     }
 }
