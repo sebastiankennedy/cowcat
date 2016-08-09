@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用 Laravel 基于 SMTP 驱动实现发送文字邮件 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="环境
+PHP 7
+Laravel 5.1
+OS X El Capitan 10.11.4
+
+简介Laravel 基于热门的 SwiftMailer 函数库提供了一个简洁的 API。Laravel 为 SMTP、Mailgun、Mandrill、Amazon SES、PHP 的 mail 函数及 sendmail 提供驱动，让你可以快速地从所选择的本地或云端服务开始发送邮件。（摘录 PHPhub 翻">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 Laravel 基于 SMTP 驱动实现发送文字邮件">
+<meta property="og:url" content="http://yoursite.com/2016/08/08/使用-Laravel-基于-SMTP-驱动实现发送图文邮件/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="环境
+PHP 7
+Laravel 5.1
+OS X El Capitan 10.11.4
+
+简介Laravel 基于热门的 SwiftMailer 函数库提供了一个简洁的 API。Laravel 为 SMTP、Mailgun、Mandrill、Amazon SES、PHP 的 mail 函数及 sendmail 提供驱动，让你可以快速地从所选择的本地或云端服务开始发送邮件。（摘录 PHPhub 翻">
+<meta property="og:image" content="http://o93kt6djh.bkt.clouddn.com/Laravel-SendEmail%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-08-09%2009.49.12.png">
+<meta property="og:updated_time" content="2016-08-09T02:34:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用 Laravel 基于 SMTP 驱动实现发送文字邮件">
+<meta name="twitter:description" content="环境
+PHP 7
+Laravel 5.1
+OS X El Capitan 10.11.4
+
+简介Laravel 基于热门的 SwiftMailer 函数库提供了一个简洁的 API。Laravel 为 SMTP、Mailgun、Mandrill、Amazon SES、PHP 的 mail 函数及 sendmail 提供驱动，让你可以快速地从所选择的本地或云端服务开始发送邮件。（摘录 PHPhub 翻">
+<meta name="twitter:image" content="http://o93kt6djh.bkt.clouddn.com/Laravel-SendEmail%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-08-09%2009.49.12.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-使用-Laravel-基于-SMTP-驱动实现发送图文邮件" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/08/使用-Laravel-基于-SMTP-驱动实现发送图文邮件/" class="article-date">
+  <time datetime="2016-08-08T03:44:47.000Z" itemprop="datePublished">2016-08-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/PHP/">PHP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用 Laravel 基于 SMTP 驱动实现发送文字邮件
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
+<li>PHP 7</li>
+<li>Laravel 5.1</li>
+<li>OS X El Capitan 10.11.4</li>
+</ul>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Laravel 基于热门的 SwiftMailer 函数库提供了一个简洁的 API。Laravel 为 SMTP、Mailgun、Mandrill、Amazon SES、PHP 的 mail 函数及 sendmail 提供驱动，让你可以快速地从所选择的本地或云端服务开始发送邮件。（摘录 PHPhub 翻译文档）</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>邮件配置文件是<code>config/mail.php</code><br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">return</span> [</div><div class="line">	<span class="comment">// 默认发送邮件驱动</span></div><div class="line">	<span class="string">'driver'</span> =&gt; env(<span class="string">'MAIL_DRIVER'</span>, <span class="string">'smtp'</span>),</div><div class="line"></div><div class="line">	<span class="comment">// 发送邮件主机地址</span></div><div class="line">    <span class="string">'host'</span> =&gt; env(<span class="string">'MAIL_HOST'</span>, <span class="string">'smtp.mailgun.org'</span>),</div><div class="line"></div><div class="line">    <span class="comment">// 发送邮件主机端口</span></div><div class="line">    <span class="string">'port'</span> =&gt; env(<span class="string">'MAIL_PORT'</span>, <span class="number">587</span>),</div><div class="line"></div><div class="line">    <span class="comment">// 指定发送邮件的邮箱地址和用户名称</span></div><div class="line">    <span class="string">'from'</span> =&gt; [<span class="string">'address'</span> =&gt; <span class="keyword">null</span>, <span class="string">'name'</span> =&gt; <span class="keyword">null</span>],</div><div class="line"></div><div class="line">    <span class="comment">// 指定发送邮件协议</span></div><div class="line">    <span class="string">'encryption'</span> =&gt; env(<span class="string">'MAIL_ENCRYPTION'</span>, <span class="string">'tls'</span>),</div><div class="line"></div><div class="line">    <span class="comment">// 邮箱登录账号</span></div><div class="line">    <span class="string">'username'</span> =&gt; env(<span class="string">'MAIL_USERNAME'</span>),</div><div class="line"></div><div class="line">    <span class="comment">// 邮箱登录密码</span></div><div class="line">    <span class="string">'password'</span> =&gt; env(<span class="string">'MAIL_PASSWORD'</span>),</div><div class="line"></div><div class="line">    <span class="comment">// 当驱动为 sendmail 时，指定驱动的命令地址</span></div><div class="line">    <span class="string">'sendmail'</span> =&gt; <span class="string">'/usr/sbin/sendmail -bs'</span>,</div><div class="line"></div><div class="line">	<span class="comment">// false 发送邮件不记录日志，true 记录日志不发送邮件</span></div><div class="line">    <span class="string">'pretend'</span> =&gt; <span class="keyword">false</span>,</div><div class="line">];</div></pre></td></tr></table></figure></p>
+<h2 id="编写程序"><a href="#编写程序" class="headerlink" title="编写程序"></a>编写程序</h2><h3 id="env"><a href="#env" class="headerlink" title="env"></a>env</h3><p>本文采用 QQ 邮箱进行测试，首先修改邮箱配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">MAIL_DRIVER=smtp</div><div class="line">MAIL_HOST=smtp.qq.com</div><div class="line">MAIL_PORT=465</div><div class="line">MAIL_USERNAME=（填写 QQ 邮箱账号）</div><div class="line">MAIL_PASSWORD=（填写 QQ 邮箱密码）</div><div class="line">MAIL_ENCRYPTION=ssl</div></pre></td></tr></table></figure></p>
+<h3 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">/* 邮件管理模块 */</div><div class="line">Route::get(&apos;email/send&apos;, [</div><div class="line">    &apos;as&apos;   =&gt; &apos;backend.email.send&apos;,</div><div class="line">    &apos;uses&apos; =&gt; &apos;EmailController@send&apos;,</div><div class="line">]);</div></pre></td></tr></table></figure>
+<h3 id="控制器"><a href="#控制器" class="headerlink" title="控制器"></a>控制器</h3><p>新增控制器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php artisan make:controller Backend/EmailController --plain</div></pre></td></tr></table></figure></p>
+<p>控制器代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line"></div><div class="line">namespace App\Http\Controllers\Backend;</div><div class="line"></div><div class="line">use App\Facades\UserRepository;</div><div class="line">use Illuminate\Http\Request;</div><div class="line"></div><div class="line">use App\Http\Requests;</div><div class="line">use App\Http\Controllers\Controller;</div><div class="line"></div><div class="line">use Mail;</div><div class="line"></div><div class="line">class EmailController extends Controller</div><div class="line">&#123;</div><div class="line">    public function send(Request $request, $id)</div><div class="line">    &#123;</div><div class="line">        $user = UserRepository::find($id);</div><div class="line"></div><div class="line">        $result = Mail::send(&apos;emails.test&apos;, [&apos;user&apos; =&gt; $user], function ($email) use ($user) &#123;</div><div class="line">            $email-&gt;to(&apos;2794408425@qq.com&apos;)-&gt;subject(&apos;Hello World&apos;);</div><div class="line">        &#125;);</div><div class="line"></div><div class="line">        if($result)&#123;</div><div class="line">            echo &apos;发送邮件成功&apos;;</div><div class="line">        &#125; else &#123;</div><div class="line">            echo &apos;发送邮件失败&apos;;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="新增视图"><a href="#新增视图" class="headerlink" title="新增视图"></a>新增视图</h3><p>新增视图<code>emails/test.blade.php</code>，代码如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">	你好,&#123;&#123;$user-&gt;name&#125;&#125;,这是一封测试邮件。</div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h2 id="执行代码"><a href="#执行代码" class="headerlink" title="执行代码"></a>执行代码</h2><p>在浏览器访问指定路由，然后去邮箱查看邮件是否发送成功。<br><img src="http://o93kt6djh.bkt.clouddn.com/Laravel-SendEmail%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-08-09%2009.49.12.png" alt="配置 PHP 的使用版本"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/08/08/使用-Laravel-基于-SMTP-驱动实现发送图文邮件/" data-id="cirn1l9xz0007x14bd33lymoi" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Laravel/">Laravel</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/06/27/使用-PHPStorm-与-Xdebug-调试-Laravel-二/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">使用 PHPStorm 与 Xdebug 调试 Laravel (二)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Catégories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tooling/">Tooling</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Laravel/">Laravel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHPStorm/">PHPStorm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime-Text-3/">Sublime Text 3</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Laravel/" style="font-size: 20px;">Laravel</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PHPStorm/" style="font-size: 15px;">PHPStorm</a> <a href="/tags/Sublime-Text-3/" style="font-size: 10px;">Sublime Text 3</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/08/08/使用-Laravel-基于-SMTP-驱动实现发送图文邮件/">使用 Laravel 基于 SMTP 驱动实现发送文字邮件</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/27/使用-PHPStorm-与-Xdebug-调试-Laravel-二/">使用 PHPStorm 与 Xdebug 调试 Laravel (二)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/20/使用-PHPStorm-与-Xdebug-调试-Laravel-一/">使用 PHPStorm 与 Xdebug 调试 Laravel (一)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/10/PHP Web Application 运行流程、概念术语、机制原理和代码实践/">PHP Web Application 运行流程、概念术语、机制原理和代码实践</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/04/使用Laravel构建内容管理框架（九）/">使用 Laravel 构建内容管理框架（九）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 John Doe<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

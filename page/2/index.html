@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-使用Laravel构建内容管理框架（三）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/04/使用Laravel构建内容管理框架（三）/" class="article-date">
+  <time datetime="2016-04-04T01:33:12.000Z" itemprop="datePublished">2016-04-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/PHP/">PHP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/04/使用Laravel构建内容管理框架（三）/">使用 Laravel 构建内容管理框架（三）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>完成登录管理页面与登录验证功能</p>
+<h1 id="管理用户模型"><a href="#管理用户模型" class="headerlink" title="管理用户模型"></a>管理用户模型</h1><hr>
+<p>在文件夹<code>app</code>下新建文件夹<code>Models</code>，将文件夹<code>app</code>下的<code>User.php</code>移动到文件夹<code>app/Models</code>下<br>修改文件<code>User.php</code>的命名空间<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">namespace App\Models;</div></pre></td></tr></table></figure></p>
+<p>打开文件<code>config/auth.php</code>，修改代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&apos;model&apos; =&gt; App\Models\User::class,</div></pre></td></tr></table></figure></p>
+<h1 id="新增路由"><a href="#新增路由" class="headerlink" title="新增路由"></a>新增路由</h1><hr>
+<p>打开文件<code>app/Http/routes.php</code>，文件代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">Route::group([&apos;namespace&apos; =&gt; &apos;Backend&apos;, &apos;middleware&apos; =&gt; [&apos;auth&apos;]], function () &#123;</div><div class="line">    Route::get(&apos;/&apos;, &apos;IndexController@index&apos;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">Route::group([&apos;namespace&apos; =&gt; &apos;Auth&apos;], function () &#123;</div><div class="line">    Route::get(&apos;auth/login&apos;, &apos;AuthController@getLogin&apos;);</div><div class="line">    Route::post(&apos;auth/login&apos;, &apos;AuthController@postLogin&apos;);</div><div class="line">    Route::get(&apos;auth/logout&apos;, &apos;AuthController@getLogout&apos;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h1 id="新增登录视图"><a href="#新增登录视图" class="headerlink" title="新增登录视图"></a>新增登录视图</h1><hr>
+<p>在文件夹<code>resources/views/</code>新建文件夹<code>auth</code>，然后新建视图文件<code>login.blade.php</code><br>在文件夹<code>resources/views/backend/layout</code>新建文件夹<code>message</code>，然后新建视图文件如下：</p>
+<ul>
+<li>tips.blade.php</li>
+<li>error.blade.php</li>
+<li>success.blade.php</li>
+</ul>
+<h2 id="login-blade-php"><a href="#login-blade-php" class="headerlink" title="login.blade.php"></a>login.blade.php</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=&quot;zh&quot;&gt;</div><div class="line">&lt;head&gt;</div><div class="line">    &lt;meta charset=&quot;utf-8&quot;&gt;</div><div class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;</div><div class="line">    &lt;title&gt;AdminLTE 2 | Log in&lt;/title&gt;</div><div class="line">    &lt;meta content=&quot;width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no&quot; name=&quot;viewport&quot;&gt;</div><div class="line">    &lt;link href=&quot;&#123;&#123; asset(&quot;/assets/css/app.css&quot;) &#125;&#125;&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;/&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body class=&quot;hold-transition login-page&quot;&gt;</div><div class="line">&lt;div class=&quot;login-box&quot;&gt;</div><div class="line">    &lt;div class=&quot;login-logo&quot;&gt;</div><div class="line">        &lt;b&gt;TianMao&lt;/b&gt;CMF</div><div class="line">    &lt;/div&gt;</div><div class="line">    &lt;div class=&quot;login-box-body&quot;&gt;</div><div class="line">        &lt;p class=&quot;login-box-msg&quot;&gt;Happy Coding&lt;/p&gt;</div><div class="line"></div><div class="line">        &lt;form action=&quot;&#123;&#123;URL::to(&apos;/auth/login&apos;)&#125;&#125;&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;</div><div class="line">            &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;&gt;</div><div class="line">            &lt;div class=&quot;row form-group has-feedback&quot;&gt;</div><div class="line">                &lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;账号&quot; name=&quot;email&quot;&gt;</div><div class="line">                &lt;span class=&quot;fa fa-user form-control-feedback&quot;&gt;&lt;/span&gt;</div><div class="line">                @include(&apos;backend.layout.message.tips&apos;,[&apos;field&apos;=&gt;&apos;email&apos;])</div><div class="line">            &lt;/div&gt;</div><div class="line">            &lt;div class=&quot;row form-group has-feedback&quot;&gt;</div><div class="line">                &lt;input type=&quot;password&quot; class=&quot;form-control&quot; placeholder=&quot;密码&quot; name=&quot;password&quot;&gt;</div><div class="line">                &lt;span class=&quot;fa fa-lock form-control-feedback&quot;&gt;&lt;/span&gt;</div><div class="line">                @include(&apos;backend.layout.message.tips&apos;,[&apos;field&apos;=&gt;&apos;password&apos;])</div><div class="line">            &lt;/div&gt;</div><div class="line">            &lt;div class=&quot;row form-group has-feedback&quot;&gt;</div><div class="line">                &lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;验证码&quot; name=&quot;captcha&quot;&gt;</div><div class="line">                &lt;span class=&quot;fa fa-image form-control-feedback&quot;&gt;&lt;/span&gt;</div><div class="line">                @include(&apos;backend.layout.message.tips&apos;,[&apos;field&apos;=&gt;&apos;captcha&apos;])</div><div class="line">            &lt;/div&gt;</div><div class="line">            &lt;div class=&quot;row form-group has-feedback&quot;&gt;</div><div class="line">                &lt;img src=&quot;&#123;&#123;$captcha&#125;&#125;&quot; alt=&quot;图片验证码&quot; style=&quot;width: 100%;&quot;&gt;</div><div class="line">            &lt;/div&gt;</div><div class="line">            &lt;div class=&quot;row&quot;&gt;</div><div class="line">                &lt;div class=&quot;col-xs-8&quot;&gt;</div><div class="line">                    &lt;div class=&quot;checkbox icheck&quot;&gt;</div><div class="line">                        &lt;label&gt;</div><div class="line">                            &lt;input type=&quot;checkbox&quot; name=&quot;remember&quot; value=&quot;1&quot;&gt; 保持登录</div><div class="line">                        &lt;/label&gt;</div><div class="line">                    &lt;/div&gt;</div><div class="line">                &lt;/div&gt;</div><div class="line">                &lt;div class=&quot;col-xs-4&quot;&gt;</div><div class="line">                    &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary btn-block btn-flat&quot;&gt;登 录&lt;/button&gt;</div><div class="line">                &lt;/div&gt;</div><div class="line">            &lt;/div&gt;</div><div class="line">        &lt;/form&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;script src=&quot;&#123;&#123; asset (&quot;/assets/js/app.js&quot;) &#125;&#125;&quot;&gt;&lt;/script&gt;</div><div class="line">&lt;script&gt;</div><div class="line">    $(function () &#123;</div><div class="line">        $(&apos;input&apos;).iCheck(&#123;</div><div class="line">            checkboxClass: &apos;icheckbox_square-blue&apos;,</div><div class="line">            radioClass: &apos;iradio_square-blue&apos;,</div><div class="line">            increaseArea: &apos;20%&apos;</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<h2 id="tips-blade-php"><a href="#tips-blade-php" class="headerlink" title="tips.blade.php"></a>tips.blade.php</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@if($errors-&gt;has($field))</div><div class="line">	@foreach ($errors-&gt;get($field) as $error)</div><div class="line">		&lt;button class=&quot;btn btn-danger col-sm-12 btn-flat&quot; style=&quot;width: 100%;&quot;&gt;</div><div class="line">			&lt;i class=&quot;fa fa-times-circle-o&quot;&gt;&lt;/i&gt; &#123;&#123;$error&#125;&#125;</div><div class="line">		&lt;/button&gt;</div><div class="line">	@endforeach</div><div class="line">@endif</div></pre></td></tr></table></figure>
+<h2 id="error-blade-php"><a href="#error-blade-php" class="headerlink" title="error.blade.php"></a>error.blade.php</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">@if(Session::has(&apos;errors&apos;))</div><div class="line">	&lt;div id=&quot;errors-message&quot; class=&quot;alert alert-danger alert-dismissible&quot;&gt;</div><div class="line">		&lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;alert&quot; aria-hidden=&quot;true&quot;&gt;×&lt;/button&gt;</div><div class="line">		&lt;h4&gt;&lt;i class=&quot;icon fa fa-ban&quot;&gt;&lt;/i&gt; 错误提示!&lt;/h4&gt;</div><div class="line">		@foreach($errors-&gt;all() as $error)</div><div class="line">			&#123;&#123;$error&#125;&#125;</div><div class="line">		@endforeach</div><div class="line">	&lt;/div&gt;</div><div class="line">@endif</div></pre></td></tr></table></figure>
+<h2 id="success-blade-php"><a href="#success-blade-php" class="headerlink" title="success.blade.php"></a>success.blade.php</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@if(Session::has(&apos;success&apos;))</div><div class="line">	&lt;div id=&quot;success-message&quot; class=&quot;alert alert-success alert-dismissible&quot;&gt;</div><div class="line">		&lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;alert&quot; aria-hidden=&quot;true&quot;&gt;×&lt;/button&gt;</div><div class="line">		&lt;h4&gt;&lt;i class=&quot;icon fa fa-check&quot;&gt;&lt;/i&gt; 成功提示!&lt;/h4&gt;</div><div class="line">		&#123;&#123;Session::get(&apos;success&apos;)&#125;&#125;</div><div class="line">	&lt;/div&gt;</div><div class="line">@endif</div></pre></td></tr></table></figure>
+<h1 id="新增验证码Package"><a href="#新增验证码Package" class="headerlink" title="新增验证码Package"></a>新增验证码Package</h1><hr>
+<p>打开<code>composer.json</code>文件,修改代码如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> &quot;require&quot;: &#123;</div><div class="line">    &quot;php&quot;: &quot;&gt;=5.5.9&quot;,</div><div class="line">    &quot;laravel/framework&quot;: &quot;5.1.*&quot;,</div><div class="line">    &quot;gregwar/captcha&quot;: &quot;1.*&quot;</div><div class="line">&#125;,</div></pre></td></tr></table></figure></p>
+<p><code>gregwar/captcha</code>是验证码Package，用来生成验证码，在终端执行以下命令进行安装。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo composer install</div></pre></td></tr></table></figure></p>
+<h1 id="管理登录认证控制器"><a href="#管理登录认证控制器" class="headerlink" title="管理登录认证控制器"></a>管理登录认证控制器</h1><p>打开文件<code>app/Http/Auth/AuthController.php</code>，新增代码如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">use Illuminate\Support\Facades\Session;</div><div class="line"></div><div class="line">public function getLogin()</div><div class="line">&#123;</div><div class="line">    if (view()-&gt;exists(&apos;auth.authenticate&apos;)) &#123;</div><div class="line">        return view(&apos;auth.authenticate&apos;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    $builder = new CaptchaBuilder();</div><div class="line">    $builder-&gt;build();</div><div class="line">    Session::put(&apos;phrase&apos;, $builder-&gt;getPhrase());</div><div class="line"></div><div class="line">    return view(&apos;auth.login&apos;)-&gt;with(&apos;captcha&apos;, $builder-&gt;inline());</div><div class="line">&#125;</div><div class="line"></div><div class="line">public function postLogin(Request $request)</div><div class="line">&#123;</div><div class="line">    $this-&gt;validate($request, [</div><div class="line">        $this-&gt;loginUsername() =&gt; &apos;required&apos;,</div><div class="line">        &apos;password&apos;             =&gt; &apos;required&apos;,</div><div class="line">        &apos;captcha&apos;              =&gt; &apos;required&apos;</div><div class="line">    ], [</div><div class="line">        $this-&gt;loginUsername() . &apos;.required&apos; =&gt; &apos;请输入邮箱或用户名称&apos;,</div><div class="line">        &apos;password.required&apos;                  =&gt; &apos;请输入用户密码&apos;,</div><div class="line">        &apos;captcha.required&apos;                   =&gt; &apos;请输入验证码&apos;</div><div class="line">    ]);</div><div class="line"></div><div class="line">    if (Session::get(&apos;phrase&apos;) !== $request-&gt;get(&apos;captcha&apos;)) &#123;</div><div class="line">        return redirect()-&gt;back()-&gt;withErrors(array(&apos;captcha&apos; =&gt; &apos;验证码不正确&apos;))-&gt;withInput();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="使用迁移文件生成数据表"><a href="#使用迁移文件生成数据表" class="headerlink" title="使用迁移文件生成数据表"></a>使用迁移文件生成数据表</h1><hr>
+<p>接下来打开终端，在项目下运行以下命令，生成用户表并创建用户<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// 生成数据表</div><div class="line">php artisan migrate</div><div class="line"></div><div class="line">// 生成用户数据</div><div class="line">php artisan tinker</div><div class="line">$user = new App\Models\User;</div><div class="line">$user-&gt;name = &quot;admin&quot;;</div><div class="line">$user-&gt;email = &quot;admin@qq.com&quot;;</div><div class="line">$user-&gt;password = bcrypt(123456);</div><div class="line">$user-&gt;save();</div><div class="line">exit</div></pre></td></tr></table></figure></p>
+<h1 id="管理登录认证操作跳转页面"><a href="#管理登录认证操作跳转页面" class="headerlink" title="管理登录认证操作跳转页面"></a>管理登录认证操作跳转页面</h1><p>打开文件<code>app\Http\Controller\Auth\AuthController</code>，新增以下成员属性:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// 设置成功登录后转向的页面：</div><div class="line">protected $redirectPath = &apos;/&apos;;</div><div class="line"></div><div class="line">// 设置登录失败后转向的页面：</div><div class="line">protected $loginPath = &apos;/auth/login&apos;;</div><div class="line"></div><div class="line">// 设置退出登录后转向的页面：</div><div class="line">protected $redirectAfterLogout = &apos;/&apos;;</div></pre></td></tr></table></figure></p>
+<p>打开中间件<code>app\Http\Middleware\RedirectIfAuthenticated.php</code>，找到相应的地方，修改代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"> public function handle($request, Closure $next)</div><div class="line">&#123;</div><div class="line">    // 设置登录之后，输入/auth/login的跳转地址</div><div class="line">    if ($this-&gt;auth-&gt;check()) &#123;</div><div class="line">        return redirect(&apos;/&apos;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    return $next($request);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/04/使用Laravel构建内容管理框架（三）/" data-id="cirn1l9y9000dx14btzm9wvde" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Laravel/">Laravel</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-使用Laravel构建内容管理框架（二）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/04/使用Laravel构建内容管理框架（二）/" class="article-date">
+  <time datetime="2016-04-04T01:32:57.000Z" itemprop="datePublished">2016-04-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/PHP/">PHP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/04/使用Laravel构建内容管理框架（二）/">使用 Laravel 构建内容管理框架（二）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>初步搭建好后台管理功能的界面</p>
+<h1 id="新增控制器"><a href="#新增控制器" class="headerlink" title="新增控制器"></a>新增控制器</h1><hr>
+<p>在终端执行以下命令，在文件夹<code>app/Http/Controllers/Backend</code>下生成<code>IndexController</code>控制器。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php artisan make:controller Backend/IndexController --plain</div></pre></td></tr></table></figure></p>
+<p>修改文件<code>IndexController.php</code>代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line"></div><div class="line">namespace App\Http\Controllers\Backend;</div><div class="line"></div><div class="line">use App\Http\Requests;</div><div class="line">use App\Http\Controllers\Controller;</div><div class="line"></div><div class="line">class IndexController extends Controller</div><div class="line">&#123;</div><div class="line">    public function index()</div><div class="line">    &#123;</div><div class="line">        $tasks = [</div><div class="line">            [</div><div class="line">                &apos;name&apos; =&gt; &apos;Design New Dashboard&apos;,</div><div class="line">                &apos;progress&apos; =&gt; &apos;87&apos;,</div><div class="line">                &apos;color&apos; =&gt; &apos;danger&apos;</div><div class="line">            ],</div><div class="line">            [</div><div class="line">                &apos;name&apos; =&gt; &apos;Create Home Page&apos;,</div><div class="line">                &apos;progress&apos; =&gt; &apos;76&apos;,</div><div class="line">                &apos;color&apos; =&gt; &apos;warning&apos;</div><div class="line">            ],</div><div class="line">            [</div><div class="line">                &apos;name&apos; =&gt; &apos;Some Other Task&apos;,</div><div class="line">                &apos;progress&apos; =&gt; &apos;32&apos;,</div><div class="line">                &apos;color&apos; =&gt; &apos;success&apos;</div><div class="line">            ],</div><div class="line">            [</div><div class="line">                &apos;name&apos; =&gt; &apos;Start Building Website&apos;,</div><div class="line">                &apos;progress&apos; =&gt; &apos;56&apos;,</div><div class="line">                &apos;color&apos; =&gt; &apos;info&apos;</div><div class="line">            ],</div><div class="line">            [</div><div class="line">                &apos;name&apos; =&gt; &apos;Develop an Awesome Algorithm&apos;,</div><div class="line">                &apos;progress&apos; =&gt; &apos;10&apos;,</div><div class="line">                &apos;color&apos; =&gt; &apos;success&apos;</div><div class="line">            ]</div><div class="line">        ];</div><div class="line">        return view(&apos;backend.index.index&apos;,compact(&apos;tasks&apos;));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="新增路由"><a href="#新增路由" class="headerlink" title="新增路由"></a>新增路由</h1><hr>
+<p>打开文件<code>app\Http\routes.php</code>，修改代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Route::group([&apos;namespace&apos;=&gt;&apos;Backend&apos;],function()&#123;</div><div class="line">    Route::get(&apos;index&apos;,&apos;IndexController&apos;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h1 id="新增视图"><a href="#新增视图" class="headerlink" title="新增视图"></a>新增视图</h1><hr>
+<p>在<code>resources/views/</code>下新建文件夹<code>backend</code>，在文件夹<code>backend</code>下新建文件夹<code>index</code>和<code>layout</code>。</p>
+<p>在文件夹<code>layout</code>新建文件如下：</p>
+<ul>
+<li>header.blade.php</li>
+<li>footer.blade.php</li>
+<li>main.blade.php</li>
+<li>sidebar.blade.php</li>
+</ul>
+<p>在文件夹<code>index</code>新建文件如下：</p>
+<ul>
+<li>index</li>
+</ul>
+<h2 id="header-blade-php"><a href="#header-blade-php" class="headerlink" title="header.blade.php"></a>header.blade.php</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div></pre></td><td class="code"><pre><div class="line">&lt;header class=&quot;main-header&quot;&gt;</div><div class="line">    &lt;a href=&quot;index2.html&quot; class=&quot;logo&quot;&gt;&lt;b&gt;Admin&lt;/b&gt;LTE&lt;/a&gt;</div><div class="line">    &lt;nav class=&quot;navbar navbar-static-top&quot; role=&quot;navigation&quot;&gt;</div><div class="line">        &lt;a href=&quot;#&quot; class=&quot;sidebar-toggle&quot; data-toggle=&quot;offcanvas&quot; role=&quot;button&quot;&gt;</div><div class="line">            &lt;span class=&quot;sr-only&quot;&gt;Toggle navigation&lt;/span&gt;</div><div class="line">        &lt;/a&gt;</div><div class="line">        &lt;div class=&quot;navbar-custom-menu&quot;&gt;</div><div class="line">            &lt;ul class=&quot;nav navbar-nav&quot;&gt;</div><div class="line">                &lt;li class=&quot;dropdown messages-menu&quot;&gt;</div><div class="line">                    &lt;a href=&quot;#&quot; class=&quot;dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;&gt;</div><div class="line">                        &lt;i class=&quot;fa fa-envelope-o&quot;&gt;&lt;/i&gt;</div><div class="line">                        &lt;span class=&quot;label label-success&quot;&gt;4&lt;/span&gt;</div><div class="line">                    &lt;/a&gt;</div><div class="line">                    &lt;ul class=&quot;dropdown-menu&quot;&gt;</div><div class="line">                        &lt;li class=&quot;header&quot;&gt;You have 4 messages&lt;/li&gt;</div><div class="line">                        &lt;li&gt;</div><div class="line">                            &lt;ul class=&quot;menu&quot;&gt;</div><div class="line">                                &lt;li&gt;</div><div class="line">                                    &lt;a href=&quot;#&quot;&gt;</div><div class="line">                                        &lt;div class=&quot;pull-left&quot;&gt;</div><div class="line">                                            &lt;img src=&quot;&#123;&#123; asset(&quot;/assets/img/user2-160x160.jpg&quot;) &#125;&#125;&quot; class=&quot;img-circle&quot; alt=&quot;User Image&quot;/&gt;</div><div class="line">                                        &lt;/div&gt;</div><div class="line">                                        &lt;h4&gt;</div><div class="line">                                            Support Team</div><div class="line">                                            &lt;small&gt;&lt;i class=&quot;fa fa-clock-o&quot;&gt;&lt;/i&gt; 5 mins&lt;/small&gt;</div><div class="line">                                        &lt;/h4&gt;</div><div class="line">                                        &lt;p&gt;Why not buy a new awesome theme?&lt;/p&gt;</div><div class="line">                                    &lt;/a&gt;</div><div class="line">                                &lt;/li&gt;</div><div class="line">                            &lt;/ul&gt;</div><div class="line">                        &lt;/li&gt;</div><div class="line">                        &lt;li class=&quot;footer&quot;&gt;&lt;a href=&quot;#&quot;&gt;See All Messages&lt;/a&gt;&lt;/li&gt;</div><div class="line">                    &lt;/ul&gt;</div><div class="line">                &lt;/li&gt;</div><div class="line">                &lt;li class=&quot;dropdown notifications-menu&quot;&gt;</div><div class="line">                    &lt;a href=&quot;#&quot; class=&quot;dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;&gt;</div><div class="line">                        &lt;i class=&quot;fa fa-bell-o&quot;&gt;&lt;/i&gt;</div><div class="line">                        &lt;span class=&quot;label label-warning&quot;&gt;10&lt;/span&gt;</div><div class="line">                    &lt;/a&gt;</div><div class="line">                    &lt;ul class=&quot;dropdown-menu&quot;&gt;</div><div class="line">                        &lt;li class=&quot;header&quot;&gt;You have 10 notifications&lt;/li&gt;</div><div class="line">                        &lt;li&gt;</div><div class="line">                            &lt;ul class=&quot;menu&quot;&gt;</div><div class="line">                                &lt;li&gt;</div><div class="line">                                    &lt;a href=&quot;#&quot;&gt;</div><div class="line">                                        &lt;i class=&quot;fa fa-users text-aqua&quot;&gt;&lt;/i&gt; 5 new members joined today</div><div class="line">                                    &lt;/a&gt;</div><div class="line">                                &lt;/li&gt;</div><div class="line">                            &lt;/ul&gt;</div><div class="line">                        &lt;/li&gt;</div><div class="line">                        &lt;li class=&quot;footer&quot;&gt;&lt;a href=&quot;#&quot;&gt;View all&lt;/a&gt;&lt;/li&gt;</div><div class="line">                    &lt;/ul&gt;</div><div class="line">                &lt;/li&gt;</div><div class="line">                &lt;li class=&quot;dropdown tasks-menu&quot;&gt;</div><div class="line">                    &lt;a href=&quot;#&quot; class=&quot;dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;&gt;</div><div class="line">                        &lt;i class=&quot;fa fa-flag-o&quot;&gt;&lt;/i&gt;</div><div class="line">                        &lt;span class=&quot;label label-danger&quot;&gt;9&lt;/span&gt;</div><div class="line">                    &lt;/a&gt;</div><div class="line">                    &lt;ul class=&quot;dropdown-menu&quot;&gt;</div><div class="line">                        &lt;li class=&quot;header&quot;&gt;You have 9 tasks&lt;/li&gt;</div><div class="line">                        &lt;li&gt;</div><div class="line">                            &lt;ul class=&quot;menu&quot;&gt;</div><div class="line">                                &lt;li&gt;</div><div class="line">                                    &lt;a href=&quot;#&quot;&gt;</div><div class="line">                                        &lt;h3&gt;</div><div class="line">                                            Design some buttons</div><div class="line">                                            &lt;small class=&quot;pull-right&quot;&gt;20%&lt;/small&gt;</div><div class="line">                                        &lt;/h3&gt;</div><div class="line">                                        &lt;div class=&quot;progress xs&quot;&gt;</div><div class="line">                                            &lt;div class=&quot;progress-bar progress-bar-aqua&quot; style=&quot;width: 20%&quot; role=&quot;progressbar&quot; aria-valuenow=&quot;20&quot; aria-valuemin=&quot;0&quot; aria-valuemax=&quot;100&quot;&gt;</div><div class="line">                                                &lt;span class=&quot;sr-only&quot;&gt;20% Complete&lt;/span&gt;</div><div class="line">                                            &lt;/div&gt;</div><div class="line">                                        &lt;/div&gt;</div><div class="line">                                    &lt;/a&gt;</div><div class="line">                                &lt;/li&gt;</div><div class="line">                            &lt;/ul&gt;</div><div class="line">                        &lt;/li&gt;</div><div class="line">                        &lt;li class=&quot;footer&quot;&gt;</div><div class="line">                            &lt;a href=&quot;#&quot;&gt;View all tasks&lt;/a&gt;</div><div class="line">                        &lt;/li&gt;</div><div class="line">                    &lt;/ul&gt;</div><div class="line">                &lt;/li&gt;</div><div class="line">                &lt;li class=&quot;dropdown user user-menu&quot;&gt;</div><div class="line">                    &lt;a href=&quot;#&quot; class=&quot;dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;&gt;</div><div class="line">                        &lt;img src=&quot;&#123;&#123; asset(&quot;/assets/img/user2-160x160.jpg&quot;) &#125;&#125;&quot; class=&quot;user-image&quot; alt=&quot;User Image&quot;/&gt;</div><div class="line">                        &lt;span class=&quot;hidden-xs&quot;&gt;Alexander Pierce&lt;/span&gt;</div><div class="line">                    &lt;/a&gt;</div><div class="line">                    &lt;ul class=&quot;dropdown-menu&quot;&gt;</div><div class="line">                        &lt;li class=&quot;user-header&quot;&gt;</div><div class="line">                            &lt;img src=&quot;&#123;&#123; asset(&quot;/assets/img/user2-160x160.jpg&quot;) &#125;&#125;&quot; class=&quot;img-circle&quot; alt=&quot;User Image&quot;/&gt;</div><div class="line">                            &lt;p&gt;</div><div class="line">                                Alexander Pierce - Web Developer</div><div class="line">                                &lt;small&gt;Member since Nov. 2012&lt;/small&gt;</div><div class="line">                            &lt;/p&gt;</div><div class="line">                        &lt;/li&gt;</div><div class="line">                        &lt;li class=&quot;user-body&quot;&gt;</div><div class="line">                            &lt;div class=&quot;col-xs-4 text-center&quot;&gt;</div><div class="line">                                &lt;a href=&quot;#&quot;&gt;Followers&lt;/a&gt;</div><div class="line">                            &lt;/div&gt;</div><div class="line">                            &lt;div class=&quot;col-xs-4 text-center&quot;&gt;</div><div class="line">                                &lt;a href=&quot;#&quot;&gt;Sales&lt;/a&gt;</div><div class="line">                            &lt;/div&gt;</div><div class="line">                            &lt;div class=&quot;col-xs-4 text-center&quot;&gt;</div><div class="line">                                &lt;a href=&quot;#&quot;&gt;Friends&lt;/a&gt;</div><div class="line">                            &lt;/div&gt;</div><div class="line">                        &lt;/li&gt;</div><div class="line">                        &lt;li class=&quot;user-footer&quot;&gt;</div><div class="line">                            &lt;div class=&quot;pull-left&quot;&gt;</div><div class="line">                                &lt;a href=&quot;#&quot; class=&quot;btn btn-default btn-flat&quot;&gt;Profile&lt;/a&gt;</div><div class="line">                            &lt;/div&gt;</div><div class="line">                            &lt;div class=&quot;pull-right&quot;&gt;</div><div class="line">                                &lt;a href=&quot;#&quot; class=&quot;btn btn-default btn-flat&quot;&gt;Sign out&lt;/a&gt;</div><div class="line">                            &lt;/div&gt;</div><div class="line">                        &lt;/li&gt;</div><div class="line">                    &lt;/ul&gt;</div><div class="line">                &lt;/li&gt;</div><div class="line">            &lt;/ul&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">    &lt;/nav&gt;</div><div class="line">&lt;/header&gt;</div></pre></td></tr></table></figure>
+<h2 id="footer-blade-php"><a href="#footer-blade-php" class="headerlink" title="footer.blade.php"></a>footer.blade.php</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;footer class=&quot;main-footer&quot;&gt;</div><div class="line">    &lt;div class=&quot;pull-right hidden-xs&quot;&gt;</div><div class="line">        Anything you want</div><div class="line">    &lt;/div&gt;</div><div class="line">    &lt;strong&gt;Copyright © &#123;&#123;date(&apos;Y&apos;)&#125;&#125; &lt;a href=&quot;#&quot;&gt;Company&lt;/a&gt;.&lt;/strong&gt; All rights reserved.</div><div class="line">&lt;/footer&gt;</div></pre></td></tr></table></figure>
+<h2 id="main-blade-php"><a href="#main-blade-php" class="headerlink" title="main.blade.php"></a>main.blade.php</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=&quot;zh&quot;&gt;</div><div class="line">&lt;head&gt;</div><div class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">    &lt;meta content=&apos;width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no&apos; name=&apos;viewport&apos;&gt;</div><div class="line">    &lt;title&gt;&#123;&#123; $page_title or &quot;AdminLTE Dashboard&quot; &#125;&#125;&lt;/title&gt;</div><div class="line">    &lt;link rel=&quot;stylesheet&quot; href=&quot;&#123;&#123;asset(&apos;/assets/css/app.css&apos;)&#125;&#125;&quot;&gt;</div><div class="line">    @yield(&apos;style&apos;)</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body class=&quot;skin-blue&quot;&gt;</div><div class="line">&lt;div class=&quot;wrapper&quot;&gt;</div><div class="line">    @include(&apos;backend.layout.header&apos;)</div><div class="line">    @include(&apos;backend.layout.sidebar&apos;)</div><div class="line">    &lt;div class=&quot;content-wrapper&quot;&gt;</div><div class="line">        &lt;section class=&quot;content-header&quot;&gt;</div><div class="line">            &lt;h1&gt;</div><div class="line">                &#123;&#123; $page_title or &quot;Page Title&quot; &#125;&#125;</div><div class="line">                &lt;small&gt;&#123;&#123; $page_description or null &#125;&#125;&lt;/small&gt;</div><div class="line">            &lt;/h1&gt;</div><div class="line">            &lt;ol class=&quot;breadcrumb&quot;&gt;</div><div class="line">                &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;fa fa-dashboard&quot;&gt;&lt;/i&gt; Level&lt;/a&gt;&lt;/li&gt;</div><div class="line">                &lt;li class=&quot;active&quot;&gt;Here&lt;/li&gt;</div><div class="line">            &lt;/ol&gt;</div><div class="line">        &lt;/section&gt;</div><div class="line">        &lt;section class=&quot;content&quot;&gt;</div><div class="line">            @yield(&apos;content&apos;)</div><div class="line">        &lt;/section&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">    @include(&apos;backend.layout.footer&apos;)</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;script src=&quot;&#123;&#123; asset (&quot;/assets/js/app.js&quot;) &#125;&#125;&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;</div><div class="line">@yield(&apos;script&apos;)</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<h2 id="sidebar-blade-php"><a href="#sidebar-blade-php" class="headerlink" title="sidebar.blade.php"></a>sidebar.blade.php</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">&lt;aside class=&quot;main-sidebar&quot;&gt;</div><div class="line">    &lt;section class=&quot;sidebar&quot;&gt;</div><div class="line">        &lt;div class=&quot;user-panel&quot;&gt;</div><div class="line">            &lt;div class=&quot;pull-left image&quot;&gt;</div><div class="line">                &lt;img src=&quot;&#123;&#123; asset(&quot;/assets/img/user2-160x160.jpg&quot;) &#125;&#125;&quot; class=&quot;img-circle&quot; alt=&quot;User Image&quot;/&gt;</div><div class="line">            &lt;/div&gt;</div><div class="line">            &lt;div class=&quot;pull-left info&quot;&gt;</div><div class="line">                &lt;p&gt;Alexander Pierce&lt;/p&gt;</div><div class="line">                &lt;a href=&quot;#&quot;&gt;&lt;i class=&quot;fa fa-circle text-success&quot;&gt;&lt;/i&gt; Online&lt;/a&gt;</div><div class="line">            &lt;/div&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">        &lt;form action=&quot;#&quot; method=&quot;get&quot; class=&quot;sidebar-form&quot;&gt;</div><div class="line">            &lt;div class=&quot;input-group&quot;&gt;</div><div class="line">                &lt;input type=&quot;text&quot; name=&quot;q&quot; class=&quot;form-control&quot; placeholder=&quot;Search...&quot;/&gt;</div><div class="line">                &lt;span class=&quot;input-group-btn&quot;&gt;</div><div class="line">                  &lt;button type=&apos;submit&apos; name=&apos;search&apos; id=&apos;search-btn&apos; class=&quot;btn btn-flat&quot;&gt;&lt;i class=&quot;fa fa-search&quot;&gt;&lt;/i&gt;</div><div class="line">                  &lt;/button&gt;</div><div class="line">                &lt;/span&gt;</div><div class="line">            &lt;/div&gt;</div><div class="line">        &lt;/form&gt;</div><div class="line">        &lt;ul class=&quot;sidebar-menu&quot;&gt;</div><div class="line">            &lt;li class=&quot;header&quot;&gt;HEADER&lt;/li&gt;</div><div class="line">            &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#&quot;&gt;&lt;span&gt;Link&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;</div><div class="line">            &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&lt;span&gt;Another Link&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;</div><div class="line">            &lt;li class=&quot;treeview&quot;&gt;</div><div class="line">                &lt;a href=&quot;#&quot;&gt;&lt;span&gt;Multilevel&lt;/span&gt; &lt;i class=&quot;fa fa-angle-left pull-right&quot;&gt;&lt;/i&gt;&lt;/a&gt;</div><div class="line">                &lt;ul class=&quot;treeview-menu&quot;&gt;</div><div class="line">                    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Link in level 2&lt;/a&gt;&lt;/li&gt;</div><div class="line">                    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Link in level 2&lt;/a&gt;&lt;/li&gt;</div><div class="line">                &lt;/ul&gt;</div><div class="line">            &lt;/li&gt;</div><div class="line">        &lt;/ul&gt;</div><div class="line">    &lt;/section&gt;</div><div class="line">&lt;/aside&gt;</div></pre></td></tr></table></figure>
+<h2 id="index-blade-php"><a href="#index-blade-php" class="headerlink" title="index.blade.php"></a>index.blade.php</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line">@extends(&quot;backend.layout.main&quot;)</div><div class="line"></div><div class="line">@section(&quot;content&quot;)</div><div class="line">    &lt;div class=&quot;row&quot;&gt;</div><div class="line">        &lt;div class=&quot;col-md-6&quot;&gt;</div><div class="line">            &lt;div class=&quot;box box-primary&quot;&gt;</div><div class="line">                &lt;div class=&quot;box-header with-border&quot;&gt;</div><div class="line">                    &lt;h3 class=&quot;box-title&quot;&gt;Randomly Generated Tasks&lt;/h3&gt;</div><div class="line">                    &lt;div class=&quot;box-tools pull-right&quot;&gt;</div><div class="line">                        &lt;button class=&quot;btn btn-box-tool&quot; data-widget=&quot;collapse&quot; data-toggle=&quot;tooltip&quot; title=&quot;Collapse&quot;&gt;</div><div class="line">                            &lt;i class=&quot;fa fa-minus&quot;&gt;&lt;/i&gt;</div><div class="line">                        &lt;/button&gt;</div><div class="line">                        &lt;button class=&quot;btn btn-box-tool&quot; data-widget=&quot;remove&quot; data-toggle=&quot;tooltip&quot; title=&quot;Remove&quot;&gt;</div><div class="line">                            &lt;i class=&quot;fa fa-times&quot;&gt;&lt;/i&gt;</div><div class="line">                        &lt;/button&gt;</div><div class="line">                    &lt;/div&gt;</div><div class="line">                &lt;/div&gt;</div><div class="line">                &lt;div class=&quot;box-body&quot;&gt;</div><div class="line">                    @foreach($tasks as $task)</div><div class="line">                        &lt;h5&gt;</div><div class="line">                            &#123;&#123; $task[&apos;name&apos;] &#125;&#125;</div><div class="line">                            &lt;small class=&quot;label label-&#123;&#123;$task[&apos;color&apos;]&#125;&#125; pull-right&quot;&gt;&#123;&#123;$task[&apos;progress&apos;]&#125;&#125;%&lt;/small&gt;</div><div class="line">                        &lt;/h5&gt;</div><div class="line">                        &lt;div class=&quot;progress progress-xxs&quot;&gt;</div><div class="line">                            &lt;div class=&quot;progress-bar progress-bar-&#123;&#123;$task[&apos;color&apos;]&#125;&#125;&quot; style=&quot;width: &#123;&#123;$task[&apos;progress&apos;]&#125;&#125;%&quot;&gt;&lt;/div&gt;</div><div class="line">                        &lt;/div&gt;</div><div class="line">                    @endforeach</div><div class="line">                &lt;/div&gt;</div><div class="line">                &lt;div class=&quot;box-footer&quot;&gt;</div><div class="line">                    &lt;form action=&quot;#&quot;&gt;</div><div class="line">                        &lt;input type=&quot;text&quot; placeholder=&quot;New task&quot; class=&quot;form-control input-sm&quot;/&gt;</div><div class="line">                    &lt;/form&gt;</div><div class="line">                &lt;/div&gt;</div><div class="line">            &lt;/div&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">        &lt;div class=&quot;col-md-6&quot;&gt;</div><div class="line">            &lt;div class=&quot;box box-primary&quot;&gt;</div><div class="line">                &lt;div class=&quot;box-header with-border&quot;&gt;</div><div class="line">                    &lt;h3 class=&quot;box-title&quot;&gt;Second Box&lt;/h3&gt;</div><div class="line">                    &lt;div class=&quot;box-tools pull-right&quot;&gt;</div><div class="line">                        &lt;button class=&quot;btn btn-box-tool&quot; data-widget=&quot;collapse&quot; data-toggle=&quot;tooltip&quot; title=&quot;Collapse&quot;&gt;</div><div class="line">                            &lt;i class=&quot;fa fa-minus&quot;&gt;&lt;/i&gt;</div><div class="line">                        &lt;/button&gt;</div><div class="line">                        &lt;button class=&quot;btn btn-box-tool&quot; data-widget=&quot;remove&quot; data-toggle=&quot;tooltip&quot; title=&quot;Remove&quot;&gt;</div><div class="line">                            &lt;i class=&quot;fa fa-times&quot;&gt;&lt;/i&gt;</div><div class="line">                        &lt;/button&gt;</div><div class="line">                    &lt;/div&gt;</div><div class="line">                &lt;/div&gt;</div><div class="line">                &lt;div class=&quot;box-body&quot;&gt;</div><div class="line">                    A separate section to add any kind of widget. Feel free</div><div class="line">                    to explore all of AdminLTE widgets by visiting the demo page</div><div class="line">                    on &lt;a href=&quot;https://almsaeedstudio.com&quot;&gt;Almsaeed Studio&lt;/a&gt;.</div><div class="line">                &lt;/div&gt;</div><div class="line">            &lt;/div&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">@endsection</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/04/使用Laravel构建内容管理框架（二）/" data-id="cirn1l9ym000tx14bailhyy9r" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Laravel/">Laravel</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-使用-Sublime-Text-3-开发-PHP-的总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/13/使用-Sublime-Text-3-开发-PHP-的总结/" class="article-date">
+  <time datetime="2016-03-13T14:34:20.000Z" itemprop="datePublished">2016-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Tooling/">Tooling</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/13/使用-Sublime-Text-3-开发-PHP-的总结/">使用 Sublime Text 3 开发 PHP 的心得</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>PHPStorm 不卡之日，SublimeText 舍弃之时</p>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
+<li>系统：OSX Yosemite 10.10.5</li>
+<li>版本：Sublime Text 3 Build 3103</li>
+</ul>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>使用 Homebrew 安装 Sublime Text 3<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install Caskroom/cask/sublime-text</div></pre></td></tr></table></figure></p>
+<h2 id="终端配置"><a href="#终端配置" class="headerlink" title="终端配置"></a>终端配置</h2><p>执行以下代码，即可在终端使用 <code>Sublime Text 3</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 创建程序链接</div><div class="line">ln -s  &quot;/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl&quot; /usr/local/bin/subl</div><div class="line"></div><div class="line">// 查看使用帮助</div><div class="line">subl -h</div></pre></td></tr></table></figure>
+<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><h3 id="常用"><a href="#常用" class="headerlink" title="常用"></a>常用</h3><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>⌘ + C</td>
+<td>复制</td>
+</tr>
+<tr>
+<td>⌘ + ⇧ + D</td>
+<td>复制粘贴</td>
+</tr>
+<tr>
+<td>⌘ + X</td>
+<td>剪切</td>
+</tr>
+<tr>
+<td>⌘ + V</td>
+<td>粘贴</td>
+</tr>
+<tr>
+<td>⌘ + ⇧ + V</td>
+<td>保持缩进粘贴</td>
+</tr>
+<tr>
+<td>⌘ + ⌥ + V</td>
+<td>打开粘贴面板</td>
+</tr>
+<tr>
+<td>⌘ + F</td>
+<td>查找</td>
+</tr>
+<tr>
+<td>⌘ + /</td>
+<td>注释行</td>
+</tr>
+<tr>
+<td>⌘ + ⌥ + /</td>
+<td>生成注释</td>
+</tr>
+<tr>
+<td>⌘ + ⇧ + F</td>
+<td>全局查找、替换</td>
+</tr>
+<tr>
+<td>⌘ + ↩</td>
+<td>在光标下插入行</td>
+</tr>
+<tr>
+<td>⌘ + ⇧ + ↩</td>
+<td>在光标上插入行</td>
+</tr>
+<tr>
+<td>⌘ + ⇧ + t</td>
+<td>打开关闭的标签页</td>
+</tr>
+<tr>
+<td>⌘ + [NUM]</td>
+<td>选取对应数字的标签页</td>
+</tr>
+<tr>
+<td>⌘ + ⇧ + [</td>
+<td>上一个标签页</td>
+</tr>
+<tr>
+<td>⌘ + ⇧ + ]</td>
+<td>下一个标签页</td>
+</tr>
+<tr>
+<td>⌃ + ⇧ + ↑</td>
+<td>向上扩展光标</td>
+</tr>
+<tr>
+<td>⌃ + ⇧ + ↓</td>
+<td>向下扩展光标</td>
+</tr>
+</tbody>
+</table>
+<h3 id="书签"><a href="#书签" class="headerlink" title="书签"></a>书签</h3><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>⌘ + F2</td>
+<td>生成或撤销书签</td>
+</tr>
+<tr>
+<td>⇧ + F2</td>
+<td>上一个书签</td>
+</tr>
+<tr>
+<td>F2</td>
+<td>下一个书签</td>
+</tr>
+</tbody>
+</table>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>⌃ + ⇧ + K</td>
+<td>删除当前行</td>
+</tr>
+<tr>
+<td>⌘ + K + ⌫</td>
+<td>删除光标之后的内容</td>
+</tr>
+<tr>
+<td>⌘ + K + ⌘ + K</td>
+<td>删除光标之后的内容</td>
+</tr>
+</tbody>
+</table>
+<h3 id="跳转"><a href="#跳转" class="headerlink" title="跳转"></a>跳转</h3><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>⌘ + P , ⌘ + T</td>
+<td>跳转到文件</td>
+</tr>
+<tr>
+<td>⌘ + R</td>
+<td>跳转到方法</td>
+</tr>
+<tr>
+<td>⌃ + G</td>
+<td>跳转到行数</td>
+</tr>
+<tr>
+<td>⌃ + ⇧ + P</td>
+<td>切换工作空间</td>
+</tr>
+<tr>
+<td>⌘ + ⇧ + P</td>
+<td>打开命令面板</td>
+</tr>
+<tr>
+<td>⌃ + -</td>
+<td>向后跳转至修改处</td>
+</tr>
+<tr>
+<td>⌃ + ⇧ + -</td>
+<td>向前跳转至修改处</td>
+</tr>
+</tbody>
+</table>
+<h3 id="光标移动"><a href="#光标移动" class="headerlink" title="光标移动"></a>光标移动</h3><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>⌃ + P</td>
+<td>光标向上移动</td>
+</tr>
+<tr>
+<td>⌃ + N</td>
+<td>光标向下移动</td>
+</tr>
+<tr>
+<td>⌃ + B</td>
+<td>光标向左移动</td>
+</tr>
+<tr>
+<td>⌃ + F</td>
+<td>光标向右移动</td>
+</tr>
+<tr>
+<td>⌃ + A , ⌘ + ←</td>
+<td>光标移动到行最左</td>
+</tr>
+<tr>
+<td>⌃ + E , ⌘ + →</td>
+<td>光标移动到行最右</td>
+</tr>
+<tr>
+<td>⌃ + M</td>
+<td>光标在括号里闭合跳转</td>
+</tr>
+<tr>
+<td>⌘ + ⌃ + ↑</td>
+<td>向上移动选中行</td>
+</tr>
+<tr>
+<td>⌘ + ⌃ + ↓</td>
+<td>向下移动选中行</td>
+</tr>
+</tbody>
+</table>
+<h3 id="选取"><a href="#选取" class="headerlink" title="选取"></a>选取</h3><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>⌘ + L</td>
+<td>选取行</td>
+</tr>
+<tr>
+<td>⌘ + D</td>
+<td>选取一个相同的文本</td>
+</tr>
+<tr>
+<td>⌃ + ⇧ + G</td>
+<td>选取所有相同的文本</td>
+</tr>
+<tr>
+<td>⌘ + A</td>
+<td>选取所有内容</td>
+</tr>
+<tr>
+<td>⌘ + ⇧ + ↑</td>
+<td>向上选取所有内容</td>
+</tr>
+<tr>
+<td>⌘ + ⇧ + ↓</td>
+<td>向下选取所有内容</td>
+</tr>
+<tr>
+<td>⌘ + ⇧ + K</td>
+<td>选取当前行HTML标签</td>
+</tr>
+<tr>
+<td>⌘ + ⇧ + A</td>
+<td>选取HTML标签闭合内容</td>
+</tr>
+<tr>
+<td>⌘ + ⇧ + J</td>
+<td>选取块闭合内容（可以折叠的内容为块）</td>
+</tr>
+<tr>
+<td>⌃ + ⇧ + M</td>
+<td>选取括号内容</td>
+</tr>
+<tr>
+<td>⌃ + ⇧ + A</td>
+<td>选取光标之前内容</td>
+</tr>
+<tr>
+<td>⌃ + ⇧ + E</td>
+<td>选取光标之后内容</td>
+</tr>
+</tbody>
+</table>
+<h3 id="窗口"><a href="#窗口" class="headerlink" title="窗口"></a>窗口</h3><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>⌘ + K + ⌘ + B</td>
+<td>显示左侧栏</td>
+</tr>
+<tr>
+<td>⌃ + `</td>
+<td>显示控制台</td>
+</tr>
+<tr>
+<td>⌘ + B</td>
+<td>执行编译</td>
+</tr>
+<tr>
+<td>⌃ + ⌘ + F</td>
+<td>全屏模式</td>
+</tr>
+<tr>
+<td>⌃ + ⇧ + ⌘ + F</td>
+<td>无干扰全屏模式</td>
+</tr>
+<tr>
+<td>⌃ + ⇧ + 2</td>
+<td>进行左右分屏</td>
+</tr>
+<tr>
+<td>⌃ + ⇧ + 5</td>
+<td>进行上下分屏</td>
+</tr>
+<tr>
+<td>⌃ + ⇧ + 1</td>
+<td>取消所有分屏</td>
+</tr>
+<tr>
+<td>⌃ + Num</td>
+<td>根据数字跳转至对应分屏</td>
+</tr>
+</tbody>
+</table>
+<h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><h3 id="PackageControl-插件"><a href="#PackageControl-插件" class="headerlink" title="PackageControl 插件"></a>PackageControl 插件</h3><p>按下 <code>⌃ + ~</code> 打开控制台，复制粘贴以下代码并按下 <code>↩</code>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import urllib.request,os; pf = &apos;Package Control.sublime-package&apos;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), &apos;wb&apos;).write(urllib.request.urlopen( &apos;http://sublime.wbond.net/&apos; + pf.replace(&apos; &apos;,&apos;%20&apos;)).read())</div></pre></td></tr></table></figure></p>
+<h3 id="Material-Theme-插件"><a href="#Material-Theme-插件" class="headerlink" title="Material Theme 插件"></a>Material Theme 插件</h3><p><code>Material Theme</code> 是一款编辑器主题插件</p>
+<p>可以使用 <code>Package Control</code> 插件安装 <code>Material-Theme</code> 插件</p>
+<p><code>Material-Theme</code> 插件可提供三种外观样式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//default</div><div class="line">&quot;theme&quot;: &quot;Material-Theme.sublime-theme&quot;,</div><div class="line">&quot;color_scheme&quot;: &quot;Packages/Material Theme/schemes/Material-Theme.tmTheme&quot;,</div><div class="line"></div><div class="line">//Darker</div><div class="line">&quot;theme&quot;: &quot;Material-Theme-Darker.sublime-theme&quot;,</div><div class="line">&quot;color_scheme&quot;: &quot;Packages/Material Theme/schemes/Material-Theme-Darker.tmTheme&quot;,</div><div class="line"></div><div class="line">//Lighter</div><div class="line">&quot;theme&quot;: &quot;Material-Theme-Lighter.sublime-theme&quot;,</div><div class="line">&quot;color_scheme&quot;: &quot;Packages/Material Theme/schemes/Material-Theme-Lighter.tmTheme&quot;,</div></pre></td></tr></table></figure></p>
+<h3 id="AdvanceNewFile-插件"><a href="#AdvanceNewFile-插件" class="headerlink" title="AdvanceNewFile 插件"></a>AdvanceNewFile 插件</h3><p><code>AdvanceNewFile</code> 是一款快速操作文件的插件</p>
+<p>可以使用 <code>Package Control</code> 安装 <code>AdvanceNewFile</code> 插件</p>
+<p>安装完毕之后，可以按下 <code>⌘ + ⇧ + P</code> 调出命令面板，执行以下命令对文件进行操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">//新增</div><div class="line">ANF:New File</div><div class="line"></div><div class="line">//删除</div><div class="line">ANF:Delete File</div><div class="line"></div><div class="line">//重命名</div><div class="line">ANF:Rename File</div><div class="line"></div><div class="line">//复制当前文件</div><div class="line">ANF:Copy Current File</div><div class="line"></div><div class="line">//删除当前文件</div><div class="line">ANF:Delete Current File</div></pre></td></tr></table></figure>
+<p>亦可使用快捷键 <code>⌘ + ⌥ + N</code> 快速新建文件</p>
+<h3 id="PHP-Getters-and-Setters-插件"><a href="#PHP-Getters-and-Setters-插件" class="headerlink" title="PHP Getters and Setters 插件"></a>PHP Getters and Setters 插件</h3><p><code>PHP Getters and Setters</code> 是一款根据类文件的成员属性，快速生成 Getter 方法和 Setter 方法的插件</p>
+<p>可以使用 <code>Package Control</code> 安装 <code>PHP Getters and Setters</code> 插件</p>
+<p>执行以下命令快速生成 Getter 和 Setter 的代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// 生成 Getter 方法</div><div class="line">PHP:Generate Getters</div><div class="line">// 生成 Setter 方法</div><div class="line">PHP:Generate Setters</div><div class="line"></div><div class="line">// 同时生成 Getter 和 Setter</div><div class="line">PHP:Generate Getters and Setters</div></pre></td></tr></table></figure></p>
+<h3 id="PHP-Companion-插件"><a href="#PHP-Companion-插件" class="headerlink" title="PHP Companion 插件"></a>PHP Companion 插件</h3><p><code>PHP Companion</code> 插件提供以下功能</p>
+<ul>
+<li><p><code>find_use</code><br>生成所选类的use声明</p>
+</li>
+<li><p><code>expand_fqcn</code><br>生成所选类的引用路径</p>
+</li>
+<li><p><code>import_namespace</code><br>生成所选文件的命名空间</p>
+</li>
+<li><p><code>goto_definition_scope</code><br>寻找所选代码的定义源头</p>
+</li>
+<li><p><code>insert_php_constructor_property</code><br>生成当前类的构造方法</p>
+</li>
+</ul>
+<p>在 <code>Preferences</code> -&gt; <code>Key Bindings - User</code> 新增以下快捷键调用上述插件命令<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">//PHP Companion</div><div class="line">&#123;"keys":["f9"],"command":"find_use"&#125;,</div><div class="line">&#123;"keys":["f10"],"command":"expand_fqcn"&#125;,</div><div class="line">&#123;"keys":["f11"],"command":"goto_definition_scope"&#125;,</div><div class="line">&#123;"keys":["f12"],"command":"insert_php_constructor_property"&#125;,</div></pre></td></tr></table></figure></p>
+<h3 id="Laravel-Artisan-插件"><a href="#Laravel-Artisan-插件" class="headerlink" title="Laravel Artisan 插件"></a>Laravel Artisan 插件</h3><p><code>Laravel Artisan</code> 是一款让开发可以不使用终端就能运行 <code>Artisan CLI</code> 的插件</p>
+<p>命令与在终端使用 <code>php artisan</code> 基本一致，可以按下 <code>⌘ + ⇧ + P</code> 打开命令面板，执行以下命令：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// 生成控制器</div><div class="line">Laravel Artisan5:Make:Controller</div><div class="line"></div><div class="line">// 生成请求</div><div class="line">Laravel Artisan5:Make:Request</div><div class="line"></div><div class="line">// 生成服务提供者</div><div class="line">Laravel Artisan5:Make:Provider</div><div class="line"></div><div class="line">// 生成数据迁移文件</div><div class="line">Laravel Artisan5:Make:Mrgiation</div></pre></td></tr></table></figure>
+<h3 id="DocBlockr-插件"><a href="#DocBlockr-插件" class="headerlink" title="DocBlockr 插件"></a>DocBlockr 插件</h3><p><code>DocBlockr</code> 是一款根据代码自动生成注释的插件</p>
+<h3 id="All-Autocomplete-插件"><a href="#All-Autocomplete-插件" class="headerlink" title="All Autocomplete 插件"></a>All Autocomplete 插件</h3><p><code>All Autocomplete</code> 是一款自动补全的插件，它会查找你打开的所有文件的代码，然后进行代码补全</p>
+<h3 id="SublimeLinter-php-插件"><a href="#SublimeLinter-php-插件" class="headerlink" title="SublimeLinter-php 插件"></a>SublimeLinter-php 插件</h3><p><code>SublimeLinter</code> 是一款检查PHP语言错误的插件</p>
+<p>使用 <code>Package Control</code> 安装 <code>SublimeLinter</code> 插件<br>使用 <code>Package Control</code> 安装 <code>SublimeLinter-php</code> 插件</p>
+<p>在 <code>Preferences</code> -&gt; <code>Package Settings</code> -&gt; <code>SublimeLinter</code> -&gt; <code>Settings - User</code> 新增以下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;show_errors_on_save&quot;: true,</div></pre></td></tr></table></figure>
+<p>上述操作会让编辑器在保存文件的时候，提示错误信息</p>
+<h2 id="代码片段"><a href="#代码片段" class="headerlink" title="代码片段"></a>代码片段</h2><p><code>Sublime Text</code> 可以创建自定义的代码片段</p>
+<p>点击菜单栏 <code>Tools</code> -&gt; <code>New Snippet</code> ，创建文件 <code>PHP Public Method.sublime-snippet</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;snippet&gt;</div><div class="line">	&lt;content&gt;&lt;![CDATA[</div><div class="line">public function $&#123;1:function_name&#125;($&#123;2:param&#125;)&#123;</div><div class="line">	$&#123;3:return result&#125;</div><div class="line">&#125;</div><div class="line">]]&gt;&lt;/content&gt;</div><div class="line">	&lt;!-- Optional: Set a tabTrigger to define how to trigger the snippet --&gt;</div><div class="line">	&lt;tabTrigger&gt;pubf&lt;/tabTrigger&gt;</div><div class="line">	&lt;!-- Optional: Set a scope to limit where the snippet will trigger --&gt;</div><div class="line">	&lt;scope&gt;source.php&lt;/scope&gt;</div><div class="line">&lt;/snippet&gt;</div></pre></td></tr></table></figure></p>
+<p>当在PHP文件写代码时，输入 <code>pubf</code> 并按下 <code>Tab</code> 键，会生成相对应的代码片段<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public function function_name(param)&#123;</div><div class="line">	return true</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="格式化代码"><a href="#格式化代码" class="headerlink" title="格式化代码"></a>格式化代码</h2><p>在终端执行以下命令安装 <code>php-cs-fix</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install php-cs-fixer</div></pre></td></tr></table></figure></p>
+<p>假如要对某个 PHP 文件进行格式化操作，运行以下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd dir</div><div class="line">php-cs-fixer fix fileName.php --level=&quot;psr2&quot;</div></pre></td></tr></table></figure></p>
+<p>使用 <code>Sublime Text 3</code> 的 <code>Build System</code> 格式化代码<br>点击 <code>Tools</code> -&gt; <code>Build System</code> -&gt; <code>New Bulid System ...</code>，打开代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;shell_cmd&quot;:&quot;make&quot;</div></pre></td></tr></table></figure></p>
+<p>修改上述代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	&quot;shell_cmd&quot;: &quot;php-cs-fixer fix $file --level=psr2&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>保存之后，在 <code>Tools</code>-<code>Build System</code> 选择 <code>PSR-2</code>，按 <code>⌘ + B</code>对当前文件进行 <code>PSR-2</code> 格式化操作。</p>
+<p>觉得格式化提示信息麻烦，可以在<code>Preferences</code>-<code>Settings - User</code>添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;show_panel_on_build&quot;:false</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/13/使用-Sublime-Text-3-开发-PHP-的总结/" data-id="cirn1l9xw0005x14bruy92yz1" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sublime-Text-3/">Sublime Text 3</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-使用Laravel构建内容管理框架（一）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/09/使用Laravel构建内容管理框架（一）/" class="article-date">
+  <time datetime="2016-03-09T12:54:07.000Z" itemprop="datePublished">2016-03-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/PHP/">PHP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/09/使用Laravel构建内容管理框架（一）/">使用 Laravel 构建内容管理框架（一）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>为使用 Laravel 构建内容管理框架做好环境、代码和脚本的准备</p>
+<h1 id="安装Laravel"><a href="#安装Laravel" class="headerlink" title="安装Laravel"></a>安装Laravel</h1><hr>
+<p>在终端使用Composer安装Laravel<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo composer create-project laravel/laravel backend --prefer-dist 5.1.x</div></pre></td></tr></table></figure></p>
+<p>执行后，会在当前目录下新建一个文件夹，里面就是新建的Laravel项目</p>
+<h1 id="安装gulp、bower"><a href="#安装gulp、bower" class="headerlink" title="安装gulp、bower"></a>安装gulp、bower</h1><hr>
+<p>在终端使用npm安装gulp<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">sudo npm install -g gulp  #全局安装npm</div><div class="line">sudo npm install -g bower #全局安装bower</div><div class="line"></div><div class="line">cd backend</div><div class="line">sudo npm install gulp   #在项目本地安装gulp</div><div class="line">sudo npm install bower  #在项目本地安装bower</div><div class="line">sudp npm install        #安装项目Node依赖、Laravel Elixir</div></pre></td></tr></table></figure></p>
+<p>运行<code>gulp tdd</code>之后，会自动监控测试单元</p>
+<h1 id="使用bower集成前端依赖库"><a href="#使用bower集成前端依赖库" class="headerlink" title="使用bower集成前端依赖库"></a>使用bower集成前端依赖库</h1><hr>
+<p>在项目根目录新增文件<code>.bowerrc</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;directory&quot;: &quot;vendor/bower&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>上述配置告诉bower在<code>vendor/bower</code>存放下载文件<br>执行命令<code>bower init</code>创建文件<code>bower.json</code></p>
+<p>依赖安装所需前端资源<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo bower install admin-lte</div><div class="line">sudo bower install fontawesome</div><div class="line">sudo bower install ionicons</div></pre></td></tr></table></figure></p>
+<p>打开文件<code>gulpfile.js</code>，编辑如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div></pre></td><td class="code"><pre><div class="line">var gulp = require(&apos;gulp&apos;);</div><div class="line">var elixir = require(&apos;laravel-elixir&apos;);</div><div class="line"></div><div class="line">gulp.task(&apos;copy&apos;, function () &#123;</div><div class="line">    // jQuery</div><div class="line">    gulp.src(&quot;vendor/bower/AdminLTE/plugins/jQuery/jQuery-2.1.4.min.js&quot;)</div><div class="line">        .pipe(gulp.dest(&quot;resources/assets/js/&quot;));</div><div class="line"></div><div class="line">    // bootstarp</div><div class="line">    gulp.src(&quot;vendor/bower/AdminLTE/bootstrap/css/bootstrap.min.css&quot;)</div><div class="line">        .pipe(gulp.dest(&quot;resources/assets/css/&quot;));</div><div class="line">    gulp.src(&quot;vendor/bower/AdminLTE/bootstrap/js/bootstrap.min.js&quot;)</div><div class="line">        .pipe(gulp.dest(&quot;resources/assets/js/&quot;));</div><div class="line"></div><div class="line">    // AdminLTE</div><div class="line">    gulp.src(&quot;vendor/bower/AdminLTE/dist/css/AdminLTE.min.css&quot;)</div><div class="line">        .pipe(gulp.dest(&quot;resources/assets/css/&quot;));</div><div class="line">    gulp.src(&quot;vendor/bower/AdminLTE/dist/css/skins/skin-blue.min.css&quot;)</div><div class="line">        .pipe(gulp.dest(&quot;resources/assets/css/&quot;));</div><div class="line">    gulp.src(&quot;vendor/bower/AdminLTE/dist/js/app.min.js&quot;)</div><div class="line">        .pipe(gulp.dest(&quot;resources/assets/js/&quot;));</div><div class="line">    gulp.src(&quot;vendor/bower/AdminLTE/dist/img/*&quot;)</div><div class="line">        .pipe(gulp.dest(&quot;public/assets/img/&quot;));</div><div class="line"></div><div class="line">    // Fontawesome</div><div class="line">    gulp.src(&quot;vendor/bower/font-awesome/css/font-awesome.min.css&quot;)</div><div class="line">        .pipe(gulp.dest(&quot;resources/assets/css/&quot;));</div><div class="line">    gulp.src(&quot;vendor/bower/font-awesome/fonts/*&quot;)</div><div class="line">        .pipe(gulp.dest(&quot;public/assets/fonts/&quot;));</div><div class="line"></div><div class="line">    // Ionicons</div><div class="line">    gulp.src(&quot;vendor/bower/Ionicons/css/ionicons.min.css&quot;)</div><div class="line">        .pipe(gulp.dest(&quot;resources/assets/css/&quot;));</div><div class="line">    gulp.src(&quot;vendor/bower/Ionicons/fonts/*&quot;)</div><div class="line">        .pipe(gulp.dest(&quot;public/assets/fonts/&quot;));</div><div class="line"></div><div class="line">    // slimScroll</div><div class="line">    gulp.src(&quot;vendor/bower/AdminLTE/plugins/slimScroll/jquery.slimscroll.min.js&quot;)</div><div class="line">        .pipe(gulp.dest(&quot;resources/assets/js/&quot;));</div><div class="line"></div><div class="line">    // iCheck</div><div class="line">    gulp.src(&quot;vendor/bower/AdminLTE/plugins/iCheck/icheck.min.js&quot;)</div><div class="line">        .pipe(gulp.dest(&quot;resources/assets/js/&quot;));</div><div class="line">    gulp.src(&quot;vendor/bower/AdminLTE/plugins/iCheck/square/blue.css&quot;)</div><div class="line">        .pipe(gulp.dest(&quot;resources/assets/css/&quot;));</div><div class="line">    gulp.src(&quot;vendor/bower/AdminLTE/plugins/iCheck/square/blue.png&quot;)</div><div class="line">        .pipe(gulp.dest(&quot;public/assets/css/&quot;));</div><div class="line">    gulp.src(&quot;vendor/bower/AdminLTE/plugins/iCheck/square/blue@2x.png&quot;)</div><div class="line">        .pipe(gulp.dest(&quot;public/assets/css/&quot;));</div><div class="line"></div><div class="line">    // select2</div><div class="line">    gulp.src(&quot;vendor/bower/AdminLTE/plugins/select2/select2.full.min.js&quot;)</div><div class="line">        .pipe(gulp.dest(&quot;resources/assets/js/&quot;));</div><div class="line">    gulp.src(&quot;vendor/bower/AdminLTE/plugins/select2/select2.min.js&quot;)</div><div class="line">        .pipe(gulp.dest(&quot;resources/assets/js/&quot;));</div><div class="line">    gulp.src(&quot;vendor/bower/AdminLTE/plugins/select2/select2.min.css&quot;)</div><div class="line">        .pipe(gulp.dest(&quot;resources/assets/css/&quot;));</div><div class="line"></div><div class="line">    // pace</div><div class="line">    gulp.src(&quot;vendor/bower/AdminLTE/plugins/pace/pace.min.css&quot;)</div><div class="line">        .pipe(gulp.dest(&quot;resources/assets/css/&quot;));</div><div class="line">    gulp.src(&quot;vendor/bower/AdminLTE/plugins/pace/pace.min.js&quot;)</div><div class="line">        .pipe(gulp.dest(&quot;resources/assets/js/&quot;));</div><div class="line">&#125;);</div><div class="line"></div><div class="line">elixir(function (mix) &#123;</div><div class="line">    // 合并javascript脚本</div><div class="line">    mix.scripts(</div><div class="line">        [</div><div class="line">            &apos;jQuery-2.1.4.min.js&apos;,</div><div class="line">            &apos;bootstrap.min.js&apos;,</div><div class="line">            &apos;app.min.js&apos;,</div><div class="line">            &apos;pace.min.js&apos;,</div><div class="line">            &apos;jquery.slimscroll.min.js&apos;,</div><div class="line">            &apos;icheck.min.js&apos;,</div><div class="line">            &apos;select2.full.min.js&apos;,</div><div class="line">            &apos;select2.min.js&apos;</div><div class="line">        ],</div><div class="line">        &apos;public/assets/js/app.js&apos;,</div><div class="line">        &apos;resources/assets/js/&apos;</div><div class="line">    );</div><div class="line"></div><div class="line">    // 合并css脚本</div><div class="line">    mix.styles(</div><div class="line">        [</div><div class="line">            &apos;bootstrap.min.css&apos;,</div><div class="line">            &apos;pace.min.css&apos;,</div><div class="line">            &apos;select2.min.css&apos;,</div><div class="line">            &apos;AdminLTE.min.css&apos;,</div><div class="line">            &apos;skin-blue.min.css&apos;,</div><div class="line">            &apos;font-awesome.min.css&apos;,</div><div class="line">            &apos;ionicons.min.css&apos;,</div><div class="line">            &apos;blue.css&apos;</div><div class="line">        ],</div><div class="line">        &apos;public/assets/css/app.css&apos;,</div><div class="line">        &apos;resources/assets/css/&apos;</div><div class="line">    );</div><div class="line"></div><div class="line">    // 运行单元测试</div><div class="line">    mix.phpUnit();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>在终端执行命令如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">gulp copy</div><div class="line">gulp</div></pre></td></tr></table></figure></p>
+<p>上述操作将会在根目录文件夹<code>public/assets/</code>生成所需的前端资源，接下来就是在视图模板中使用。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/09/使用Laravel构建内容管理框架（一）/" data-id="cirn1l9y5000ax14b2dk2asc8" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Laravel/">Laravel</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Catégories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tooling/">Tooling</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Laravel/">Laravel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHPStorm/">PHPStorm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime-Text-3/">Sublime Text 3</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Laravel/" style="font-size: 20px;">Laravel</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PHPStorm/" style="font-size: 15px;">PHPStorm</a> <a href="/tags/Sublime-Text-3/" style="font-size: 10px;">Sublime Text 3</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/08/08/使用-Laravel-基于-SMTP-驱动实现发送图文邮件/">使用 Laravel 基于 SMTP 驱动实现发送文字邮件</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/27/使用-PHPStorm-与-Xdebug-调试-Laravel-二/">使用 PHPStorm 与 Xdebug 调试 Laravel (二)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/20/使用-PHPStorm-与-Xdebug-调试-Laravel-一/">使用 PHPStorm 与 Xdebug 调试 Laravel (一)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/10/PHP Web Application 运行流程、概念术语、机制原理和代码实践/">PHP Web Application 运行流程、概念术语、机制原理和代码实践</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/04/使用Laravel构建内容管理框架（九）/">使用 Laravel 构建内容管理框架（九）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 John Doe<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

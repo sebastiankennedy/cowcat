@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用 Laravel 构建内容管理框架（三） | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="完成登录管理页面与登录验证功能
+管理用户模型
+在文件夹app下新建文件夹Models，将文件夹app下的User.php移动到文件夹app/Models下修改文件User.php的命名空间1namespace App\Models;
+打开文件config/auth.php，修改代码如下1&amp;apos;model&amp;apos; =&amp;gt; App\Models\User::class,
+新增路由
+打开文">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 Laravel 构建内容管理框架（三）">
+<meta property="og:url" content="http://yoursite.com/2016/04/04/使用Laravel构建内容管理框架（三）/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="完成登录管理页面与登录验证功能
+管理用户模型
+在文件夹app下新建文件夹Models，将文件夹app下的User.php移动到文件夹app/Models下修改文件User.php的命名空间1namespace App\Models;
+打开文件config/auth.php，修改代码如下1&amp;apos;model&amp;apos; =&amp;gt; App\Models\User::class,
+新增路由
+打开文">
+<meta property="og:updated_time" content="2016-06-21T02:37:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用 Laravel 构建内容管理框架（三）">
+<meta name="twitter:description" content="完成登录管理页面与登录验证功能
+管理用户模型
+在文件夹app下新建文件夹Models，将文件夹app下的User.php移动到文件夹app/Models下修改文件User.php的命名空间1namespace App\Models;
+打开文件config/auth.php，修改代码如下1&amp;apos;model&amp;apos; =&amp;gt; App\Models\User::class,
+新增路由
+打开文">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-使用Laravel构建内容管理框架（三）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/04/使用Laravel构建内容管理框架（三）/" class="article-date">
+  <time datetime="2016-04-04T01:33:12.000Z" itemprop="datePublished">2016-04-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/PHP/">PHP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用 Laravel 构建内容管理框架（三）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>完成登录管理页面与登录验证功能</p>
+<h1 id="管理用户模型"><a href="#管理用户模型" class="headerlink" title="管理用户模型"></a>管理用户模型</h1><hr>
+<p>在文件夹<code>app</code>下新建文件夹<code>Models</code>，将文件夹<code>app</code>下的<code>User.php</code>移动到文件夹<code>app/Models</code>下<br>修改文件<code>User.php</code>的命名空间<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">namespace App\Models;</div></pre></td></tr></table></figure></p>
+<p>打开文件<code>config/auth.php</code>，修改代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&apos;model&apos; =&gt; App\Models\User::class,</div></pre></td></tr></table></figure></p>
+<h1 id="新增路由"><a href="#新增路由" class="headerlink" title="新增路由"></a>新增路由</h1><hr>
+<p>打开文件<code>app/Http/routes.php</code>，文件代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">Route::group([&apos;namespace&apos; =&gt; &apos;Backend&apos;, &apos;middleware&apos; =&gt; [&apos;auth&apos;]], function () &#123;</div><div class="line">    Route::get(&apos;/&apos;, &apos;IndexController@index&apos;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">Route::group([&apos;namespace&apos; =&gt; &apos;Auth&apos;], function () &#123;</div><div class="line">    Route::get(&apos;auth/login&apos;, &apos;AuthController@getLogin&apos;);</div><div class="line">    Route::post(&apos;auth/login&apos;, &apos;AuthController@postLogin&apos;);</div><div class="line">    Route::get(&apos;auth/logout&apos;, &apos;AuthController@getLogout&apos;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h1 id="新增登录视图"><a href="#新增登录视图" class="headerlink" title="新增登录视图"></a>新增登录视图</h1><hr>
+<p>在文件夹<code>resources/views/</code>新建文件夹<code>auth</code>，然后新建视图文件<code>login.blade.php</code><br>在文件夹<code>resources/views/backend/layout</code>新建文件夹<code>message</code>，然后新建视图文件如下：</p>
+<ul>
+<li>tips.blade.php</li>
+<li>error.blade.php</li>
+<li>success.blade.php</li>
+</ul>
+<h2 id="login-blade-php"><a href="#login-blade-php" class="headerlink" title="login.blade.php"></a>login.blade.php</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=&quot;zh&quot;&gt;</div><div class="line">&lt;head&gt;</div><div class="line">    &lt;meta charset=&quot;utf-8&quot;&gt;</div><div class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;</div><div class="line">    &lt;title&gt;AdminLTE 2 | Log in&lt;/title&gt;</div><div class="line">    &lt;meta content=&quot;width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no&quot; name=&quot;viewport&quot;&gt;</div><div class="line">    &lt;link href=&quot;&#123;&#123; asset(&quot;/assets/css/app.css&quot;) &#125;&#125;&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;/&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body class=&quot;hold-transition login-page&quot;&gt;</div><div class="line">&lt;div class=&quot;login-box&quot;&gt;</div><div class="line">    &lt;div class=&quot;login-logo&quot;&gt;</div><div class="line">        &lt;b&gt;TianMao&lt;/b&gt;CMF</div><div class="line">    &lt;/div&gt;</div><div class="line">    &lt;div class=&quot;login-box-body&quot;&gt;</div><div class="line">        &lt;p class=&quot;login-box-msg&quot;&gt;Happy Coding&lt;/p&gt;</div><div class="line"></div><div class="line">        &lt;form action=&quot;&#123;&#123;URL::to(&apos;/auth/login&apos;)&#125;&#125;&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;</div><div class="line">            &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;&#123;&#123; csrf_token() &#125;&#125;&quot;&gt;</div><div class="line">            &lt;div class=&quot;row form-group has-feedback&quot;&gt;</div><div class="line">                &lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;账号&quot; name=&quot;email&quot;&gt;</div><div class="line">                &lt;span class=&quot;fa fa-user form-control-feedback&quot;&gt;&lt;/span&gt;</div><div class="line">                @include(&apos;backend.layout.message.tips&apos;,[&apos;field&apos;=&gt;&apos;email&apos;])</div><div class="line">            &lt;/div&gt;</div><div class="line">            &lt;div class=&quot;row form-group has-feedback&quot;&gt;</div><div class="line">                &lt;input type=&quot;password&quot; class=&quot;form-control&quot; placeholder=&quot;密码&quot; name=&quot;password&quot;&gt;</div><div class="line">                &lt;span class=&quot;fa fa-lock form-control-feedback&quot;&gt;&lt;/span&gt;</div><div class="line">                @include(&apos;backend.layout.message.tips&apos;,[&apos;field&apos;=&gt;&apos;password&apos;])</div><div class="line">            &lt;/div&gt;</div><div class="line">            &lt;div class=&quot;row form-group has-feedback&quot;&gt;</div><div class="line">                &lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;验证码&quot; name=&quot;captcha&quot;&gt;</div><div class="line">                &lt;span class=&quot;fa fa-image form-control-feedback&quot;&gt;&lt;/span&gt;</div><div class="line">                @include(&apos;backend.layout.message.tips&apos;,[&apos;field&apos;=&gt;&apos;captcha&apos;])</div><div class="line">            &lt;/div&gt;</div><div class="line">            &lt;div class=&quot;row form-group has-feedback&quot;&gt;</div><div class="line">                &lt;img src=&quot;&#123;&#123;$captcha&#125;&#125;&quot; alt=&quot;图片验证码&quot; style=&quot;width: 100%;&quot;&gt;</div><div class="line">            &lt;/div&gt;</div><div class="line">            &lt;div class=&quot;row&quot;&gt;</div><div class="line">                &lt;div class=&quot;col-xs-8&quot;&gt;</div><div class="line">                    &lt;div class=&quot;checkbox icheck&quot;&gt;</div><div class="line">                        &lt;label&gt;</div><div class="line">                            &lt;input type=&quot;checkbox&quot; name=&quot;remember&quot; value=&quot;1&quot;&gt; 保持登录</div><div class="line">                        &lt;/label&gt;</div><div class="line">                    &lt;/div&gt;</div><div class="line">                &lt;/div&gt;</div><div class="line">                &lt;div class=&quot;col-xs-4&quot;&gt;</div><div class="line">                    &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary btn-block btn-flat&quot;&gt;登 录&lt;/button&gt;</div><div class="line">                &lt;/div&gt;</div><div class="line">            &lt;/div&gt;</div><div class="line">        &lt;/form&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;script src=&quot;&#123;&#123; asset (&quot;/assets/js/app.js&quot;) &#125;&#125;&quot;&gt;&lt;/script&gt;</div><div class="line">&lt;script&gt;</div><div class="line">    $(function () &#123;</div><div class="line">        $(&apos;input&apos;).iCheck(&#123;</div><div class="line">            checkboxClass: &apos;icheckbox_square-blue&apos;,</div><div class="line">            radioClass: &apos;iradio_square-blue&apos;,</div><div class="line">            increaseArea: &apos;20%&apos;</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<h2 id="tips-blade-php"><a href="#tips-blade-php" class="headerlink" title="tips.blade.php"></a>tips.blade.php</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@if($errors-&gt;has($field))</div><div class="line">	@foreach ($errors-&gt;get($field) as $error)</div><div class="line">		&lt;button class=&quot;btn btn-danger col-sm-12 btn-flat&quot; style=&quot;width: 100%;&quot;&gt;</div><div class="line">			&lt;i class=&quot;fa fa-times-circle-o&quot;&gt;&lt;/i&gt; &#123;&#123;$error&#125;&#125;</div><div class="line">		&lt;/button&gt;</div><div class="line">	@endforeach</div><div class="line">@endif</div></pre></td></tr></table></figure>
+<h2 id="error-blade-php"><a href="#error-blade-php" class="headerlink" title="error.blade.php"></a>error.blade.php</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">@if(Session::has(&apos;errors&apos;))</div><div class="line">	&lt;div id=&quot;errors-message&quot; class=&quot;alert alert-danger alert-dismissible&quot;&gt;</div><div class="line">		&lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;alert&quot; aria-hidden=&quot;true&quot;&gt;×&lt;/button&gt;</div><div class="line">		&lt;h4&gt;&lt;i class=&quot;icon fa fa-ban&quot;&gt;&lt;/i&gt; 错误提示!&lt;/h4&gt;</div><div class="line">		@foreach($errors-&gt;all() as $error)</div><div class="line">			&#123;&#123;$error&#125;&#125;</div><div class="line">		@endforeach</div><div class="line">	&lt;/div&gt;</div><div class="line">@endif</div></pre></td></tr></table></figure>
+<h2 id="success-blade-php"><a href="#success-blade-php" class="headerlink" title="success.blade.php"></a>success.blade.php</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@if(Session::has(&apos;success&apos;))</div><div class="line">	&lt;div id=&quot;success-message&quot; class=&quot;alert alert-success alert-dismissible&quot;&gt;</div><div class="line">		&lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;alert&quot; aria-hidden=&quot;true&quot;&gt;×&lt;/button&gt;</div><div class="line">		&lt;h4&gt;&lt;i class=&quot;icon fa fa-check&quot;&gt;&lt;/i&gt; 成功提示!&lt;/h4&gt;</div><div class="line">		&#123;&#123;Session::get(&apos;success&apos;)&#125;&#125;</div><div class="line">	&lt;/div&gt;</div><div class="line">@endif</div></pre></td></tr></table></figure>
+<h1 id="新增验证码Package"><a href="#新增验证码Package" class="headerlink" title="新增验证码Package"></a>新增验证码Package</h1><hr>
+<p>打开<code>composer.json</code>文件,修改代码如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> &quot;require&quot;: &#123;</div><div class="line">    &quot;php&quot;: &quot;&gt;=5.5.9&quot;,</div><div class="line">    &quot;laravel/framework&quot;: &quot;5.1.*&quot;,</div><div class="line">    &quot;gregwar/captcha&quot;: &quot;1.*&quot;</div><div class="line">&#125;,</div></pre></td></tr></table></figure></p>
+<p><code>gregwar/captcha</code>是验证码Package，用来生成验证码，在终端执行以下命令进行安装。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo composer install</div></pre></td></tr></table></figure></p>
+<h1 id="管理登录认证控制器"><a href="#管理登录认证控制器" class="headerlink" title="管理登录认证控制器"></a>管理登录认证控制器</h1><p>打开文件<code>app/Http/Auth/AuthController.php</code>，新增代码如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">use Illuminate\Support\Facades\Session;</div><div class="line"></div><div class="line">public function getLogin()</div><div class="line">&#123;</div><div class="line">    if (view()-&gt;exists(&apos;auth.authenticate&apos;)) &#123;</div><div class="line">        return view(&apos;auth.authenticate&apos;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    $builder = new CaptchaBuilder();</div><div class="line">    $builder-&gt;build();</div><div class="line">    Session::put(&apos;phrase&apos;, $builder-&gt;getPhrase());</div><div class="line"></div><div class="line">    return view(&apos;auth.login&apos;)-&gt;with(&apos;captcha&apos;, $builder-&gt;inline());</div><div class="line">&#125;</div><div class="line"></div><div class="line">public function postLogin(Request $request)</div><div class="line">&#123;</div><div class="line">    $this-&gt;validate($request, [</div><div class="line">        $this-&gt;loginUsername() =&gt; &apos;required&apos;,</div><div class="line">        &apos;password&apos;             =&gt; &apos;required&apos;,</div><div class="line">        &apos;captcha&apos;              =&gt; &apos;required&apos;</div><div class="line">    ], [</div><div class="line">        $this-&gt;loginUsername() . &apos;.required&apos; =&gt; &apos;请输入邮箱或用户名称&apos;,</div><div class="line">        &apos;password.required&apos;                  =&gt; &apos;请输入用户密码&apos;,</div><div class="line">        &apos;captcha.required&apos;                   =&gt; &apos;请输入验证码&apos;</div><div class="line">    ]);</div><div class="line"></div><div class="line">    if (Session::get(&apos;phrase&apos;) !== $request-&gt;get(&apos;captcha&apos;)) &#123;</div><div class="line">        return redirect()-&gt;back()-&gt;withErrors(array(&apos;captcha&apos; =&gt; &apos;验证码不正确&apos;))-&gt;withInput();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="使用迁移文件生成数据表"><a href="#使用迁移文件生成数据表" class="headerlink" title="使用迁移文件生成数据表"></a>使用迁移文件生成数据表</h1><hr>
+<p>接下来打开终端，在项目下运行以下命令，生成用户表并创建用户<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// 生成数据表</div><div class="line">php artisan migrate</div><div class="line"></div><div class="line">// 生成用户数据</div><div class="line">php artisan tinker</div><div class="line">$user = new App\Models\User;</div><div class="line">$user-&gt;name = &quot;admin&quot;;</div><div class="line">$user-&gt;email = &quot;admin@qq.com&quot;;</div><div class="line">$user-&gt;password = bcrypt(123456);</div><div class="line">$user-&gt;save();</div><div class="line">exit</div></pre></td></tr></table></figure></p>
+<h1 id="管理登录认证操作跳转页面"><a href="#管理登录认证操作跳转页面" class="headerlink" title="管理登录认证操作跳转页面"></a>管理登录认证操作跳转页面</h1><p>打开文件<code>app\Http\Controller\Auth\AuthController</code>，新增以下成员属性:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// 设置成功登录后转向的页面：</div><div class="line">protected $redirectPath = &apos;/&apos;;</div><div class="line"></div><div class="line">// 设置登录失败后转向的页面：</div><div class="line">protected $loginPath = &apos;/auth/login&apos;;</div><div class="line"></div><div class="line">// 设置退出登录后转向的页面：</div><div class="line">protected $redirectAfterLogout = &apos;/&apos;;</div></pre></td></tr></table></figure></p>
+<p>打开中间件<code>app\Http\Middleware\RedirectIfAuthenticated.php</code>，找到相应的地方，修改代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"> public function handle($request, Closure $next)</div><div class="line">&#123;</div><div class="line">    // 设置登录之后，输入/auth/login的跳转地址</div><div class="line">    if ($this-&gt;auth-&gt;check()) &#123;</div><div class="line">        return redirect(&apos;/&apos;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    return $next($request);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/04/使用Laravel构建内容管理框架（三）/" data-id="cirn1l9y9000dx14btzm9wvde" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Laravel/">Laravel</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/04/使用Laravel构建内容管理框架（四）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          使用 Laravel 构建内容管理框架（四）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/04/使用Laravel构建内容管理框架（二）/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">使用 Laravel 构建内容管理框架（二）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Catégories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tooling/">Tooling</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Laravel/">Laravel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHPStorm/">PHPStorm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime-Text-3/">Sublime Text 3</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Laravel/" style="font-size: 20px;">Laravel</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PHPStorm/" style="font-size: 15px;">PHPStorm</a> <a href="/tags/Sublime-Text-3/" style="font-size: 10px;">Sublime Text 3</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/08/08/使用-Laravel-基于-SMTP-驱动实现发送图文邮件/">使用 Laravel 基于 SMTP 驱动实现发送文字邮件</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/27/使用-PHPStorm-与-Xdebug-调试-Laravel-二/">使用 PHPStorm 与 Xdebug 调试 Laravel (二)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/20/使用-PHPStorm-与-Xdebug-调试-Laravel-一/">使用 PHPStorm 与 Xdebug 调试 Laravel (一)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/10/PHP Web Application 运行流程、概念术语、机制原理和代码实践/">PHP Web Application 运行流程、概念术语、机制原理和代码实践</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/04/使用Laravel构建内容管理框架（九）/">使用 Laravel 构建内容管理框架（九）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 John Doe<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

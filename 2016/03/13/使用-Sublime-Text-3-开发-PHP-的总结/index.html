@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用 Sublime Text 3 开发 PHP 的心得 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="PHPStorm 不卡之日，SublimeText 舍弃之时
+环境
+系统：OSX Yosemite 10.10.5
+版本：Sublime Text 3 Build 3103
+
+安装使用 Homebrew 安装 Sublime Text 31brew install Caskroom/cask/sublime-text
+终端配置执行以下代码，即可在终端使用 Sublime Text 3
+12345/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 Sublime Text 3 开发 PHP 的心得">
+<meta property="og:url" content="http://yoursite.com/2016/03/13/使用-Sublime-Text-3-开发-PHP-的总结/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="PHPStorm 不卡之日，SublimeText 舍弃之时
+环境
+系统：OSX Yosemite 10.10.5
+版本：Sublime Text 3 Build 3103
+
+安装使用 Homebrew 安装 Sublime Text 31brew install Caskroom/cask/sublime-text
+终端配置执行以下代码，即可在终端使用 Sublime Text 3
+12345/">
+<meta property="og:updated_time" content="2016-04-15T02:02:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用 Sublime Text 3 开发 PHP 的心得">
+<meta name="twitter:description" content="PHPStorm 不卡之日，SublimeText 舍弃之时
+环境
+系统：OSX Yosemite 10.10.5
+版本：Sublime Text 3 Build 3103
+
+安装使用 Homebrew 安装 Sublime Text 31brew install Caskroom/cask/sublime-text
+终端配置执行以下代码，即可在终端使用 Sublime Text 3
+12345/">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-使用-Sublime-Text-3-开发-PHP-的总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/13/使用-Sublime-Text-3-开发-PHP-的总结/" class="article-date">
+  <time datetime="2016-03-13T14:34:20.000Z" itemprop="datePublished">2016-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Tooling/">Tooling</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用 Sublime Text 3 开发 PHP 的心得
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>PHPStorm 不卡之日，SublimeText 舍弃之时</p>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
+<li>系统：OSX Yosemite 10.10.5</li>
+<li>版本：Sublime Text 3 Build 3103</li>
+</ul>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>使用 Homebrew 安装 Sublime Text 3<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install Caskroom/cask/sublime-text</div></pre></td></tr></table></figure></p>
+<h2 id="终端配置"><a href="#终端配置" class="headerlink" title="终端配置"></a>终端配置</h2><p>执行以下代码，即可在终端使用 <code>Sublime Text 3</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 创建程序链接</div><div class="line">ln -s  &quot;/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl&quot; /usr/local/bin/subl</div><div class="line"></div><div class="line">// 查看使用帮助</div><div class="line">subl -h</div></pre></td></tr></table></figure>
+<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><h3 id="常用"><a href="#常用" class="headerlink" title="常用"></a>常用</h3><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>⌘ + C</td>
+<td>复制</td>
+</tr>
+<tr>
+<td>⌘ + ⇧ + D</td>
+<td>复制粘贴</td>
+</tr>
+<tr>
+<td>⌘ + X</td>
+<td>剪切</td>
+</tr>
+<tr>
+<td>⌘ + V</td>
+<td>粘贴</td>
+</tr>
+<tr>
+<td>⌘ + ⇧ + V</td>
+<td>保持缩进粘贴</td>
+</tr>
+<tr>
+<td>⌘ + ⌥ + V</td>
+<td>打开粘贴面板</td>
+</tr>
+<tr>
+<td>⌘ + F</td>
+<td>查找</td>
+</tr>
+<tr>
+<td>⌘ + /</td>
+<td>注释行</td>
+</tr>
+<tr>
+<td>⌘ + ⌥ + /</td>
+<td>生成注释</td>
+</tr>
+<tr>
+<td>⌘ + ⇧ + F</td>
+<td>全局查找、替换</td>
+</tr>
+<tr>
+<td>⌘ + ↩</td>
+<td>在光标下插入行</td>
+</tr>
+<tr>
+<td>⌘ + ⇧ + ↩</td>
+<td>在光标上插入行</td>
+</tr>
+<tr>
+<td>⌘ + ⇧ + t</td>
+<td>打开关闭的标签页</td>
+</tr>
+<tr>
+<td>⌘ + [NUM]</td>
+<td>选取对应数字的标签页</td>
+</tr>
+<tr>
+<td>⌘ + ⇧ + [</td>
+<td>上一个标签页</td>
+</tr>
+<tr>
+<td>⌘ + ⇧ + ]</td>
+<td>下一个标签页</td>
+</tr>
+<tr>
+<td>⌃ + ⇧ + ↑</td>
+<td>向上扩展光标</td>
+</tr>
+<tr>
+<td>⌃ + ⇧ + ↓</td>
+<td>向下扩展光标</td>
+</tr>
+</tbody>
+</table>
+<h3 id="书签"><a href="#书签" class="headerlink" title="书签"></a>书签</h3><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>⌘ + F2</td>
+<td>生成或撤销书签</td>
+</tr>
+<tr>
+<td>⇧ + F2</td>
+<td>上一个书签</td>
+</tr>
+<tr>
+<td>F2</td>
+<td>下一个书签</td>
+</tr>
+</tbody>
+</table>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>⌃ + ⇧ + K</td>
+<td>删除当前行</td>
+</tr>
+<tr>
+<td>⌘ + K + ⌫</td>
+<td>删除光标之后的内容</td>
+</tr>
+<tr>
+<td>⌘ + K + ⌘ + K</td>
+<td>删除光标之后的内容</td>
+</tr>
+</tbody>
+</table>
+<h3 id="跳转"><a href="#跳转" class="headerlink" title="跳转"></a>跳转</h3><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>⌘ + P , ⌘ + T</td>
+<td>跳转到文件</td>
+</tr>
+<tr>
+<td>⌘ + R</td>
+<td>跳转到方法</td>
+</tr>
+<tr>
+<td>⌃ + G</td>
+<td>跳转到行数</td>
+</tr>
+<tr>
+<td>⌃ + ⇧ + P</td>
+<td>切换工作空间</td>
+</tr>
+<tr>
+<td>⌘ + ⇧ + P</td>
+<td>打开命令面板</td>
+</tr>
+<tr>
+<td>⌃ + -</td>
+<td>向后跳转至修改处</td>
+</tr>
+<tr>
+<td>⌃ + ⇧ + -</td>
+<td>向前跳转至修改处</td>
+</tr>
+</tbody>
+</table>
+<h3 id="光标移动"><a href="#光标移动" class="headerlink" title="光标移动"></a>光标移动</h3><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>⌃ + P</td>
+<td>光标向上移动</td>
+</tr>
+<tr>
+<td>⌃ + N</td>
+<td>光标向下移动</td>
+</tr>
+<tr>
+<td>⌃ + B</td>
+<td>光标向左移动</td>
+</tr>
+<tr>
+<td>⌃ + F</td>
+<td>光标向右移动</td>
+</tr>
+<tr>
+<td>⌃ + A , ⌘ + ←</td>
+<td>光标移动到行最左</td>
+</tr>
+<tr>
+<td>⌃ + E , ⌘ + →</td>
+<td>光标移动到行最右</td>
+</tr>
+<tr>
+<td>⌃ + M</td>
+<td>光标在括号里闭合跳转</td>
+</tr>
+<tr>
+<td>⌘ + ⌃ + ↑</td>
+<td>向上移动选中行</td>
+</tr>
+<tr>
+<td>⌘ + ⌃ + ↓</td>
+<td>向下移动选中行</td>
+</tr>
+</tbody>
+</table>
+<h3 id="选取"><a href="#选取" class="headerlink" title="选取"></a>选取</h3><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>⌘ + L</td>
+<td>选取行</td>
+</tr>
+<tr>
+<td>⌘ + D</td>
+<td>选取一个相同的文本</td>
+</tr>
+<tr>
+<td>⌃ + ⇧ + G</td>
+<td>选取所有相同的文本</td>
+</tr>
+<tr>
+<td>⌘ + A</td>
+<td>选取所有内容</td>
+</tr>
+<tr>
+<td>⌘ + ⇧ + ↑</td>
+<td>向上选取所有内容</td>
+</tr>
+<tr>
+<td>⌘ + ⇧ + ↓</td>
+<td>向下选取所有内容</td>
+</tr>
+<tr>
+<td>⌘ + ⇧ + K</td>
+<td>选取当前行HTML标签</td>
+</tr>
+<tr>
+<td>⌘ + ⇧ + A</td>
+<td>选取HTML标签闭合内容</td>
+</tr>
+<tr>
+<td>⌘ + ⇧ + J</td>
+<td>选取块闭合内容（可以折叠的内容为块）</td>
+</tr>
+<tr>
+<td>⌃ + ⇧ + M</td>
+<td>选取括号内容</td>
+</tr>
+<tr>
+<td>⌃ + ⇧ + A</td>
+<td>选取光标之前内容</td>
+</tr>
+<tr>
+<td>⌃ + ⇧ + E</td>
+<td>选取光标之后内容</td>
+</tr>
+</tbody>
+</table>
+<h3 id="窗口"><a href="#窗口" class="headerlink" title="窗口"></a>窗口</h3><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>⌘ + K + ⌘ + B</td>
+<td>显示左侧栏</td>
+</tr>
+<tr>
+<td>⌃ + `</td>
+<td>显示控制台</td>
+</tr>
+<tr>
+<td>⌘ + B</td>
+<td>执行编译</td>
+</tr>
+<tr>
+<td>⌃ + ⌘ + F</td>
+<td>全屏模式</td>
+</tr>
+<tr>
+<td>⌃ + ⇧ + ⌘ + F</td>
+<td>无干扰全屏模式</td>
+</tr>
+<tr>
+<td>⌃ + ⇧ + 2</td>
+<td>进行左右分屏</td>
+</tr>
+<tr>
+<td>⌃ + ⇧ + 5</td>
+<td>进行上下分屏</td>
+</tr>
+<tr>
+<td>⌃ + ⇧ + 1</td>
+<td>取消所有分屏</td>
+</tr>
+<tr>
+<td>⌃ + Num</td>
+<td>根据数字跳转至对应分屏</td>
+</tr>
+</tbody>
+</table>
+<h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><h3 id="PackageControl-插件"><a href="#PackageControl-插件" class="headerlink" title="PackageControl 插件"></a>PackageControl 插件</h3><p>按下 <code>⌃ + ~</code> 打开控制台，复制粘贴以下代码并按下 <code>↩</code>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import urllib.request,os; pf = &apos;Package Control.sublime-package&apos;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), &apos;wb&apos;).write(urllib.request.urlopen( &apos;http://sublime.wbond.net/&apos; + pf.replace(&apos; &apos;,&apos;%20&apos;)).read())</div></pre></td></tr></table></figure></p>
+<h3 id="Material-Theme-插件"><a href="#Material-Theme-插件" class="headerlink" title="Material Theme 插件"></a>Material Theme 插件</h3><p><code>Material Theme</code> 是一款编辑器主题插件</p>
+<p>可以使用 <code>Package Control</code> 插件安装 <code>Material-Theme</code> 插件</p>
+<p><code>Material-Theme</code> 插件可提供三种外观样式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//default</div><div class="line">&quot;theme&quot;: &quot;Material-Theme.sublime-theme&quot;,</div><div class="line">&quot;color_scheme&quot;: &quot;Packages/Material Theme/schemes/Material-Theme.tmTheme&quot;,</div><div class="line"></div><div class="line">//Darker</div><div class="line">&quot;theme&quot;: &quot;Material-Theme-Darker.sublime-theme&quot;,</div><div class="line">&quot;color_scheme&quot;: &quot;Packages/Material Theme/schemes/Material-Theme-Darker.tmTheme&quot;,</div><div class="line"></div><div class="line">//Lighter</div><div class="line">&quot;theme&quot;: &quot;Material-Theme-Lighter.sublime-theme&quot;,</div><div class="line">&quot;color_scheme&quot;: &quot;Packages/Material Theme/schemes/Material-Theme-Lighter.tmTheme&quot;,</div></pre></td></tr></table></figure></p>
+<h3 id="AdvanceNewFile-插件"><a href="#AdvanceNewFile-插件" class="headerlink" title="AdvanceNewFile 插件"></a>AdvanceNewFile 插件</h3><p><code>AdvanceNewFile</code> 是一款快速操作文件的插件</p>
+<p>可以使用 <code>Package Control</code> 安装 <code>AdvanceNewFile</code> 插件</p>
+<p>安装完毕之后，可以按下 <code>⌘ + ⇧ + P</code> 调出命令面板，执行以下命令对文件进行操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">//新增</div><div class="line">ANF:New File</div><div class="line"></div><div class="line">//删除</div><div class="line">ANF:Delete File</div><div class="line"></div><div class="line">//重命名</div><div class="line">ANF:Rename File</div><div class="line"></div><div class="line">//复制当前文件</div><div class="line">ANF:Copy Current File</div><div class="line"></div><div class="line">//删除当前文件</div><div class="line">ANF:Delete Current File</div></pre></td></tr></table></figure>
+<p>亦可使用快捷键 <code>⌘ + ⌥ + N</code> 快速新建文件</p>
+<h3 id="PHP-Getters-and-Setters-插件"><a href="#PHP-Getters-and-Setters-插件" class="headerlink" title="PHP Getters and Setters 插件"></a>PHP Getters and Setters 插件</h3><p><code>PHP Getters and Setters</code> 是一款根据类文件的成员属性，快速生成 Getter 方法和 Setter 方法的插件</p>
+<p>可以使用 <code>Package Control</code> 安装 <code>PHP Getters and Setters</code> 插件</p>
+<p>执行以下命令快速生成 Getter 和 Setter 的代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// 生成 Getter 方法</div><div class="line">PHP:Generate Getters</div><div class="line">// 生成 Setter 方法</div><div class="line">PHP:Generate Setters</div><div class="line"></div><div class="line">// 同时生成 Getter 和 Setter</div><div class="line">PHP:Generate Getters and Setters</div></pre></td></tr></table></figure></p>
+<h3 id="PHP-Companion-插件"><a href="#PHP-Companion-插件" class="headerlink" title="PHP Companion 插件"></a>PHP Companion 插件</h3><p><code>PHP Companion</code> 插件提供以下功能</p>
+<ul>
+<li><p><code>find_use</code><br>生成所选类的use声明</p>
+</li>
+<li><p><code>expand_fqcn</code><br>生成所选类的引用路径</p>
+</li>
+<li><p><code>import_namespace</code><br>生成所选文件的命名空间</p>
+</li>
+<li><p><code>goto_definition_scope</code><br>寻找所选代码的定义源头</p>
+</li>
+<li><p><code>insert_php_constructor_property</code><br>生成当前类的构造方法</p>
+</li>
+</ul>
+<p>在 <code>Preferences</code> -&gt; <code>Key Bindings - User</code> 新增以下快捷键调用上述插件命令<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">//PHP Companion</div><div class="line">&#123;"keys":["f9"],"command":"find_use"&#125;,</div><div class="line">&#123;"keys":["f10"],"command":"expand_fqcn"&#125;,</div><div class="line">&#123;"keys":["f11"],"command":"goto_definition_scope"&#125;,</div><div class="line">&#123;"keys":["f12"],"command":"insert_php_constructor_property"&#125;,</div></pre></td></tr></table></figure></p>
+<h3 id="Laravel-Artisan-插件"><a href="#Laravel-Artisan-插件" class="headerlink" title="Laravel Artisan 插件"></a>Laravel Artisan 插件</h3><p><code>Laravel Artisan</code> 是一款让开发可以不使用终端就能运行 <code>Artisan CLI</code> 的插件</p>
+<p>命令与在终端使用 <code>php artisan</code> 基本一致，可以按下 <code>⌘ + ⇧ + P</code> 打开命令面板，执行以下命令：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// 生成控制器</div><div class="line">Laravel Artisan5:Make:Controller</div><div class="line"></div><div class="line">// 生成请求</div><div class="line">Laravel Artisan5:Make:Request</div><div class="line"></div><div class="line">// 生成服务提供者</div><div class="line">Laravel Artisan5:Make:Provider</div><div class="line"></div><div class="line">// 生成数据迁移文件</div><div class="line">Laravel Artisan5:Make:Mrgiation</div></pre></td></tr></table></figure>
+<h3 id="DocBlockr-插件"><a href="#DocBlockr-插件" class="headerlink" title="DocBlockr 插件"></a>DocBlockr 插件</h3><p><code>DocBlockr</code> 是一款根据代码自动生成注释的插件</p>
+<h3 id="All-Autocomplete-插件"><a href="#All-Autocomplete-插件" class="headerlink" title="All Autocomplete 插件"></a>All Autocomplete 插件</h3><p><code>All Autocomplete</code> 是一款自动补全的插件，它会查找你打开的所有文件的代码，然后进行代码补全</p>
+<h3 id="SublimeLinter-php-插件"><a href="#SublimeLinter-php-插件" class="headerlink" title="SublimeLinter-php 插件"></a>SublimeLinter-php 插件</h3><p><code>SublimeLinter</code> 是一款检查PHP语言错误的插件</p>
+<p>使用 <code>Package Control</code> 安装 <code>SublimeLinter</code> 插件<br>使用 <code>Package Control</code> 安装 <code>SublimeLinter-php</code> 插件</p>
+<p>在 <code>Preferences</code> -&gt; <code>Package Settings</code> -&gt; <code>SublimeLinter</code> -&gt; <code>Settings - User</code> 新增以下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;show_errors_on_save&quot;: true,</div></pre></td></tr></table></figure>
+<p>上述操作会让编辑器在保存文件的时候，提示错误信息</p>
+<h2 id="代码片段"><a href="#代码片段" class="headerlink" title="代码片段"></a>代码片段</h2><p><code>Sublime Text</code> 可以创建自定义的代码片段</p>
+<p>点击菜单栏 <code>Tools</code> -&gt; <code>New Snippet</code> ，创建文件 <code>PHP Public Method.sublime-snippet</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;snippet&gt;</div><div class="line">	&lt;content&gt;&lt;![CDATA[</div><div class="line">public function $&#123;1:function_name&#125;($&#123;2:param&#125;)&#123;</div><div class="line">	$&#123;3:return result&#125;</div><div class="line">&#125;</div><div class="line">]]&gt;&lt;/content&gt;</div><div class="line">	&lt;!-- Optional: Set a tabTrigger to define how to trigger the snippet --&gt;</div><div class="line">	&lt;tabTrigger&gt;pubf&lt;/tabTrigger&gt;</div><div class="line">	&lt;!-- Optional: Set a scope to limit where the snippet will trigger --&gt;</div><div class="line">	&lt;scope&gt;source.php&lt;/scope&gt;</div><div class="line">&lt;/snippet&gt;</div></pre></td></tr></table></figure></p>
+<p>当在PHP文件写代码时，输入 <code>pubf</code> 并按下 <code>Tab</code> 键，会生成相对应的代码片段<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public function function_name(param)&#123;</div><div class="line">	return true</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="格式化代码"><a href="#格式化代码" class="headerlink" title="格式化代码"></a>格式化代码</h2><p>在终端执行以下命令安装 <code>php-cs-fix</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install php-cs-fixer</div></pre></td></tr></table></figure></p>
+<p>假如要对某个 PHP 文件进行格式化操作，运行以下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd dir</div><div class="line">php-cs-fixer fix fileName.php --level=&quot;psr2&quot;</div></pre></td></tr></table></figure></p>
+<p>使用 <code>Sublime Text 3</code> 的 <code>Build System</code> 格式化代码<br>点击 <code>Tools</code> -&gt; <code>Build System</code> -&gt; <code>New Bulid System ...</code>，打开代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;shell_cmd&quot;:&quot;make&quot;</div></pre></td></tr></table></figure></p>
+<p>修改上述代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	&quot;shell_cmd&quot;: &quot;php-cs-fixer fix $file --level=psr2&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>保存之后，在 <code>Tools</code>-<code>Build System</code> 选择 <code>PSR-2</code>，按 <code>⌘ + B</code>对当前文件进行 <code>PSR-2</code> 格式化操作。</p>
+<p>觉得格式化提示信息麻烦，可以在<code>Preferences</code>-<code>Settings - User</code>添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;show_panel_on_build&quot;:false</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/13/使用-Sublime-Text-3-开发-PHP-的总结/" data-id="cirn1l9xw0005x14bruy92yz1" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sublime-Text-3/">Sublime Text 3</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/04/使用Laravel构建内容管理框架（二）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          使用 Laravel 构建内容管理框架（二）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/03/09/使用Laravel构建内容管理框架（一）/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">使用 Laravel 构建内容管理框架（一）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Catégories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tooling/">Tooling</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Laravel/">Laravel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHPStorm/">PHPStorm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime-Text-3/">Sublime Text 3</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Laravel/" style="font-size: 20px;">Laravel</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PHPStorm/" style="font-size: 15px;">PHPStorm</a> <a href="/tags/Sublime-Text-3/" style="font-size: 10px;">Sublime Text 3</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/08/08/使用-Laravel-基于-SMTP-驱动实现发送图文邮件/">使用 Laravel 基于 SMTP 驱动实现发送文字邮件</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/27/使用-PHPStorm-与-Xdebug-调试-Laravel-二/">使用 PHPStorm 与 Xdebug 调试 Laravel (二)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/20/使用-PHPStorm-与-Xdebug-调试-Laravel-一/">使用 PHPStorm 与 Xdebug 调试 Laravel (一)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/10/PHP Web Application 运行流程、概念术语、机制原理和代码实践/">PHP Web Application 运行流程、概念术语、机制原理和代码实践</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/04/使用Laravel构建内容管理框架（九）/">使用 Laravel 构建内容管理框架（九）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 John Doe<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

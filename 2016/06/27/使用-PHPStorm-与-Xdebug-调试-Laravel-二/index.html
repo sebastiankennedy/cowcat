@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用 PHPStorm 与 Xdebug 调试 Laravel (二) | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="环境
+系统版本：OSX 10.11.4
+PHP 版本：7.0.5
+Xdebug 版本：2.4.0
+Laravel 版本：5.1.31
+PHPStorm 版本：10.0.4
+
+根据上篇文章的配置，在工作时会发现，我们需要经常调整 PHP Web Application 的 URL 进行 Debug。
+举个例子，假如想要 Debug 菜单列表，我需要修改成 /menu/，如果想要 Debug 新增菜单">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 PHPStorm 与 Xdebug 调试 Laravel (二)">
+<meta property="og:url" content="http://yoursite.com/2016/06/27/使用-PHPStorm-与-Xdebug-调试-Laravel-二/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="环境
+系统版本：OSX 10.11.4
+PHP 版本：7.0.5
+Xdebug 版本：2.4.0
+Laravel 版本：5.1.31
+PHPStorm 版本：10.0.4
+
+根据上篇文章的配置，在工作时会发现，我们需要经常调整 PHP Web Application 的 URL 进行 Debug。
+举个例子，假如想要 Debug 菜单列表，我需要修改成 /menu/，如果想要 Debug 新增菜单">
+<meta property="og:image" content="http://o93kt6djh.bkt.clouddn.com/2-phpstorm-debug-web-applicationPHP%20Web%20Application.png">
+<meta property="og:image" content="http://o93kt6djh.bkt.clouddn.com/2-phpstorm-debug-web-applicationPHP%20Debug%20Configuration.png">
+<meta property="og:image" content="http://o93kt6djh.bkt.clouddn.com/2-phpstorm-debug-web-applicationPHPStorm%20Debug%20Config.png">
+<meta property="og:image" content="http://o93kt6djh.bkt.clouddn.com/2-phpstorm-debug-web-applicationBookMark.png">
+<meta property="og:image" content="http://o93kt6djh.bkt.clouddn.com/2-phpstorm-debug-web-applicationListening%20PHP%20Debug.png">
+<meta property="og:image" content="http://o93kt6djh.bkt.clouddn.com/2-phpstorm-debug-web-applicationDebug%20Page2.png">
+<meta property="og:image" content="http://o93kt6djh.bkt.clouddn.com/2-phpstorm-debug-web-applicationDebug%20Page.png">
+<meta property="og:updated_time" content="2016-06-27T03:37:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用 PHPStorm 与 Xdebug 调试 Laravel (二)">
+<meta name="twitter:description" content="环境
+系统版本：OSX 10.11.4
+PHP 版本：7.0.5
+Xdebug 版本：2.4.0
+Laravel 版本：5.1.31
+PHPStorm 版本：10.0.4
+
+根据上篇文章的配置，在工作时会发现，我们需要经常调整 PHP Web Application 的 URL 进行 Debug。
+举个例子，假如想要 Debug 菜单列表，我需要修改成 /menu/，如果想要 Debug 新增菜单">
+<meta name="twitter:image" content="http://o93kt6djh.bkt.clouddn.com/2-phpstorm-debug-web-applicationPHP%20Web%20Application.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-使用-PHPStorm-与-Xdebug-调试-Laravel-二" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/06/27/使用-PHPStorm-与-Xdebug-调试-Laravel-二/" class="article-date">
+  <time datetime="2016-06-27T02:36:54.000Z" itemprop="datePublished">2016-06-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Tooling/">Tooling</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用 PHPStorm 与 Xdebug 调试 Laravel (二)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
+<li>系统版本：OSX 10.11.4</li>
+<li>PHP 版本：7.0.5</li>
+<li>Xdebug 版本：2.4.0</li>
+<li>Laravel 版本：5.1.31</li>
+<li>PHPStorm 版本：10.0.4</li>
+</ul>
+<p>根据上篇文章的配置，在工作时会发现，我们需要经常调整 <code>PHP Web Application</code> 的 URL 进行 Debug。</p>
+<p>举个例子，假如想要 <code>Debug</code> 菜单列表，我需要修改成 <code>/menu/</code>，如果想要 <code>Debug</code> 新增菜单页面，我需要修改成 <code>/menu/create</code>。<br><img src="http://o93kt6djh.bkt.clouddn.com/2-phpstorm-debug-web-applicationPHP%20Web%20Application.png" alt=""><br>这样进行 <code>Debug</code> 的过程十分烦琐，所以需要更加友好的操作方式，以便加快工作效率。</p>
+<h2 id="PHPStorm-配置"><a href="#PHPStorm-配置" class="headerlink" title="PHPStorm 配置"></a>PHPStorm 配置</h2><p>打开 PHPStorm，打开配置面板<br><code>Preferences =&gt; Language &amp; Frameworks -&gt; PHP -&gt; Debug</code>。</p>
+<p>点击蓝色链接 <code>Use debugger bookmarklets to initiate debugging from your favorite browser</code>。<br><img src="http://o93kt6djh.bkt.clouddn.com/2-phpstorm-debug-web-applicationPHP%20Debug%20Configuration.png" alt=""></p>
+<p>点击页面左下角的蓝色按钮，生成 PHPStorm Debug 的专属书签。<br><img src="http://o93kt6djh.bkt.clouddn.com/2-phpstorm-debug-web-applicationPHPStorm%20Debug%20Config.png" alt=""></p>
+<p>然后将生成好的 <code>DEBUG</code> 书签<code>Start debugger</code>、<code>Stop debugger</code>、<code>Debug this page</code> 拖动保存到浏览器的书签栏中，方便随时进行 <code>Debug</code>。<br><img src="http://o93kt6djh.bkt.clouddn.com/2-phpstorm-debug-web-applicationBookMark.png" alt=""></p>
+<p>监听浏览器的 <code>Debug</code> 操作，<code>Run -&gt; Start Listening for PHP Debug Connections</code></p>
+<p><img src="http://o93kt6djh.bkt.clouddn.com/2-phpstorm-debug-web-applicationListening%20PHP%20Debug.png" alt=""></p>
+<p>然后在浏览器输入想要进行 <code>Debug</code> 的页面，然后点击书签栏的 <code>Start debugger</code>，刷新页面，就能在 <code>PHPStorm</code> 里面看见 <code>Debug</code> 的控制台了。<br><img src="http://o93kt6djh.bkt.clouddn.com/2-phpstorm-debug-web-applicationDebug%20Page2.png" alt=""><br><img src="http://o93kt6djh.bkt.clouddn.com/2-phpstorm-debug-web-applicationDebug%20Page.png" alt=""></p>
+<p>PHPStorm 的 Debug 方式不仅仅局限于 Laravel 框架，同样适用于 ThinkPHP 与其他框架，也适用于原生的 PHP 代码。<br>学会使用这种方式之后，一般很少使用 <code>echo</code>，<code>var_dump</code>，<code>dd()</code>，<code>dump()</code>等原生或框架辅助函数进行 <code>Debug</code> 了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/06/27/使用-PHPStorm-与-Xdebug-调试-Laravel-二/" data-id="cirn1l9xo0001x14bmwh4d8h8" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHPStorm/">PHPStorm</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/08/08/使用-Laravel-基于-SMTP-驱动实现发送图文邮件/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          使用 Laravel 基于 SMTP 驱动实现发送文字邮件
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/06/20/使用-PHPStorm-与-Xdebug-调试-Laravel-一/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">使用 PHPStorm 与 Xdebug 调试 Laravel (一)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Catégories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tooling/">Tooling</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Laravel/">Laravel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHPStorm/">PHPStorm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime-Text-3/">Sublime Text 3</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Laravel/" style="font-size: 20px;">Laravel</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PHPStorm/" style="font-size: 15px;">PHPStorm</a> <a href="/tags/Sublime-Text-3/" style="font-size: 10px;">Sublime Text 3</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/08/08/使用-Laravel-基于-SMTP-驱动实现发送图文邮件/">使用 Laravel 基于 SMTP 驱动实现发送文字邮件</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/27/使用-PHPStorm-与-Xdebug-调试-Laravel-二/">使用 PHPStorm 与 Xdebug 调试 Laravel (二)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/20/使用-PHPStorm-与-Xdebug-调试-Laravel-一/">使用 PHPStorm 与 Xdebug 调试 Laravel (一)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/10/PHP Web Application 运行流程、概念术语、机制原理和代码实践/">PHP Web Application 运行流程、概念术语、机制原理和代码实践</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/04/使用Laravel构建内容管理框架（九）/">使用 Laravel 构建内容管理框架（九）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 John Doe<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

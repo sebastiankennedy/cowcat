@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用 PHPStorm 与 Xdebug 调试 Laravel (一) | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="环境
+系统版本：OSX 10.11.4
+PHP 版本：7.0.5
+Xdebug 版本：2.4.0
+Laravel 版本：5.1.31
+PHPStorm 版本：10.0.4
+
+Xdebug 配置本机的 Xdebug 配置文件位于 /usr/local/etc/php/7.0/conf.d/ext-xdebug.ini
+打开文件添加并以下代码：12345678[xdebug]zend_extensio">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 PHPStorm 与 Xdebug 调试 Laravel (一)">
+<meta property="og:url" content="http://yoursite.com/2016/06/20/使用-PHPStorm-与-Xdebug-调试-Laravel-一/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="环境
+系统版本：OSX 10.11.4
+PHP 版本：7.0.5
+Xdebug 版本：2.4.0
+Laravel 版本：5.1.31
+PHPStorm 版本：10.0.4
+
+Xdebug 配置本机的 Xdebug 配置文件位于 /usr/local/etc/php/7.0/conf.d/ext-xdebug.ini
+打开文件添加并以下代码：12345678[xdebug]zend_extensio">
+<meta property="og:image" content="http://o93kt6djh.bkt.clouddn.com/phpstorm-debug-web-application%E8%AE%BE%E7%BD%AE%20PHP%20%E7%89%88%E6%9C%AC.png">
+<meta property="og:image" content="http://o93kt6djh.bkt.clouddn.com/phpstorm-debug-web-application%E8%AE%BE%E7%BD%AE%20Interpreter.png">
+<meta property="og:image" content="http://o93kt6djh.bkt.clouddn.com/phpstorm-debug-web-application%E8%AE%BE%E7%BD%AE%20Xdebug.png">
+<meta property="og:image" content="http://o93kt6djh.bkt.clouddn.com/phpstorm-debug-web-applicationRun%20Debug.png">
+<meta property="og:image" content="http://o93kt6djh.bkt.clouddn.com/phpstorm-debug-web-application%E6%96%B0%E5%BB%BA%20Web%20Application.png">
+<meta property="og:image" content="http://o93kt6djh.bkt.clouddn.com/phpstorm-debug-web-application%E6%96%B0%E5%BB%BA%20Server.png">
+<meta property="og:image" content="http://o93kt6djh.bkt.clouddn.com/phpstorm-debug-web-application%E8%AE%BE%E7%BD%AE%E6%96%AD%E7%82%B9.png">
+<meta property="og:image" content="http://o93kt6djh.bkt.clouddn.com/phpstorm-debug-web-applicationRun%20Debug%20Cowcat.png">
+<meta property="og:image" content="http://o93kt6djh.bkt.clouddn.com/phpstorm-debug-web-applicationDebugger%20Console.png">
+<meta property="og:updated_time" content="2016-07-05T05:55:33.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用 PHPStorm 与 Xdebug 调试 Laravel (一)">
+<meta name="twitter:description" content="环境
+系统版本：OSX 10.11.4
+PHP 版本：7.0.5
+Xdebug 版本：2.4.0
+Laravel 版本：5.1.31
+PHPStorm 版本：10.0.4
+
+Xdebug 配置本机的 Xdebug 配置文件位于 /usr/local/etc/php/7.0/conf.d/ext-xdebug.ini
+打开文件添加并以下代码：12345678[xdebug]zend_extensio">
+<meta name="twitter:image" content="http://o93kt6djh.bkt.clouddn.com/phpstorm-debug-web-application%E8%AE%BE%E7%BD%AE%20PHP%20%E7%89%88%E6%9C%AC.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-使用-PHPStorm-与-Xdebug-调试-Laravel-一" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/06/20/使用-PHPStorm-与-Xdebug-调试-Laravel-一/" class="article-date">
+  <time datetime="2016-06-20T13:38:32.000Z" itemprop="datePublished">2016-06-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Tooling/">Tooling</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用 PHPStorm 与 Xdebug 调试 Laravel (一)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
+<li>系统版本：OSX 10.11.4</li>
+<li>PHP 版本：7.0.5</li>
+<li>Xdebug 版本：2.4.0</li>
+<li>Laravel 版本：5.1.31</li>
+<li>PHPStorm 版本：10.0.4</li>
+</ul>
+<h2 id="Xdebug-配置"><a href="#Xdebug-配置" class="headerlink" title="Xdebug 配置"></a>Xdebug 配置</h2><p>本机的 Xdebug 配置文件位于 <code>/usr/local/etc/php/7.0/conf.d/ext-xdebug.ini</code></p>
+<p>打开文件添加并以下代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[xdebug]</div><div class="line">zend_extension=<span class="string">"/usr/local/Cellar/php70-xdebug/2.4.0/xdebug.so"</span></div><div class="line">xdebug.idekey=PHPSTORM</div><div class="line">xdebug.remote_enable=<span class="number">1</span></div><div class="line">xdebug.remote_host=localhost</div><div class="line">xdebug.remote_port=<span class="number">10000</span></div><div class="line">xdebug.profiler_enable=<span class="number">1</span></div><div class="line">xdebug.profiler_output_dir=<span class="string">"/Users/LuisEdware/Downloads/Xdebug"</span></div></pre></td></tr></table></figure></p>
+<h2 id="PHPStorm-配置"><a href="#PHPStorm-配置" class="headerlink" title="PHPStorm 配置"></a>PHPStorm 配置</h2><p>打开 PHPStorm，首先配置 PHP 的使用版本与 Interpreter<br><code>Preferences =&gt; Language &amp; Frameworks -&gt; PHP</code><br><img src="http://o93kt6djh.bkt.clouddn.com/phpstorm-debug-web-application%E8%AE%BE%E7%BD%AE%20PHP%20%E7%89%88%E6%9C%AC.png" alt="配置 PHP 的使用版本" title="PHP 版本.png"></p>
+<ul>
+<li>PHP language level ：选择 PHP 的使用版本</li>
+<li>Interpreter : 配置 PHP 可执行文件的位置</li>
+</ul>
+<p><img src="http://o93kt6djh.bkt.clouddn.com/phpstorm-debug-web-application%E8%AE%BE%E7%BD%AE%20Interpreter.png" alt="配置 PHP 可执行文件的位置" title="Interpreter.png"></p>
+<ul>
+<li>Name : 命名</li>
+<li>PHP executable : PHP 可执行文件位置，本机使用 Homebrew 安装的 PHP，位置在<code>/usr/local/Cellar/php70/7.0.5/bin/php</code></li>
+</ul>
+<p>然后配置 PHP Debug 时的端口，将端口 <code>9000</code> 修改成 <code>10000</code><br><img src="http://o93kt6djh.bkt.clouddn.com/phpstorm-debug-web-application%E8%AE%BE%E7%BD%AE%20Xdebug.png" alt="配置 Debug 端口" title="Xdebug.png"></p>
+<p>接着修改 <code>Run =&gt; Edit configurations</code>，点击弹出窗口左上角加号，新增一个 <code>PHP Web Application</code><br><img src="http://o93kt6djh.bkt.clouddn.com/phpstorm-debug-web-applicationRun%20Debug.png" alt="Run =&gt; Edit configurations" title="Run Debug.png"><br><img src="http://o93kt6djh.bkt.clouddn.com/phpstorm-debug-web-application%E6%96%B0%E5%BB%BA%20Web%20Application.png" alt="PHP Web Application" title="Server.png"></p>
+<ul>
+<li>Name : 命名</li>
+<li>Server : 服务器，没有跟着下图创建</li>
+<li>Start URL : 要开始 Debug 的 URL</li>
+</ul>
+<p>跟随着选项新增一个 <code>Server</code><br><img src="http://o93kt6djh.bkt.clouddn.com/phpstorm-debug-web-application%E6%96%B0%E5%BB%BA%20Server.png" alt="Server" title="Server.png"></p>
+<ul>
+<li>Name : 命名</li>
+<li>Host : 主机，我在本地将需要 Debug 的项目映射到 <code>cowcat.app</code> 上</li>
+<li>Port : 端口</li>
+<li>Debugger : 除了 Xdebug 还有 Zend Debugger，选择 Xdebug</li>
+</ul>
+<p>设置断点，运行<code>Run =&gt; Debug &#39;Cowcat&#39;</code><br><img src="http://o93kt6djh.bkt.clouddn.com/phpstorm-debug-web-application%E8%AE%BE%E7%BD%AE%E6%96%AD%E7%82%B9.png" alt="设置断点" title="Server.png"><br><img src="http://o93kt6djh.bkt.clouddn.com/phpstorm-debug-web-applicationRun%20Debug%20Cowcat.png" alt="Debug Cowcat" title="Server.png"></p>
+<p>当浏览器运行指定 URL（就是 PHP Web Application 配置时的 Start URL） 时，出现 Xdebug 控制台，根据控制台的信息和操作进行 Debug<br><img src="http://o93kt6djh.bkt.clouddn.com/phpstorm-debug-web-applicationDebugger%20Console.png" alt="Xdebug 控制台" title="Server.png"></p>
+<p>控制台的功能介绍如下：</p>
+<ul>
+<li>左侧绿色三角形 ： <code>Resume Program</code>，表示將继续执行，直到下一个中断点停止。</li>
+<li>左侧红色方形 ： <code>Stop</code>，表示中断当前程序调试。</li>
+<li>上方第一个图形示 ： <code>Step Over</code>，跳过当前函数。</li>
+<li>上方第二个图形示 ： <code>Step Into</code>，进入当前函数內部的程序（相当于观察程序一步一步执行）。</li>
+<li>上方第三个图形示 ： <code>Force Step Into</code>，強制进入当前函数內部的程序。</li>
+<li>上方第四个图形示 ： <code>Step Out</code>，跳出当前函数內部的程式。</li>
+<li>上方第五个图形示 ： <code>Run to Cursor</code>，定位到当前光标。</li>
+<li>Variables ： 可以观察到所有全局变量、当前局部变量的数值</li>
+<li>Watches ： 可以新增变量，观察变量随着程序执行的变化。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/06/20/使用-PHPStorm-与-Xdebug-调试-Laravel-一/" data-id="cirn1l9xk0000x14b0sipugit" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHPStorm/">PHPStorm</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/06/27/使用-PHPStorm-与-Xdebug-调试-Laravel-二/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          使用 PHPStorm 与 Xdebug 调试 Laravel (二)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/06/10/PHP Web Application 运行流程、概念术语、机制原理和代码实践/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">PHP Web Application 运行流程、概念术语、机制原理和代码实践</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Catégories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tooling/">Tooling</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Laravel/">Laravel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHPStorm/">PHPStorm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime-Text-3/">Sublime Text 3</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Laravel/" style="font-size: 20px;">Laravel</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PHPStorm/" style="font-size: 15px;">PHPStorm</a> <a href="/tags/Sublime-Text-3/" style="font-size: 10px;">Sublime Text 3</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/08/08/使用-Laravel-基于-SMTP-驱动实现发送图文邮件/">使用 Laravel 基于 SMTP 驱动实现发送文字邮件</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/27/使用-PHPStorm-与-Xdebug-调试-Laravel-二/">使用 PHPStorm 与 Xdebug 调试 Laravel (二)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/20/使用-PHPStorm-与-Xdebug-调试-Laravel-一/">使用 PHPStorm 与 Xdebug 调试 Laravel (一)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/10/PHP Web Application 运行流程、概念术语、机制原理和代码实践/">PHP Web Application 运行流程、概念术语、机制原理和代码实践</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/04/使用Laravel构建内容管理框架（九）/">使用 Laravel 构建内容管理框架（九）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 John Doe<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

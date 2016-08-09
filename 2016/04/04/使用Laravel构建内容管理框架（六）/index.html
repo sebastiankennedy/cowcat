@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用 Laravel 构建内容管理框架（六） | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="完成Entrust的配置
+安装zizaco/entrust Package
+zizaco/entrust是Laravel下基于角色的权限管理方案。
+1.修改文件composer.json123456&amp;quot;require&amp;quot;: &amp;#123;    &amp;quot;php&amp;quot;: &amp;quot;&amp;gt;=5.5.9&amp;quot;,    &amp;quot;laravel/framework&amp;qu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 Laravel 构建内容管理框架（六）">
+<meta property="og:url" content="http://yoursite.com/2016/04/04/使用Laravel构建内容管理框架（六）/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="完成Entrust的配置
+安装zizaco/entrust Package
+zizaco/entrust是Laravel下基于角色的权限管理方案。
+1.修改文件composer.json123456&amp;quot;require&amp;quot;: &amp;#123;    &amp;quot;php&amp;quot;: &amp;quot;&amp;gt;=5.5.9&amp;quot;,    &amp;quot;laravel/framework&amp;qu">
+<meta property="og:updated_time" content="2016-06-21T02:36:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用 Laravel 构建内容管理框架（六）">
+<meta name="twitter:description" content="完成Entrust的配置
+安装zizaco/entrust Package
+zizaco/entrust是Laravel下基于角色的权限管理方案。
+1.修改文件composer.json123456&amp;quot;require&amp;quot;: &amp;#123;    &amp;quot;php&amp;quot;: &amp;quot;&amp;gt;=5.5.9&amp;quot;,    &amp;quot;laravel/framework&amp;qu">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-使用Laravel构建内容管理框架（六）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/04/使用Laravel构建内容管理框架（六）/" class="article-date">
+  <time datetime="2016-04-04T01:33:28.000Z" itemprop="datePublished">2016-04-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/PHP/">PHP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用 Laravel 构建内容管理框架（六）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>完成Entrust的配置</p>
+<h1 id="安装zizaco-entrust-Package"><a href="#安装zizaco-entrust-Package" class="headerlink" title="安装zizaco/entrust Package"></a>安装zizaco/entrust Package</h1><hr>
+<p>zizaco/entrust是Laravel下基于角色的权限管理方案。</p>
+<p>1.修改文件<code>composer.json</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&quot;require&quot;: &#123;</div><div class="line">    &quot;php&quot;: &quot;&gt;=5.5.9&quot;,</div><div class="line">    &quot;laravel/framework&quot;: &quot;5.1.*&quot;,</div><div class="line">    &quot;gregwar/captcha&quot;: &quot;1.*&quot;,</div><div class="line">    &quot;zizaco/entrust&quot;: &quot;dev-laravel-5&quot;</div><div class="line">&#125;,</div></pre></td></tr></table></figure></p>
+<p>2.在终端运行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">composer install</div><div class="line"></div><div class="line">// or</div><div class="line"></div><div class="line">composer update</div></pre></td></tr></table></figure></p>
+<p>3.在文件<code>config/app.php</code>的<code>providers</code>数组和<code>aliase</code>数组分别添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// providers</div><div class="line">Zizaco\Entrust\EntrustServiceProvider::class</div><div class="line"></div><div class="line">// aliase</div><div class="line">&apos;Entrust&apos; =&gt; Zizaco\Entrust\EntrustFacade::class,</div></pre></td></tr></table></figure></p>
+<p>4.在文件<code>app/Http/Kernel.php</code>的<code>$routeMiddleware</code>添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&apos;role&apos; =&gt; Zizaco\Entrust\Middleware\EntrustRole::class,</div><div class="line">&apos;permission&apos; =&gt; Zizaco\Entrust\Middleware\EntrustPermission::class,</div><div class="line">&apos;ability&apos; =&gt; Zizaco\Entrust\Middleware\EntrustAbility::class,</div></pre></td></tr></table></figure></p>
+<p>5.Entrust会根据文件<code>config/auth.php</code>的<code>model</code>来选择用户模型，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&apos;model&apos; =&gt; App\Models\User::class</div></pre></td></tr></table></figure></p>
+<p>执行以下命令生成配置文件<code>config/entrust.php</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php artisan vendor:publish</div></pre></td></tr></table></figure></p>
+<p>修改配置文件<code>entrust.php</code>如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&apos;role&apos;=&gt;&apos;App\Models\Role&apos;</div><div class="line">&apos;permission&apos;=&gt;&apos;App\Models\Permission&apos;</div></pre></td></tr></table></figure></p>
+<p>6.生成数据库迁移文件并执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">php artisan entrust:migration</div><div class="line">php artisan migrate</div></pre></td></tr></table></figure></p>
+<p>7.生成自动加载<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer dump-autoload</div></pre></td></tr></table></figure></p>
+<h1 id="管理模型"><a href="#管理模型" class="headerlink" title="管理模型"></a>管理模型</h1><hr>
+<p>为了使用Entrust，我们需要新建两个模型，在终端运行以下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 角色模型</div><div class="line">php artisan make:model Models/Role</div><div class="line"></div><div class="line">// 权限模型</div><div class="line">php artisan make:model Models/Permission</div></pre></td></tr></table></figure></p>
+<h2 id="Role-php"><a href="#Role-php" class="headerlink" title="Role.php"></a>Role.php</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">namespace App\Models;</div><div class="line"></div><div class="line">use Zizaco\Entrust\EntrustRole;</div><div class="line"></div><div class="line">class Role extends EntrustRole</div><div class="line">&#123;</div><div class="line">    protected $guarded = [];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Permission-php"><a href="#Permission-php" class="headerlink" title="Permission.php"></a>Permission.php</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">namespace App\Models;</div><div class="line"></div><div class="line">use Zizaco\Entrust\EntrustPermission;</div><div class="line"></div><div class="line">class Permission extends EntrustPermission</div><div class="line">&#123;</div><div class="line">    protected $guarded = [];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>为了配合Entrust的使用，需要修改User.php的代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line"></div><div class="line">namespace App\Models;</div><div class="line"></div><div class="line">use Illuminate\Auth\Authenticatable;</div><div class="line">use Illuminate\Database\Eloquent\Model;</div><div class="line">use Illuminate\Auth\Passwords\CanResetPassword;</div><div class="line">use Illuminate\Foundation\Auth\Access\Authorizable;</div><div class="line">use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;</div><div class="line">use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;</div><div class="line">use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;</div><div class="line">use Zizaco\Entrust\Traits\EntrustUserTrait;</div><div class="line"></div><div class="line">class User extends Model implements AuthenticatableContract,</div><div class="line">    AuthorizableContract,</div><div class="line">    CanResetPasswordContract</div><div class="line">&#123;</div><div class="line">    use Authenticatable, Authorizable, CanResetPassword, EntrustUserTrait&#123;</div><div class="line">        Authorizable::can insteadof  EntrustUserTrait;</div><div class="line">        EntrustUserTrait::can as hasPermission;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * The database table used by the model.</div><div class="line">     *</div><div class="line">     * @var string</div><div class="line">     */</div><div class="line">    protected $table = &apos;users&apos;;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * The attributes that are mass assignable.</div><div class="line">     *</div><div class="line">     * @var array</div><div class="line">     */</div><div class="line">    protected $fillable = [&apos;name&apos;, &apos;email&apos;, &apos;password&apos;];</div><div class="line"></div><div class="line">    /**</div><div class="line">     * The attributes excluded from the model&apos;s JSON form.</div><div class="line">     *</div><div class="line">     * @var array</div><div class="line">     */</div><div class="line">    protected $hidden = [&apos;password&apos;, &apos;remember_token&apos;];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>完成上述所有操作之后，Entrust的配置就完成了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/04/使用Laravel构建内容管理框架（六）/" data-id="cirn1l9yh000nx14b21d6hzb7" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Laravel/">Laravel</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/04/使用Laravel构建内容管理框架（七）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          使用 Laravel 构建内容管理框架（七）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/04/使用Laravel构建内容管理框架（五）/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">使用 Laravel 构建内容管理框架（五）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Catégories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tooling/">Tooling</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Laravel/">Laravel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHPStorm/">PHPStorm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime-Text-3/">Sublime Text 3</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Laravel/" style="font-size: 20px;">Laravel</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/PHPStorm/" style="font-size: 15px;">PHPStorm</a> <a href="/tags/Sublime-Text-3/" style="font-size: 10px;">Sublime Text 3</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/08/08/使用-Laravel-基于-SMTP-驱动实现发送图文邮件/">使用 Laravel 基于 SMTP 驱动实现发送文字邮件</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/27/使用-PHPStorm-与-Xdebug-调试-Laravel-二/">使用 PHPStorm 与 Xdebug 调试 Laravel (二)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/20/使用-PHPStorm-与-Xdebug-调试-Laravel-一/">使用 PHPStorm 与 Xdebug 调试 Laravel (一)</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/10/PHP Web Application 运行流程、概念术语、机制原理和代码实践/">PHP Web Application 运行流程、概念术语、机制原理和代码实践</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/04/使用Laravel构建内容管理框架（九）/">使用 Laravel 构建内容管理框架（九）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 John Doe<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
