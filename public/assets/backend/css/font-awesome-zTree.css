@@ -1,0 +1,235 @@
+/**
+ * @author zhixin wen <wenzhixin2010@gmail.com>
+ * version: 1.0.0
+ * https://github.com/wenzhixin/font-awesome-zTree
+ */
+
+.ztree * {
+    box-sizing: content-box;
+}
+.ztree li li {
+    position: relative;
+    line-height: 24px;
+    padding-left: 9px;
+}
+
+.ztree li li:before {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 0;
+    border-top: 1px dotted #ccc;
+    position: absolute;
+    top: 12px;
+    left: 0;
+}
+
+.ztree li:last-child:before {
+    background: white;
+    height: auto;
+    top: 1em;
+    bottom: 0;
+}
+
+.ztree li ul {
+    position: relative;
+    background: none;
+    margin-left: 12px;
+    padding-left: 0;
+}
+
+.ztree li ul.line {
+    background: none;
+}
+
+.ztree li ul:before {
+    content: "";
+    display: block;
+    width: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    border-left: 1px dotted #ccc;
+}
+
+.ztree li .noline_open + a + ul:before {
+    border-left: none;
+}
+
+.ztree li .noline_open + a + ul li:before {
+    border-top: none;
+}
+
+.ztree li a {
+    height: 26px;
+    line-height: 26px;
+}
+
+.ztree li span {
+    height: 26px;
+}
+
+.ztree li span.node_name {
+    margin-right: 6px;
+}
+
+.ztree li span.button.switch,
+.ztree li span.button.chk,
+.ztree li a span.button,
+.ztree li span.button[class$="Page"] {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    background: none;
+    background-position: center center !important;
+    padding: 3px 0;
+    display: inline-block;
+    font: normal normal normal 15px/1 FontAwesome;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.ztree li span.button[class$="Page"] {
+    width: 15px;
+}
+
+.ztree li a span.button[style="width:0px;height:0px;"]:before,
+.ztree li a span.button[style^="background"]:before {
+    content: "";
+}
+
+.ztree li span.button.roots_docu,
+.ztree li span.button.center_docu,
+.ztree li span.button.bottom_docu {
+    position: relative;
+    height: 24px;
+    padding: 0;
+}
+
+.ztree li span.button.roots_docu:before,
+.ztree li span.button.center_docu:before,
+.ztree li span.button.bottom_docu:before {
+    content: "";
+    display: block;
+    width: 18px;
+    height: 0;
+    border-top: 1px dotted #ccc;
+    position: absolute;
+    top: 11px;
+    left: 0;
+}
+
+.ztree li span.button:before {
+    display: block;
+    line-height: 20px;
+    text-align: center;
+}
+
+.ztree li span.button.root_open:before,
+.ztree li span.button.roots_open:before,
+.ztree li span.button.center_open:before,
+.ztree li span.button.bottom_open:before,
+.ztree li span.button.noline_open:before {
+    content: "\f147";
+}
+
+.ztree li span.button.root_close:before,
+.ztree li span.button.roots_close:before,
+.ztree li span.button.center_close:before,
+.ztree li span.button.bottom_close:before,
+.ztree li span.button.noline_close:before {
+    content: "\f196";
+}
+
+.ztree li span.button.chk.checkbox_true_full:before,
+.ztree li span.button.chk.checkbox_true_disable:before,
+.ztree li span.button.chk.checkbox_true_full_focus:before {
+    content: "\f046";
+}
+
+.ztree li span.button.chk.checkbox_false_full:before,
+.ztree li span.button.chk.checkbox_false_disable:before,
+.ztree li span.button.chk.checkbox_false_full_focus:before {
+    content: "\f096";
+}
+
+.ztree li span.button.chk.checkbox_true_part:before,
+.ztree li span.button.chk.checkbox_true_part_focus:before,
+.ztree li span.button.chk.checkbox_false_part:before,
+.ztree li span.button.chk.checkbox_false_part_focus:before {
+    content: "\f14a";
+}
+
+.ztree li span.button.chk.radio_true_full:before,
+.ztree li span.button.chk.radio_true_disable:before,
+.ztree li span.button.chk.radio_true_full_focus:before {
+    content: "\f05d";
+}
+
+.ztree li span.button.chk.radio_false_full:before,
+.ztree li span.button.chk.radio_false_disable:before,
+.ztree li span.button.chk.radio_false_full_focus:before {
+    content: "\f10c";
+}
+
+.ztree li span.button.chk.radio_true_part:before,
+.ztree li span.button.chk.radio_true_part_focus:before,
+.ztree li span.button.chk.radio_false_part:before,
+.ztree li span.button.chk.radio_false_part_focus:before {
+    content: "\f192";
+}
+
+.ztree li span.button.ico_open:before {
+    content: "\f115";
+}
+
+.ztree li span.button.ico_close:before {
+    content: "\f114";
+}
+
+.ztree li span.button.ico_docu:before {
+    content: "\f016";
+}
+
+.ztree li span.button.add:before {
+    content: "\f196";
+}
+
+.ztree li span.button.edit:before {
+    content: "\f044";
+}
+
+.ztree li span.button.remove:before {
+    content: "\f014";
+}
+
+.ztree li span.button.firstPage:before {
+    content: "\f100";
+}
+
+.ztree li span.button.prevPage:before {
+    content: "\f104";
+}
+
+.ztree li span.button.nextPage:before {
+    content: "\f105";
+}
+
+.ztree li span.button.lastPage:before {
+    content: "\f101";
+}
+
+.ztree li span.button.chk[class$="focus"]:before {
+    font-weight: bold;
+}
+
+.ztree li span.button.chk[class$="disable"] {
+    color: #ccc;
+}
+
+.ztree li a.curSelectedNode,
+.ztree li a.tmpTargetNode_inner {
+    height: 26px;
+}

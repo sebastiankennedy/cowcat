@@ -1,0 +1,93 @@
+.pagination > .active > span,
+.pagination > .active > span:focus,
+.pagination > .active > span:hover {
+    background-color: #333;
+    border-color: #333;
+}
+
+.pace .pace-progress {
+    background: #333;
+    border-top-color: #333;
+    border-left-color: #333;
+}
+
+.pace .pace-activity {
+    border-top-color: #333;
+    border-left-color: #333;
+}
+
+.btn-success {
+    color: #fff;
+    background-color: #24ce7b;
+    border-color: #24ce7b;
+}
+
+.btn-warning {
+    color: #fff;
+    background-color: #f48714;
+    border-color: #f48714;
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #f6303e;
+    border-color: #f6303e;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+
+.btn-box {
+    border-radius: 3px;
+    position: relative;
+    padding: 15px 5px;
+    margin: 0 0 10px 0;
+    min-width: 80px;
+    height: 60px;
+    text-align: center;
+    font-size: 12px;
+}
+
+.btn-box > .fa,
+.btn-box > .glyphicon,
+.btn-box > .ion {
+    font-size: 20px;
+    display: block;
+}
+
+#success-message,
+#errors-message {
+    margin-top: 15px;
+    margin-bottom: -5px
+}
+
+.alert-success {
+    color: #fff;
+    background-color: #24ce7b;
+    border-color: #24ce7b;
+}
+
+body#login {
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover !important;
+    background-position: center center;
+}
+
+.login-logo {
+    color: #FFF;
+}
+
+.login-box-body {
+    border-radius: 10px;
+}
+
+.dropzone {
+    border-radius: 5px;
+    background: white;
+}
+
