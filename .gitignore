@@ -6,3 +6,4 @@ Homestead.json
 .gitattributes
 .idea
 /storage
+/.env
