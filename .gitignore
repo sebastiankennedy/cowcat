@@ -7,3 +7,4 @@ Homestead.json
 .idea
 /storage
 /.env
+_ide_helper.php
