@@ -54,3 +54,15 @@ Route::post('file/upload', [
     'as'   => 'backend.file.upload',
     'uses' => 'FileController@upload',
 ]);
+
+/* 发送文字邮件 */
+Route::get('email/send/{id}', [
+    'as'   => 'backend.email.send',
+    'uses' => 'EmailController@send',
+]);
+
+/* 发送图文邮件 */
+Route::get('email/sendPicture/{id}', [
+    'as'   => 'backend.email.sendPicture',
+    'uses' => 'EmailController@sendPicture',
+]);

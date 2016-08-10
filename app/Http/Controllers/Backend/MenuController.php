@@ -58,7 +58,7 @@ class MenuController extends Controller
     public function store(MenuCreateForm $request)
     {
         try {
-            if (MenuRepository::create($request->all())) {
+            if(MenuRepository::create($request->all())){
                 return $this->successRoutTo('backend.menu.index', "新增菜单成功");
             }
         }
@@ -105,7 +105,7 @@ class MenuController extends Controller
     {
         $data = $request->except(['_token', '_method']);
         try {
-            if (MenuRepository::saveById($id, $data)) {
+            if(MenuRepository::saveById($id, $data)){
 
                 return $this->successRoutTo('backend.menu.index', '编辑菜单成功');
             }
@@ -126,12 +126,12 @@ class MenuController extends Controller
     {
         $childMenus = MenuRepository::getChildMenusById($id);
 
-        if ( ! empty($childMenus)) {
+        if( ! empty($childMenus)){
             return $this->errorBackTo("请先删除其下级分类");
         }
 
         try {
-            if (MenuRepository::destroy($id)) {
+            if(MenuRepository::destroy($id)){
 
                 return $this->successBackTo('删除菜单成功');
             }

@@ -6,7 +6,7 @@ trait BaseRepositoryTrait
 {
     public function validate(array $data, $rules = null, $custom = false)
     {
-        if ( ! $custom) {
+        if( ! $custom){
             $rules = $this->rules($rules);
         }
 
@@ -56,7 +56,7 @@ trait BaseRepositoryTrait
     {
         $model = $this->model;
 
-        if (property_exists($model, 'order')) {
+        if(property_exists($model, 'order')){
             return $model::orderBy($model::$order, $model::$sort)->get($model::$index);
         }
 
@@ -80,17 +80,48 @@ trait BaseRepositoryTrait
     public function getByWhere(array $where, $columns = ['*'])
     {
         $model = $this->model;
+        try {
+            if( ! empty($where)){
+                foreach ($where as $field => $value) {
+                    if(is_array($value)){
 
-        foreach ($where as $field => $value) {
-            if (is_array($value)) {
-                list($field, $condition, $val) = $value;
-                $this->model = $this->model->where($field, $condition, $val);
-            } else {
-                $this->model = $this->model->where($field, '=', $value);
+                        if(count($value) == 3){
+                            list($field, $condition, $val) = $value;
+                        } else {
+                            list($condition, $val) = $value;
+                        }
+
+                        if(in_array($condition, ['=', '>', '<', '>=', '<=', '<>', '!=', 'like'])){
+                            $model = $model->where($field, $condition, $val);
+                        } elseif($condition == 'null') {
+                            $condition = 'where' . ucfirst($condition);
+                            $model = $model->$condition($field);
+                        } elseif($condition == 'not null') {
+                            $map = explode(' ', $condition);
+                            $condition = 'where' . ucfirst($map[0]) . ucfirst($map[1]);
+                            $model = $model->$condition($field);
+                        } elseif(in_array($condition, ['between', 'in'])) {
+                            $condition = 'where' . ucfirst($condition);
+                            $model = $model->$condition($field, $val);
+                        } elseif(in_array($condition, ['not between', 'not in'])) {
+                            $map = explode(' ', $condition);
+                            $condition = 'where' . ucfirst($map[0]) . ucfirst($map[1]);
+                            $model = $model->$condition($field, $value);
+                        } else {
+                            throw new Exception("请输入正确的查询条件");
+                        }
+                    } else {
+                        $model = $model->where($field, '=', $value);
+                    }
+                }
             }
-        }
 
-        return $model->get($columns);
+            return $model->get($limit, $columns);
+        }
+        catch (\Exception $e) {
+            dump($e->getMessage());
+            exit;
+        }
     }
 
     public function getByWhereIn($field, array $value, $columns = ['*'])
@@ -110,24 +141,48 @@ trait BaseRepositoryTrait
     public function paginateWhere($where, $limit, $columns = ['*'])
     {
         $model = $this->model;
+        try {
+            if( ! empty($where)){
+                foreach ($where as $field => $value) {
+                    if(is_array($value)){
 
-        if ( ! empty($where)) {
-            foreach ($where as $field => $value) {
-                if (is_array($value)) {
-                    list($field, $condition, $val) = $value;
-                    if ($condition == '=') {
-                        $condition = 'where' . ucfirst($condition);
-                        $model = $model->$condition($field, $val);
+                        if(count($value) == 3){
+                            list($field, $condition, $val) = $value;
+                        } else {
+                            list($condition, $val) = $value;
+                        }
+
+                        if(in_array($condition, ['=', '>', '<', '>=', '<=', '<>', '!=', 'like'])){
+                            $model = $model->where($field, $condition, $val);
+                        } elseif($condition == 'null') {
+                            $condition = 'where' . ucfirst($condition);
+                            $model = $model->$condition($field);
+                        } elseif($condition == 'not null') {
+                            $map = explode(' ', $condition);
+                            $condition = 'where' . ucfirst($map[0]) . ucfirst($map[1]);
+                            $model = $model->$condition($field);
+                        } elseif(in_array($condition, ['between', 'in'])) {
+                            $condition = 'where' . ucfirst($condition);
+                            $model = $model->$condition($field, $val);
+                        } elseif(in_array($condition, ['not between', 'not in'])) {
+                            $map = explode(' ', $condition);
+                            $condition = 'where' . ucfirst($map[0]) . ucfirst($map[1]);
+                            $model = $model->$condition($field, $value);
+                        } else {
+                            throw new Exception("请输入正确的查询条件");
+                        }
                     } else {
-                        $model = $model->where($field, $condition, $val);
+                        $model = $model->where($field, '=', $value);
                     }
-                } else {
-                    $model = $model->where($field, '=', $value);
                 }
             }
-        }
 
-        return $model->paginate($limit, $columns);
+            return $model->paginate($limit, $columns);
+        }
+        catch (\Exception $e) {
+            dump($e->getMessage());
+            exit;
+        }
     }
 
     public function lists($value, $key)
@@ -143,4 +198,6 @@ trait BaseRepositoryTrait
 
         return $model::destroy($id);
     }
+
+
 }

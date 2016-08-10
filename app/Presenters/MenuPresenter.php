@@ -21,13 +21,16 @@ class MenuPresenter extends CommonPresenter
      */
     public function showDisplayFormat($status)
     {
-        if ($status) {
+        if($status){
             return "隐藏";
         } else {
             return "显示";
         }
     }
 
+    /**
+     * @return array
+     */
     public function getSearchParams()
     {
         return [
@@ -39,11 +42,6 @@ class MenuPresenter extends CommonPresenter
                     'options' => MenuRepository::getAllTopMenus(),
                 ],
                 [
-                    'type'        => 'text',
-                    'name'        => 'name',
-                    'placeholder' => '菜单名称',
-                ],
-                [
                     'type' => 'date',
                     'name' => 'created_at',
                 ],
@@ -51,6 +49,9 @@ class MenuPresenter extends CommonPresenter
         ];
     }
 
+    /**
+     * @return array
+     */
     public function getHandleParams()
     {
         return [
@@ -63,6 +64,9 @@ class MenuPresenter extends CommonPresenter
         ];
     }
 
+    /**
+     * @return array
+     */
     public function getTableParams()
     {
         return [
@@ -72,7 +76,6 @@ class MenuPresenter extends CommonPresenter
                 'name'  => '菜单名称',
                 'route' => '菜单路由',
                 'sort'  => '菜单排序',
-                'hide'  => '是否显示',
             ],
             'handle' => [
                 [
@@ -86,6 +89,14 @@ class MenuPresenter extends CommonPresenter
                     'route' => 'backend.menu.destroy',
                 ],
             ],
+        ];
+    }
+
+    public function getPageParams()
+    {
+        return [
+            'parent_id'  => old('parent_id'),
+            'created_at' => old('created_at'),
         ];
     }
 }

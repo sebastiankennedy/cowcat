@@ -3,8 +3,6 @@
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title">{{$table['title']}}</h3>
-
-                <div class="box-tools">{!! $data->render() !!}</div>
             </div>
 
             <div class="box-body table-responsive no-padding">
@@ -48,9 +46,9 @@
                     @endforeach
                 </table>
             </div>
-            @if($data->render())
+            @if($data->appends($params)->render())
                 <div class="box-footer clearfix">
-                    {!! $data->render() !!}
+                    {!! $data->appends($params)->render() !!}
                 </div>
             @endif
         </div>

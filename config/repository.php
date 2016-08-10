@@ -7,5 +7,5 @@ return [
         'action'     => 'App\Models\Action',
         'permission' => 'App\Models\Permission',
     ],
-    'page-limit' => 50,
+    'page-limit' => 10,
 ];
