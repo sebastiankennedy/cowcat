@@ -66,3 +66,8 @@ Route::get('email/sendPicture/{id}', [
     'as'   => 'backend.email.sendPicture',
     'uses' => 'EmailController@sendPicture',
 ]);
+
+Route::get('email/sendFile/{id}', [
+    'as'   => 'backend.email.sendFile',
+    'uses' => 'EmailController@sendFile',
+]);

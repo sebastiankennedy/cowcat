@@ -116,7 +116,7 @@ trait BaseRepositoryTrait
                 }
             }
 
-            return $model->get($limit, $columns);
+            return $model->get($columns);
         }
         catch (\Exception $e) {
             dump($e->getMessage());

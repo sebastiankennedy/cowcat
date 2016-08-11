@@ -1,6 +1,6 @@
 @extends("backend.layout.main")
 
-@inject("permissionPresenter","App\Presenters\permissionPresenter")
+@inject("permissionPresenter","App\Presenters\PermissionPresenter")
 
 @section("content")
     @include('backend.components.handle',$handle = $permissionPresenter->getHandle())
