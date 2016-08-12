@@ -63,9 +63,9 @@ Free,open-source CMS based on the Laravel PHP Framework
 
 ## 计划新增功能（Todo）
 
-- [ ] 发送邮件（Send Email）
+- [x] 发送邮件（Send Email）-- 初步实现,等待重构
 - [ ] 在线支付（Online payment）
-- [x] 文件上传（File Upload）-- 初步实现
+- [x] 文件上传（File Upload）-- 初步实现,等待重构
 - [ ] OAuth2.0 注册与登录（Register & Login By OAuth2.0）
 - [ ] 富文本编辑器和 Markdown 编辑器（Rich Text Editor && Markdown）
 
