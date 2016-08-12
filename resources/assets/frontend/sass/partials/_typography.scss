@@ -1,0 +1,66 @@
+// Typography Partials
+@import "colors";
+
+/* ==========================================================================
+Typography
+========================================================================== */
+
+// Font-Weight
+$light: 300;
+$normal: 400;
+$bold: 700;
+// Font Size
+$h1-size: 72px;
+$h2-size: 36px;
+$h3-size: 26px;
+$h4-size: 24px;
+$h5-size: 22px;
+$h6-size: 18px;
+$p-size: 16px;
+$nav-size: 14px;
+$icon-size: 48px;
+// Typography
+h1 {
+    font-size: $h1-size;
+    color: $Light-Heading;
+    font-weight: $light;
+    letter-spacing: 0.16em;
+}
+
+h2 {
+    font-size: $h2-size;
+    color: $Dark-Heading;
+    font-weight: $normal;
+    letter-spacing: 0.05em;
+}
+
+h3 {
+    font-size: $h3-size;
+    color: $Dark-Heading;
+    font-weight: $normal;
+}
+
+h4 {
+    font-size: $h4-size;
+    color: $Dark-Heading;
+    font-weight: $normal;
+}
+
+h5 {
+    font-size: $h5-size;
+    color: $Dark-Heading;
+    font-weight: $normal;
+}
+
+h6 {
+    font-size: $h6-size;
+    color: $Dark-Heading;
+    font-weight: $normal;
+    letter-spacing: 0.05em;
+}
+
+p {
+    font-size: $p-size;
+    color: $Dark-Heading;
+    font-weight: $normal;
+}

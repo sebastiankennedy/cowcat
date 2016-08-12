@@ -1,0 +1,604 @@
+    // Google Font
+    @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
+    // Imports
+    @import "compass";
+    @import "partials/base";
+    @import "partials/typography";
+    @import "partials/buttons";
+    @import "partials/colors";
+    @import "partials/layout";
+    /* ==========================================================================
+Preloader Style
+========================================================================== */
+    
+    .preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 999999;
+        background: $section-dark;
+        i {
+            color: #fff;
+            position: absolute;
+            font-size: 36px;
+            line-height: 36px;
+            top: 50%;
+            left: 50%;
+            height: 36px;
+            width: 36px;
+            margin-top: -15px;
+            margin-left: -15px;
+            display: inline-block;
+        }
+    }
+    /* ==========================================================================
+Navigation Style
+========================================================================== */
+    
+    .navbar-default {
+        background: rgba(13, 13, 13, .6);
+        margin-bottom: 0;
+        border: none;
+        .navbar-header {
+            width: 28%;
+            padding-right: 15px;
+        }
+        .nav-wrap {
+            width: 50%;
+        }
+        .nav>li>a {
+            font-size: $nav-size;
+            color: $Light-primary;
+            font-weight: $bold;
+            text-transform: uppercase;
+            padding: 35px 15px;
+            @include transition(all .3s ease-in-out);
+        }
+        .nav>li>a:hover,
+        .nav>li>a:focus,
+        .nav>li>a:active {
+            color: $Grey-Primary;
+        }
+        .social-media {
+            i {
+                font-size: $h5-size;
+            }
+            float: right;
+            padding: 0 15px;
+        }
+    }
+    
+    .navbar-default .navbar-nav>.active>a,
+    .navbar-default .navbar-nav>.active>a:focus,
+    .navbar-default .navbar-nav>.active>a:hover {
+        background: transparent;
+        color: $Grey-Primary;
+    }
+    
+    .top-nav-collapse {
+        background: $section-dark;
+        .navbar-brand {
+            height: auto;
+            img {
+                width: 52px;
+                height: 52px;
+            }
+        }
+        .nav>li>a {
+            padding: 30px 15px;
+        }
+    }
+    /* ==========================================================================
+Sliders Style
+========================================================================== */
+    
+    #owl-hero {
+        overflow: hidden;
+        .item {
+            @include background-size(cover);
+            background-position: center;
+            background-repeat: no-repeat;
+            .caption {
+                position: absolute;
+                top: 50%;
+                margin-top: -104px;
+                left: 0;
+                right: 0;
+                text-align: center;
+                z-index: 15;
+                h1 {
+                    margin-top: 40px;
+                    margin-bottom: 50px;
+                    text-transform: uppercase;
+                    span {
+                        font-weight: $bold;
+                    }
+                }
+                h6 {
+                    color: $Light-primary;
+                    margin: 0;
+                }
+            }
+        }
+        .owl-pagination {
+            position: absolute;
+            display: block;
+            text-align: center;
+            width: 100%;
+            bottom: 5%;
+            .owl-page.active span {
+                background: $Light-primary;
+            }
+            .owl-page span {
+                border: 2px solid $Light-primary;
+                border-radius: 50%;
+                background: transparent;
+                opacity: 1;
+                @include transition(all .3s ease-in-out);
+            }
+        }
+        .owl-buttons {
+            div {
+                background: $Light-primary;
+                font-size: 24px;
+                color: $Grey-Primary;
+                opacity: 1;
+            }
+            .owl-prev {
+                left: -60px;
+            }
+            .owl-next {
+                right: -60px;
+            }
+            .owl-prev,
+            .owl-next {
+                position: absolute;
+                background: $Light-primary;
+                top: 50%;
+                height: 51px;
+                width: 51px;
+                line-height: 45px;
+                border-radius: 0;
+                border: 1px solid $Light-primary;
+                z-index: 20;
+                text-align: center;
+                @include transition (all .3s ease-in-out);
+            }
+        }
+    }
+    
+    #owl-hero:hover .owl-prev {
+        left: -5px;
+    }
+    
+    #owl-hero:hover .owl-next {
+        right: -5px;
+    }
+    /* ==========================================================================
+Welcome Style
+========================================================================== */
+    
+    #welcome {
+        padding: $section-padding;
+        text-align: center;
+        h2 {
+            text-transform: uppercase;
+            span {
+                font-weight: $bold;
+            }
+        }
+        img {
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+    }
+    /* ==========================================================================
+Services Style
+========================================================================== */
+    
+    #services {
+        background: $section-dark;
+        padding: $section-padding;
+        text-align: center;
+        h2 {
+            text-transform: uppercase;
+            color: $Light-primary;
+        }
+        p {
+            color: $Light-primary;
+        }
+        .services-box {
+            margin-top: 40px;
+            .col-md-4 {
+                margin-bottom: 20px;
+                .media-left,
+                .media-right,
+                .media-body {
+                    padding-right: 30px;
+                    vertical-align: baseline;
+                    p {
+                        text-align: left;
+                    }
+                    h3 {
+                        text-transform: uppercase;
+                        color: $Light-primary;
+                        text-align: left;
+                    }
+                    span {
+                        font-size: $h2-size;
+                        color: $Light-primary;
+                    }
+                }
+            }
+        }
+    }
+    /* ==========================================================================
+Portfolio Style
+========================================================================== */
+    
+    #portfolio {
+        padding: $section-padding;
+        text-align: center;
+        h2 {
+            text-transform: uppercase;
+        }
+        p {
+            margin-bottom: 40px;
+        }
+        .container-fluid {
+            padding-left: 0;
+            padding-right: 0;
+            .col-lg-4 {
+                padding-left: 0;
+                padding-right: 0;
+            }
+        }
+        .portfolio-box {
+            display: block;
+            position: relative;
+            margin: 0 auto;
+            max-width: 650px;
+            .portfolio-box-caption {
+                display: block;
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                height: 100%;
+                text-align: center;
+                color: #fff;
+                opacity: 0;
+                background: rgba(13, 13, 13, .6);
+                @include transition(all .3s ease-in-out);
+                .portfolio-box-caption-content {
+                    position: absolute;
+                    top: 50%;
+                    width: 100%;
+                    text-align: center;
+                    transform: translateY(-50%);
+                    .project-category,
+                    .project-name {
+                        padding: 0 15px;
+                    }
+                    .project-category {
+                        text-transform: uppercase;
+                        font-size: $h5-size;
+                        font-weight: 700;
+                    }
+                    .project-name {
+                        font-size: $h6-size;
+                    }
+                }
+            }
+        }
+        .portfolio-box:hover .portfolio-box-caption {
+            opacity: 1;
+        }
+    }
+    /* ==========================================================================
+Work Process Style
+========================================================================== */
+    
+    #work-process {
+        padding: $section-padding;
+        text-align: center;
+        .col-lg-3 {
+            margin-top: 40px;
+        }
+        h2 {
+            text-transform: uppercase;
+        }
+        h4 {
+            text-transform: uppercase;
+            color: $Dark-primary;
+        }
+        span {
+            font-size: $icon-size;
+            color: $Dark-primary;
+            margin-bottom: 15px;
+        }
+    }
+    /* ==========================================================================
+Fun Facts Style
+========================================================================== */
+    
+    #fun-facts {
+        background: $section-dark;
+        padding: $section-padding;
+        text-align: center;
+        .col-lg-3 {
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            text-transform: uppercase;
+            color: $Light-primary;
+        }
+        p {
+            color: $Light-primary;
+        }
+        h4 {
+            text-transform: uppercase;
+            color: $Light-primary;
+        }
+        .number {
+            color: $Light-primary;
+            font-weight: $bold;
+            padding: 10px 0;
+            margin: 0;
+        }
+        span {
+            font-size: $icon-size;
+            color: $Light-primary;
+            margin-bottom: 15px;
+        }
+    }
+    /* ==========================================================================
+Our Team Style
+========================================================================== */
+    
+    #team {
+        padding: $section-padding;
+        text-align: center;
+        h2 {
+            text-transform: uppercase;
+        }
+        .team {
+            margin-top: 40px;
+            margin-bottom: 20px;
+            h4 {
+                margin-top: 20px;
+                text-transform: uppercase;
+                font-weight: $bold;
+            }
+            p {
+                color: $Grey-Primary;
+            }
+            a {
+                color: $Dark-primary;
+                font-size: $h5-size;
+                padding-right: 10px;
+                @include transition(all .3s ease-in-out);
+            }
+            a:hover,
+            a:focus,
+            a:active {
+                color: $Grey-Primary;
+            }
+        }
+    }
+    /* ==========================================================================
+Testimonials Style
+========================================================================== */
+    
+    #testimonials {
+        background-image: url('../img/testimonials/Testimonials.jpg');
+        @include background-size(cover);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        padding: $section-padding;
+        text-align: center;
+        h2 {
+            text-transform: uppercase;
+            color: $Light-primary;
+        }
+        p {
+            color: $Light-primary;
+        }
+        .item {
+            .quote {
+                margin: 20px auto;
+                width: 80%;
+                .right {
+                    margin-left: 40px;
+                    font-size: 32px;
+                    color: $Light-primary;
+                }
+                .left {
+                    float: left;
+                    margin-right: 40px;
+                    color: $Light-primary;
+                }
+            }
+            h5 {
+                color: $Light-primary;
+                line-height: 36px;
+                span {
+                    font-weight: $bold;
+                    text-transform: uppercase;
+                }
+            }
+        }
+        .owl-pagination {
+            .owl-page.active span {
+                background-color: $Light-primary;
+            }
+            .owl-page span {
+                border: 2px solid $Light-primary;
+                border-radius: 50%;
+                background: transparent;
+                opacity: 1;
+                @include transition(all .3s ease-in-out);
+            }
+        }
+    }
+    /* ==========================================================================
+Contact Us Style
+========================================================================== */
+    
+    #contact {
+        padding: $section-padding;
+        text-align: center;
+        h2 {
+            text-transform: uppercase;
+        }
+        form {
+            margin: 40px 0;
+        }
+        .form-group {
+            margin-bottom: 35px;
+        }
+        .form-control {
+            @include border-radius(0);
+            border: 2px solid $section-dark;
+            color: $Dark-primary;
+            min-height: 45px;
+        }
+        textarea {
+            height: 140px;
+            resize: none;
+        }
+    }
+    /* ==========================================================================
+Google Map Style
+========================================================================== */
+    
+    #map {
+        width: 100%;
+        height: 400px;
+    }
+    /* ==========================================================================
+Footer Map Style
+========================================================================== */
+    
+    footer {
+        background: $section-dark;
+        padding: $section-padding;
+        text-align: center;
+        h1 {
+            text-transform: uppercase;
+            font-weight: $bold;
+        }
+        .social {
+            margin: 40px 0;
+            a {
+                color: $Light-primary;
+                margin-left: 20px;
+                margin-right: 20px;
+                @include transition(all .3s ease-in-out);
+            }
+            a:hover,
+            a:focus,
+            a:active {
+                color: $Grey-Primary;
+            }
+        }
+        h6 {
+            text-transform: uppercase;
+            color: $Light-primary;
+        }
+    }
+    /* ==========================================================================
+Media Queries Style
+========================================================================== */
+    
+    @media (max-width: 992px) {
+        /*-- Navigation --*/
+        .navbar-default {
+            background: $section-dark;
+            .navbar-header {
+                width: 100%;
+                padding-right: 0;
+                .navbar-brand {
+                    height: auto;
+                    img {
+                        width: 52px;
+                        height: 52px;
+                    }
+                }
+            }
+            .nav-wrap {
+                width: 100%;
+            }
+            .navbar-toggle {
+                padding-top: 25px;
+                padding-bottom: 25px;
+                border: none;
+                .icon-bar {
+                    background-color: $Light-primary;
+                }
+            }
+            .navbar-toggle:hover,
+            .navbar-toggle:focus,
+            .navbar-toggle:active {
+                background: none;
+            }
+            .navbar-left,
+            .navbar-right {
+                float: none !important;
+            }
+            .navbar-toggle {
+                display: block;
+            }
+            .navbar-collapse {
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            }
+            .navbar-collapse.collapse {
+                display: none!important;
+            }
+            .navbar-nav {
+                float: none!important;
+                margin-top: 7.5px;
+            }
+            .navbar-nav>li {
+                float: none;
+            }
+            .collapse.in {
+                display: block !important;
+            }
+        }
+        /*-- Sliders --*/
+        #owl-hero {
+            h1 {
+                font-size: 42px;
+            }
+            h6 {
+                font-size: 16px;
+            }
+            .btn {
+                margin-top: 20px;
+            }
+            .owl-buttons {
+                display: none;
+            }
+        }
+        /*-- Services --*/
+        #services {
+            h3 {
+                font-size: 22px;
+            }
+        }
+        /*-- section styles --*/
+        section {
+            h2 {
+                font-size: 32px;
+            }
+        }
+        #testimonials {
+            h5 {
+                font-size: 18px;
+            }
+        }
+    }

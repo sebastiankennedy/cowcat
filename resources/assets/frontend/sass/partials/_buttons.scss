@@ -1,0 +1,70 @@
+// Buttons Partial
+@import "colors";
+@import "compass";
+
+/* ==========================================================================
+Buttons Styles
+========================================================================== */
+
+.btn-transparent {
+    background: transparent;
+    border: 3px solid $border-button;
+    padding: 15px 30px;
+    font-size: 14px;
+    @include border-radius(0);
+    color: $Light-primary;
+    @include transition(all .3s ease-in-out);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.btn-transparent:hover,
+.btn-transparent:focus,
+.btn-transparent:active {
+    background: $light-button;
+    color: $Dark-primary;
+    text-decoration: none;
+}
+
+.btn-light {
+    background: $light-button;
+    border: 3px solid $border-button;
+    padding: 15px 30px;
+    font-size: 14px;
+    @include border-radius(0);
+    color: $Dark-primary;
+    @include transition(all .3s ease-in-out);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.btn-light:hover,
+.btn-light:focus,
+.btn-light:active {
+    background: transparent;
+    color: $Light-primary;
+    text-decoration: none;
+}
+
+.btn-block {
+    background: $Dark-button;
+    padding: 15px 0;
+    font-size: 16px;
+    @include border-radius(0);
+    color: $Light-primary;
+    @include transition(all .3s ease-in-out);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border: 3px solid $Dark-button;
+}
+
+.btn-block:hover,
+.btn-block:focus,
+.btn-block:active {
+    background: $light-button;
+    color: $Dark-primary;
+    text-decoration: none;
+}

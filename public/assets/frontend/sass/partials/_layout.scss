@@ -1,0 +1,15 @@
+// Layout Partials
+
+@import "colors";
+/* ==========================================================================
+Layout 
+========================================================================== */
+
+$section-padding: 60px 0;
+.dark-bg {
+    background: $section-dark;
+}
+
+.light-bg {
+    background: $section-light;
+}

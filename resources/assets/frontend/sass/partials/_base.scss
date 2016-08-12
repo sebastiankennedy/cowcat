@@ -1,0 +1,26 @@
+@import "colors";
+
+/* ==========================================================================
+Global Styles
+========================================================================== */
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    color: $Dark-primary;
+    overflow-x: hidden;
+}
+
+.sep {
+    max-width: 80px;
+    border: 2px solid $Dark-primary;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.light-sep {
+    max-width: 80px;
+    border: 2px solid $Light-primary;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
