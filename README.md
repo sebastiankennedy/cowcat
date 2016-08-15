@@ -63,7 +63,7 @@ Free,open-source CMS based on the Laravel PHP Framework
 
 ## 计划新增功能（Todo）
 
-- [ ] 首页展示（Home Page）
+- [x] 首页展示（Home Page）-- 初步实现,等待完善细节
 - [x] 发送邮件（Send Email）-- 初步实现,等待重构
 - [ ] 在线支付（Online payment）
 - [x] 文件上传（File Upload）-- 初步实现,等待重构
