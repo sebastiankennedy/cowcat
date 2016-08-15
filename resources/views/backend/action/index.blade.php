@@ -9,8 +9,6 @@
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">操作列表</h3>
-
-                    <div class="box-tools">{!! $data->render() !!}</div>
                 </div>
 
                 <div class="box-body table-responsive no-padding">

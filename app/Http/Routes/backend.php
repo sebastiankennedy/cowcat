@@ -62,18 +62,19 @@ Route::post('file/upload', [
     'uses' => 'FileController@upload',
 ]);
 
-/* 发送文字邮件 */
+/* 发送测试文字邮件 */
 Route::get('email/send/{id}', [
     'as'   => 'backend.email.send',
     'uses' => 'EmailController@send',
 ]);
 
-/* 发送图文邮件 */
+/* 发送测试图文邮件 */
 Route::get('email/sendPicture/{id}', [
     'as'   => 'backend.email.sendPicture',
     'uses' => 'EmailController@sendPicture',
 ]);
 
+/* 发送测试附件邮件 */
 Route::get('email/sendFile/{id}', [
     'as'   => 'backend.email.sendFile',
     'uses' => 'EmailController@sendFile',

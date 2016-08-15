@@ -142,7 +142,11 @@ class PermissionController extends Controller
         $permission = PermissionRepository::find($id);
         switch ($permission->type) {
             case 'menu':
-                $data = json_encode(PermissionRepository::getAllMenusTreeByPermissionModel($permission));
+                $data = PermissionRepository::getAllMenusTreeByPermissionModel($permission);
+                foreach ($data as $key => $item) {
+                    $data[$key]['name'] = trans($item['name']);
+                }
+                $data = json_encode($data);
                 break;
             case 'action':
                 $data = json_encode(PermissionRepository::getAllActionsByPermissionModel($permission));
