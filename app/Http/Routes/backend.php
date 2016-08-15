@@ -1,4 +1,11 @@
 <?php
+/* 本地化切换 */
+Route::get('language/{locale}', function ($locale) {
+    App::setLocale($locale);
+
+    return redirect()->route('backend.index.index');
+});
+
 /* 后台首页 */
 Route::get('index/', [
     'as'   => 'backend.index.index',
