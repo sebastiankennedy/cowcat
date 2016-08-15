@@ -31,25 +31,25 @@ class MainPresenter extends CommonPresenter
     public function renderSidebar(array $menus, $route)
     {
         $user = Auth::user();
-        if ( ! $user) {
+        if( ! $user){
             return redirect()->to('/auth/logout');
         }
 
         $routes = UserRepository::getUserMenusPermissionsByUserModel($user);
 
-        if ( ! $routes) {
+        if( ! $routes){
             return "";
         }
 
-        if ($user['is_super_admin'] == 0) {
+        if($user['is_super_admin'] == 0){
             foreach ($menus as $key => $menu) {
-                if ( ! in_array($menu['route'], $routes)) {
-                    unset($menus[$key]);
+                if( ! in_array($menu['route'], $routes)){
+                    unset($menus[ $key ]);
                 }
             }
         }
 
-        $trees = create_node_tree($menus);
+        $trees = list_to_tree($menus);
         $array = self::buildBreadcrumbsArray($menus, $route);
         $active = array_map(function ($value) {
             return $value['route'];
@@ -77,14 +77,14 @@ class MainPresenter extends CommonPresenter
     {
         $breadcrumbs = [];
         foreach ($menus as $key => $value) {
-            if ($route) {
-                if ($value['route'] == $route) {
+            if($route){
+                if($value['route'] == $route){
                     $breadcrumbs[] = $value;
                     $breadcrumbs = array_merge($breadcrumbs,
                         self::buildBreadcrumbsArray($menus, '', $value['parent_id']));
                 }
             } else {
-                if ($value['id'] == $parent_id) {
+                if($value['id'] == $parent_id){
                     $breadcrumbs[] = $value;
                     $breadcrumbs = array_merge($breadcrumbs,
                         self::buildBreadcrumbsArray($menus, '', $value['parent_id']));
@@ -106,11 +106,10 @@ class MainPresenter extends CommonPresenter
     protected static function makeSidebar(array $menus, $active)
     {
         $sidebar = "";
-
         foreach ($menus as $menu) {
-            if ($menu['hide'] == 0) {
-                if ($menu['child']) {
-                    if (in_array($menu['route'], $active)) {
+            if($menu['hide'] == 0){
+                if(array_key_exists('child', $menu)){
+                    if(in_array($menu['route'], $active)){
                         $sidebar .= '<li class="treeview active">';
                     } else {
                         $sidebar .= '<li class="treeview">';
@@ -125,13 +124,13 @@ class MainPresenter extends CommonPresenter
                             </ul>
                         </li>';
                 } else {
-                    if (in_array($menu['route'], $active)) {
+                    if(in_array($menu['route'], $active)){
                         $sidebar .= '<li class="active">';
                     } else {
                         $sidebar .= '<li>';
                     }
 
-                    if (Route::has($menu['route'])) {
+                    if(Route::has($menu['route'])){
                         $sidebar .= '<a href="' . route($menu['route']) . '">';
                     } else {
                         $sidebar .= '<a href="javascript:void(0);">';
@@ -158,7 +157,7 @@ class MainPresenter extends CommonPresenter
     public function renderBreadcrumbs(array $menus, $route)
     {
         $breadcrumbs = Cache::get(self::BREADCRUMBS_MENUS_CACHE . $route);
-        if ($breadcrumbs) {
+        if($breadcrumbs){
             return $breadcrumbs;
         } else {
             $array = self::buildBreadcrumbsArray($menus, $route);
@@ -182,14 +181,14 @@ class MainPresenter extends CommonPresenter
         $breadcrumbs = '<ol class="breadcrumb">';
         foreach ($array as $key => $value) {
 
-            if (count($array) == $key + 1) {
+            if(count($array) == $key + 1){
                 $breadcrumbs .= '<li class="active">';
             } else {
                 $breadcrumbs .= '<li>';
             }
 
-            if ($value['route']) {
-                if (Route::has($value['route'])) {
+            if($value['route']){
+                if(Route::has($value['route'])){
                     $breadcrumbs .= '<a href="' . route($value['route']) . '">';
                 } else {
                     $breadcrumbs .= '<a href="#">';
@@ -198,7 +197,7 @@ class MainPresenter extends CommonPresenter
                 $breadcrumbs .= '<a href="#">';
             }
 
-            if ($value['icon']) {
+            if($value['icon']){
                 $breadcrumbs .= '<i class="fa ' . trans($value['icon']) . '"></i> ';
             }
             $breadcrumbs .= trans($value['name']);

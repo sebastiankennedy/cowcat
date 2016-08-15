@@ -1,5 +1,5 @@
 <?php
-if ( ! function_exists('two_dimensional_array_unique')) {
+if( ! function_exists('two_dimensional_array_unique')){
 
     /**
      * 移除二维数组中指定键名重复的值
@@ -16,9 +16,9 @@ if ( ! function_exists('two_dimensional_array_unique')) {
         $temp_array = [];
 
         foreach ($array as $value) {
-            if ( ! in_array($value[$key], $key_array)) {
-                $key_array[$i] = $value[$key];
-                $temp_array[$i] = $value;
+            if( ! in_array($value[ $key ], $key_array)){
+                $key_array[ $i ] = $value[ $key ];
+                $temp_array[ $i ] = $value;
             }
             $i++;
         }
@@ -27,7 +27,7 @@ if ( ! function_exists('two_dimensional_array_unique')) {
     }
 }
 
-if ( ! function_exists('array_random')) {
+if( ! function_exists('array_random')){
 
     /**
      * 随机返回数组中的值
@@ -38,11 +38,11 @@ if ( ! function_exists('array_random')) {
      */
     function array_random($array)
     {
-        return $array[array_rand($array)];
+        return $array[ array_rand($array) ];
     }
 }
 
-if ( ! function_exists('two_dimensional_array_sort')) {
+if( ! function_exists('two_dimensional_array_sort')){
 
     /**
      * 二维数组排序
@@ -58,16 +58,16 @@ if ( ! function_exists('two_dimensional_array_sort')) {
         $new_array = [];
         $sortable_array = [];
         $on = (string)$on;
-        if (count($array) > 0) {
+        if(count($array) > 0){
             foreach ($array as $k => $v) {
-                if (is_array($v)) {
+                if(is_array($v)){
                     foreach ($v as $k2 => $v2) {
-                        if ($k2 == $on) {
-                            $sortable_array[$k] = $v2;
+                        if($k2 == $on){
+                            $sortable_array[ $k ] = $v2;
                         }
                     }
                 } else {
-                    $sortable_array[$k] = $v;
+                    $sortable_array[ $k ] = $v;
                 }
             }
 
@@ -81,14 +81,14 @@ if ( ! function_exists('two_dimensional_array_sort')) {
             }
 
             foreach ($sortable_array as $k => $v) {
-                $new_array[$k] = $array[$k];
+                $new_array[ $k ] = $array[ $k ];
             }
         }
 
         return $new_array;
     }
 }
-if ( ! function_exists('create_level_tree')) {
+if( ! function_exists('create_level_tree')){
 
     /**
      * 生成一维数组 HTML 层级树
@@ -108,7 +108,7 @@ if ( ! function_exists('create_level_tree')) {
             $item['html'] .= $level === 0 ? "" : '|';
             $item['html'] .= str_repeat($html, $level);
 
-            if ($item['parent_id'] == $parent_id) {
+            if($item['parent_id'] == $parent_id){
                 $tree[] = $item;
                 $tree = array_merge($tree, create_level_tree($data, $item['id'], $level + 1));
             }
@@ -118,7 +118,7 @@ if ( ! function_exists('create_level_tree')) {
     }
 }
 
-if ( ! function_exists('create_node_tree')) {
+if( ! function_exists('create_node_tree')){
 
     /**
      * 生成二维数组节点树
@@ -134,8 +134,8 @@ if ( ! function_exists('create_node_tree')) {
         $tree = [];
 
         foreach ($data as $item) {
-            if ($item['parent_id'] == $parent_id) {
-                $item[$name] = create_node_tree($data, $item['id']);
+            if($item['parent_id'] == $parent_id){
+                $item[ $name ] = create_node_tree($data, $item['id']);
                 $tree[] = $item;
             }
         }
@@ -144,7 +144,7 @@ if ( ! function_exists('create_node_tree')) {
     }
 }
 
-if ( ! function_exists('get_week_start_time_and_end_date')) {
+if( ! function_exists('get_week_start_time_and_end_date')){
 
     /**
      * 获取一个星期的开始(星期日)与结束(星期六)日期
@@ -163,48 +163,45 @@ if ( ! function_exists('get_week_start_time_and_end_date')) {
     }
 }
 
-if ( ! function_exists('getParentsByChildId')) {
+
+if( ! function_exists('list_to_tree')){
     /**
-     * 根据子元素 ID 获取所有的父元素
+     * 把返回的数据集转换成Tree
      *
-     * @param $data
-     * @param $child_id
+     * @param array  $list
+     * @param string $pk
+     * @param string $pid
+     * @param string $child
+     * @param int    $root
      *
      * @return array
      */
-    function getParentsByChildId($data, $child_id)
+    function list_to_tree(array $list, $pk = 'id', $pid = 'parent_id', $child = 'child', $root = 0)
     {
-        $arr = [];
-        foreach ($data as $item) {
-            if ($data['id'] == $child_id) {
-                $arr[] = $item;
-                $arr = array_merge($arr, getParentsByChildId($data, $item['parent_id']));
+        // 创建Tree
+        $tree = [];
+        if(is_array($list)){
+            // 创建基于主键的数组引用
+            $refer = [];
+            foreach ($list as $key => $data) {
+                $refer[ $data[ $pk ] ] =& $list[ $key ];
+            }
+            foreach ($list as $key => $data) {
+                // 判断是否存在parent
+                $parentId = $data[ $pid ];
+                if($root == $parentId){
+                    $tree[] =& $list[ $key ];
+                } else {
+                    if(isset($refer[ $parentId ])){
+                        $parent =& $refer[ $parentId ];
+                        $parent[ $child ][] =& $list[ $key ];
+                    }
+                }
             }
         }
 
-        return $arr;
+        return $tree;
     }
 }
 
-if ( ! function_exists('getChildsByParentId')) {
-    /**
-     * 根据父元素 ID 获取所有的子元素
-     *
-     * @param $data
-     * @param $parent_id
-     *
-     * @return array
-     */
-    function getChildsByParentId($data, $parent_id)
-    {
-        $arr = [];
-        foreach ($data as $item) {
-            if ($data['parent_id'] == $parent_id) {
-                $arr[] = $item;
-                $arr = array_merge($arr, getChildsByParentId($data, $item['parent_id']));
-            }
-        }
 
-        return $arr;
-    }
-}
