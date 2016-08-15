@@ -19,6 +19,7 @@ class ComposerServiceProvider extends ServiceProvider
         $this->userInfo = [
             'backend.layout.sidebar',
             'backend.layout.header',
+            'backend.user.profile'
         ];
     }
 

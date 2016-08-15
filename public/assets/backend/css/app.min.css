@@ -19360,6 +19360,12 @@ body.stop-scrolling {
   border-left-color: #333;
 }
 
+.btn-black {
+  color: #fff;
+  background-color: #333;
+  border-color: #333;
+}
+
 .btn-success {
   color: #fff;
   background-color: #24ce7b;
@@ -19433,4 +19439,8 @@ body#login {
 .dropzone {
   border-radius: 5px;
   background: white;
+}
+
+.nav-tabs-custom>.nav-tabs>li.active {
+  border-top-color: #333;
 }

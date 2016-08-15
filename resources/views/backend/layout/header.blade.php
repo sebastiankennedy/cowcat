@@ -111,7 +111,7 @@
                         {{--</li>--}}
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="https://github.com/luisedware/CowCat" class="btn btn-default btn-flat">Star</a>
+                                <a href="{{route('backend.user.profile',['id'=>$userInfo['id']])}}" class="btn btn-default btn-flat">个人信息</a>
                             </div>
                             <div class="pull-right">
                                 <a href="/auth/logout" class="btn btn-default btn-flat">退出登录</a>
