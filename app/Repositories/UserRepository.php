@@ -30,7 +30,7 @@ class UserRepository extends CommonRepository
     {
         $routes = Cache::get(self::USER_MENU_PERMISSIONS_CACHE . $user->id);
 
-        if (empty($routes)) {
+        if(empty($routes)){
 
             $roles = $user->roles;
 
@@ -42,7 +42,7 @@ class UserRepository extends CommonRepository
             $menus = [];
             foreach ($permissions as $permission) {
                 foreach ($permission as $item) {
-                    if ($item->type != 'menu') {
+                    if($item->type != 'menu'){
                         continue;
                     }
                     $menus[] = $item->menus->toArray();
@@ -55,7 +55,7 @@ class UserRepository extends CommonRepository
                 }
             }
 
-            if ($routes) {
+            if($routes){
                 $routes = array_unique($routes);
             }
 
@@ -76,7 +76,7 @@ class UserRepository extends CommonRepository
     {
         $actions = Cache::get(self::USER_ACTION_PERMISSIONS_CACHE . $user->id);
 
-        if (empty($actions)) {
+        if(empty($actions)){
             $roles = $user->roles;
             $permissions = [];
             foreach ($roles as $key => $role) {
@@ -86,7 +86,7 @@ class UserRepository extends CommonRepository
             $actionNames = [];
             foreach ($permissions as $permission) {
                 foreach ($permission as $item) {
-                    if ($item->type != 'action') {
+                    if($item->type != 'action'){
                         continue;
                     }
                     $actionNames[] = $item->actions->toArray();
@@ -99,7 +99,7 @@ class UserRepository extends CommonRepository
                 }
             }
 
-            if ($actions) {
+            if($actions){
                 $actions = array_unique($actions);
             }
             Cache::forever(self::USER_ACTION_PERMISSIONS_CACHE . $user->id, $actions);
@@ -117,5 +117,17 @@ class UserRepository extends CommonRepository
             Cache::forget(self::USER_MENU_PERMISSIONS_CACHE . $user->id);
             Cache::forget(self::USER_ACTION_PERMISSIONS_CACHE . $user->id);
         }
+    }
+
+    /**
+     * 根据用户 ID 查询用户资料详情
+     *
+     * @param $id
+     *
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
+     */
+    public function getUserProfileById($id)
+    {
+        return $this->model->with('profile')->find($id);
     }
 }

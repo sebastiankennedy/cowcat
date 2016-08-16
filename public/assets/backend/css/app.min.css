@@ -19360,6 +19360,27 @@ body.stop-scrolling {
   border-left-color: #333;
 }
 
+.btn-black:focus,
+.btn-black.focus {
+  color: #fff;
+  background-color: #444;
+  border-color: #444;
+}
+
+.btn-black:hover {
+  color: #fff;
+  background-color: #444;
+  border-color: #444;
+}
+
+.btn-black:active,
+.btn-black.active,
+.open > .dropdown-toggle.btn-black {
+  color: #fff;
+  background-color: #444;
+  border-color: #444;
+}
+
 .btn-black {
   color: #fff;
   background-color: #333;

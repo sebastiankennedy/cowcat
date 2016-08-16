@@ -10,12 +10,13 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use App\Traits\Model\UserHasOneUserProfileTrait as ProfileTrait;
 
 class User extends Model implements AuthenticatableContract,
     AuthorizableContract,
     CanResetPasswordContract
 {
-    use Authenticatable, Authorizable, CanResetPassword, EntrustUserTrait {
+    use Authenticatable, Authorizable, CanResetPassword, EntrustUserTrait, ProfileTrait {
         Authorizable::can insteadof  EntrustUserTrait;
         EntrustUserTrait::can as hasPermission;
     }
@@ -32,7 +33,7 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password','is_super_admin'];
+    protected $fillable = ['name', 'email', 'password', 'is_super_admin'];
 
     /**
      * The attributes excluded from the model's JSON form.
