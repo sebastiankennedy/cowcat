@@ -184,15 +184,9 @@ class UserController extends Controller
     public function profile($id)
     {
         $user = UserRepository::getUserProfileById($id);
-        $color = [
-            'label-danger',
-            'label-success',
-            'label-info',
-            'label-warning',
-            'label-primary',
-        ];
+        $color = ['label-danger', 'label-success', 'label-info', 'label-warning', 'label-primary', 'label-black'];
 
-        return view('backend.user.profile', compact('user', 'id','color'));
+        return view('backend.user.profile', compact('user', 'id', 'color'));
     }
 
     /**

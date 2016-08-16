@@ -37,7 +37,7 @@
                     <p>
                         @if(!empty($user->profile->skills))
                             @foreach(explode(',',$user->profile->skills) as $key => $value)
-                                <span class="label {{$color[$key%count($color)]}}">{{$value}}</span>
+                                <span class="label {{$color[$key % count($color)]}}">{{$value}}</span>
                             @endforeach
                         @endif
                     </p>
@@ -180,13 +180,39 @@
                         </form>
                     </div>
                     <div class="tab-pane" id="avatar">
-                        <form class="form-horizontal" method="post" action="{{route('backend.user.update-profile')}}">
+                        <form class="form-horizontal" method="post" action="{{route('backend.user.update-profile')}}" enctype="multipart/form-data">
                             {{csrf_field()}}
                             <input type="hidden" name="user_id" id="user_id" value="{{$id}}">
+                            <div class="form-group">
+                                <label for="file" class="col-sm-2 control-label">选择图片</label>
+
+                                <div class="col-sm-10">
+                                    <input type="file" class="form-control" id="file" name="file">
+                                    <input type="hidden" id="avatar" name="avatar" value="{{$user->profile->avatar or ''}}">
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+@endsection
+@section('after.js')
+    <script type="text/javascript">
+        $(function () {
+            $('#file').on('change', function () {
+                $.ajax({
+                    url: '/upload',
+                    type: 'POST',
+                    cache: false,
+                    data: new FormData($('#uploadForm')[0]),
+                    processData: false,
+                    contentType: false
+                }).done(function (res) {
+                }).fail(function (res) {
+                });
+            });
+        });
+    </script>
 @endsection

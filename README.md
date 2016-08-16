@@ -98,11 +98,3 @@ Free,open-source CMS based on the Laravel PHP Framework
 ## 开源协议（License）
 
 [MIT License](http://opensource.org/licenses/MIT)
-
-
-## 关于（About）
-
-联系方式（欢迎交流）
-```
-企鹅：2794408425
-```
