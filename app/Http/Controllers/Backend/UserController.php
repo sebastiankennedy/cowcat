@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Facades\UserProfileRepository;
 use Auth;
 use Illuminate\Http\Request;
 use App\Facades\RoleRepository;
@@ -175,16 +176,47 @@ class UserController extends Controller
 
     /**
      * 编辑个人信息
+     *
+     * @param $id
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function profile($id)
     {
         $user = UserRepository::find($id);
 
-        return view('backend.user.profile', compact('user'));
+        return view('backend.user.profile', compact('user', 'id'));
     }
 
+    /**
+     * 修改个人信息
+     *
+     * @param Request $request
+     *
+     * @return $this|mixed
+     * @throws Exception
+     */
     public function updateProfile(Request $request)
     {
+        $data = $request->except('_token');
 
+        try {
+            $profile = UserProfileRepository::firstByWhere(['user_id' => $data['user_id']]);
+
+            if($profile){
+                $result = UserProfileRepository::updateByWhere(['user_id' => $data['user_id']], $data);
+            } else {
+                $result = UserProfileRepository::create($data);
+            }
+
+            if($result){
+                return $this->successBackTo("修改个人信息成功");
+            } else {
+                throw new Exception("修改个人信息失败");
+            }
+        }
+        catch (\Exception $e) {
+            return $this->errorBackTo(['error' => $e->getMessage()]);
+        }
     }
 }

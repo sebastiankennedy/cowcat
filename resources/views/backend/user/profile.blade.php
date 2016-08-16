@@ -61,11 +61,13 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="settings">
                         <form class="form-horizontal" method="post" action="{{route('backend.user.update-profile')}}">
+                            {{csrf_field()}}
+                            <input type="hidden" name="user_id" id="user_id" value="{{$id}}">
                             <div class="form-group">
                                 <label for="email" class="col-sm-2 control-label">验证邮箱</label>
 
                                 <div class="col-sm-10">
-                                    <input type="email" class="form-control" id="email" name="email">
+                                    <input type="email" class="form-control" id="email" name="email" value="">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -133,6 +135,8 @@
                     </div>
                     <div class="tab-pane" id="community">
                         <form class="form-horizontal" method="post" action="{{route('backend.user.update-profile')}}">
+                            {{csrf_field()}}
+                            <input type="hidden" name="user_id" id="user_id" value="{{$id}}">
                             <div class="form-group">
                                 <label for="weibo" class="col-sm-2 control-label">微博</label>
 
@@ -177,6 +181,8 @@
                     </div>
                     <div class="tab-pane" id="avatar">
                         <form class="form-horizontal" method="post" action="{{route('backend.user.update-profile')}}">
+                            {{csrf_field()}}
+                            <input type="hidden" name="user_id" id="user_id" value="{{$id}}">
                         </form>
                     </div>
                 </div>

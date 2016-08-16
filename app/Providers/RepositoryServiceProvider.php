@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Repositories\UserRepository;
+use App\Repositories\UserProfileRepository;
 use App\Repositories\MenuRepository;
 use App\Repositories\RoleRepository;
 use App\Repositories\ActionRepository;
@@ -35,6 +36,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->registerRoleRepository();
         $this->registerActionRepository();
         $this->registerPermissionRepository();
+        $this->registerUserProfileRepository();
     }
 
     /**
@@ -94,6 +96,17 @@ class RepositoryServiceProvider extends ServiceProvider
             $validator = $app['validator'];
 
             return new PermissionRepository($permission, $validator);
+        });
+    }
+
+    public function registerUserProfileRepository()
+    {
+        $this->app->singleton('userprofilerepository', function ($app) {
+            $model = config('repository.models.user-profile');
+            $permission = new $model();
+            $validator = $app['validator'];
+
+            return new UserProfileRepository($permission, $validator);
         });
     }
 }
