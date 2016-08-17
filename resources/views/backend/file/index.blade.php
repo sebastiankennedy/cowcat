@@ -29,6 +29,7 @@
                         <tr>
                             <th>文件编号</th>
                             <th>文件名称</th>
+                            <th>文件预览</th>
                             <th>文件大小</th>
                             <th>文件类型</th>
                             <th>创建时间</th>
@@ -37,14 +38,19 @@
                         @forelse($data as $file)
                             <tr>
                                 <td>{{$file->id}}</td>
-                                <td>{{$file->original_name}}</td>
+                                <td>
+                                    {{$file->original_name}}
+                                </td>
+                                <td>
+                                    @if(starts_with($file->mime,'image/'))
+                                        <img src="{{$file->url}}" alt="{{$file->original_name}}" width="100" height="100" style="border-radius: 10px;">
+                                    @endif
+                                </td>
                                 <td>{{format_file_size($file->size)}}</td>
                                 <td>{{$file->extension}}</td>
                                 <td>{{$file->created_at}}</td>
                                 <td>
-                                    @if(starts_with($file->mime,'image/'))
-                                        <a href="{{$file->url}}" target="_blank" class="btn btn-warning btn-flat">预览</a>
-                                    @endif
+
                                     <a href="{{route('backend.file.download',['id'=>$file->id])}}" class="btn btn-info btn-flat">下载</a>
                                     <a href="" class="btn btn-danger btn-flat">删除</a>
                                 </td>
