@@ -73,6 +73,10 @@ Route::post('file/upload', [
     'as'   => 'backend.file.upload',
     'uses' => 'FileController@upload',
 ]);
+Route::get('file/download/{id}', [
+    'as'   => 'backend.file.download',
+    'uses' => 'FileController@download',
+]);
 
 /* 发送测试文字邮件 */
 Route::get('email/send/{id}', [

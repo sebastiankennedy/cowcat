@@ -42,8 +42,10 @@
                                 <td>{{$file->extension}}</td>
                                 <td>{{$file->created_at}}</td>
                                 <td>
-                                    <a href="" class="btn btn-warning btn-flat">预览</a>
-                                    <a href="" class="btn btn-info btn-flat">下载</a>
+                                    @if(starts_with($file->mime,'image/'))
+                                        <a href="{{$file->url}}" target="_blank" class="btn btn-warning btn-flat">预览</a>
+                                    @endif
+                                    <a href="{{route('backend.file.download',['id'=>$file->id])}}" class="btn btn-info btn-flat">下载</a>
                                     <a href="" class="btn btn-danger btn-flat">删除</a>
                                 </td>
                             </tr>

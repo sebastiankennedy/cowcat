@@ -22,6 +22,7 @@ class CreateFilesTable extends Migration
             $table->integer('size');
             $table->string('md5');
             $table->string('sha1');
+            $table->text('url');
             $table->tinyInteger('location');
             $table->timestamps();
         });
