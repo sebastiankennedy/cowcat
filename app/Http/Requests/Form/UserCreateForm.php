@@ -24,8 +24,8 @@ class UserCreateForm extends Request
     public function rules()
     {
         return [
-            'name'                  => 'required|unique:users',
-            'email'                 => 'required|unique:users',
+            'name'                  => 'required|unique:users,name,' . $this->get('id'),
+            'email'                 => 'required|unique:users,email,' . $this->get('id'),
             'password'              => 'required|confirmed',
             'password_confirmation' => 'required',
             'role_id'               => 'required',

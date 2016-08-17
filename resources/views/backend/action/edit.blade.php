@@ -6,6 +6,7 @@
             <form method="POST" action="{{route('backend.action.update',['id'=>$data->id])}}">
                 {!! csrf_field() !!}
                 <input type="hidden" name="_method" value="PUT">
+                <input type="hidden" name="id" value="{{$data->id}}">
                 <div class="box">
                     <div class="box-header with-border">
                         <h3 class="box-title">编辑操作</h3>

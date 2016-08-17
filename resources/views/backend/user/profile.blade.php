@@ -180,7 +180,7 @@
                         </form>
                     </div>
                     <div class="tab-pane" id="avatar">
-                        <form class="form-horizontal" method="post" action="{{route('backend.user.update-profile')}}" enctype="multipart/form-data">
+                        <form id="uploadForm" class="form-horizontal" method="post" action="{{route('backend.user.update-profile')}}" enctype="multipart/form-data">
                             {{csrf_field()}}
                             <input type="hidden" name="user_id" id="user_id" value="{{$id}}">
                             <div class="form-group">
@@ -203,14 +203,15 @@
         $(function () {
             $('#file').on('change', function () {
                 $.ajax({
-                    url: '/upload',
+                    url: '{{route("backend.user.upload-avatar")}}',
                     type: 'POST',
                     cache: false,
                     data: new FormData($('#uploadForm')[0]),
                     processData: false,
                     contentType: false
-                }).done(function (res) {
-                }).fail(function (res) {
+                }).done(function (response) {
+
+                }).fail(function (response) {
                 });
             });
         });

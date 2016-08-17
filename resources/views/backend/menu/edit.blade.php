@@ -6,6 +6,7 @@
             <form action="{{route('backend.menu.update',['id'=>$data->id])}}" method="post">
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                 <input type="hidden" name="_method" value="put">
+                <input type="hidden" name="id" value="{{$data->id}}">
                 <div class="box">
                     <div class="box-header with-border">
                         <h3 class="box-title">编辑菜单</h3>

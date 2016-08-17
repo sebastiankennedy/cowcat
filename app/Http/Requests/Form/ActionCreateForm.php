@@ -26,7 +26,7 @@ class ActionCreateForm extends Request
         return [
             'group'       => 'required',
             'name'        => 'required',
-            'action'      => 'required|unique:actions',
+            'action'      => 'required|unique:actions,action,' . $this->get('id'),
             'description' => 'required',
         ];
     }

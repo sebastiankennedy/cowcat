@@ -30,6 +30,10 @@ Route::post('user/update-profile', [
     'as'   => 'backend.user.update-profile',
     'uses' => 'UserController@updateProfile',
 ]);
+Route::post('user/upload-avatar', [
+    'as'   => 'backend.user.upload-avatar',
+    'uses' => 'UserController@uploadAvatar',
+]);
 
 /* 角色管理模块 */
 Route::get('role/permission/{id}', [
