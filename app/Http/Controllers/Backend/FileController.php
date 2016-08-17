@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Services\UploadService;
-use Illuminate\Support\Facades\File;
 use Mockery\Exception;
 
 /**
