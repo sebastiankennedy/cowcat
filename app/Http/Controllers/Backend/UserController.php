@@ -11,6 +11,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Form\UserCreateForm;
 use App\Http\Requests\Form\UserUpdateForm;
+use App\Services\UploadService;
+use App\Models\File;
 
 /**
  * 用户管理控制器
@@ -199,7 +201,7 @@ class UserController extends Controller
      */
     public function updateProfile(Request $request)
     {
-        $data = $request->except('_token');
+        $data = $request->except(['_token', 'file']);
 
         try {
             $profile = UserProfileRepository::firstByWhere(['user_id' => $data['user_id']]);
@@ -221,8 +223,35 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * 异步上传用户头像
+     *
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     * @throws Exception
+     */
     public function uploadAvatar(Request $request)
     {
-        dump($request->all());
+        $file = $request->file('file');
+
+        $uploadService = new UploadService($file, config('cowcat.uploads'));
+
+        try {
+            $result = $uploadService->upload();
+
+            if($result['status'] == 0){
+                return $this->responseJson($result);
+            }
+
+            if(File::create($result['data'])){
+                return $this->responseJson($result);
+            } else {
+                throw new Exception("文件记录失败...");
+            }
+        }
+        catch (\Exception $e) {
+            return $this->responseJson($e->getMessage());
+        }
     }
 }

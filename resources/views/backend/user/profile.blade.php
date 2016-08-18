@@ -6,7 +6,7 @@
         <div class="col-md-3">
             <div class="box" style="border-top-color: #333;">
                 <div class="box-body box-profile">
-                    <img class="profile-user-img img-responsive img-circle" src="{{$user->avatar or '/assets/backend/images/user4-128x128.jpg'}}" alt="User profile picture">
+                    <img class="profile-user-img img-responsive img-circle" src="{{$user->profile->avatar or '/assets/backend/images/user4-128x128.jpg'}}" alt="User profile picture">
                     <h3 class="profile-username text-center">{{$user->name}}</h3>
                     <p class="text-muted text-center">{{$user->profile->job or ""}}</p>
                     {{--<a href="#" class="btn btn-primary btn-block"><b>关注</b></a>--}}
@@ -188,7 +188,17 @@
 
                                 <div class="col-sm-10">
                                     <input type="file" class="form-control" id="file" name="file">
-                                    <input type="hidden" id="avatar" name="avatar" value="{{$user->profile->avatar or ''}}">
+                                    <input type="hidden" id="image" name="avatar" value="{{$user->profile->avatar or ''}}">
+                                    @if(!empty($user->profile->avatar))
+                                        <img src="{{$user->profile->avatar}}" alt="{{$user->name}}" id="preview">
+                                    @else
+                                        <img src="" alt="" id="preview">
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-black">确定</button>
                                 </div>
                             </div>
                         </form>
@@ -210,8 +220,11 @@
                     processData: false,
                     contentType: false
                 }).done(function (response) {
-
+                    var url = response.data.url;
+                    $('#image').attr('value', url);
+                    $('#preview').attr('src', url);
                 }).fail(function (response) {
+                    console.log(response);
                 });
             });
         });
