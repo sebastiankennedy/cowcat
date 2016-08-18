@@ -77,6 +77,10 @@ Route::get('file/download/{id}', [
     'as'   => 'backend.file.download',
     'uses' => 'FileController@download',
 ]);
+Route::delete('file/destroy/{id}', [
+    'as'   => 'backend.file.destroy',
+    'uses' => 'FileController@destroy',
+]);
 
 /* 发送测试文字邮件 */
 Route::get('email/send/{id}', [

@@ -52,7 +52,13 @@
                                 <td>
 
                                     <a href="{{route('backend.file.download',['id'=>$file->id])}}" class="btn btn-info btn-flat">下载</a>
-                                    <a href="" class="btn btn-danger btn-flat">删除</a>
+                                    <a class="btn btn-danger btn-flat"
+                                       data-url="{{route('backend.file.destroy',['id'=>$file->id])}}"
+                                       data-toggle="modal"
+                                       data-target="#delete-modal"
+                                    >
+                                        删除
+                                    </a>
                                 </td>
                             </tr>
                         @empty
@@ -74,4 +80,5 @@
 
 @section('after.js')
     @include('backend.components.modal.upload')
+    @include('backend.components.modal.delete',['title'=>'操作提示','content'=>'你确定要删除这个文件吗?'])
 @endsection
