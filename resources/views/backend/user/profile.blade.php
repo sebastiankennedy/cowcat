@@ -190,9 +190,9 @@
                                     <input type="file" class="form-control" id="file" name="file">
                                     <input type="hidden" id="image" name="avatar" value="{{$user->profile->avatar or ''}}">
                                     @if(!empty($user->profile->avatar))
-                                        <img src="{{$user->profile->avatar}}" alt="{{$user->name}}" id="preview">
+                                        <img src="{{$user->profile->avatar}}" alt="{{$user->name}}" id="preview" style="margin-top: 10px;border-radius: 10px;">
                                     @else
-                                        <img src="" alt="" id="preview">
+                                        <img src="" alt="" id="preview" style="margin-top: 10px;border-radius: 10px;">
                                     @endif
                                 </div>
                             </div>
