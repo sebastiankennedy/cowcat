@@ -371,7 +371,7 @@
                 <div class="form-group">
                     <textarea class="form-control" rows="3" placeholder="想要对我们说些啥"></textarea>
                 </div>
-                <a href="#" class="btn-block">Send</a>
+                <a href="#" class="btn-block">提交</a>
             </form>
         </div>
     </div>
@@ -384,7 +384,7 @@
         <div class="social">
             <a target="_blank" href="https://github.com/luisedware/CowCat"><i class="fa fa-github"></i></a>
         </div>
-        <h6>&copy; 2016 CowCat.Development By BootstrapDev</h6>
+        <h6>&copy; 2016 CowCat.Development By TianMao,Summer and Luis</h6>
     </div>
 </footer>
 <script src="{{elixir("assets/frontend/js/app.min.js")}}"></script>
