@@ -2,7 +2,7 @@
 <html lang="zh">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>RISE-Multipurpose Html Template</title>
+    <title>CowCat - Laravel CMS</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="CowCat is a Free, open-source CMS based on the Laravel PHP Framework">
@@ -101,16 +101,18 @@
                     <div class="media-left"><span class="icon-lightbulb"></span></div>
                     <div class="media-body">
                         <h3>简单易用</h3>
-                        <p>Fringilla augue at maximus vestibulum. Nam pulvinar vitae neque et porttitor. Praesent sed
-                            nisi eleifend.</p>
+                        <p>得益于 Laravel 社区的繁荣</p>
+                        <p>与 CowCat 功能开发定位</p>
+                        <p>即便是新手也能进行二次开发</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="media-left"><span class="icon-mobile"></span></div>
                     <div class="media-body">
                         <h3>响应式设计</h3>
-                        <p>Fringilla augue at maximus vestibulum. Nam pulvinar vitae neque et porttitor. Praesent sed
-                            nisi eleifend.</p>
+                        <p>后台基于响应式模板 AdminLTE 开发</p>
+                        <p>前端使用了 RISE-Multipurpose 模板</p>
+                        <p>完美兼容不同屏幕尺寸</p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -125,9 +127,10 @@
                     <div class="col-md-4">
                         <div class="media-left"><span class="icon-adjustments"></span></div>
                         <div class="media-body">
-                            <h3>便于定制</h3>
-                            <p>Fringilla augue at maximus vestibulum. Nam pulvinar vitae neque et porttitor. Praesent
-                                sed nisi eleifend.</p>
+                            <h3>安全稳健</h3>
+                            <p>基于 2015 年的 Laravel 5.1 进行开发</p>
+                            <p>自发布起提供两年时间的 Bug 修复</p>
+                            <p>三年时间的安全修复</p>
                         </div>
                     </div>
                     <div class="col-md-4">
