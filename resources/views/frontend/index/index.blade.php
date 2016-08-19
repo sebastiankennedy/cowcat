@@ -292,21 +292,21 @@
                 <div class="team">
                     <img class="img-responsive center-block" src="http://o93kt6djh.bkt.clouddn.com/WechatIMG3.jpeg" alt="1">
                     <h4>Tian Mao</h4>
-                    <p>Sell ​​Meng</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="team">
-                    <img class="img-responsive center-block" src="http://o93kt6djh.bkt.clouddn.com/WechatIMG12.jpeg" alt="2">
-                    <h4>Luis</h4>
-                    <p>Shovel feces officer</p>
+                    <p>高级卖萌工程师</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="team">
                     <img class="img-responsive center-block" src="http://o93kt6djh.bkt.clouddn.com/WechatIMG6.jpeg" alt="3">
                     <h4>Summer</h4>
-                    <p>Sell ​​Meng</p>
+                    <p>高级卖萌工程师</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="team">
+                    <img class="img-responsive center-block" src="http://o93kt6djh.bkt.clouddn.com/WechatIMG12.jpeg" alt="2">
+                    <h4>Luis</h4>
+                    <p>PHP 铲屎员</p>
                 </div>
             </div>
         </div>
@@ -369,7 +369,7 @@
                     <input type="text" class="form-control" id="Email" placeholder="邮箱">
                 </div>
                 <div class="form-group">
-                    <textarea class="form-control" rows="3" placeholder="想要对我说些啥"></textarea>
+                    <textarea class="form-control" rows="3" placeholder="想要对我们说些啥"></textarea>
                 </div>
                 <a href="#" class="btn-block">Send</a>
             </form>
