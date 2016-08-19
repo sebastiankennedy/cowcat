@@ -26,11 +26,6 @@
 
                     <hr>
 
-                    <strong><i class="fa fa-map-marker margin-r-5"></i> 地理位置</strong>
-
-                    <p class="text-muted">{{$user->profile->location or ""}}</p>
-
-                    <hr>
 
                     <strong><i class="fa fa-pencil margin-r-5"></i> 技能兴趣</strong>
 
@@ -63,13 +58,6 @@
                         <form class="form-horizontal" method="post" action="{{route('backend.user.update-profile')}}">
                             {{csrf_field()}}
                             <input type="hidden" name="user_id" id="user_id" value="{{$id}}">
-                            <div class="form-group">
-                                <label for="email" class="col-sm-2 control-label">验证邮箱</label>
-
-                                <div class="col-sm-10">
-                                    <input type="email" class="form-control" id="email" name="email" value="{{$user->email or ''}}">
-                                </div>
-                            </div>
                             <div class="form-group">
                                 <label for="nick_name" class="col-sm-2 control-label">显示昵称</label>
 
@@ -163,13 +151,6 @@
 
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="skills" name="skills" value="{{$user->profile->skills or ''}}" placeholder="使用逗号进行分割">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="location" class="col-sm-2 control-label">当前位置</label>
-
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="location" name="location" value="{{$user->profile->location or ''}}">
                                 </div>
                             </div>
                             <div class="form-group">

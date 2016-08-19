@@ -36,8 +36,21 @@
 <script type="text/javascript" src="/assets/backend/plugins/slimScroll/jquery.slimscroll.min.js"></script>
 <script type="text/javascript">
     $(function () {
-        $('.select2').select2();
-        $('#created_at').daterangepicker({timePickerIncrement: 30, format: 'YYYY/MM/DD HH:mm:ss'});
+        if ($('.select2').length > 0) {
+            $('.select2').select2();
+        }
+
+        if ($('#created_at').length == 1) {
+            $('#created_at').daterangepicker({timePickerIncrement: 30, format: 'YYYY/MM/DD HH:mm:ss'});
+        }
+
+        @if(Session::has('success'))
+            $('#success-message').delay(3000).fadeOut();
+        @endif
+
+        @if(Session::has('errors'))
+            $('#errors-message').delay(5000).fadeOut();
+        @endif
     });
 </script>
 @yield('after.js')
