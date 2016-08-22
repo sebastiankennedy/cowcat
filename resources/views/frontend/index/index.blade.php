@@ -139,7 +139,7 @@
                         <div class="media-body">
                             <h3>中英文支持</h3>
                             <p>Laravel 本地化功能非常易用</p>
-                            <p>基于它简单了实现多语言支持</p>
+                            <p>基于它简单实现了多语言支持</p>
                         </div>
 
                     </div>
@@ -296,21 +296,21 @@
             <div class="col-md-4">
                 <div class="team">
                     <img class="img-responsive center-block" src="http://o93kt6djh.bkt.clouddn.com/WechatIMG3.jpeg" alt="1">
-                    <h4>Tian Mao</h4>
+                    <h4>天猫</h4>
                     <p>高级卖萌工程师</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="team">
                     <img class="img-responsive center-block" src="http://o93kt6djh.bkt.clouddn.com/WechatIMG6.jpeg" alt="3">
-                    <h4>Summer</h4>
+                    <h4 style="text-transform: none;">Summer</h4>
                     <p>高级卖萌工程师</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="team">
                     <img class="img-responsive center-block" src="http://o93kt6djh.bkt.clouddn.com/WechatIMG12.jpeg" alt="2">
-                    <h4>Luis</h4>
+                    <h4 style="text-transform: none;">Luis</h4>
                     <p>PHP 铲屎员</p>
                 </div>
             </div>
@@ -389,7 +389,7 @@
         <div class="social">
             <a target="_blank" href="https://github.com/luisedware/CowCat"><i class="fa fa-github"></i></a>
         </div>
-        <h6>&copy; 2016 CowCat.Development By TianMao,Summer and Luis</h6>
+        <h6 style="text-transform:none;">&copy; 2016 CowCat.Development By TianMao,Summer and Luis</h6>
     </div>
 </footer>
 <script src="{{elixir("assets/frontend/js/app.min.js")}}"></script>
