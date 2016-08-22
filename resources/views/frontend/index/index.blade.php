@@ -36,7 +36,7 @@
             <div class="collapse navbar-collapse text-center" id="bs-example-navbar-collapse-1">
                 <div class="col-md-8 col-xs-12 nav-wrap">
                     <ul class="nav navbar-nav">
-                        <li><a href="#owl-hero" class="page-scroll">CowCat</a></li>
+                        <li><a href="#owl-hero" class="page-scroll" style="text-transform: none;">CowCat</a></li>
                         <li><a href="#services" class="page-scroll">功能特点</a></li>
                         <li><a href="#portfolio" class="page-scroll">页面预览</a></li>
                         <li><a href="#team" class="page-scroll">团队成员</a></li>
@@ -80,9 +80,9 @@
 ============================================= -->
 <section id="welcome">
     <div class="container">
-        <h2>天猫：欢迎大家使用 <span>CowCat</span></h2>
+        <h2>天猫：欢迎大家使用 <span style="text-transform: none;">CowCat </span>,喵!</h2>
         <hr class="sep">
-        <p>Summer：数据库里还有很多我们的私房照,赶紧把项目搭起来吧!</p>
+        <p>Summer：数据库里还有很多我们的私房照,喜欢我们就赶紧把项目搭起来吧!</p>
         <img class="img-responsive center-block wow fadeInUp" data-wow-delay=".3s" src="http://o93kt6djh.bkt.clouddn.com/WechatIMG13.jpeg" alt="logo"
              style="width: 175px;height: 100%;border-radius: 10px;">
     </div>
@@ -172,7 +172,7 @@
                     <img src="http://o93kt6djh.bkt.clouddn.com/cowcat-1.Login.png" class="img-responsive" alt="1">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
-                            <div class="project-category text-faded">
+                            <div class="project-category text-faded" style="text-transform: none;">
                                 CowCat CMS
                             </div>
                             <div class="project-name">
@@ -187,7 +187,7 @@
                     <img src="http://o93kt6djh.bkt.clouddn.com/cowcat-2.Index.png" class="img-responsive" alt="2">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
-                            <div class="project-category text-faded">
+                            <div class="project-category text-faded" style="text-transform: none;">
                                 CowCat CMS
                             </div>
                             <div class="project-name">
@@ -202,7 +202,7 @@
                     <img src="http://o93kt6djh.bkt.clouddn.com/cowcat-3.Menu.png" class="img-responsive" alt="3">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
-                            <div class="project-category text-faded">
+                            <div class="project-category text-faded" style="text-transform: none;">
                                 CowCat CMS
                             </div>
                             <div class="project-name">
@@ -217,7 +217,7 @@
                     <img src="http://o93kt6djh.bkt.clouddn.com/cowcat-4.Log.png" class="img-responsive" alt="4">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
-                            <div class="project-category text-faded">
+                            <div class="project-category text-faded" style="text-transform: none;">
                                 CowCat CMS
                             </div>
                             <div class="project-name">
@@ -232,7 +232,7 @@
                     <img src="http://o93kt6djh.bkt.clouddn.com/cowcat-5.Permission.png" class="img-responsive" alt="5">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
-                            <div class="project-category text-faded">
+                            <div class="project-category text-faded" style="text-transform: none;">
                                 CowCat CMS
                             </div>
                             <div class="project-name">
@@ -247,7 +247,7 @@
                     <img src="http://o93kt6djh.bkt.clouddn.com/cowcat-6.Assocate.png" class="img-responsive" alt="6">
                     <div class="portfolio-box-caption">
                         <div class="portfolio-box-caption-content">
-                            <div class="project-category text-faded">
+                            <div class="project-category text-faded" style="text-transform: none;">
                                 CowCat CMS
                             </div>
                             <div class="project-name">
@@ -264,7 +264,7 @@
 ============================================= -->
 <section id="fun-facts">
     <div class="container">
-        <h2>Github Profile</h2>
+        <h2 style="text-transform: none;">Github Profile</h2>
         <hr class="light-sep">
         <div class="row wow fadeInUp" data-wow-delay=".3s">
             <div class="col-lg-4">
@@ -274,7 +274,7 @@
             </div>
             <div class="col-lg-4">
                 <span class="fa fa-star"></span>
-                <h2 class="number timer">174</h2>
+                <h2 class="number timer">175</h2>
                 <h4>Star</h4>
             </div>
             <div class="col-lg-4">
@@ -385,11 +385,11 @@
 ============================================= -->
 <footer>
     <div class="container">
-        <h1>CowCat</h1>
+        <h1 style="text-transform: none;">CowCat</h1>
         <div class="social">
             <a target="_blank" href="https://github.com/luisedware/CowCat"><i class="fa fa-github"></i></a>
         </div>
-        <h6 style="text-transform:none;">&copy; 2016 CowCat.Development By TianMao,Summer and Luis</h6>
+        <h6 style="text-transform:none;">&copy; 2016 CowCat Developed By 天猫,Summer and Luis</h6>
     </div>
 </footer>
 <script src="{{elixir("assets/frontend/js/app.min.js")}}"></script>
