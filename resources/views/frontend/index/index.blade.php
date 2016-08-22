@@ -65,7 +65,7 @@
         </div>
         <div class="item" style="background-image: url(http://o93kt6djh.bkt.clouddn.com/slide-summer.jpeg)">
             <div class="caption">
-                <h6>我叫Summer</h6>
+                <h6>我叫 <span>Summer</span></h6>
                 <h1>工作也是<span>卖萌</span></h1>
                 <a class="btn btn-transparent" href="https://github.com/luisedware/CowCat" target="_blank">
                     点赞
@@ -102,7 +102,7 @@
                     <div class="media-body">
                         <h3>简单易用</h3>
                         <p>得益于 Laravel 社区的繁荣</p>
-                        <p>与 CowCat 功能开发定位</p>
+                        <p>和 CowCat 功能开发的定位</p>
                         <p>即便是新手也能进行二次开发</p>
                     </div>
                 </div>
@@ -119,8 +119,9 @@
                     <div class="media-left"><span class="icon-lock"></span></div>
                     <div class="media-body">
                         <h3>权限系统</h3>
-                        <p>Fringilla augue at maximus vestibulum. Nam pulvinar vitae neque et porttitor. Praesent sed
-                            nisi eleifend.</p>
+                        <p>基于 Zizaco/entrust 权限组件开发</p>
+                        <p>配合 CowCat 的 RBAC 表结构</p>
+                        <p>方便地扩展业务和功能的权限管理</p>
                     </div>
                 </div>
                 <div class="row wow fadeInUp" data-wow-delay=".6s">
@@ -137,17 +138,18 @@
                         <div class="media-left"><span class="icon-chat"></span></div>
                         <div class="media-body">
                             <h3>中英文支持</h3>
-                            <p>Fringilla augue at maximus vestibulum. Nam pulvinar vitae neque et porttitor. Praesent
-                                sed nisi eleifend.</p>
+                            <p>Laravel 本地化功能非常易用</p>
+                            <p>基于它简单了实现多语言支持</p>
                         </div>
 
                     </div>
                     <div class="col-md-4">
                         <div class="media-left"><span class="icon-desktop"></span></div>
                         <div class="media-body">
-                            <h3>代码解耦</h3>
-                            <p>Fringilla augue at maximus vestibulum. Nam pulvinar vitae neque et porttitor. Praesent
-                                sed nisi eleifend.</p>
+                            <h3>架构良好</h3>
+                            <p>遵循面向对象的单一职责</p>
+                            <p>基于 MVC 架构加入 Repository、</p>
+                            <p>Presenter、Service层,代码解耦</p>
                         </div>
                     </div>
 
