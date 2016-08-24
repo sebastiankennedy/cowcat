@@ -25,23 +25,23 @@
                         </div>
                         <div class="form-group">
                             <label for="name">菜单名称</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="菜单名称" value="{{$data->name}}">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="菜单名称" value="{{old('name',$data->name)}}">
                         </div>
                         <div class="form-group">
                             <label for="description">菜单描述</label>
-                            <input type="text" class="form-control" id="description" name="description" placeholder="菜单描述" value="{{$data->description}}">
+                            <input type="text" class="form-control" id="description" name="description" placeholder="菜单描述" value="{{old('description',$data->description)}}">
                         </div>
                         <div class="form-group">
                             <label for="route">菜单路由</label>
-                            <input type="text" class="form-control" id="route" name="route" placeholder="菜单路由" value="{{$data->route}}">
+                            <input type="text" class="form-control" id="route" name="route" placeholder="菜单路由" value="{{old('route',$data->route)}}">
                         </div>
                         <div class="form-group">
                             <label for="icon">菜单图标</label>
-                            <input type="text" class="form-control" id="icon" name="icon" placeholder="菜单图标" value="{{$data->icon}}">
+                            <input type="text" class="form-control" id="icon" name="icon" placeholder="菜单图标" value="{{old('icon',$data->icon)}}">
                         </div>
                         <div class="form-group">
                             <label for="sort">菜单排序</label>
-                            <input type="text" class="form-control" id="sort" name="sort" placeholder="菜单排序" value="{{$data->sort}}">
+                            <input type="text" class="form-control" id="sort" name="sort" placeholder="菜单排序" value="{{old('sort',$data->sort)}}">
                         </div>
                         <div class="form-group">
                             <label for="hide">是否隐藏</label>

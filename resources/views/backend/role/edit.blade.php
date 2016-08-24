@@ -13,15 +13,15 @@
                     <div class="box-body">
                         <div class="form-group">
                             <label for="name">角色标识</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="角色标识" value="{{$data->name}}">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="角色标识" value="{{old('name',$data->name)}}">
                         </div>
                         <div class="form-group">
                             <label for="display_name">角色名称</label>
-                            <input type="text" class="form-control" id="display_name" name="display_name" placeholder="角色名称" value="{{$data->display_name}}">
+                            <input type="text" class="form-control" id="display_name" name="display_name" placeholder="角色名称" value="{{old('display_name',$data->display_name)}}">
                         </div>
                         <div class="form-group">
                             <label for="description">角色描述</label>
-                            <input type="text" class="form-control" id="description" name="description" placeholder="角色描述" value="{{$data->description}}">
+                            <input type="text" class="form-control" id="description" name="description" placeholder="角色描述" value="{{old('description',$data->description)}}">
                         </div>
                     </div>
                     <div class="box-footer clearfix">

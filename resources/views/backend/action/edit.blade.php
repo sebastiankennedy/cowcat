@@ -26,11 +26,11 @@
                         </div>
                         <div class="form-group">
                             <label for="name">操作名称</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="操作名称" value="{{$data->name}}">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="操作名称" value="{{old('name',$data->name)}}">
                         </div>
                         <div class="form-group">
                             <label for="description">操作描述</label>
-                            <input type="text" class="form-control" id="description" name="description" placeholder="操作描述" value="{{$data->description}}">
+                            <input type="text" class="form-control" id="description" name="description" placeholder="操作描述" value="{{old('description',$data->description)}}">
                         </div>
                         <div class="form-group">
                             <label for="action">操作标识</label>

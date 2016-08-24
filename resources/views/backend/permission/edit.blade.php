@@ -13,7 +13,7 @@
                     <div class="box-body">
                         <div class="form-group">
                             <label for="name">权限标识</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="权限标识" value="{{$data->name}}">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="权限标识" value="{{old('name',$data->name)}}">
                         </div>
                         <div class="form-group">
                             <label for="type">权限分类</label>
@@ -27,11 +27,11 @@
                         </div>
                         <div class="form-group">
                             <label for="display_name">权限名称</label>
-                            <input type="text" class="form-control" id="display_name" name="display_name" placeholder="权限名称" value="{{$data->display_name}}">
+                            <input type="text" class="form-control" id="display_name" name="display_name" placeholder="权限名称" value="{{old('display_name',$data->display_name)}}">
                         </div>
                         <div class="form-group">
                             <label for="description">权限描述</label>
-                            <input type="text" class="form-control" id="description" name="description" placeholder="权限描述" value="{{$data->description}}">
+                            <input type="text" class="form-control" id="description" name="description" placeholder="权限描述" value="{{old('description',$data->description)}}">
                         </div>
                     </div>
                     <div class="box-footer clearfix">

@@ -22,11 +22,11 @@
                         </div>
                         <div class="form-group">
                             <label for="name">用户名称</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="用户名称" value="{{$user->name}}">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="用户名称" value="{{old('name',$user->name)}}">
                         </div>
                         <div class="form-group">
                             <label for="email">用户邮箱</label>
-                            <input type="text" class="form-control" id="email" name="email" placeholder="用户邮箱" value="{{$user->email}}">
+                            <input type="text" class="form-control" id="email" name="email" placeholder="用户邮箱" value="{{old('email',$user->email)}}">
                         </div>
                         <div class="form-group">
                             <label for="password">用户密码</label>
