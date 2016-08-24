@@ -9,7 +9,7 @@
                     <i class="fa fa-quote-left left fa-2x"></i>
                     <h5>
                         天猫是一只母猫,性格非常粘人,总是跑到我们的大腿上睡觉。天猫的身体非常柔软,超级喜欢抱它,它也愿意让我们抱,每次抱着它都会舔我们的手。
-                        据说舔手代表猫咪很爱主人,嗯,我们真幸福。
+                        据说舔手代表猫咪很爱主人,嗯,我们真幸福。超级爱你,天猫。
                         <span style="text-transform: none;">---Luis</span>.<i class="fa fa-quote-right right fa-2x"></i>
                     </h5>
                 </div>
