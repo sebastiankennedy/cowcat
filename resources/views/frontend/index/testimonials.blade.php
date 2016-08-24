@@ -18,7 +18,7 @@
                 <div class="quote">
                     <i class="fa fa-quote-left left fa-2x"></i>
                     <h5>Summer 是一只公猫,性格也属于粘人型,但是有点胆小,每次伸手要它的时候,它总是喜欢在距离你不远的地方蹭来蹭去,最后才跑过来让你摸,提前靠近它马上钻进
-                        客房的床底。而已有一点令我们很无奈的是,这家伙每次拉完粑粑,都喜欢去沙发上面擦屁股。就是整个屁股坐在沙发上,然后不断摩擦...
+                        客房的床底。Summer 有一点令我们很无奈的是,这家伙每次拉完粑粑,都喜欢去沙发上面擦屁股。就是整个屁股坐在沙发上,然后不断摩擦...
                         <span style="text-transform: none;">---Luis</span>.<i class="fa fa-quote-right right fa-2x"></i>
                     </h5>
                 </div>
