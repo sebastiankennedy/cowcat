@@ -42,17 +42,24 @@
     $('#contact-us').click(function () {
         var name = $('#name').val();
         var email = $('#email').val();
+        var message = $('#message').val();
 
         $.ajax({
             url: "{{route('frontend.index.contact-us')}}",
             type: "POST",
-            data: {name: name, email: email},
+            data: {name: name, email: email, message: message},
             dataType: "json",
-            success: function () {
-
+            success: function (response) {
+                console.log(response);
+                if (response.status == 1) {
+                    $("#contact-us").attr('disabled', 'disabled');
+                    $("#contact-us").html('留言成功');
+                } else {
+                    $("#contact-us").html('留言失败');
+                }
             },
-            error: function () {
-
+            error: function (response) {
+                console.log(response);
             }
         });
     });

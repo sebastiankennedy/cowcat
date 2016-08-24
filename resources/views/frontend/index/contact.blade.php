@@ -9,12 +9,12 @@
                     <input type="text" class="form-control" id="name" name="name" placeholder="姓名">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="email" name="email" placeholder="邮箱">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="邮箱">
                 </div>
                 <div class="form-group">
-                    <textarea class="form-control" rows="3" placeholder="想要对我们说些啥"></textarea>
+                    <textarea class="form-control" rows="3" placeholder="想要对我们说些啥" id="message"></textarea>
                 </div>
-                <a href="javascript:;" class="btn-block" id="contact-us">提交</a>
+                <button type="button" class="btn-block" id="contact-us">提交</button>
             </form>
         </div>
     </div>
