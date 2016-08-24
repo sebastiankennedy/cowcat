@@ -2,7 +2,7 @@
     <div class="container">
         <h2>养猫感言</h2>
         <hr class="light-sep">
-        <p>I Love My Cats</p>
+        <p>We Love Our Cats</p>L
         <div id="owl-testi" class="owl-carousel owl-theme">
             <div class="item">
                 <div class="quote">
