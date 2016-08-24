@@ -54,8 +54,15 @@
                 if (response.status == 1) {
                     $("#contact-us").attr('disabled', 'disabled');
                     $("#contact-us").html('留言成功');
+                    swal({
+                        title: response.message,
+                        text: "我们会尽快回复你的说~",
+                        type: 'success',
+                        confirmButtonColor: '#8CD4F5',
+                        closeOnConfirm: false
+                    });
                 } else {
-                    $("#contact-us").html('留言失败');
+                    swal(response.message)
                 }
             },
             error: function (response) {

@@ -35,7 +35,7 @@ class IndexController extends Controller
             }
         }
         catch (\Exception $e) {
-            return $this->responseJson(['status' => 0, 'message' => $e->getMessage()]);
+            return $this->responseJson(['status' => 0, 'message' => "留言失败"]);
         }
     }
 }

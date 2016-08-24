@@ -47,6 +47,8 @@ elixir(function (mix) {
     mix.copy("resources/assets/frontend/img/testimonials/Testimonials.jpg", "public/build/assets/frontend/img/testimonials/");
     mix.copy("resources/assets/frontend/plugins/Lightbox/dist/images/*", "public/build/assets/frontend/images/");
     mix.copy('node_modules/font-awesome/css/font-awesome.min.css', 'resources/assets/frontend/css/');
+    mix.copy("node_modules/sweetalert/dist/sweetalert.css", "resources/assets/frontend/css");
+    mix.copy("node_modules/sweetalert/dist/sweetalert.min.js", "resources/assets/frontend/js");
 
     // 合并前端的CSS样式文件
     mix.styles([
@@ -58,6 +60,7 @@ elixir(function (mix) {
             'plugins/Icons/et-line-font/style.css',
             'plugins/animate.css/animate.css',
             'css/main.css',
+            'css/sweetalert.css',
             'css/font-awesome.min.css'
         ],
         'public/assets/frontend/css/app.min.css',
@@ -89,7 +92,8 @@ elixir(function (mix) {
             'plugins/countTo/jquery.countTo.js',
             'plugins/inview/jquery.inview.min.js',
             'plugins/Lightbox/dist/js/lightbox.min.js',
-            'plugins/WOW/dist/wow.min.js'
+            'plugins/WOW/dist/wow.min.js',
+            'js/sweetalert.min.js'
         ],
         'public/assets/frontend/js/app.min.js',
         'resources/assets/frontend'
