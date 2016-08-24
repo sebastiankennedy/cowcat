@@ -7,7 +7,7 @@ Route::get('language/{locale}', function ($locale) {
 });
 
 /* 后台首页 */
-Route::get('index/', [
+Route::get('/', [
     'as'   => 'backend.index.index',
     'uses' => 'IndexController@index',
 ]);
