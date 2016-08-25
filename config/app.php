@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'locale' =>  env('APP_LANGUAGE', 'zh'),
+    'locale' => env('APP_LANGUAGE', 'zh'),
 
     /*
     |--------------------------------------------------------------------------
@@ -153,6 +153,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
         Orangehill\Iseed\IseedServiceProvider::class,
+        GrahamCampbell\Exceptions\ExceptionsServiceProvider::class,
     ],
 
     /*

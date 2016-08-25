@@ -65,7 +65,7 @@ Free,open-source CMS based on the Laravel PHP Framework
 
 - [x] 首页展示（Home Page）-- 初步实现,等待完善细节
 - [x] 发送邮件（Send Email）-- 初步实现,等待重构
-- [ ] 在线支付（Online payment）
+- [ ] 在线支付（Online Payment）
 - [x] 文件上传（File Upload）-- 初步实现,等待重构
 - [ ] OAuth2.0 注册与登录（Register & Login By OAuth2.0）
 - [ ] 富文本编辑器和 Markdown 编辑器（Rich Text Editor && Markdown）
