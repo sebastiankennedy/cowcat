@@ -23,7 +23,7 @@ class IndexController extends Controller
         $menus = MenuRepository::count();
         $roles = RoleRepository::count();
         $actions = ActionRepository::count();
-        $messages = MessageBoard::paginate(1);
+        $messages = MessageBoard::paginate();
         $permissions = PermissionRepository::count();
 
         return view('backend.index.index', compact('menus', 'roles', 'actions', 'permissions', 'messages'));
