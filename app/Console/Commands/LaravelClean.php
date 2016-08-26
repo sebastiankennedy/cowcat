@@ -40,7 +40,7 @@ class LaravelClean extends Command
     {
         $this->line("即将执行清除缓存命令");
         if($this->confirm('确定执行?')){
-            $this->line("开始执行缓存命令");
+            $this->line("开始执行清楚缓存命令");
 
             Artisan::call("clear-compiled");
 

@@ -40,7 +40,7 @@ class LaravelOptimize extends Command
     {
         $this->line("即将执行优化缓存命令");
         if($this->confirm('确定执行?')){
-            $this->line("开始执行缓存命令");
+            $this->line("开始执行优化缓存命令");
 
             Artisan::call("config:cache");
             $this->info('Configuration cache cleared!');
