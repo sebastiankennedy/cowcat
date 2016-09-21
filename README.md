@@ -50,10 +50,10 @@ Free,open-source CMS based on the Laravel PHP Framework
 
 1. **`git clone https://github.com/luisedware/CowCat.git`**
 1. **`cd CowCat`**
+1. **`sudo vi .env`**
 1. **`sudo chmod -R 777 storage/`**
 1. **`sudo composer install`**
 1. **`sudo npm install`**
-1. **`sudo vi .env`**
 1. **`gulp`**
 1. **`php artisan migrate:refresh --seed`**
 1. **`php artisan serve`**
@@ -68,6 +68,7 @@ Free,open-source CMS based on the Laravel PHP Framework
 - [ ] 在线支付（Online Payment）
 - [x] 文件上传（File Upload）-- 初步实现,等待重构
 - [ ] OAuth2.0 注册与登录（Register & Login By OAuth2.0）
+- [ ] 微信公众平台（WeChat Public Platform）
 - [ ] 富文本编辑器和 Markdown 编辑器（Rich Text Editor && Markdown）
 
 
