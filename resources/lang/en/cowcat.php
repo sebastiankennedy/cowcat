@@ -48,5 +48,6 @@ return [
     ],
     'index'      => [
         'index' => 'Dashboard',
+        'messages'=>'MessagesBorad'
     ],
 ];

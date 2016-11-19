@@ -2,7 +2,7 @@
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 
-Free,open-source CMS based on the Laravel PHP Framework
+Free,open-source CMF based on the Laravel PHP Framework
 
 ## 功能特点（Features）
 
@@ -60,17 +60,6 @@ Free,open-source CMS based on the Laravel PHP Framework
 1. **`gulp watch`**
 
 > 默认账号: user@qq.com / admin@qq.com 密码: 123456
-
-## 计划新增功能（Todo）
-
-- [x] 首页展示（Home Page）-- 初步实现,等待完善细节
-- [x] 发送邮件（Send Email）-- 初步实现,等待重构
-- [ ] 在线支付（Online Payment）
-- [x] 文件上传（File Upload）-- 初步实现,等待重构
-- [ ] OAuth2.0 注册与登录（Register & Login By OAuth2.0）
-- [ ] 微信公众平台（WeChat Public Platform）
-- [ ] 富文本编辑器和 Markdown 编辑器（Rich Text Editor && Markdown）
-
 
 ## 感谢（Thanks）
 

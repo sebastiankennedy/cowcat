@@ -48,5 +48,6 @@ return [
     ],
     'index'      => [
         'index' => '首页管理',
+        'messages'=>'留言管理'
     ],
 ];
