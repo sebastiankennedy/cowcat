@@ -42,7 +42,7 @@ trait BaseRepositoryTrait
     {
         $model = $this->model;
 
-        return $model::where('id', $id)->update($input);
+        return $model::where($this->model->getKeyName(), $id)->update($input);
     }
 
     public function all(array $columns = ['*'])
@@ -67,7 +67,7 @@ trait BaseRepositoryTrait
     {
         $model = $this->model;
 
-        return $model::where('id', '>=', 1)->count();
+        return $model::where($this->model->getKeyName(), '>=', 1)->count();
     }
 
     public function paginate($limit, array $columns = ['*'])
