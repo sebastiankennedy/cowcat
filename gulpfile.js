@@ -21,7 +21,7 @@ elixir(function (mix) {
     mix.copy("node_modules/admin-lte/plugins/select2/select2.full.min.js", "resources/assets/backend/js/");
     mix.copy("node_modules/admin-lte/plugins/daterangepicker/moment.min.js", "resources/assets/backend/js/");
     mix.copy("node_modules/admin-lte/plugins/daterangepicker/daterangepicker.js", "resources/assets/backend/js/");
-    mix.copy("node_modules/admin-lte/plugins/daterangepicker/daterangepicker-bs3.css", "resources/assets/backend/css/");
+    mix.copy("node_modules/admin-lte/plugins/daterangepicker/daterangepicker.css", "resources/assets/backend/css/");
 
     // Font-Awesome
     mix.copy('node_modules/font-awesome/css/font-awesome.min.css', 'resources/assets/backend/css/');
