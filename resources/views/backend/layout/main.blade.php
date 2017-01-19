@@ -41,7 +41,45 @@
         }
 
         if ($('#created_at').length == 1) {
-            $('#created_at').daterangepicker({timePickerIncrement: 30, format: 'YYYY/MM/DD HH:mm:ss'});
+            $('#created_at').daterangepicker({
+                startDate: '{{date('Y/m/d')}}',
+                endDate: '{{date('Y/m/d',time()+86400)}}',
+                "opens": "left",
+                "locale": {
+                    format: 'YYYY/MM/DD',
+                    "separator": " - ",
+                    "applyLabel": "选择",
+                    "cancelLabel": "关闭",
+                    "fromLabel": "From",
+                    "toLabel": "To",
+                    "customRangeLabel": "Custom",
+                    "weekLabel": "W",
+                    "linkedCalendars": true,
+                    "daysOfWeek": [
+                        "日",
+                        "一",
+                        "二",
+                        "三",
+                        "四",
+                        "五",
+                        "六"
+                    ],
+                    "monthNames": [
+                        "一月",
+                        "二月",
+                        "三月",
+                        "四月",
+                        "五月",
+                        "六月",
+                        "七月",
+                        "八月",
+                        "九月",
+                        "十月",
+                        "十一月",
+                        "十二月"
+                    ]
+                },
+            });
         }
 
         @if(Session::has('success'))

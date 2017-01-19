@@ -103,11 +103,11 @@ elixir(function (mix) {
     mix.scripts([
             'jquery.min.js',
             'bootstrap.min.js',
+            'adminlte.min.js',
             'select2.full.min.js',
             'moment.min.js',
-            'daterangepicker.js',
-            'adminlte.min.js',
             'sweetalert.min.js',
+            'daterangepicker.js',
             'common.js'
         ],
         'public/assets/backend/js/app.min.js',
