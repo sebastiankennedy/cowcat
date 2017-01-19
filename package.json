@@ -4,7 +4,7 @@
     "gulp": "^3.8.8"
   },
   "dependencies": {
-    "admin-lte": "^2.3.3",
+    "admin-lte": "^2.3.11",
     "bootstrap": "^3.3.6",
     "bootstrap-sass": "^3.0.0",
     "dropzone": "^4.3.0",
@@ -15,3 +15,4 @@
     "sweetalert": "^1.1.3"
   }
 }
+
