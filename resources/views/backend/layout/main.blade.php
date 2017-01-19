@@ -42,20 +42,17 @@
 
         if ($('#created_at').length == 1) {
             $('#created_at').daterangepicker({
-                startDate: '{{date('Y/m/d')}}',
-                endDate: '{{date('Y/m/d',time()+86400)}}',
-                "opens": "left",
-                "locale": {
+                opens: "left",
+                locale: {
                     format: 'YYYY/MM/DD',
-                    "separator": " - ",
-                    "applyLabel": "选择",
-                    "cancelLabel": "关闭",
-                    "fromLabel": "From",
-                    "toLabel": "To",
-                    "customRangeLabel": "Custom",
-                    "weekLabel": "W",
-                    "linkedCalendars": true,
-                    "daysOfWeek": [
+                    separator: " - ",
+                    applyLabel: "选择",
+                    cancelLabel: "关闭",
+                    fromLabel: "From",
+                    toLabel: "To",
+                    weekLabel: "W",
+                    linkedCalendars: false,
+                    daysOfWeek: [
                         "日",
                         "一",
                         "二",
@@ -64,7 +61,7 @@
                         "五",
                         "六"
                     ],
-                    "monthNames": [
+                    monthNames: [
                         "一月",
                         "二月",
                         "三月",
@@ -80,7 +77,12 @@
                     ]
                 },
             });
+
+            $('#created_at').on('cancel.daterangepicker', function(ev, picker) {
+                $(this).val('');
+            });
         }
+
 
         @if(Session::has('success'))
             $('#success-message').delay(3000).fadeOut();
