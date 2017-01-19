@@ -4,6 +4,9 @@ Route::get('/', [
     'as' => 'backend.index.index',
     'uses' => 'IndexController@index',
 ]);
+Route::get('/index',[
+    'uses' => 'IndexController@index'
+]);
 
 /* 留言面板 */
 Route::get('index/messages', [
