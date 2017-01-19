@@ -1,3 +1,9 @@
+## 暂停维护
+
+由于新公司使用 Yii 2 作为唯一的开发框架,所以打算接下来的时间都放在学习 Yii 2 上。
+等到 Laravel 5 LTS 出来之后,再结合学习 Yii2 的经验重构本项目。
+
+
 ## CowCat CMS
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
