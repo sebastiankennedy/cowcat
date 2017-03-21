@@ -12333,7 +12333,7 @@ button.close {
 
 html,
 body {
-  min-height: 100%;
+  height: 100%;
 }
 
 .layout-boxed html,
@@ -12342,8 +12342,6 @@ body {
 }
 
 body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
   font-weight: 400;
   overflow-x: hidden;
@@ -12351,9 +12349,10 @@ body {
 }
 
 .wrapper {
-  min-height: 100%;
+  height: 100%;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .wrapper:before,
@@ -13047,10 +13046,12 @@ a:focus {
   }
 
   .sidebar-mini.sidebar-collapse .sidebar-menu>li:hover>a>.pull-right-container {
+    position: relative!important;
     float: right;
     width: auto!important;
-    left: 200px!important;
-    top: 10px!important;
+    left: 180px !important;
+    top: -22px !important;
+    z-index: 900;
   }
 
   .sidebar-mini.sidebar-collapse .sidebar-menu>li:hover>a>.pull-right-container>.label:not(:first-of-type) {
@@ -14383,6 +14384,10 @@ a:focus {
 .box-header>.box-tools.pull-right .dropdown-menu {
   right: 0;
   left: auto;
+}
+
+.box-header>.box-tools .dropdown-menu>li>a {
+  color: #444!important;
 }
 
 .btn-box-tool {
