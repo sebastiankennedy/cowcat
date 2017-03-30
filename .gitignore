@@ -8,3 +8,6 @@ Homestead.json
 /storage
 /.env
 _ide_helper.php
+ /resources/assets
+ /public/build
+ /public/assets
