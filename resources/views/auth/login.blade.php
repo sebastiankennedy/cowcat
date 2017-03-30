@@ -8,7 +8,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" type="text/css" href="{{ elixir('assets/backend/css/app.min.css') }}">
 </head>
-<body id="login" class="hold-transition login-page" style="background-image: url('{{array_random(config('cowcat.background-images'))}}');">
+<body id="login" class="hold-transition login-page" style="background-image: url('{{array_random(config('cowcat.background-images'))}}'); height: 100%">
 <div class="login-box">
     <div class="login-logo">
         <b>CowCat</b> CMS
@@ -45,7 +45,5 @@
         </form>
     </div>
 </div>
-<script type="text/javascript" src="{{ elixir('assets/backend/js/app.min.js') }}"></script>
 </body>
-
 </html>
