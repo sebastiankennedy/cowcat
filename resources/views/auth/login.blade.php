@@ -18,7 +18,7 @@
             Happy Coding
         </p>
         <form action="{{URL::to('/auth/login')}}" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            {{!! csrf_token() !!}}
             <div class="row">
                 <div class="col-xs-12">
                     <div class="form-group has-feedback">
